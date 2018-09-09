@@ -1,0 +1,99 @@
+
+# main links
+main:
+  - title: "Documentation"
+    url: /docs/about/overview/
+  - title: "Support"
+    url: /support/
+# - title: "Sample Posts"
+#   url: /year-archive/
+# - title: "Sample Collections"
+#   url: /collection-archive/
+# - title: "Terms &amp; Privacy Policy"
+#   url: /terms/
+
+
+# documentation links
+docs:
+  - title: About
+    url: /docs/about/overview/
+    children:
+      - title: "Introduction"
+        url: /docs/about/overview/
+      - title: "Key concepts"
+        url: /docs/about/key-concepts/
+      - title: "Producing messages"
+        url: /docs/about/producing-messages/
+      - title: "Consuming messages"
+        url: /docs/about/consuming-messages/
+      - title: "Partition leadership"
+        url: /docs/about/partition-leadership/
+      - title: "Accessibility"
+        url: /docs/about/accessibility/
+      - title: "Notices"
+        url: /docs/about/notices/
+  - title: Installing
+    children:
+      - title: "Pre-requisites"
+        url: /docs/installing/prerequisites/
+      - title: "Planning for installation"
+        url: /docs/installing/planning/
+      - title: "Downloading"
+        url: /docs/installing/downloading/
+      - title: "Installing"
+        url: /docs/installing/installing/
+      - title: "Configuring"
+        url: /docs/installing/configuring/
+      - title: "Migrating to IBM Event Streams"
+        url: /docs/installing/migrating/
+      - title: "Post-installation tasks"
+        url: /docs/installing/post-installation/
+      - title: "Uninstalling"
+        url: /docs/installing/uninstalling/
+  - title: Getting started
+    children:
+      - title: "Logging in"
+        url: /docs/getting-started/logging-in/
+      - title: "Generating a starter application"
+        url: /docs/getting-started/generating-starter-app/
+      - title: "Creating and testing message loads"
+        url: /docs/getting-started/testing-loads/
+  - title: Security
+    children:
+      - title: "Setting up users"
+        url: /docs/security/users/
+      - title: "Encrypting your data"
+        url: /docs/security/encrypting-data/
+  - title: Geo-replication
+    children:
+      - title: "About geo-replication"
+        url: /docs/replication/about/
+      - title: "Planning for geo-replication"
+        url: /docs/replication/planning/
+      - title: "Setting up geo-replication"
+        url: /docs/replication/setting-up/
+      - title: "Monitoring health of geo-replication"
+        url: /docs/replication/health/
+  - title: Connecting to other systems
+    children:
+      - title: "Connecting to IBM MQ"
+        url: /docs/connecting/mq/
+      - title: "Reference for IBM MQ source connector"
+        url: /docs/connecting/mq-source-reference/
+  - title: Administering
+    children:
+      - title: "Monitoring deployment health"
+        url: /docs/administering/deployment-health/
+      - title: "Monitoring Kafka cluster health"
+        url: /docs/administering/cluster-health/
+      - title: "Modifying configuration settings"
+        url: /docs/administering/modifying-configs/
+      - title: "Scaling"
+        url: /docs/administering/scaling/
+      - title: "Updating dynamically"
+        url: /docs/administering/updating-dynamically/
+  - title: Troubleshooting
+    url: /docs/troubleshooting/intro/
+    children:
+      - title: "UI error on Firefox"
+        url: /docs/troubleshooting/ui-error-firefox/

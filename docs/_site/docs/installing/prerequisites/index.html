@@ -1,0 +1,773 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.12.0 by Michael Rose
+  Copyright 2013-2018 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Pre-requisites - IBM Event Streams</title>
+<meta name="description" content="Pre-requisites for installing IBM Event Streams.">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="IBM Event Streams">
+<meta property="og:title" content="Pre-requisites">
+<meta property="og:url" content="http://localhost:4000/mhub/qp-docs/docs/installing/prerequisites/">
+
+
+  <meta property="og:description" content="Pre-requisites for installing IBM Event Streams.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2018-09-09T10:14:16-04:00">
+
+
+
+  <meta property="article:modified_time" content="2018-07-22T12:22:01-04:00">
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/mhub/qp-docs/docs/installing/prerequisites/">
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": "IBM",
+      "url": "http://localhost:4000/mhub/qp-docs",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/mhub/qp-docs/feed.xml" type="application/atom+xml" rel="alternate" title="IBM Event Streams Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/mhub/qp-docs/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <a class="site-title" href="/mhub/qp-docs/">IBM Event Streams</a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/mhub/qp-docs/docs/about/overview/" >Documentation</a>
+            </li><li class="masthead__menu-item">
+              <a href="/mhub/qp-docs/support/" >Support</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle Menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+  
+    
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">Toggle Menu</label>
+  <ul class="nav__items">
+    
+      <li>
+        
+          
+          
+
+          <a href="/mhub/qp-docs/docs/about/overview/"><span class="nav__sub-title">About</span></a>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/mhub/qp-docs/docs/about/overview/" class="">Introduction</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/mhub/qp-docs/docs/about/key-concepts/" class="">Key concepts</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/mhub/qp-docs/docs/about/producing-messages/" class="">Producing messages</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/mhub/qp-docs/docs/about/consuming-messages/" class="">Consuming messages</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/mhub/qp-docs/docs/about/partition-leadership/" class="">Partition leadership</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/mhub/qp-docs/docs/about/accessibility/" class="">Accessibility</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/mhub/qp-docs/docs/about/notices/" class="">Notices</a></li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Installing</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/mhub/qp-docs/docs/installing/prerequisites/" class="active">Pre-requisites</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/mhub/qp-docs/docs/installing/planning/" class="">Planning for installation</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/mhub/qp-docs/docs/installing/downloading/" class="">Downloading</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/mhub/qp-docs/docs/installing/installing/" class="">Installing</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/mhub/qp-docs/docs/installing/configuring/" class="">Configuring</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/mhub/qp-docs/docs/installing/migrating/" class="">Migrating to IBM Event Streams</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/mhub/qp-docs/docs/installing/post-installation/" class="">Post-installation tasks</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/mhub/qp-docs/docs/installing/uninstalling/" class="">Uninstalling</a></li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Getting started</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/mhub/qp-docs/docs/getting-started/logging-in/" class="">Logging in</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/mhub/qp-docs/docs/getting-started/generating-starter-app/" class="">Generating a starter application</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/mhub/qp-docs/docs/getting-started/testing-loads/" class="">Creating and testing message loads</a></li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Security</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/mhub/qp-docs/docs/security/users/" class="">Setting up users</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/mhub/qp-docs/docs/security/encrypting-data/" class="">Encrypting your data</a></li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Geo-replication</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/mhub/qp-docs/docs/replication/about/" class="">About geo-replication</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/mhub/qp-docs/docs/replication/planning/" class="">Planning for geo-replication</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/mhub/qp-docs/docs/replication/setting-up/" class="">Setting up geo-replication</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/mhub/qp-docs/docs/replication/health/" class="">Monitoring health of geo-replication</a></li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Connecting to other systems</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/mhub/qp-docs/docs/connecting/mq/" class="">Connecting to IBM MQ</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/mhub/qp-docs/docs/connecting/mq-source-reference/" class="">Reference for IBM MQ source connector</a></li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Administering</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/mhub/qp-docs/docs/administering/deployment-health/" class="">Monitoring deployment health</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/mhub/qp-docs/docs/administering/cluster-health/" class="">Monitoring Kafka cluster health</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/mhub/qp-docs/docs/administering/modifying-configs/" class="">Modifying configuration settings</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/mhub/qp-docs/docs/administering/scaling/" class="">Scaling</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/mhub/qp-docs/docs/administering/updating-dynamically/" class="">Updating dynamically</a></li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          
+          
+
+          <a href="/mhub/qp-docs/docs/troubleshooting/intro/"><span class="nav__sub-title">Troubleshooting</span></a>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/mhub/qp-docs/docs/troubleshooting/ui-error-firefox/" class="">UI error on Firefox</a></li>
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+    
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Pre-requisites">
+    <meta itemprop="description" content="Pre-requisites for installing IBM Event Streams.">
+    <meta itemprop="datePublished" content="September 09, 2018">
+    <meta itemprop="dateModified" content="July 22, 2018">
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Pre-requisites
+</h1>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right ">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#ibm-cloud-private-environment">IBM Cloud Private environment</a></li>
+  <li><a href="#hardware-requirements">Hardware requirements</a></li>
+  <li><a href="#helm-resource-requirements">Helm resource requirements</a></li>
+  <li><a href="#network-requirements">Network requirements</a></li>
+  <li><a href="#file-systems-for-storage">File systems for storage</a></li>
+  <li><a href="#ibm-event-streams-user-interface">IBM Event Streams user interface</a></li>
+  <li><a href="#ibm-event-streams-command-line-interface">IBM Event Streams command line interface</a></li>
+  <li><a href="#clients">Clients</a></li>
+  <li><a href="#firewall-requirements">Firewall requirements</a></li>
+</ul>
+            </nav>
+          </aside>
+        
+        <p>Ensure your environment meets the following prerequisites before installing IBM Event Streams version 2018.3.0.</p>
+
+<h2 id="ibm-cloud-private-environment">IBM Cloud Private environment</h2>
+
+<p>IBM Event Streams is supported on IBM Cloud Private version 3.1.0 running on Linux® 64-bit (x86_64) systems.</p>
+
+<p>Ensure you have the following set up for your IBM Cloud Private environment:</p>
+<ul>
+  <li>Install <a href="https://www.ibm.com/support/knowledgecenter/SSBS6K_3.1.0/installing/installing.html">IBM Cloud Private version 3.1.0</a>.(CHECK LINK BEFORE RELEASE)<br /><strong>Note:</strong> IBM Event Streams includes entitlement for IBM Cloud Private Foundation which you can <a href="../downloading">download</a> from IBM Passport Advantage.</li>
+  <li>Install the <a href="https://www.ibm.com/support/knowledgecenter/SSBS6K_3.1.0/manage_cluster/cfc_cli.html">Kubernetes command line tool</a>, and configure access to your cluster.(CHECK LINK BEFORE RELEASE)</li>
+  <li>Install the <a href="https://www.ibm.com/support/knowledgecenter/en/SSBS6K_3.1.0/manage_cluster/install_cli.html">IBM Cloud Private Command Line Interface</a>.(CHECK LINK BEFORE RELEASE)</li>
+  <li>Install the <a href="https://www.ibm.com/support/knowledgecenter/en/SSBS6K_3.1.0/app_center/create_helm_cli.html">Helm Command Line Interface</a> version 2.7.3 or later.(CHECK LINK BEFORE RELEASE)</li>
+  <li>For message indexing capabilities, set the <code class="highlighter-rouge">vm.max_map_count</code> property to at least <code class="highlighter-rouge">262144</code> on all IBM Cloud Private nodes in your cluster (not only the master node). Run the following commands on each node:  <br />
+  <code class="highlighter-rouge">sudo sysctl -w vm.max_map_count=262144</code><br />
+  <code class="highlighter-rouge">echo "vm.max_map_count=262144" | sudo tee -a /etc/sysctl.conf</code> <br />
+  During <a href="../configuring/#message-indexing-configuration">configuration</a>, ensure you enable message indexing to improve message viewing performace.</li>
+</ul>
+
+<h2 id="hardware-requirements">Hardware requirements</h2>
+
+<p>The Helm chart for IBM Event Streams specifies default values for the CPU and memory usage of the Apache Kafka<sup>®</sup> brokers and Apache ZooKeeper<sup>™</sup> servers. While IBM Event Streams can run successfully if lower memory and CPU values are specified, these defaults are the minimum values tested.</p>
+
+<p>If a system has, for example, 8 GB of memory available per node, then each Kafka broker’s memory requirement must be set to be less than 8 GB. This allows resources to be available for other IBM Event Streams components which might be required to reside on the same node.</p>
+
+<p>Ensure you have one IBM Cloud Private worker node per Kafka broker, and a minimum of 3 worker nodes available for use by IBM Event Streams.</p>
+
+<h2 id="helm-resource-requirements">Helm resource requirements</h2>
+
+<p>This Helm chart has the following resource requirements:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Component</th>
+      <th>Number of replicas</th>
+      <th>CPU/pod</th>
+      <th>Memory/pod (Gi)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Kafka</td>
+      <td>3*</td>
+      <td>1*</td>
+      <td>1*</td>
+    </tr>
+    <tr>
+      <td>ZooKeeper</td>
+      <td>3</td>
+      <td>0.1*</td>
+      <td>0.25*</td>
+    </tr>
+    <tr>
+      <td>Administration UI</td>
+      <td>1</td>
+      <td>0.1</td>
+      <td>0.25</td>
+    </tr>
+    <tr>
+      <td>Administration server</td>
+      <td>1</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>Network proxy</td>
+      <td>1</td>
+      <td>unlimited</td>
+      <td>unlimited</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>You can configure the settings marked with an asterisk (*).</p>
+
+<p>The CPU and memory limits for the network proxy are not limited by the chart, so they inherit the resource limits for the namespace that the chart is being installed into. If there are no resource limits set for the namespace, the network proxy pod runs with unbounded CPU and memory limits.</p>
+
+<h2 id="network-requirements">Network requirements</h2>
+
+<p>IBM Event Streams is supported for use with IPv4 networks only.</p>
+
+<h2 id="file-systems-for-storage">File systems for storage</h2>
+
+<p>If <a href="../planning/#persistent-storage">persistent storage</a> is required, the storage used must be physical volumes backed by file shares running with NFS version 4.</p>
+
+<h2 id="ibm-event-streams-user-interface">IBM Event Streams user interface</h2>
+
+<p>The IBM Event Streams user interface (UI) is supported on the following web browsers:</p>
+
+<ul>
+  <li>Google Chrome version 65 or later</li>
+  <li>Mozilla Firefox version 59 or later</li>
+  <li>Microsoft Edge version 16 or later</li>
+  <li>Safari version 11.1 or later</li>
+</ul>
+
+<h2 id="ibm-event-streams-command-line-interface">IBM Event Streams command line interface</h2>
+
+<p>The IBM Event Streams command line interface (CLI) is supported on the following systems:</p>
+
+<ul>
+  <li>Windows 10 or later</li>
+  <li>Linux® Ubuntu 16.04 or later</li>
+  <li>macOS 10.13 (High Sierra) or later</li>
+</ul>
+
+<h2 id="clients">Clients</h2>
+
+<p>IBM Event Streams is supported for use with clients running Apache Kafka version 0.11.0.0 or later.</p>
+
+<p>The Kafka Java client shipped with IBM Event Streams is supported for use with the following Java versions:</p>
+
+<ul>
+  <li>IBM Java 8</li>
+  <li>Oracle Java 8</li>
+</ul>
+
+<h2 id="firewall-requirements">Firewall requirements</h2>
+
+<p><strong>DRAFT COMMENT:</strong> <em>Talk to Adam Pilkington (back Monday) to have similar info here to</em> <a href="https://www.ibm.com/support/knowledgecenter/SSURRN/com.ibm.cem.doc/em_firewallreq.html">link</a></p>
+
+<p>or similar <a href="https://www.ibm.com/support/knowledgecenter/SS8G7U_18.2.0/com.ibm.app.mgmt.doc/content/planning_ports.htm">topic:</a></p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2018-07-22">July 22, 2018</time></p>
+        
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/mhub/qp-docs/docs/about/notices/" class="pagination--pager" title="Notices
+">Previous</a>
+    
+    
+      <a href="/mhub/qp-docs/docs/installing/planning/" class="pagination--pager" title="Planning for installation
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+      <!-- <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <div align="center" style="margin: 1em 0;">
+        <ins class="adsbygoogle"
+             style="display:block; border-bottom: initial;"
+             data-ad-client="ca-pub-7328585512091257"
+             data-ad-slot="3049671934"
+             data-ad-format="auto"></ins>
+        </div>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      </script> -->
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><input type="text" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+    <div id="results" class="results"></div></div>
+      </div>
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        
+<div class="page__footer-copyright"><a href="https://www.ibm.com/privacy/us/en/" rel="nofollow" target="_blank">Privacy Policy</a>  &nbsp;© Copyright IBM Corp. 2018</br>
+  Released under the <a href="https://www.apache.org/licenses/LICENSE-2.0" rel="nofollow" target="_blank">Apache License v2.0</a></div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/mhub/qp-docs/assets/js/main.min.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+
+
+
+
+<script src="/mhub/qp-docs/assets/js/lunr/lunr.min.js"></script>
+<script src="/mhub/qp-docs/assets/js/lunr/lunr-store.js"></script>
+<script src="/mhub/qp-docs/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+  </body>
+</html>

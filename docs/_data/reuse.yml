@@ -1,0 +1,30 @@
+
+# {{site.data.reuse.long_name}}
+long_name: "IBM Event Streams"
+
+# {{site.data.reuse.short_name}}
+short_name: "Event Streams"
+
+# {{site.data.reuse.ce_long}}
+ce_long: "IBM Event Streams Community Edition"
+
+# {{site.data.reuse.ce_short}}
+ce_short: "Community Edition"
+
+# {{site.data.reuse.icp}}
+icp: "IBM Cloud Private"
+
+# {{site.data.reuse.icp_foundation}}
+icp_foundation: "IBM Cloud Private Foundation"
+
+# {{site.data.reuse.kafka-connect-mq-source}}
+kafka-connect-mq-source: "Kafka Connect source connector for IBM MQ"
+
+# {{site.data.reuse.icp_ui_login}}
+icp_ui_login: "Log in to your IBM Cloud Private cluster management console from a supported web browser by using the URL `https://<master-ip>:8443`, where `master_ip` is the IP address of the master node for your IBM Cloud Private cluster."
+
+# {{site.data.reuse.icp_cli_login}}
+icp_cli_login: "Using the IBM Cloud Private CLI, log in to your cluster as an administrator:<br /> `cloudctl login -a https://<master-ip>:8443 -u <username> -p <password>`"
+
+# {{site.data.reuse.maven_prereq}}
+maven_prereq: "Ensure you have Java version 8. Also, ensure you have [Apache Maven](https://maven.apache.org/) installed on your system."

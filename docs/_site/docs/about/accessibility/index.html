@@ -1,0 +1,680 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.12.0 by Michael Rose
+  Copyright 2013-2018 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Accessibility - IBM Event Streams</title>
+<meta name="description" content="Accessibility features for IBM Event Streams.">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="IBM Event Streams">
+<meta property="og:title" content="Accessibility">
+<meta property="og:url" content="http://localhost:4000/mhub/qp-docs/docs/about/accessibility/">
+
+
+  <meta property="og:description" content="Accessibility features for IBM Event Streams.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2018-09-09T10:14:16-04:00">
+
+
+
+  <meta property="article:modified_time" content="2018-07-19T11:31:38-04:00">
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/mhub/qp-docs/docs/about/accessibility/">
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": "IBM",
+      "url": "http://localhost:4000/mhub/qp-docs",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/mhub/qp-docs/feed.xml" type="application/atom+xml" rel="alternate" title="IBM Event Streams Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/mhub/qp-docs/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <a class="site-title" href="/mhub/qp-docs/">IBM Event Streams</a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/mhub/qp-docs/docs/about/overview/" >Documentation</a>
+            </li><li class="masthead__menu-item">
+              <a href="/mhub/qp-docs/support/" >Support</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle Menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+  
+    
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">Toggle Menu</label>
+  <ul class="nav__items">
+    
+      <li>
+        
+          
+          
+
+          <a href="/mhub/qp-docs/docs/about/overview/"><span class="nav__sub-title">About</span></a>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/mhub/qp-docs/docs/about/overview/" class="">Introduction</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/mhub/qp-docs/docs/about/key-concepts/" class="">Key concepts</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/mhub/qp-docs/docs/about/producing-messages/" class="">Producing messages</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/mhub/qp-docs/docs/about/consuming-messages/" class="">Consuming messages</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/mhub/qp-docs/docs/about/partition-leadership/" class="">Partition leadership</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/mhub/qp-docs/docs/about/accessibility/" class="active">Accessibility</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/mhub/qp-docs/docs/about/notices/" class="">Notices</a></li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Installing</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/mhub/qp-docs/docs/installing/prerequisites/" class="">Pre-requisites</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/mhub/qp-docs/docs/installing/planning/" class="">Planning for installation</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/mhub/qp-docs/docs/installing/downloading/" class="">Downloading</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/mhub/qp-docs/docs/installing/installing/" class="">Installing</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/mhub/qp-docs/docs/installing/configuring/" class="">Configuring</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/mhub/qp-docs/docs/installing/migrating/" class="">Migrating to IBM Event Streams</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/mhub/qp-docs/docs/installing/post-installation/" class="">Post-installation tasks</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/mhub/qp-docs/docs/installing/uninstalling/" class="">Uninstalling</a></li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Getting started</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/mhub/qp-docs/docs/getting-started/logging-in/" class="">Logging in</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/mhub/qp-docs/docs/getting-started/generating-starter-app/" class="">Generating a starter application</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/mhub/qp-docs/docs/getting-started/testing-loads/" class="">Creating and testing message loads</a></li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Security</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/mhub/qp-docs/docs/security/users/" class="">Setting up users</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/mhub/qp-docs/docs/security/encrypting-data/" class="">Encrypting your data</a></li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Geo-replication</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/mhub/qp-docs/docs/replication/about/" class="">About geo-replication</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/mhub/qp-docs/docs/replication/planning/" class="">Planning for geo-replication</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/mhub/qp-docs/docs/replication/setting-up/" class="">Setting up geo-replication</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/mhub/qp-docs/docs/replication/health/" class="">Monitoring health of geo-replication</a></li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Connecting to other systems</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/mhub/qp-docs/docs/connecting/mq/" class="">Connecting to IBM MQ</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/mhub/qp-docs/docs/connecting/mq-source-reference/" class="">Reference for IBM MQ source connector</a></li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Administering</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/mhub/qp-docs/docs/administering/deployment-health/" class="">Monitoring deployment health</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/mhub/qp-docs/docs/administering/cluster-health/" class="">Monitoring Kafka cluster health</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/mhub/qp-docs/docs/administering/modifying-configs/" class="">Modifying configuration settings</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/mhub/qp-docs/docs/administering/scaling/" class="">Scaling</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/mhub/qp-docs/docs/administering/updating-dynamically/" class="">Updating dynamically</a></li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          
+          
+
+          <a href="/mhub/qp-docs/docs/troubleshooting/intro/"><span class="nav__sub-title">Troubleshooting</span></a>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/mhub/qp-docs/docs/troubleshooting/ui-error-firefox/" class="">UI error on Firefox</a></li>
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+    
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Accessibility">
+    <meta itemprop="description" content="Accessibility features for IBM Event Streams.">
+    <meta itemprop="datePublished" content="September 09, 2018">
+    <meta itemprop="dateModified" content="July 19, 2018">
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Accessibility
+</h1>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right ">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#overview">Overview</a></li>
+  <li><a href="#keyboard-navigation">Keyboard navigation</a></li>
+  <li><a href="#interface-information">Interface information</a></li>
+  <li><a href="#related-accessibility-information">Related accessibility information</a></li>
+</ul>
+            </nav>
+          </aside>
+        
+        <p>Accessibility features assist users who have a disability, such as restricted mobility or limited vision, to use information technology content successfully.</p>
+
+<h2 id="overview">Overview</h2>
+
+<p>IBM Event Streams includes the following major accessibility features:</p>
+
+<ul>
+  <li>Keyboard-only operation</li>
+  <li>Operations that use a screen reader</li>
+</ul>
+
+<p>IBM Event Streams uses the latest W3C Standard, <a href="http://www.w3.org/TR/wai-aria/">WAI-ARIA 1.0</a>, to ensure compliance with <a href="http://www.access-board.gov/guidelines-and-standards/communications-and-it/about-the-section-508-standards/section-508-standards">US Section 508</a> and <a href="http://www.w3.org/TR/WCAG20/">Web Content Accessibility Guidelines (WCAG) 2.0</a>. To take advantage of accessibility features, use the latest release of your screen reader and the latest web browser that is supported by IBM Event Streams.</p>
+
+<h2 id="keyboard-navigation">Keyboard navigation</h2>
+
+<p>This product uses standard navigation keys.</p>
+
+<h2 id="interface-information">Interface information</h2>
+
+<p>The IBM Event Streams user interfaces do not have content that flashes 2 - 55 times per second.</p>
+
+<p>The IBM Event Streams web user interface relies on cascading style sheets to render content properly and to provide a usable experience. The application provides an equivalent way for low-vision users to use system display settings, including high-contrast mode. You can control font size by using the device or web browser settings.</p>
+
+<p>The IBM Event Streams web user interface includes WAI-ARIA navigational landmarks that you can use to quickly navigate to functional areas in the application.</p>
+
+<h2 id="related-accessibility-information">Related accessibility information</h2>
+
+<p>In addition to standard IBM help desk and support websites, IBM has a TTY telephone service for use by deaf or hard of hearing customers to access sales and support services:</p>
+
+<p>TTY service <br />
+ 800-IBM-3383 (800-426-3383) <br />
+ (within North America)</p>
+
+<p>For more information about the commitment that IBM has to accessibility, see <a href="http://www.ibm.com/able">IBM Accessibility</a>.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2018-07-19">July 19, 2018</time></p>
+        
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/mhub/qp-docs/docs/about/partition-leadership/" class="pagination--pager" title="Partition leadership
+">Previous</a>
+    
+    
+      <a href="/mhub/qp-docs/docs/about/notices/" class="pagination--pager" title="Notices
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+      <!-- <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <div align="center" style="margin: 1em 0;">
+        <ins class="adsbygoogle"
+             style="display:block; border-bottom: initial;"
+             data-ad-client="ca-pub-7328585512091257"
+             data-ad-slot="3049671934"
+             data-ad-format="auto"></ins>
+        </div>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      </script> -->
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><input type="text" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+    <div id="results" class="results"></div></div>
+      </div>
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        
+<div class="page__footer-copyright"><a href="https://www.ibm.com/privacy/us/en/" rel="nofollow" target="_blank">Privacy Policy</a>  &nbsp;© Copyright IBM Corp. 2018</br>
+  Released under the <a href="https://www.apache.org/licenses/LICENSE-2.0" rel="nofollow" target="_blank">Apache License v2.0</a></div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/mhub/qp-docs/assets/js/main.min.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+
+
+
+
+<script src="/mhub/qp-docs/assets/js/lunr/lunr.min.js"></script>
+<script src="/mhub/qp-docs/assets/js/lunr/lunr-store.js"></script>
+<script src="/mhub/qp-docs/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+  </body>
+</html>
