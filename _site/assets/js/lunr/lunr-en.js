@@ -290,7 +290,7 @@ function searchResults(theSearchInput) {
           }
         });
 
-        structure += `<div class="ctaArea"><img alt="" role="presentation" src="https://ibm.github.io/event-automation/assets/images/icons/next.svg" /></div>`;
+        structure += `<div class="ctaArea"><img alt="" role="presentation" src="http://localhost:4000/assets/images/icons/next.svg" /></div>`;
         structure += `</div></div>`;
       }
     });
