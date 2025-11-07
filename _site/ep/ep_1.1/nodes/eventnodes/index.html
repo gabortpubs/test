@@ -1,0 +1,2651 @@
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Event nodes - Event Processing</title>
+<meta name="description" content="Event Processing provides a set of nodes to create event stream processing flows">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="IBM Event Automation">
+<meta property="og:url" content="https://ibm.github.io/event-automation/ep/ep_1.1/nodes/eventnodes/" />
+<meta property="og:title" content="Event Processing | Event nodes" />
+<meta property="og:description" content="Event Processing provides a set of nodes to create event stream processing flows" />
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="IBM Event Automation | Event nodes" />
+
+
+
+
+  <meta property="og:description" content="Event Processing provides a set of nodes to create event stream processing flows">
+
+
+
+  <meta property="og:image" content="https://ibm.github.io/event-automation/assets/siteMeta/appIcon_og_fb.png">
+  <meta name="twitter:image" content="https://ibm.github.io/event-automation/assets/siteMeta/appIcon_og_square.png">
+
+
+
+  <meta property="article:published_time" content="2025-11-07T03:45:08-05:00">
+
+
+
+
+
+
+<link rel="canonical" href="https://ibm.github.io/event-automation/ep/ep_1.1/nodes/eventnodes/">
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Organization",
+      "url": "https://ibm.github.io/event-automation",
+      "logo": "https://ibm.github.io/event-automation/assets/siteMeta/appIcon_og_fb.png"
+    }
+  </script>
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": null,
+      "url": "https://ibm.github.io/event-automation",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/event-automation/feed.xml" type="application/atom+xml" rel="alternate" title="IBM Event Automation Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/event-automation/assets/css/main.css">
+
+<script src="/event-automation/assets/js/scrollsidebar.js"></script>
+<script src="/event-automation/assets/js/copytoclipboard.js"></script>
+<script src="/event-automation/assets/js/highlighter.js"></script>
+<script src="/event-automation/assets/js/newtab.js"></script>
+
+
+
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<link rel="apple-touch-icon" sizes="180x180" href="https://ibm.github.io/event-automation/assets/siteMeta/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://ibm.github.io/event-automation/assets/siteMeta/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://ibm.github.io/event-automation/assets/siteMeta/favicon-16x16.png">
+<link rel="manifest" href="https://ibm.github.io/event-automation/assets/siteMeta/site.webmanifest">
+<link rel="mask-icon" href="https://ibm.github.io/event-automation/assets/siteMeta/safari-pinned-tab.svg" color="#000000">
+<link rel="shortcut icon" href="https://ibm.github.io/event-automation/assets/siteMeta/favicon.ico">
+<link rel="shortcut icon" type="image/png" href="https://ibm.github.io/event-automation/assets/siteMeta/favicon-16x16.png"/>
+<link rel="shortcut icon" type="image/png" href="https://ibm.github.io/event-automation/assets/siteMeta/favicon-32x32.png"/>
+<meta name="msapplication-TileColor" content="#000000">
+<meta name="msapplication-config" content="https://ibm.github.io/event-automation/assets/siteMeta/browserconfig.xml">
+<meta name="theme-color" content="#000000">
+
+
+
+<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,600%7CIBM+Plex+Serif:300,400,500%7CIBM+Plex+Mono:300,400,500,700" rel="stylesheet">
+
+<!-- end custom head snippets -->
+
+    <link rel="shortcut icon" type="image/x-icon" href="/event-automation/assets/favicon.ico" >
+    
+    <base target="_parent">
+
+  </head>
+  <script src="/event-automation/assets/animation/lottie.js" type="text/javascript"></script>
+  <script src="/event-automation/assets/js/connectors.js"></script>
+  <script src="/event-automation/assets/js/copytoclipboard.js"></script>
+  <script src="/event-automation/assets/js/highlighter.js"></script>
+
+
+  
+  <body onload="urlChecker()" class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+
+
+  
+
+
+
+
+
+
+<div class="eosBanner" style= "top:  0rem ; ">
+    <svg xmlns="http://www.w3.org/2000/svg" class="bx--inline-notification__icon" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M10,1c-5,0-9,4-9,9s4,9,9,9s9-4,9-9S15,1,10,1z M9.2,5h1.5v7H9.2V5z M10,16c-0.6,0-1-0.4-1-1s0.4-1,1-1	s1,0.4,1,1S10.6,16,10,16z"></path><path d="M9.2,5h1.5v7H9.2V5z M10,16c-0.6,0-1-0.4-1-1s0.4-1,1-1s1,0.4,1,1S10.6,16,10,16z" data-icon-path="inner-path" opacity="0"></path></svg>
+    <p><b>&nbsp;&nbsp; Attention:</b> This version of Event Processing has reached End of Support. For more information about supported versions, see the <a href="/event-automation/support/matrix/" target="_blank">support matrix</a>.
+  </p>
+  </div>
+  
+<div id="masthead" class="masthead">
+  <!--
+  <div class="masthead__goToIBMCloud">
+  <div>
+    You are viewing the documentation for the container-native version of IBM Event Automation.
+  </div>
+    <a class="link" target="_self" href="https://cloud.ibm.com/docs/EventStreams?topic=EventStreams-getting-started">Looking for the managed service on IBM Cloud? Click here.</a>
+</div>
+-->
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="mastheadNav">
+
+      
+
+
+        <div class="mastheadTitle">
+          
+          <a class="site-title" href="/event-automation/" target="_self"><span>IBM</span>&nbsp;Event Automation</a>
+          <div class="viewOnIBMcom">
+            <a href="https://www.ibm.com/products/event-automation" target="_blank">View product page</a>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+
+        <div class="mastheadControls">
+            <div class="menuScrollContainer">
+
+        
+
+                <ul id="visible-links" class="visible-links">
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/es/','_self')">
+                      <a href="https://ibm.github.io/event-automation/es/" >Event Streams</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/eem/','_self')">
+                      <a href="https://ibm.github.io/event-automation/eem/" >Event Endpoint Management</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item active" onclick="window.open('https://ibm.github.io/event-automation/ep/','_self')">
+                      <a href="https://ibm.github.io/event-automation/ep/" >Event Processing</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/connectors/','_self')">
+                      <a href="https://ibm.github.io/event-automation/connectors/" >Connect catalog</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/tutorials/','_self')">
+                      <a href="https://ibm.github.io/event-automation/tutorials/" >Tutorials</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/api/','_self')">
+                      <a href="https://ibm.github.io/event-automation/api/" >APIs...</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/support/','_self')">
+                      <a href="https://ibm.github.io/event-automation/support/" >Support</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/search/','_self')">
+                      <button aria-label="Search Button" role="button" id="searchButton" class="search__toggle " type="button" name="search Button">
+                        <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                          <path
+                            d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z"
+                            transform="translate(-.01)"></path>
+                        </svg>
+                      </button>
+                    </li>
+                  
+
+                  
+                </ul>
+        
+
+      </div>
+    </div>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div id="initial-content" class="initial-content" role="main">
+
+
+
+
+
+
+<main id="main" class="mainContainer" role="main">
+    
+      <div id="subMenu" class="subMenu">
+        <div tabindex="0" class="menuIcon" id="menuIcon">
+          <svg id="mobileMenu" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+            <g id="bottomLine">
+              <line class="burgerLine" x1="14" y1="29" x2="34" y2="29" />
+            </g>
+            <g id="middleLine">
+              <line class="burgerLine" x1="14" y1="24" x2="34" y2="24" />
+            </g>
+            <g id="topLine">
+              <line class="burgerLine" x1="14" y1="19" x2="34" y2="19" />
+            </g>
+          </svg>
+        </div>
+        <div id="mobileVersionShortcut" class="versionContainer" tabindex="0">
+          <a id="mobileVersionPillCurrent" class="versionPill">1.1</a>
+        </div>
+      </div>
+    
+  
+
+
+
+<div id="sidebarMask" class="sidebarMask">
+
+  </div>
+  <div id="sidebar" class="sidebar sticky">
+      <div aria-label="Change Version" role="button" aria-expanded="false"
+      
+        id="versionDropdown"
+        tabindex="0"
+        class="versionsBar"
+       >
+          <div class="selectedVersion" id="selectedVersion">
+            <div class="versionContainer" >
+              
+                <a id="versionPillCurrent" class="versionPill">1.1</a>
+                <a class="versionChange">Change Version</a>
+              
+            </div>
+          </div>
+          
+
+
+          <div class="allVersions" id="allVersions">
+            <ul>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/ep/nodes/eventnodes/" onclick="openVersion('/event-automation/ep/nodes/eventnodes/','ep_1.4')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/ep/nodes/eventnodes/" class="versionPill inactive">1.4</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        Latest
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/ep/ep_1.3/nodes/eventnodes/" onclick="openVersion('/event-automation/ep/ep_1.3/nodes/eventnodes/','ep_1.3')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/ep/ep_1.3/nodes/eventnodes/" class="versionPill inactive">1.3</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/ep/ep_1.2/nodes/eventnodes/" onclick="openVersion('/event-automation/ep/ep_1.2/nodes/eventnodes/','ep_1.2')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/ep/ep_1.2/nodes/eventnodes/" class="versionPill inactive">1.2</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/ep/ep_1.1/nodes/eventnodes/" onclick="openVersion('/event-automation/ep/ep_1.1/nodes/eventnodes/','ep_1.1')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/ep/ep_1.1/nodes/eventnodes/" class="versionPill active">1.1</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                          <img alt="" src="https://ibm.github.io/event-automation/images/checkbox.svg" />
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/ep/ep_1.0/nodes/eventnodes/" onclick="openVersion('/event-automation/ep/ep_1.0/nodes/eventnodes/','ep_1.0')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/ep/ep_1.0/nodes/eventnodes/" class="versionPill inactive">1.0</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+            </ul>
+          </div>
+        </div>
+
+  
+    
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <ul class="nav__items">
+
+    
+      <li>
+        
+          <span class="nav__sub-title">About</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/about/overview/" class="">Introduction</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/about/whats-new/" class="">What's new</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/about/key-concepts/" class="">Key concepts</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Installing</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/installing/prerequisites/" class="">Prerequisites</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/installing/planning/" class="">Planning your installation</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/installing/overview/" class="">Installation overview</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/installing/installing/" class="">Installing in an online OpenShift environment</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/installing/offline/" class="">Installing in an offline environment</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/installing/installing-on-kubernetes/" class="">Installing on other Kubernetes platforms</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/installing/configuring/" class="">Configuring</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/installing/post-installation/" class="">Post-installation tasks</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/installing/backup-restore/" class="">Backing up and restoring</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/installing/uninstalling/" class="">Uninstalling</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/installing/upgrading/" class="">Upgrading</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Getting started with Authoring</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/getting-started/logging-in/" class="">Logging in</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/getting-started/canvas/" class="">Building a simple flow</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Security</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/security/managing-access/" class="">Managing access</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/security/user-roles/" class="">Managing user roles</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/security/verifying-signature/" class="">Verifying container image signatures</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/security/network-policies/" class="">Network policies</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/security/gdpr-considerations/" class="">Considerations for GDPR</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/security/data-encryption/" class="">Encrypting your data</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Administering</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/administering/flink-health/" class="">Monitoring Flink health</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Nodes</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/nodes/summary/" class="">Node overview</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/nodes/eventnodes/" class="active">Events</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/nodes/processornodes/" class="">Processors</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/nodes/windowednodes/" class="">Windowed</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/nodes/joins/" class="">Joins</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/nodes/enrichmentnode/" class="">Enrichment</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Deploying advanced flows</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/advanced/exporting-flows/" class="">Exporting and importing flows</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/advanced/deploying-development/" class="">Deploying jobs in development environments</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/advanced/deploying-production/" class="">Deploying jobs in production environments</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Reference</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/reference/api-reference/" class="">API reference for the CRDs</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/reference/supported-functions/" class="">Supported Flink SQL functions</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Troubleshooting</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/troubleshooting/intro/" class="">Troubleshooting overview</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/troubleshooting/gathering-logs/" class="">Gathering logs</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/troubleshooting/trace-logging/" class="">Configuring trace logging</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/troubleshooting/changing-ca-certificate/" class="">Error when logging in to UI after changing CA certificate</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/troubleshooting/waiting-for-events/" class="">Results stuck in `Waiting for output events`</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/troubleshooting/default-scc-issues/" class="">The IBM Operator for Apache Flink not installing due to Security Context Constraint (SCC) issues</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/troubleshooting/flows-stop-working/" class="">Running flows stop working</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/troubleshooting/certificate-rotation/" class="">Error when logging in to UI after certificate rotation</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/troubleshooting/fsgroup-not-set/" class="">Flink instances cannot access jobResultStore</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/troubleshooting/rbac/" class="">Operator watching single namespace has escalated permissions</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/troubleshooting/changing-database-ca-certificate/" class="">Error when you connect to a database after modifying a CA certificate</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/troubleshooting/flink-imagepullbackoff/" class="">Flink pods enter ImagePullBackOff state</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/troubleshooting/flink-jar-permissions/" class="">Flink instances cannot access SQL runner JAR file</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/troubleshooting/enrichment-filter/" class="">Filters are not applied after enriching events with database nodes</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/troubleshooting/migration-issue/" class="">Error in flows during upgrade or import</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/troubleshooting/no-output-event-from-api-node/" class="">Enrichment from API produces no output events</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/troubleshooting/bad-output-from-auto-detection/" class="">Auto-detection message format issues</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/troubleshooting/no-main-key-backup/" class="">Event Processing fails with `Unable to find main key backup` error</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/troubleshooting/image-not-upgraded/" class="">IBM Operator for Apache Flink fails to automatically update the image to 1.1.8 after upgrading</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+    
+  
+  </div>
+
+
+  <div class="mainContent">
+    
+    <div id="pageContainer" class="page" itemscope itemtype="http://schema.org/CreativeWork">
+      
+      <div class="page__inner-wrap">
+      
+
+        
+        <section class="page__content pageSpacing" itemprop="text">
+          
+        
+          <header>
+            <h1 id="page-title" class="page__title" itemprop="headline">
+              Event nodes
+</h1>
+            
+          </header>  
+        
+        
+
+                    
+          <div class="content">
+            <p>The following event nodes are available in Event Processing:</p>
+
+<ul>
+  <li><a href="#event-source">Event source</a></li>
+  <li><a href="#event-destination">Event destination</a></li>
+</ul>
+
+<h2 id="time-based-calculations">Time-based calculations</h2>
+
+<p><a href="../../about/key-concepts#event-time">Event time</a> is essential to measure the progress of time and perform time-based calculations. 
+The temporal order of events processed by a flow must be guaranteed.
+<strong>Aggregate</strong>, <strong>Window top-n</strong>, and <strong>Interval Join</strong> work with time windows, whose boundaries are defined by event times.</p>
+
+<p>The event time is usually a business property available in the payload of input messages, such as the timestamp
+of an order, a financial transaction or the last reading of a temperature sensor.</p>
+
+<p>In order to work with event time, you need to define the event’s timestamps:</p>
+
+<ul>
+  <li>You choose the event property to use as the event time when you define the <a href="#define-event-structure">event structure</a>.</li>
+  <li>The event time must be a <a href="#type-mapping">timestamp</a> property.</li>
+</ul>
+
+<p>If you choose to use the message timestamp provided by Kafka,
+the event time depends on when the message is produced to the Kafka topic,
+which might not accurately reflect when the event actually occurred.</p>
+
+<h2 id="event-source">Event source</h2>
+
+<p>A source node consumes messages from a Kafka topic to produce a stream of events temporally ordered by event time.</p>
+
+<h3 id="adding-a-source-node">Adding a source node</h3>
+
+<p>When you create a flow, an event source node is automatically added to your canvas. A purple checkbox <img src="/event-automation/images/unconfigured_node.svg" alt="unconfigured_node icon" title="Diagram showing the unconfigured node icon." height="30px" width="15px" /> is displayed on the event source node indicating that the node is yet to be configured.</p>
+
+<p>To add additional event source nodes, in the <strong>Palette</strong>, under <strong>Events</strong>, drag the <strong>Event source</strong> node into the canvas.</p>
+
+<h3 id="configuring-a-source-node">Configuring a source node</h3>
+
+<p>To configure an event source, hover over the node and click the <strong>Edit</strong> icon <img src="/event-automation/images/rename.svg" alt="Edit icon" title="The edit icon." height="30px" width="15px" />. The <strong>Configure event source</strong> window appears.</p>
+
+<p>Complete the following steps to configure your event source node.</p>
+
+<h4 id="add-an-event-source-or-select-a-recent-one">Add an event source or select a recent one</h4>
+
+<p>You can either add a new event source by clicking <strong>Add event source</strong>, or you can select a recent topic from the list of available topics.</p>
+
+<ol>
+  <li>To configure an event source with a new topic, click <strong>Add event source</strong>. If you want to reuse an existing topic, select a topic from the list of topics.</li>
+  <li>Click <strong>Next</strong>.</li>
+</ol>
+
+<p><strong>Important:</strong>  When an event source is connected to a Kafka topic defined with more than one partition, the following rules apply:</p>
+
+<ul>
+  <li>Events sent in a Kafka message that include a key are delivered to the same partition of the topic.</li>
+  <li>Events that are sent in a Kafka message without a key are delivered to any partition of the topic.</li>
+  <li>The <a href="../../about/key-concepts#event-time">event time</a> of the event source is propagated to the downstream nodes on the canvas based on the following criteria:
+    <ul>
+      <li>Kafka has assigned at least one event to each partition of the topic.</li>
+      <li>The minimum event time of all the unprocessed events in the partitions of the topic is taken.</li>
+      <li>For all the unprocessed events that are sent by the event source (in a partition of the topic), the minimum event time is considered as the event time.</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="details">Details</h4>
+
+<p>In the <strong>Details</strong> section, enter a name for your node. The output stream of events from this node will be referred with the name you entered.</p>
+
+<h4 id="connect-to-kafka-cluster">Connect to Kafka cluster</h4>
+
+<p>Kafka runs as a cluster of one or more servers. These servers are called brokers. To establish a connection to the Kafka cluster, provide the address of one or more brokers that can be used to set up the connection, and used as bootstrap servers.</p>
+
+<p>In the <strong>Connect to Kafka cluster</strong> section, provide the broker address or addresses of the Kafka cluster that you want to connect to as bootstrap servers. You can get the broker addresses for the event source from your cluster administrator.</p>
+
+<p>A bootstrap server address should be defined in the form: <code class="language-plaintext highlighter-rouge">hostname:port</code>.</p>
+
+<p>For example: <code class="language-plaintext highlighter-rouge">kafkaBoostrapServer:9000</code></p>
+
+<p><strong>Note:</strong> To add more addresses, click <strong>Add bootstrap server +</strong> and enter the server address.</p>
+
+<p>If your topics are published in Event Endpoint Management, follow the <a href="/event-automation/eem/subscribe/configure-your-application-to-connect">Event Endpoint Management</a> documentation to retrieve the bootstrap server address. If your topics are available in Event Streams, retrieve the bootstrap server address as described in the <a href="/event-automation/es/getting-started/connecting">Event Streams</a> documentation.</p>
+
+<h4 id="access-credentials">Access credentials</h4>
+
+<p>Based on the inputs your cluster administrator provided for setting up the Kafka cluster, you might see one of the following set up:</p>
+
+<ul>
+  <li>
+    <p>SSL-only or plain text (without security) bootstrap server URLs:</p>
+
+    <ol>
+      <li>In the <strong>Access Credentials</strong> section, <strong>Connection credential not required</strong> is displayed and you do not have to set up any access credentials.</li>
+      <li>Click <strong>Next</strong>.</li>
+    </ol>
+  </li>
+  <li>
+    <p>SASL-only or SSL-SASL setup:</p>
+
+    <p>SASL mechanisms can be used to authenticate clients connecting to the Kafka cluster. The common SASL mechanisms supported by Kafka are as follows:</p>
+
+    <ul>
+      <li>
+        <p><strong>PLAIN:</strong> The PLAIN mechanism is a simple username and password-based authentication mechanism, which transmits credentials in plain text, so it is crucial to use SSL or TLS encryption in conjunction with PLAIN to secure the authentication process.</p>
+      </li>
+      <li>
+        <p><strong>Salted Challenge Response Authentication Mechanism (SCRAM):</strong> SCRAM-SHA-256 and SCRAM-SHA-512 are SASL mechanisms that use a challenge-response mechanism to authenticate clients securely. The client and server exchange challenges and responses based on the user credentials, and the password is not sent in plain text.</p>
+      </li>
+    </ul>
+
+    <p>Retrieve the credentials from your cluster administrator and complete the following steps:</p>
+
+    <ol>
+      <li>In the <strong>Access Credentials</strong> section, select the security mechanism from the drop-down menu.</li>
+      <li>
+        <p>Provide the username and password for this cluster. If you are subscribed to the topic by using Event Endpoint Management, see the <a href="/event-automation/eem/subscribe/subscribing-to-event-endpoints/">Event Endpoint Management</a> documentation. If you are using Event Streams to access your Kafka resources, see the <a href="/event-automation/es/security/managing-access/#managing-access-to-kafka-resources">Event Streams</a> documentation.</p>
+      </li>
+      <li>Click <strong>Next</strong>.</li>
+    </ol>
+  </li>
+</ul>
+
+<h4 id="topic-selection">Topic selection</h4>
+
+<p>The list of topics that are hosted in this Kafka cluster is displayed. Select a topic from where you want to receive the stream of events. By default, the first topic in the displayed list is selected.</p>
+
+<p>You can use the search pane to search for a particular topic.</p>
+
+<ol>
+  <li>As you start typing the topic name in the search pane, you get a filtered list of matching topics.</li>
+  <li>Select the radio button <img src="/event-automation/images/radio-button.svg" alt="radio button" title="Icon showing unchecked radio button." height="30px" width="15px" /> of the topic you want.</li>
+  <li>
+    <p>After selecting the topic <img src="/event-automation/images/radio-button-checked.svg" alt="radio button" title="Icon showing checked radio button." height="30px" width="15px" />, depending on your Event Processing version, complete one of the following steps:</p>
+
+    <ul>
+      <li>
+        <p><img src="/event-automation/images/1.1.8.svg" alt="Event Processing 1.1.8 icon" title="In Event Processing 1.1.8 and later" /> In Event Processing version 1.1.8, click <strong>Next</strong> to go to the <strong>Message format</strong> pane.</p>
+      </li>
+      <li>
+        <p>In Event Processing version 1.1.7, scroll down and verify that the auto-detected message format is correct, and then click <strong>Next</strong> to go to the <strong>Define event structure</strong> pane.</p>
+      </li>
+      <li>
+        <p>In Event Processing 1.1.5 and 1.1.6, scroll down and select the expected message format, and then click <strong>Next</strong> to go to the <strong>Define event structure</strong> pane.</p>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<h4 id="message-format"><img src="/event-automation/images/1.1.8.svg" alt="Event Processing 1.1.8 icon" title="In Event Processing 1.1.8 and later." /> Message format</h4>
+
+<p>Event Processing attempts to automatically detect the message format by analyzing the last message of the topic. In some cases the auto-detected format could not match the actual format of the last message. For more information, see the <a href="../../troubleshooting/bad-output-from-auto-detection/">troubleshooting</a> to address auto-detection message format issues.</p>
+<ul>
+  <li>
+    <p><strong>Message format is detected:</strong> If the topic contains a message with a supported format, for example, Avro, Avro (schema registry), or JSON, the message format is auto-selected in the <strong>Message format</strong> drop-down.</p>
+
+    <p><strong>Note:</strong> After changing the auto-detected format to a different option in the drop-down, if you want to revert to the initially detected format, click the <strong>Detect message format</strong> icon <img src="/event-automation/images/rotate--360.svg" alt="reset button" title="Icon showing reset button." height="30px" width="15px" />.</p>
+  </li>
+  <li>
+    <p><strong>Message format is undetected:</strong> Event Processing does not determine the message format if no message is available in the selected topic. In such cases, you can select the message format from the <strong>Message format</strong> drop-down.</p>
+
+    <p><strong>Note:</strong> To automatically detect the message format, click the <strong>Detect message format</strong> icon <img src="/event-automation/images/rotate--360.svg" alt="reset button" title="Icon showing reset button." height="30px" width="15px" /> after adding new messages to the topic.</p>
+  </li>
+</ul>
+
+<p><strong>Avro:</strong> The topic contains Apache Avro binary-encoded messages. An Avro schema is required to decode incoming messages and define the structure of the source event.</p>
+
+<p><strong>JSON:</strong> The topic contains JSON formatted messages. A sample JSON message is required to define the structure of the source event.</p>
+
+<p><img src="/event-automation/images/1.1.5.svg" alt="Event Processing 1.1.5 icon" title="In Event Processing 1.1.5 and later." /> <strong>Avro (schema registry):</strong>
+The topic contains messages encoded using an Avro schema stored in a registry. Messages produced in the topic must meet the requirements that are described in <a href="../../installing/prerequisites#schema-registry-requirements">prerequisites</a>. When connected to the schema registry, the source node retrieves the schema from the registry to decode the binary message. The information about the schema registry and the Avro schema is required to define the structure of the source event.</p>
+
+<p><strong>Note:</strong> If you are using a version earlier than 1.1.7, complete the following sections in the <strong>Define event structure</strong> pane.</p>
+
+<p>To define the <a href="../../about/key-concepts#event">event</a> structure, you must define the structure of messages consumed from the Kafka topic. Depending on the expected format of incoming Kafka messages:</p>
+
+<ul>
+  <li>In versions earlier than 1.1.1:
+    <ul>
+      <li><strong>Topic schema</strong> to define the structure from an Apache Avro schema of type <strong>record</strong> whose primitive fields are of Avro type <code class="language-plaintext highlighter-rouge">string</code>, <code class="language-plaintext highlighter-rouge">int</code>, <code class="language-plaintext highlighter-rouge">long</code>, <code class="language-plaintext highlighter-rouge">float</code>, <code class="language-plaintext highlighter-rouge">double</code>, or <code class="language-plaintext highlighter-rouge">boolean</code>.</li>
+      <li><strong>Sample message</strong> to derive the structure from a sample JSON event. The event properties must use the primitive JSON data types <code class="language-plaintext highlighter-rouge">string</code>, <code class="language-plaintext highlighter-rouge">number</code>, or <code class="language-plaintext highlighter-rouge">boolean</code>.</li>
+    </ul>
+  </li>
+  <li>
+    <p id="event-source-avro"><img src="/event-automation/images/1.1.1.svg" alt="Event Processing 1.1.1 icon" title="In Event Processing 1.1.1 and later." /> <strong>Avro:</strong></p>
+
+    <ul>
+      <li>
+        <p>If the topic contains Apache Avro binary-encoded messages, the event structure must be provided as an Avro schema. The schema must describe the <code class="language-plaintext highlighter-rouge">record</code> type with fields that are the primitive data types such as <code class="language-plaintext highlighter-rouge">string</code>, <code class="language-plaintext highlighter-rouge">int</code>, <code class="language-plaintext highlighter-rouge">long</code>, <code class="language-plaintext highlighter-rouge">float</code>, <code class="language-plaintext highlighter-rouge">double</code>, or <code class="language-plaintext highlighter-rouge">boolean</code> and logical types (<code class="language-plaintext highlighter-rouge">uuid</code>, <code class="language-plaintext highlighter-rouge">date</code>, <code class="language-plaintext highlighter-rouge">timestamp-millis</code> or <code class="language-plaintext highlighter-rouge">timestamp-micros</code>). Avro also supports a combination of <code class="language-plaintext highlighter-rouge">null</code> and <code class="language-plaintext highlighter-rouge">&lt;primitive-data-type&gt;</code> (<code class="language-plaintext highlighter-rouge">[null, &lt;primitive-data-type&gt;]</code>) for optional fields.</p>
+
+        <p><img src="/event-automation/images/1.1.7.svg" alt="Event Processing 1.1.7 icon" title="In Event Processing 1.1.7 and later." /> In the <strong>Message format</strong> pane, manually paste the schema in the <strong>Avro schema</strong> field after the message format is auto-detected in the <strong>Message format</strong> drop-down.</p>
+
+        <p>In Event Processing versions 1.1.8 and later, the <strong>Message format</strong> drop-down has been moved to the <strong>Message format</strong> pane. If you are using a version earlier than 1.1.8, in the <strong>Topic selection</strong> pane, manually paste the schema in the <strong>Avro schema</strong> field after the message format is auto-detected in the <strong>Message format</strong> drop-down.</p>
+      </li>
+      <li>
+        <p><img src="/event-automation/images/1.1.1.svg" alt="Event Processing 1.1.1 icon" title="In Event Processing 1.1.1 and later." /> The fields also support <code class="language-plaintext highlighter-rouge">time-millis</code> logical type.</p>
+
+        <p>For example, the following schema sets the <code class="language-plaintext highlighter-rouge">optionalComments</code> as an optional field:</p>
+
+        <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Order"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"record"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"orderID"</span><span class="p">,</span><span class="w"> </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"int"</span><span class="w"> </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"optionalComments"</span><span class="p">,</span><span class="w"> </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"null"</span><span class="p">,</span><span class="w"> </span><span class="s2">"string"</span><span class="p">]</span><span class="w"> </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>        </div>
+      </li>
+      <li>
+        <p><img src="/event-automation/images/1.1.3.svg" alt="Event Processing 1.1.3 icon" title="In Event Processing 1.1.3 and later." /> The fields also support the <code class="language-plaintext highlighter-rouge">record</code> type to describe an object containing a set of primitive or other objects as fields, with support for multiple levels of nesting.</p>
+
+        <p>For example, the following schema describes an order containing a product and data related to that product, including optional fields with logicalType:</p>
+
+        <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"record"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Order"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"orderID"</span><span class="p">,</span><span class="w"> </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"long"</span><span class="w"> </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"orderTime"</span><span class="p">,</span><span class="w"> </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"long"</span><span class="p">,</span><span class="w"> </span><span class="nl">"logicalType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"timestamp-millis"</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"product"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"record"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"product"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w"> </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id"</span><span class="p">,</span><span class="w"> </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"long"</span><span class="w"> </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w"> </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"price"</span><span class="p">,</span><span class="w"> </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"double"</span><span class="w"> </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w"> </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"quantity"</span><span class="p">,</span><span class="w"> </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"long"</span><span class="w"> </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w"> </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"optionalComment"</span><span class="p">,</span><span class="w"> </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"null"</span><span class="p">,</span><span class="w"> </span><span class="s2">"string"</span><span class="p">]</span><span class="w"> </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w"> </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"optionalTimestamp"</span><span class="p">,</span><span class="w"> </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"null"</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"long"</span><span class="p">,</span><span class="w"> </span><span class="nl">"logicalType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"timestamp-millis"</span><span class="w"> </span><span class="p">}]</span><span class="w"> </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>        </div>
+      </li>
+      <li>
+        <p id="complex-arrays"><img src="/event-automation/images/1.1.8.svg" alt="Event Processing 1.1.8 icon" title="In Event Processing 1.1.8 and later." /> The <code class="language-plaintext highlighter-rouge">record</code> type can include fields that are complex arrays,including an array of arrays and an array of objects. The complex arrays also support nested objects or nested primitive arrays, such as arrays of <code class="language-plaintext highlighter-rouge">strings</code>, <code class="language-plaintext highlighter-rouge">numbers</code>, and <code class="language-plaintext highlighter-rouge">booleans</code>. However, arrays of fields with <code class="language-plaintext highlighter-rouge">logicalType</code> are not supported.</p>
+
+        <p><strong>Note:</strong> Fields inside an object of an array cannot be deselected, but you can still assign a data type for each of them. Use the <strong>Transform</strong> node to remove a complex array from the event.</p>
+
+        <p>For example, consider a schema describing an order with a field for <code class="language-plaintext highlighter-rouge">productDetails</code>, which is an array of object. The <code class="language-plaintext highlighter-rouge">inventoryDetails</code> and <code class="language-plaintext highlighter-rouge">contactDetails</code> fields indicate an array of arrays. The schema also contains nested arrays or objects.</p>
+
+        <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Order"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"record"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"productDetails"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"array"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"record"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+              </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"productName"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+              </span><span class="p">},</span><span class="w">
+              </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"purchase"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+              </span><span class="p">},</span><span class="w">
+              </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"codes"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                  </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"array"</span><span class="p">,</span><span class="w">
+                  </span><span class="nl">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="s2">"null"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"int"</span><span class="w">
+                  </span><span class="p">]</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"inventoryDetails"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"null"</span><span class="p">,</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"array"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+              </span><span class="s2">"null"</span><span class="p">,</span><span class="w">
+              </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"array"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                  </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"record"</span><span class="p">,</span><span class="w">
+                  </span><span class="nl">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"inventoryName"</span><span class="p">,</span><span class="w">
+                      </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                        </span><span class="s2">"null"</span><span class="p">,</span><span class="w">
+                        </span><span class="p">{</span><span class="w">
+                          </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"array"</span><span class="p">,</span><span class="w">
+                          </span><span class="nl">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                            </span><span class="s2">"null"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"string"</span><span class="w">
+                          </span><span class="p">]</span><span class="w">
+                        </span><span class="p">}</span><span class="w">
+                      </span><span class="p">]</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"productCodes"</span><span class="p">,</span><span class="w">
+                      </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                        </span><span class="s2">"null"</span><span class="p">,</span><span class="w">
+                        </span><span class="p">{</span><span class="w">
+                          </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"array"</span><span class="p">,</span><span class="w">
+                          </span><span class="nl">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                            </span><span class="s2">"null"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"int"</span><span class="w">
+                          </span><span class="p">]</span><span class="w">
+                        </span><span class="p">}</span><span class="w">
+                      </span><span class="p">]</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                  </span><span class="p">]</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"contactDetails"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"null"</span><span class="p">,</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"array"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+              </span><span class="s2">"null"</span><span class="p">,</span><span class="w">
+              </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"array"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                  </span><span class="s2">"null"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"string"</span><span class="w">
+                </span><span class="p">]</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w"> 
+</span></code></pre></div>        </div>
+      </li>
+      <li>
+        <p><img src="/event-automation/images/1.1.4.svg" alt="Event Processing 1.1.4 icon" title="In Event Processing 1.1.4 and later." /> The <code class="language-plaintext highlighter-rouge">record</code> type also supports primitive arrays, including arrays of <code class="language-plaintext highlighter-rouge">strings</code>, <code class="language-plaintext highlighter-rouge">numbers</code>, and <code class="language-plaintext highlighter-rouge">booleans</code>. However, arrays of fields with <code class="language-plaintext highlighter-rouge">logicalType</code> are not supported.</p>
+
+        <p><strong>Note:</strong> Optional arrays and elements in the arrays are supported. However, optional records are not supported.</p>
+
+        <p><img src="/event-automation/images/1.1.9.svg" alt="Event Processing 1.1.9 icon" title="In Event Processing 1.1.9 and later." /> Optional records are supported in <strong>Avro (schema registry)</strong>. However, optional records are not supported in <strong>Avro</strong>.</p>
+
+        <p>For example, consider a schema describing an order with a field for products, which is an array containing string values and can contain null values. The schema also contains nested arrays.</p>
+
+        <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Order"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"record"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"orderId"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"long"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"products"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"array"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="s2">"null"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"string"</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"address"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"record"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"namespace"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Record"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"address"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"shippingAddress"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"record"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"namespace"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Record.address"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"shippingAddress"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                  </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"line1"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                      </span><span class="s2">"null"</span><span class="p">,</span><span class="w">
+                      </span><span class="s2">"string"</span><span class="w">
+                    </span><span class="p">]</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"contact_nos"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                      </span><span class="s2">"null"</span><span class="p">,</span><span class="w">
+                      </span><span class="p">{</span><span class="w">
+                        </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"array"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"items"</span><span class="p">:</span><span class="w"> </span><span class="s2">"long"</span><span class="w">
+                      </span><span class="p">}</span><span class="w">
+                    </span><span class="p">]</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+                </span><span class="p">]</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li><strong>JSON:</strong>
+    <ul>
+      <li>
+        <p>If the topic contains JSON formatted messages, the event structure must be provided as a sample JSON message. The event properties must use the primitive JSON data types <code class="language-plaintext highlighter-rouge">string</code>, <code class="language-plaintext highlighter-rouge">number</code>, or <code class="language-plaintext highlighter-rouge">boolean</code>. Null values are supported when processing JSON events, but the provided sample JSON should contain only non-null values to determine the right type of properties.</p>
+
+        <p><img src="/event-automation/images/1.1.7.svg" alt="Event Processing 1.1.7 icon" title="In Event Processing 1.1.7 and later." /> <strong>Note:</strong> If the detected format is JSON, Event Processing automatically populates the sample message in the <strong>JSON sample message</strong> field that uses the content of the last message from the topic.</p>
+      </li>
+      <li>
+        <p><img src="/event-automation/images/1.1.3.svg" alt="Event Processing 1.1.3 icon" title="In Event Processing 1.1.3 and later." /> The <code class="language-plaintext highlighter-rouge">object</code> JSON data type is also supported. The properties inside the objects can contain a set of primitive JSON data types or other objects. Multiple levels of nesting are supported.</p>
+
+        <p>For example, the following sample message is supported:</p>
+
+        <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"orderId"</span><span class="p">:</span><span class="w"> </span><span class="mi">123456789</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"orderTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1708363158092</span><span class="p">,</span><span class="w">
+</span><span class="nl">"product"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">789456123</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">99.99</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">99</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"optionalComment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a comment"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">  
+</span></code></pre></div>        </div>
+      </li>
+      <li>
+        <p><img src="/event-automation/images/1.1.4.svg" alt="Event Processing 1.1.4 icon" title="In Event Processing 1.1.4 and later." /> The JSON data type supports arrays of primitive types such as <code class="language-plaintext highlighter-rouge">strings</code>, <code class="language-plaintext highlighter-rouge">numbers</code>, and <code class="language-plaintext highlighter-rouge">booleans</code>. However, arrays of <code class="language-plaintext highlighter-rouge">timestamps</code> are not supported.</p>
+
+        <p>Arrays can be at any nested level and should only contain elements of the same type.</p>
+
+        <p>For example:</p>
+
+        <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"orderId"</span><span class="p">:</span><span class="w"> </span><span class="mi">253</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"products"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"ProductA"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ProductB"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ProductC"</span><span class="w"> </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"postal_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">91001</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"contact_nos"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">99033</span><span class="p">,</span><span class="w"> </span><span class="mi">92236</span><span class="w"> </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>        </div>
+      </li>
+      <li>
+        <p><img src="/event-automation/images/1.1.8.svg" alt="Event Processing 1.1.8 icon" title="In Event Processing 1.1.8 and later." /> The JSON data type supports complex arrays, including an array of arrays and an array of objects. The complex arrays also support nested objects or nested primitive arrays, such as arrays of <code class="language-plaintext highlighter-rouge">strings</code>, <code class="language-plaintext highlighter-rouge">numbers</code>, and <code class="language-plaintext highlighter-rouge">booleans</code>. However, arrays of timestamps are not supported. Arrays can be at any nested level and should only contain elements of the same type.</p>
+
+        <p><strong>Note:</strong> You can select or deselect the fields inside an object of an array.</p>
+
+        <p>For example:</p>
+
+        <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"orderId"</span><span class="p">:</span><span class="w"> </span><span class="mi">253</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"productDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"productName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"item1"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"purchase"</span><span class="p">:</span><span class="w"> </span><span class="s2">"online"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"codes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="mi">65456</span><span class="p">,</span><span class="w">
+          </span><span class="mi">76577</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"inventoryDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"inventoryName"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="s2">"item1"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"item2"</span><span class="w">
+          </span><span class="p">],</span><span class="w">
+          </span><span class="nl">"productCodes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="mi">65456</span><span class="p">,</span><span class="w">
+            </span><span class="mi">76577</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"contactDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"8623464"</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"2754274"</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">    
+</span></code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><img src="/event-automation/images/1.1.5.svg" alt="Event Processing 1.1.5 icon" title="In Event Processing 1.1.5 and later." /> <strong>Avro (schema registry)</strong>:</p>
+
+    <p>This format supports messages encoded using an Avro schema that is stored in a supported registry. Messages produced in the topic must meet the requirements that are described in <a href="../../installing/prerequisites#schema-registry-requirements">prerequisites</a>. To connect to a supported registry that stores the Avro schema, enter the following information and define the structure of the source event:</p>
+
+    <p><strong>Note:</strong> In Event Processing versions 1.1.8 and later, the <strong>Message format</strong> drop-down has been moved to the <strong>Message format</strong> pane.</p>
+
+    <ol>
+      <li>Before you begin, ensure that the <a href="../../installing/prerequisites#schema-registry-requirements">prerequisites</a> to connect to a schema registry are met.</li>
+      <li>
+        <p>In the <strong>Schema registry URL</strong> field, enter the <a href="../../installing/prerequisites/#schema-registry-requirements">URL</a> to the REST endpoint of the schema registry.</p>
+
+        <p><strong>Important:</strong> Ensure you append the Apicurio schema registry REST endpoint URL with <code class="language-plaintext highlighter-rouge">/apis/ccompat/v6</code> as a suffix. For example, if you are using Event Streams, the valid schema registry URL is <code class="language-plaintext highlighter-rouge">https://&lt;schema_registry_endpoint&gt;/apis/ccompat/v6</code></p>
+      </li>
+      <li>
+        <p>In the <strong>Authentication method</strong> field, select <strong>No authentication</strong> or <strong>Basic authentication</strong>, which requires a username and password.</p>
+      </li>
+      <li>
+        <p><img src="/event-automation/images/1.1.8.svg" alt="Event Processing 1.1.8 icon" title="In Event Processing 1.1.8 and later." /> If the message format is auto-detected earlier in the <strong>Message format</strong> pane, click <strong>Next</strong> to auto-populate the Avro schema.</p>
+
+        <p>In Event Processing version 1.1.7, if the message format is auto-detected in the <strong>Topic selection</strong> pane, click <strong>Next</strong> to auto-populate the Avro schema.</p>
+
+        <p>In the <strong>Avro schema</strong> field, Event Processing automatically populates the Avro (schema registry) that was used to produce the last detected message in the topic.</p>
+
+        <p><strong>Note:</strong> The Avro schema detected automatically is read-only.</p>
+
+        <p>In Event Processing versions earlier than 1.1.7, if your message format is manually selected in the <strong>Topic selection</strong> pane, in the <strong>Avro schema</strong> field, paste the Avro schema that is used to encode topic messages to define the structure of the source event.</p>
+
+        <p>For more information about Avro schemas, see the <a href="#event-source-avro">previous section</a>.</p>
+      </li>
+    </ol>
+  </li>
+</ul>
+
+<p><img src="/event-automation/images/1.1.8.svg" alt="Event Processing 1.1.8 icon" title="In Event Processing 1.1.8 and later." /> After you provide required information to define the event structure, click <strong>Next</strong> to go to the <strong>Event details</strong> pane.</p>
+
+<p><img src="/event-automation/images/1.1.5.svg" alt="Event Processing 1.1.5 icon" title="In Event Processing 1.1.5 and later." /> In versions 1.1.5, 1.1.6, and 1.1.7, after you provide required information to define the event structure, click <strong>Next</strong> to go to the <strong>Customize event structure</strong> pane.</p>
+
+<p>In versions earlier than 1.1.5, after you provide a valid schema or sample message, click <strong>Done</strong>.</p>
+
+<h4 id="-event-details"><img src="/event-automation/images/1.1.8.svg" alt="Event Processing 1.1.8 icon" title="In Event Processing 1.1.8 and later." /> Event details</h4>
+
+<p><strong>Note:</strong></p>
+
+<ul>
+  <li>In Event Processing 1.1.8 and later, the <strong>Event details</strong> pane covers the following configurations.</li>
+  <li>In versions 1.1.5, 1.1.6, and 1.1.7, the following configurations are available in the <strong>Customize event structure</strong> pane.</li>
+  <li>If you are running a version earlier than 1.1.5, the following configurations are covered as part of the earlier <strong>Define event structure</strong> pane.</li>
+</ul>
+
+<h5 id="event-properties">Event properties</h5>
+
+<ul>
+  <li>All message properties are selected by default to define the structure of source events.</li>
+  <li>You can clear the properties that are not relevant in the <strong>Property</strong> checkbox.</li>
+</ul>
+
+<p>After the event source is configured, you will be able to rename properties by connecting a transform node to the event source.</p>
+
+<h5 id="type-mapping">Type mapping</h5>
+
+<p>Default types are assigned depending on how you defined the structure of the message:</p>
+
+<ul>
+  <li>
+    <p>If you defined the structure from a sample JSON event, the event property type is set to <code class="language-plaintext highlighter-rouge">String</code>, <code class="language-plaintext highlighter-rouge">Boolean</code>, <code class="language-plaintext highlighter-rouge">Integer</code>, <code class="language-plaintext highlighter-rouge">Big integer</code>, <code class="language-plaintext highlighter-rouge">Double</code>, or <code class="language-plaintext highlighter-rouge">Float</code> depending on the message.</p>
+
+    <p><img src="/event-automation/images/1.1.1.svg" alt="Event Processing 1.1.1 icon" title="In Event Processing 1.1.1 and later." /> The event property type is set to <code class="language-plaintext highlighter-rouge">String</code>, <code class="language-plaintext highlighter-rouge">Boolean</code>, <code class="language-plaintext highlighter-rouge">Big integer</code>, or <code class="language-plaintext highlighter-rouge">Double</code> depending on the message.</p>
+  </li>
+  <li>
+    <p>If you defined the structure using an Avro schema, the default event property type is mapped from the following Avro type:</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Avro type</th>
+          <th>Event property type</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code class="language-plaintext highlighter-rouge">string</code></td>
+          <td><code class="language-plaintext highlighter-rouge">STRING</code></td>
+        </tr>
+        <tr>
+          <td><code class="language-plaintext highlighter-rouge">boolean</code></td>
+          <td><code class="language-plaintext highlighter-rouge">BOOLEAN</code></td>
+        </tr>
+        <tr>
+          <td><code class="language-plaintext highlighter-rouge">int</code></td>
+          <td><code class="language-plaintext highlighter-rouge">INTEGER</code></td>
+        </tr>
+        <tr>
+          <td><code class="language-plaintext highlighter-rouge">long</code></td>
+          <td><code class="language-plaintext highlighter-rouge">BIGINT</code></td>
+        </tr>
+        <tr>
+          <td><code class="language-plaintext highlighter-rouge">double</code></td>
+          <td><code class="language-plaintext highlighter-rouge">DOUBLE</code></td>
+        </tr>
+        <tr>
+          <td><code class="language-plaintext highlighter-rouge">float</code></td>
+          <td><code class="language-plaintext highlighter-rouge">DOUBLE</code> <br />  <img src="/event-automation/images/1.1.1.svg" alt="Event Processing 1.1.1 icon" title="In Event Processing 1.1.1 and later." /> <code class="language-plaintext highlighter-rouge">FLOAT</code></td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <p><img src="/event-automation/images/1.1.3.svg" alt="Event Processing 1.1.3 icon" title="In Event Processing 1.1.3 and later." /> You can only assign a type for leaf properties. If there are nested properties, the name is displayed by using a forward slash (<code class="language-plaintext highlighter-rouge">/</code>) as a separator for each level of nesting. For example, <code class="language-plaintext highlighter-rouge">product / id</code> or <code class="language-plaintext highlighter-rouge">customer / address / city</code>.</p>
+  </li>
+  <li>
+    <p><img src="/event-automation/images/1.1.4.svg" alt="Event Processing 1.1.4 icon" title="In Event Processing 1.1.4 and later." /> If a property is an array, it is displayed with square brackets (<code class="language-plaintext highlighter-rouge">[]</code>) at the end of its name. For example, <code class="language-plaintext highlighter-rouge">products[]</code> indicates an array. Nested arrays are displayed with a forward slash (<code class="language-plaintext highlighter-rouge">/</code>) between properties for each level of nesting, followed by square brackets (<code class="language-plaintext highlighter-rouge">[]</code>) at the end of the array name. For example, if <code class="language-plaintext highlighter-rouge">contact_nos</code> is an array nested within the <code class="language-plaintext highlighter-rouge">address</code> property, it is displayed as <code class="language-plaintext highlighter-rouge">address / contact_nos[]</code>.</p>
+  </li>
+</ul>
+
+<p>Select the data type to assign to a property from the <strong>Type mapping</strong> list:</p>
+
+<ul>
+  <li><a href="https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/dev/table/types/#bigint" target="_blank">BIGINT</a></li>
+  <li><a href="https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/dev/table/types/#boolean" target="_blank">BOOLEAN</a></li>
+  <li><a href="https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/dev/table/types/#double" target="_blank">DOUBLE</a></li>
+  <li><a href="https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/dev/table/types/#date" target="_blank">DATE</a></li>
+  <li><a href="https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/dev/table/types/#float" target="_blank">FLOAT</a></li>
+  <li><a href="https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/dev/table/types/#int" target="_blank">INTEGER</a></li>
+  <li><a href="https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/dev/table/types/#varchar--string" target="_blank">STRING</a></li>
+  <li><a href="https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/dev/table/types/#time" target="_blank">TIME</a></li>
+  <li><a href="https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/dev/table/types/#timestamp" target="_blank">TIMESTAMP</a></li>
+  <li><a href="https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/dev/table/types/#timestamp_ltz" target="_blank">TIMESTAMP_LTZ</a></li>
+</ul>
+
+<p><img src="/event-automation/images/1.1.3.svg" alt="Event Processing 1.1.3 icon" title="In Event Processing 1.1.3 and later." /> Use one of the following types to define timestamps for event properties that are a JSON type of <code class="language-plaintext highlighter-rouge">String</code>, or where the Avro schema defines the property as a <code class="language-plaintext highlighter-rouge">string</code>:</p>
+
+<ul>
+  <li><strong>Timestamp</strong>: (Replaces <a href="https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/dev/table/types/#timestamp" target="_blank">TIMESTAMP</a>) Use this type if your message property is in date-time structure without a time zone up to nanoseconds precision.</li>
+  <li><strong>Timestamp (with time zone)</strong>: (Replaces <a href="https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/dev/table/types/#timestamp_ltz" target="_blank">TIMESTAMP_LTZ</a>) Use this type if your message property is in date-time structure with a valid time zone up to nanoseconds precision.</li>
+</ul>
+
+<p>For example:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>SQL</th>
+      <th>ISO</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1971-01-01 00:00</td>
+      <td>1971-01-01T00:00</td>
+    </tr>
+    <tr>
+      <td>1971-01-01 00:00+05:30</td>
+      <td>1971-01-01T00:00+0530</td>
+    </tr>
+    <tr>
+      <td>1971-01-01 00:00Z</td>
+      <td>1971-01-01T00:00Z</td>
+    </tr>
+    <tr>
+      <td>2024-02-20 19:11:41.123456789+05</td>
+      <td>2024-02-20T19:11:41.123456789-01</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><img src="/event-automation/images/1.1.1.svg" alt="Event Processing 1.1.1 icon" title="In Event Processing 1.1.1 and later." /> Additionally, event properties that are a JSON type of <code class="language-plaintext highlighter-rouge">number</code>, or where the Avro schema defines the property as a <code class="language-plaintext highlighter-rouge">long</code> (or a logical type that maps to <code class="language-plaintext highlighter-rouge">long</code>), can be assigned the following types:</p>
+
+<ul>
+  <li>Timestamp (seconds)</li>
+  <li>Timestamp (milliseconds)</li>
+  <li>Timestamp (microseconds)</li>
+</ul>
+
+<p>You must assign an appropriate type to each event property:</p>
+
+<ul>
+  <li>Events property value must be valid against the type you assign, otherwise the event source will not be
+able to parse the value.</li>
+  <li>Events property values that cannot be parsed according to its assigned type will be defaulted to <code class="language-plaintext highlighter-rouge">null</code>, which could eventually lead to the failure of the processing Job.</li>
+  <li>
+    <p>When assigning <code class="language-plaintext highlighter-rouge">Timestamp</code> or <code class="language-plaintext highlighter-rouge">Timestamp (local time zone)</code> to a property with a type <code class="language-plaintext highlighter-rouge">String</code>, the property must conform to the <a href="https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/connectors/table/formats/json/#json-timestamp-format-standard" target="_blank">SQL format standard</a>.</p>
+
+    <p>When assigning <code class="language-plaintext highlighter-rouge">Timestamp</code> or <code class="language-plaintext highlighter-rouge">Timestamp (with time zone)</code> to a property with a type <code class="language-plaintext highlighter-rouge">String</code>, the property must conform either to the SQL or the ISO <a href="https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/connectors/table/formats/json/#json-timestamp-format-standard" target="_blank">standard</a>. For JSON types these properties would be available in the type mapping list only if the provided sample message conforms to this format.</p>
+  </li>
+</ul>
+
+<h4 id="define-the-event-time">Define the event time</h4>
+
+<ul>
+  <li>
+    <p>Select which property to use as event time from the <strong>Source of event time</strong> list when the event structure contains at least one property of type <code class="language-plaintext highlighter-rouge">Timestamp </code>, <code class="language-plaintext highlighter-rouge">Timestamp (local time zone)</code>, <code class="language-plaintext highlighter-rouge">Timestamp (seconds)</code>, <code class="language-plaintext highlighter-rouge">Timestamp (milliseconds)</code>, or <code class="language-plaintext highlighter-rouge">Timestamp (microseconds)</code>.</p>
+
+    <p><img src="/event-automation/images/1.1.3.svg" alt="Event Processing 1.1.3 icon" title="In Event Processing 1.1.3 and later." /> <strong>Note:</strong> You can assign any of the timestamp types to nested properties, but only timestamps at top-level can be used as event time.</p>
+  </li>
+  <li>
+    <p>If you select the option <strong>Use message timestamp provided by Kafka</strong>, or when the event structure does not contain a property of type <code class="language-plaintext highlighter-rouge">Timestamp </code>, <code class="language-plaintext highlighter-rouge">Timestamp (local time zone)</code>, <code class="language-plaintext highlighter-rouge">Timestamp (seconds)</code>, <code class="language-plaintext highlighter-rouge">Timestamp (milliseconds)</code>, or <code class="language-plaintext highlighter-rouge">Timestamp (microseconds)</code>, a new timestamp property with a  name defined by the <strong>Event Property name</strong> will be generated and added to all events.</p>
+  </li>
+</ul>
+
+<h4 id="event-time-delay">Event time delay</h4>
+
+<p>You select the event time delay to allow reordering source events based on their event time. It ensures
+that all events that flow to subsequent nodes are ordered based on their event time.
+This delay is used to configure the <a href="https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/dev/table/sql/create/#watermark" target="_blank">Flink Bounded out of orderness watermark strategy</a>.</p>
+
+<p>After you have set up the event source node, click <strong>Configure</strong>.</p>
+
+<p>A green checkbox <img src="/event-automation/images/checkbox_green.svg" alt="green checkbox" title="Icon showing a green checkbox." height="30px" width="15px" /> 
+appears on the event source node if the event source node is configured correctly. 
+If there is any error in your configuration, a red checkbox <img src="/event-automation/images/errornode.svg" alt="red checkbox" title="Icon showing a red checkbox." height="30px" width="15px" /> appears.</p>
+
+<h2 id="event-destination">Event destination</h2>
+
+<p>The event destination node delivers the processed stream of events to a Kafka topic for further processing or storage.</p>
+
+<h3 id="adding-an-event-destination-node">Adding an event destination node</h3>
+
+<p>To add an event destination node, complete the following steps:</p>
+
+<ol>
+  <li>In the <strong>Palette</strong>, under <strong>Events</strong>, drag the <strong>Event destination</strong> node into the canvas.</li>
+  <li>Connect the node to an event source by dragging the <strong>Output port</strong> from a source node into the <strong>Input port</strong> of this node. A purple checkbox <img src="/event-automation/images/unconfigured_node.svg" alt="unconfigured_node icon" title="Diagram showing the unconfigured node icon." height="30px" width="15px" /> is displayed on the event destination node indicating that the node is yet to be configured.</li>
+  <li>Hover over the node and click the <strong>Edit</strong> icon <img src="/event-automation/images/rename.svg" alt="Edit icon" title="The edit icon." height="30px" width="15px" /> to configure the node.</li>
+</ol>
+
+<p>The <strong>Configure event destination</strong> window appears.</p>
+
+<h3 id="configuring-an-event-destination-node">Configuring an event destination node</h3>
+
+<p>To configure an event destination, complete the following steps:</p>
+
+<ol>
+  <li>Contact your cluster administrator, and retrieve the details of the Kafka cluster and the topic that you want to write your processed events to.</li>
+  <li>Configure your event destination node by following the instructions in <a href="#configuring-a-source-node">source node</a>.</li>
+  <li>After you have set up the event destination node, click <strong>Configure</strong>.</li>
+</ol>
+
+<p>A green checkbox <img src="/event-automation/images/checkbox_green.svg" alt="green checkbox" title="Icon showing a green checkbox." height="30px" width="15px" /> 
+appears on the event destination node if the event destination node is configured correctly. 
+If there is any error in your configuration, a red checkbox <img src="/event-automation/images/errornode.svg" alt="red checkbox" title="Icon showing a red checkbox." height="30px" width="15px" /> appears.</p>
+
+<p>User actions are <a href="../../getting-started/canvas/#save">saved</a> automatically. For save status updates, see the canvas header.</p>
+
+
+          </div>
+
+
+          
+        </section>
+
+        <aside class="sidebar__right ">
+          
+          <div class="fixedSidebar">
+            <nav class="toc">
+              <ul class="toc__menu">
+  <li><a href="#time-based-calculations">Time-based calculations</a></li>
+  <li><a href="#event-source">Event source</a>
+    <ul>
+      <li><a href="#adding-a-source-node">Adding a source node</a></li>
+      <li><a href="#configuring-a-source-node">Configuring a source node</a></li>
+    </ul>
+  </li>
+  <li><a href="#event-destination">Event destination</a>
+    <ul>
+      <li><a href="#adding-an-event-destination-node">Adding an event destination node</a></li>
+      <li><a href="#configuring-an-event-destination-node">Configuring an event destination node</a></li>
+    </ul>
+  </li>
+</ul>
+            </nav>
+          </div>
+          
+        </aside>
+
+
+      </div>
+      <div class="pageEnd">
+        
+          
+  <nav class="pagination">
+    
+      <div class="previous" onclick="window.open('/event-automation/ep/ep_1.1/nodes/summary/','_self')">
+        <div class="container">
+          <a href="/event-automation/ep/ep_1.1/nodes/summary/" class="pagination--pager" title="Previous Item: Node overview
+">Previous</a>
+          <h2 class="titlePreview">Node overview
+</h2>
+        </div>
+      </div>
+    
+    
+      <div class="next" onclick="window.open('/event-automation/ep/ep_1.1/nodes/processornodes/','_self')">
+        <div class="container">
+          <a href="/event-automation/ep/ep_1.1/nodes/processornodes/" class="pagination--pager" title="Next Item: Processor nodes
+">Next</a>
+          <h2 class="titlePreview">Processor nodes
+</h2>
+        </div>
+      </div>
+      
+  </nav>
+
+        
+      </div>
+    </div>
+
+
+  </div> <!-- Main content -->
+
+</main></div>
+
+
+    
+      <div class="page__footer">
+          <footer>
+            <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+
+            
+<div class="page__footer-copyright"><a href="https://www.ibm.com/privacy/us/en/" rel="nofollow" target="_blank">Privacy Policy</a>  &nbsp;© Copyright IBM Corporation 2025</br>
+<a href="https://www.ibm.com/legal/terms" rel="nofollow" target="_blank">Terms of use</a> </br> <a href="https://ibm.github.io/event-automation/accessibility/" rel="nofollow" target="_blank">Accessibility</a> </br> <a href="https://ibm.github.io/event-automation/notices/" rel="nofollow" target="_blank">Notices</a></br>
+          </footer>
+      </div>      
+    
+
+
+    
+  <script src="/event-automation/assets/js/main.min.js"></script>
+  <!-- <script src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script> -->
+
+
+
+
+
+
+<script src="/event-automation/assets/js/design.js"></script>
+
+
+
+
+
+<script src="/event-automation/assets/js/lunr/lunr.min.js"></script>
+<script src="/event-automation/assets/js/lunr/lunr-store.js"></script>
+<script src="/event-automation/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+    
+
+    
+  </body>
+</html>

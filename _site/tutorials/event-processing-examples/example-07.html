@@ -1,0 +1,696 @@
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Process out-of-sequence events - IBM Event Automation</title>
+<meta name="description" content="Events generated from a wide range of producers can be out of sequence on the topic, making it important to resolve this before time-sensitive processing.">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="IBM Event Automation">
+<meta property="og:url" content="https://ibm.github.io/event-automation/tutorials/event-processing-examples/example-07" />
+<meta property="og:title" content="Tutorials | Process out-of-sequence events" />
+<meta property="og:description" content="Events generated from a wide range of producers can be out of sequence on the topic, making it important to resolve this before time-sensitive processing." />
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="IBM Event Automation | Process out-of-sequence events" />
+
+
+
+
+  <meta property="og:description" content="Events generated from a wide range of producers can be out of sequence on the topic, making it important to resolve this before time-sensitive processing.">
+
+
+
+  <meta property="og:image" content="https://ibm.github.io/event-automation/assets/siteMeta/appIcon_og_fb.png">
+  <meta name="twitter:image" content="https://ibm.github.io/event-automation/assets/siteMeta/appIcon_og_square.png">
+
+
+
+  <meta property="article:published_time" content="2025-11-07T03:45:08-05:00">
+
+
+
+
+
+
+<link rel="canonical" href="https://ibm.github.io/event-automation/tutorials/event-processing-examples/example-07">
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Organization",
+      "url": "https://ibm.github.io/event-automation",
+      "logo": "https://ibm.github.io/event-automation/assets/siteMeta/appIcon_og_fb.png"
+    }
+  </script>
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": null,
+      "url": "https://ibm.github.io/event-automation",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/event-automation/feed.xml" type="application/atom+xml" rel="alternate" title="IBM Event Automation Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/event-automation/assets/css/main.css">
+
+<script src="/event-automation/assets/js/scrollsidebar.js"></script>
+<script src="/event-automation/assets/js/copytoclipboard.js"></script>
+<script src="/event-automation/assets/js/highlighter.js"></script>
+<script src="/event-automation/assets/js/newtab.js"></script>
+
+
+
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<link rel="apple-touch-icon" sizes="180x180" href="https://ibm.github.io/event-automation/assets/siteMeta/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://ibm.github.io/event-automation/assets/siteMeta/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://ibm.github.io/event-automation/assets/siteMeta/favicon-16x16.png">
+<link rel="manifest" href="https://ibm.github.io/event-automation/assets/siteMeta/site.webmanifest">
+<link rel="mask-icon" href="https://ibm.github.io/event-automation/assets/siteMeta/safari-pinned-tab.svg" color="#000000">
+<link rel="shortcut icon" href="https://ibm.github.io/event-automation/assets/siteMeta/favicon.ico">
+<link rel="shortcut icon" type="image/png" href="https://ibm.github.io/event-automation/assets/siteMeta/favicon-16x16.png"/>
+<link rel="shortcut icon" type="image/png" href="https://ibm.github.io/event-automation/assets/siteMeta/favicon-32x32.png"/>
+<meta name="msapplication-TileColor" content="#000000">
+<meta name="msapplication-config" content="https://ibm.github.io/event-automation/assets/siteMeta/browserconfig.xml">
+<meta name="theme-color" content="#000000">
+
+
+
+<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,600%7CIBM+Plex+Serif:300,400,500%7CIBM+Plex+Mono:300,400,500,700" rel="stylesheet">
+
+<!-- end custom head snippets -->
+
+    <link rel="shortcut icon" type="image/x-icon" href="/event-automation/assets/favicon.ico" >
+    
+    <base target="_parent">
+
+  </head>
+  <script src="/event-automation/assets/animation/lottie.js" type="text/javascript"></script>
+  <script src="/event-automation/assets/js/connectors.js"></script>
+  <script src="/event-automation/assets/js/copytoclipboard.js"></script>
+  <script src="/event-automation/assets/js/highlighter.js"></script>
+
+
+  
+  <body onload="" class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+
+
+  
+
+
+
+
+
+
+<div id="masthead" class="masthead">
+  <!--
+  <div class="masthead__goToIBMCloud">
+  <div>
+    You are viewing the documentation for the container-native version of IBM Event Automation.
+  </div>
+    <a class="link" target="_self" href="https://cloud.ibm.com/docs/EventStreams?topic=EventStreams-getting-started">Looking for the managed service on IBM Cloud? Click here.</a>
+</div>
+-->
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="mastheadNav">
+
+      
+
+
+        <div class="mastheadTitle">
+          
+          <a class="site-title" href="/event-automation/" target="_self"><span>IBM</span>&nbsp;Event Automation</a>
+          <div class="viewOnIBMcom">
+            <a href="https://www.ibm.com/products/event-automation" target="_blank">View product page</a>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+
+        <div class="mastheadControls">
+            <div class="menuScrollContainer">
+
+        
+
+                <ul id="visible-links" class="visible-links">
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/es/','_self')">
+                      <a href="https://ibm.github.io/event-automation/es/" >Event Streams</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/eem/','_self')">
+                      <a href="https://ibm.github.io/event-automation/eem/" >Event Endpoint Management</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/ep/','_self')">
+                      <a href="https://ibm.github.io/event-automation/ep/" >Event Processing</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/connectors/','_self')">
+                      <a href="https://ibm.github.io/event-automation/connectors/" >Connect catalog</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item active" onclick="window.open('https://ibm.github.io/event-automation/tutorials/','_self')">
+                      <a href="https://ibm.github.io/event-automation/tutorials/" >Tutorials</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/api/','_self')">
+                      <a href="https://ibm.github.io/event-automation/api/" >APIs...</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/support/','_self')">
+                      <a href="https://ibm.github.io/event-automation/support/" >Support</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/search/','_self')">
+                      <button aria-label="Search Button" role="button" id="searchButton" class="search__toggle " type="button" name="search Button">
+                        <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                          <path
+                            d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z"
+                            transform="translate(-.01)"></path>
+                        </svg>
+                      </button>
+                    </li>
+                  
+
+                  
+                </ul>
+        
+
+      </div>
+    </div>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div id="initial-content" class="initial-content" role="main">
+
+
+
+
+
+
+<main id="main" class="mainContainer" role="main">
+    
+
+    
+  
+
+
+
+  <div class="mainContent">
+    
+      
+      
+      <div class="subMenu backMenu"> 
+    <a href="
+        https://ibm.github.io/event-automation/tutorials
+      "><img alt="" role="presentation" src="https://ibm.github.io/event-automation/assets/images/icons/previous.svg" />
+        Back to tutorials
+      </a>
+  </div>
+    
+    <div id="pageContainer" class="page" itemscope itemtype="http://schema.org/CreativeWork">
+      
+      <div class="page__inner-wrap">
+      
+
+        
+        <section class="page__content pageSpacing" itemprop="text">
+          
+        
+          <header>
+            <h1 id="page-title" class="page__title" itemprop="headline">
+              Process out-of-sequence events
+</h1>
+            
+          </header>  
+        
+        
+
+                    
+          <div class="content">
+            <h2 id="scenario">Scenario</h2>
+
+<p>The logistics team want to track the hourly number of events captured by door sensors in each building.</p>
+
+<p>Events from door sensors can be slow to reach the Kafka topic, so the team need to handle a Kafka topic with events that are out of sequence.</p>
+
+<h2 id="before-you-begin">Before you begin</h2>
+
+<p>The instructions in this tutorial use the <a href="../guided/tutorial-0">Tutorial environment</a>, which includes a selection of topics each with a live stream of events, created to allow you to explore features in IBM Event Automation. Following the <a href="../guided/tutorial-0#deploy-the-tutorial">setup instructions</a> to deploy the demo environment gives you a complete instance of IBM Event Automation that you can use to follow this tutorial for yourself.</p>
+
+<h3 id="versions">Versions</h3>
+
+<p>This tutorial uses the following versions of Event Automation capabilities. Screenshots may differ from the current interface if you are using a newer version.</p>
+
+<ul>
+  <li>Event Streams 11.5.0</li>
+  <li>Event Endpoint Management 11.3.0</li>
+  <li>Event Processing 1.2.0</li>
+</ul>
+
+<h2 id="instructions">Instructions</h2>
+
+<h3 id="step-1-discover-the-topic-to-use">Step 1: Discover the topic to use</h3>
+
+<p>For this scenario, you need to find information about the source of door badge events.</p>
+
+<ol>
+  <li>
+    <p>Go to the <strong>Event Endpoint Management</strong> catalog.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/eem-catalog.png" title="screenshot of the Event Endpoint Management catalog"><img src="/event-automation/images/ea-tutorials/eem-catalog.png" alt="screenshot" title="screenshot of the Event Endpoint Management catalog" class="tutorial-screenshot" /></a></p>
+
+    <p>If you need a reminder of how to access the Event Endpoint Management catalog you can review <a href="../guided/tutorial-access#event-endpoint-management">Accessing the tutorial environment</a>.</p>
+
+    <p>If there are no topics in the catalog, you may need to complete the tutorial setup step to <a href="../guided/tutorial-0#populating-the-catalog">populate the catalog</a>.</p>
+  </li>
+  <li>
+    <p>The <code class="language-plaintext highlighter-rouge">Door badge events</code> topic contains events about door badge events.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/example7-1.png" title="screenshot of the Event Endpoint Management catalog"><img src="/event-automation/images/ea-tutorials/example7-1.png" alt="screenshot" title="screenshot of the Event Endpoint Management catalog" class="tutorial-screenshot" /></a></p>
+
+    <p>Note the warning in the catalog:</p>
+
+    <blockquote>
+      <p>Note that door events can take up to 3 minutes to reach the Kafka topic, so the badge time value in the message payload should be treated as the canonical timestamp for the event.</p>
+
+      <p>This delay can be inconsistent, so messages on the topic are often out of sequence as a result.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>If the topic owner hadn’t provided this warning, you would have needed to observe messages on the Kafka topic itself to identify this. Confirm this by observing messages on the <code class="language-plaintext highlighter-rouge">DOOR.BADGEIN</code> topic in the Event Streams topic viewer.</p>
+
+    <p>If you need a reminder about how to access the <strong>Event Streams</strong> catalog you can review <a href="../guided/tutorial-access#event-endpoint-management">Accessing the tutorial environment</a>.</p>
+
+    <p>Look for examples of messages that, even on the same partition, result in an older badge event (according to the <code class="language-plaintext highlighter-rouge">badgetime</code> property) being on the topic after an earlier badge event.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/example7-2.png" title="screenshot of the Event Streams topic"><img src="/event-automation/images/ea-tutorials/example7-2.png" alt="screenshot" title="screenshot of the Event Streams topic" class="tutorial-screenshot" /></a></p>
+
+    <p><a href="/event-automation/images/ea-tutorials/example7-3.png" title="screenshot of the Event Streams topic"><img src="/event-automation/images/ea-tutorials/example7-3.png" alt="screenshot" title="screenshot of the Event Streams topic" class="tutorial-screenshot" /></a></p>
+
+    <p>Verify that the timestamp on the Kafka message is not a reliable indicator of when the event occurred, and is frequently up to a few minutes after the actual event.</p>
+  </li>
+</ol>
+
+<h3 id="step-2-create-the-source-of-events">Step 2: Create the source of events</h3>
+
+<ol>
+  <li>
+    <p>Go to the <strong>Event Processing</strong> home page.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/ep-home.png" title="screenshot of the Event Processing home page"><img src="/event-automation/images/ea-tutorials/ep-home.png" alt="screenshot" title="screenshot of the Event Processing home page" class="tutorial-screenshot" /></a></p>
+
+    <p>If you need a reminder about how to access the Event Processing home page, you can review <a href="../guided/tutorial-access#event-processing">Accessing the tutorial environment</a>.</p>
+  </li>
+  <li>
+    <p>Create a flow, and give it a name and description to explain that you will use it to track hourly badge events.</p>
+  </li>
+  <li>
+    <p>Update the <strong>Event source</strong> node.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/example7-4.png" title="creating an event source node"><img src="/event-automation/images/ea-tutorials/example7-4.png" alt="screenshot" title="creating an event source node" class="tutorial-screenshot" /></a></p>
+  </li>
+  <li>
+    <p>Add an event source.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/example7-5.png" title="creating an event source node"><img src="/event-automation/images/ea-tutorials/example7-5.png" alt="screenshot" title="creating an event source node" class="tutorial-screenshot" /></a></p>
+  </li>
+  <li>
+    <p>In the <strong>Cluster connection</strong> pane, fill in the server address by using the value copied from the Event Endpoint Management catalog.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-1-6-new1.png" title="connection details for the event source"><img src="/event-automation/images/ea-tutorials/tutorial-1-6-new1.png" alt="screenshot" title="connection details for the event source" class="tutorial-screenshot" /></a></p>
+
+    <p>Click <strong>Next</strong>.</p>
+  </li>
+  <li>
+    <p>In the <strong>Access credentials</strong> pane, paste the credentials by using a username and password created in Event Endpoint Management using the <strong>Generate access credentials</strong> button.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/example1-9-new1.png" title="specifying credentials for event source"><img src="/event-automation/images/ea-tutorials/example1-9-new1.png" alt="screenshot" title="specifying credentials for event source" class="tutorial-screenshot" /></a></p>
+  </li>
+  <li>
+    <p>Select the <code class="language-plaintext highlighter-rouge">DOOR.BADGEIN</code> topic to process events from, and then click <strong>Next</strong>.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/example-7-7-new.png" title="selecting a topic to use"><img src="/event-automation/images/ea-tutorials/example-7-7-new.png" alt="screenshot" title="selecting a topic to use" class="tutorial-screenshot" /></a></p>
+  </li>
+  <li>
+    <p>The format <code class="language-plaintext highlighter-rouge">JSON</code> is auto-selected in the <strong>Message format</strong> drop-down and the sample message is auto-populated in the <strong>JSON sample message</strong> field.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/example1-8-new1.png" title="selecting a topic to use"><img src="/event-automation/images/ea-tutorials/example1-8-new1.png" alt="screenshot" title="selecting a topic to use" class="tutorial-screenshot" /></a></p>
+
+    <p>Click <strong>Next</strong>.</p>
+  </li>
+  <li>
+    <p>In the <strong>Key and headers</strong> pane, click <strong>Next</strong>.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tkey1-headers.png" title="map key and header"><img src="/event-automation/images/ea-tutorials/key1-headers.png" alt="screenshot" title="map key and headers" class="tutorial-screenshot" /></a></p>
+
+    <p><strong>Note:</strong> The key and headers are displayed automatically if they are available in the selected topic message.</p>
+  </li>
+  <li>
+    <p>In the <strong>Event details</strong> pane, enter the node name as <code class="language-plaintext highlighter-rouge">door events</code> in the <strong>Node name</strong> field.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/door-events-new.png" title="enter a node name"><img src="/event-automation/images/ea-tutorials/door-events-new.png" alt="screenshot" title="enter a node name" class="tutorial-screenshot" /></a></p>
+  </li>
+  <li>
+    <p>Verify that the type of the <code class="language-plaintext highlighter-rouge">badgetime</code> property has been automatically detected as <code class="language-plaintext highlighter-rouge">Timestamp</code>.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/example7-11-new.png" title="creating an event source node"><img src="/event-automation/images/ea-tutorials/example7-11-new.png" alt="screenshot" title="creating an event source node" class="tutorial-screenshot" /></a></p>
+  </li>
+  <li>
+    <p>Configure the event source to use the <code class="language-plaintext highlighter-rouge">badgetime</code> property as the source of the event time, and to tolerate lateness of up to <strong>3 minutes</strong>.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/example7-12-new.png" title="creating an event source node"><img src="/event-automation/images/ea-tutorials/example7-12-new.png" alt="screenshot" title="creating an event source node" class="tutorial-screenshot" /></a></p>
+  </li>
+  <li>
+    <p>Click <strong>Configure</strong> to finalize the event source.</p>
+  </li>
+</ol>
+
+<h3 id="step-3-extract-information-to-aggregate-on">Step 3: Extract information to aggregate on</h3>
+
+<ol>
+  <li>
+    <p>Add a <strong>Transform</strong> node to the flow.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/example7-13.png" title="processing the door events"><img src="/event-automation/images/ea-tutorials/example7-13.png" alt="screenshot" title="processing the door events" class="tutorial-screenshot" /></a></p>
+
+    <p>Create a transform node by dragging one onto the canvas. You can find this in the <strong>Processors</strong> section of the left panel.</p>
+  </li>
+  <li>
+    <p>Create a <strong>Transform</strong> node to extract the building name from the door ID.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/example7-14.png" title="creating the processing flow"><img src="/event-automation/images/ea-tutorials/example7-14.png" alt="screenshot" title="creating the processing flow" class="tutorial-screenshot" /></a></p>
+
+    <p>Suggested function expression:</p>
+
+    <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">REGEXP_EXTRACT</span><span class="p">(</span><span class="nv">`door`</span><span class="p">,</span> <span class="s1">'([A-Z]+)</span><span class="se">\-</span><span class="s1">([0-9]+)</span><span class="se">\-</span><span class="s1">([0-9]+)'</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</code></pre></div>    </div>
+
+    <p>The door ID is made up of:</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;building <span class="nb">id</span><span class="o">&gt;</span> - &lt;floor number&gt; - &lt;door number&gt;
+</code></pre></div>    </div>
+
+    <p>For example:</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>H-0-36
+</code></pre></div>    </div>
+
+    <p>The regular expression function is capturing the first set of letters before the first hyphen character.</p>
+  </li>
+  <li>
+    <p>Click <strong>Configure</strong> to finalize the transform.</p>
+  </li>
+</ol>
+
+<h3 id="step-4-count-the-occurrences">Step 4: Count the occurrences</h3>
+
+<ol>
+  <li>
+    <p>Add an <strong>Aggregate</strong> node to the flow.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/example7-15.png" title="creating the processing flow"><img src="/event-automation/images/ea-tutorials/example7-15.png" alt="screenshot" title="creating the processing flow" class="tutorial-screenshot" /></a></p>
+
+    <p>Create an aggregate node by dragging one onto the canvas. You can find this in the <strong>Processors</strong> section of the left panel.</p>
+  </li>
+  <li>
+    <p>Define the time window to group badge events by as <strong>1 hour</strong>.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/example7-16.png" title="creating the processing flow"><img src="/event-automation/images/ea-tutorials/example7-16.png" alt="screenshot" title="creating the processing flow" class="tutorial-screenshot" /></a></p>
+  </li>
+  <li>
+    <p>Count the number of door badge events (by counting the unique record ID), grouped by the building.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/example7-17.png" title="creating the processing flow"><img src="/event-automation/images/ea-tutorials/example7-17.png" alt="screenshot" title="creating the processing flow" class="tutorial-screenshot" /></a></p>
+  </li>
+  <li>
+    <p>Rename the output properties to make the results easier to understand.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/example7-18.png" title="creating the processing flow"><img src="/event-automation/images/ea-tutorials/example7-18.png" alt="screenshot" title="creating the processing flow" class="tutorial-screenshot" /></a></p>
+  </li>
+</ol>
+
+<h3 id="step-5-test-the-flow">Step 5: Test the flow</h3>
+
+<p>The final step is to run your completed flow.</p>
+
+<ol>
+  <li>
+    <p>Use the <strong>Run</strong> menu, and select <strong>Include historical</strong> to run your filter on the history of sensor events available on this topic.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/example7-19.png" title="creating the processing flow"><img src="/event-automation/images/ea-tutorials/example7-19.png" alt="screenshot" title="creating the processing flow" class="tutorial-screenshot" /></a></p>
+  </li>
+  <li>
+    <p>When you have finished reviewing the results, you can stop this flow.</p>
+  </li>
+</ol>
+
+<h2 id="recap">Recap</h2>
+
+<p>It is not unusual to need to process events on a Kafka topic that are out of sequence and with unreliable timestamps in the message header.</p>
+
+<p>Event Processing makes it easy to perform time-based analysis of such events, by allowing you to specify what value to use as a reliable source of time and describe how long it should wait for out-of-sequence events.</p>
+
+          </div>
+
+
+          
+        </section>
+
+        <aside class="sidebar__right ">
+          
+          <div class="fixedSidebar">
+            <nav class="toc">
+              <ul class="toc__menu">
+  <li><a href="#scenario">Scenario</a></li>
+  <li><a href="#before-you-begin">Before you begin</a>
+    <ul>
+      <li><a href="#versions">Versions</a></li>
+    </ul>
+  </li>
+  <li><a href="#instructions">Instructions</a>
+    <ul>
+      <li><a href="#step-1-discover-the-topic-to-use">Step 1: Discover the topic to use</a></li>
+      <li><a href="#step-2-create-the-source-of-events">Step 2: Create the source of events</a></li>
+      <li><a href="#step-3-extract-information-to-aggregate-on">Step 3: Extract information to aggregate on</a></li>
+      <li><a href="#step-4-count-the-occurrences">Step 4: Count the occurrences</a></li>
+      <li><a href="#step-5-test-the-flow">Step 5: Test the flow</a></li>
+    </ul>
+  </li>
+  <li><a href="#recap">Recap</a></li>
+</ul>
+            </nav>
+          </div>
+          
+        </aside>
+
+
+      </div>
+      <div class="pageEnd">
+        
+      </div>
+    </div>
+
+
+  </div> <!-- Main content -->
+
+</main></div>
+
+
+    
+      <div class="page__footer">
+          <footer>
+            <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+
+            
+<div class="page__footer-copyright"><a href="https://www.ibm.com/privacy/us/en/" rel="nofollow" target="_blank">Privacy Policy</a>  &nbsp;© Copyright IBM Corporation 2025</br>
+<a href="https://www.ibm.com/legal/terms" rel="nofollow" target="_blank">Terms of use</a> </br> <a href="https://ibm.github.io/event-automation/accessibility/" rel="nofollow" target="_blank">Accessibility</a> </br> <a href="https://ibm.github.io/event-automation/notices/" rel="nofollow" target="_blank">Notices</a></br>
+          </footer>
+      </div>      
+    
+
+
+    
+  <script src="/event-automation/assets/js/main.min.js"></script>
+  <!-- <script src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script> -->
+
+
+
+
+
+
+<script src="/event-automation/assets/js/design.js"></script>
+
+
+
+
+
+<script src="/event-automation/assets/js/lunr/lunr.min.js"></script>
+<script src="/event-automation/assets/js/lunr/lunr-store.js"></script>
+<script src="/event-automation/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+    
+
+    
+  </body>
+</html>

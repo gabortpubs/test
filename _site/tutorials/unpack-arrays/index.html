@@ -1,0 +1,1042 @@
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Unpacking arrays from events to process array contents easily - IBM Event Automation</title>
+<meta name="description" content="Unpack each array element into separate events or into new properties in the same event to process the array content.">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="IBM Event Automation">
+<meta property="og:url" content="https://ibm.github.io/event-automation/tutorials/unpack-arrays/" />
+<meta property="og:title" content="Tutorials | Unpacking arrays from events to process array contents easily" />
+<meta property="og:description" content="Unpack each array element into separate events or into new properties in the same event to process the array content." />
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="IBM Event Automation | Unpacking arrays from events to process array contents easily" />
+
+
+
+
+  <meta property="og:description" content="Unpack each array element into separate events or into new properties in the same event to process the array content.">
+
+
+
+  <meta property="og:image" content="https://ibm.github.io/event-automation/assets/siteMeta/appIcon_og_fb.png">
+  <meta name="twitter:image" content="https://ibm.github.io/event-automation/assets/siteMeta/appIcon_og_square.png">
+
+
+
+  <meta property="article:published_time" content="2025-11-07T03:45:08-05:00">
+
+
+
+
+
+
+<link rel="canonical" href="https://ibm.github.io/event-automation/tutorials/unpack-arrays/">
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Organization",
+      "url": "https://ibm.github.io/event-automation",
+      "logo": "https://ibm.github.io/event-automation/assets/siteMeta/appIcon_og_fb.png"
+    }
+  </script>
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": null,
+      "url": "https://ibm.github.io/event-automation",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/event-automation/feed.xml" type="application/atom+xml" rel="alternate" title="IBM Event Automation Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/event-automation/assets/css/main.css">
+
+<script src="/event-automation/assets/js/scrollsidebar.js"></script>
+<script src="/event-automation/assets/js/copytoclipboard.js"></script>
+<script src="/event-automation/assets/js/highlighter.js"></script>
+<script src="/event-automation/assets/js/newtab.js"></script>
+
+
+
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<link rel="apple-touch-icon" sizes="180x180" href="https://ibm.github.io/event-automation/assets/siteMeta/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://ibm.github.io/event-automation/assets/siteMeta/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://ibm.github.io/event-automation/assets/siteMeta/favicon-16x16.png">
+<link rel="manifest" href="https://ibm.github.io/event-automation/assets/siteMeta/site.webmanifest">
+<link rel="mask-icon" href="https://ibm.github.io/event-automation/assets/siteMeta/safari-pinned-tab.svg" color="#000000">
+<link rel="shortcut icon" href="https://ibm.github.io/event-automation/assets/siteMeta/favicon.ico">
+<link rel="shortcut icon" type="image/png" href="https://ibm.github.io/event-automation/assets/siteMeta/favicon-16x16.png"/>
+<link rel="shortcut icon" type="image/png" href="https://ibm.github.io/event-automation/assets/siteMeta/favicon-32x32.png"/>
+<meta name="msapplication-TileColor" content="#000000">
+<meta name="msapplication-config" content="https://ibm.github.io/event-automation/assets/siteMeta/browserconfig.xml">
+<meta name="theme-color" content="#000000">
+
+
+
+<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,600%7CIBM+Plex+Serif:300,400,500%7CIBM+Plex+Mono:300,400,500,700" rel="stylesheet">
+
+<!-- end custom head snippets -->
+
+    <link rel="shortcut icon" type="image/x-icon" href="/event-automation/assets/favicon.ico" >
+    
+    <base target="_parent">
+
+  </head>
+  <script src="/event-automation/assets/animation/lottie.js" type="text/javascript"></script>
+  <script src="/event-automation/assets/js/connectors.js"></script>
+  <script src="/event-automation/assets/js/copytoclipboard.js"></script>
+  <script src="/event-automation/assets/js/highlighter.js"></script>
+
+
+  
+  <body onload="" class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+
+
+  
+
+
+
+
+
+
+<div id="masthead" class="masthead">
+  <!--
+  <div class="masthead__goToIBMCloud">
+  <div>
+    You are viewing the documentation for the container-native version of IBM Event Automation.
+  </div>
+    <a class="link" target="_self" href="https://cloud.ibm.com/docs/EventStreams?topic=EventStreams-getting-started">Looking for the managed service on IBM Cloud? Click here.</a>
+</div>
+-->
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="mastheadNav">
+
+      
+
+
+        <div class="mastheadTitle">
+          
+          <a class="site-title" href="/event-automation/" target="_self"><span>IBM</span>&nbsp;Event Automation</a>
+          <div class="viewOnIBMcom">
+            <a href="https://www.ibm.com/products/event-automation" target="_blank">View product page</a>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+
+        <div class="mastheadControls">
+            <div class="menuScrollContainer">
+
+        
+
+                <ul id="visible-links" class="visible-links">
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/es/','_self')">
+                      <a href="https://ibm.github.io/event-automation/es/" >Event Streams</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/eem/','_self')">
+                      <a href="https://ibm.github.io/event-automation/eem/" >Event Endpoint Management</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/ep/','_self')">
+                      <a href="https://ibm.github.io/event-automation/ep/" >Event Processing</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/connectors/','_self')">
+                      <a href="https://ibm.github.io/event-automation/connectors/" >Connect catalog</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item active" onclick="window.open('https://ibm.github.io/event-automation/tutorials/','_self')">
+                      <a href="https://ibm.github.io/event-automation/tutorials/" >Tutorials</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/api/','_self')">
+                      <a href="https://ibm.github.io/event-automation/api/" >APIs...</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/support/','_self')">
+                      <a href="https://ibm.github.io/event-automation/support/" >Support</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/search/','_self')">
+                      <button aria-label="Search Button" role="button" id="searchButton" class="search__toggle " type="button" name="search Button">
+                        <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                          <path
+                            d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z"
+                            transform="translate(-.01)"></path>
+                        </svg>
+                      </button>
+                    </li>
+                  
+
+                  
+                </ul>
+        
+
+      </div>
+    </div>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div id="initial-content" class="initial-content" role="main">
+
+
+
+
+
+
+<main id="main" class="mainContainer" role="main">
+    
+
+    
+  
+
+
+
+  <div class="mainContent">
+    
+      
+      
+      <div class="subMenu backMenu"> 
+    <a href="
+        https://ibm.github.io/event-automation/tutorials
+      "><img alt="" role="presentation" src="https://ibm.github.io/event-automation/assets/images/icons/previous.svg" />
+        Back to tutorials
+      </a>
+  </div>
+    
+    <div id="pageContainer" class="page" itemscope itemtype="http://schema.org/CreativeWork">
+      
+      <div class="page__inner-wrap">
+      
+
+        
+        <section class="page__content pageSpacing" itemprop="text">
+          
+        
+          <header>
+            <h1 id="page-title" class="page__title" itemprop="headline">
+              Unpacking arrays from events to process array contents easily
+</h1>
+            
+          </header>  
+        
+        
+
+                    
+          <div class="content">
+            <h2 id="unpack-arrays">Unpack arrays</h2>
+
+<p>With the unpack arrays node, you can extract each array element as a new property in separate events or extract the array elements as new properties that are all included in the same event.</p>
+
+<h2 id="scenario">Scenario</h2>
+
+<p>As a retailer, you seek greater insight into the reasons for product returns. To achieve this, you can leverage product reviews to identify returned products with size or length issues.</p>
+
+<p>In this tutorial, you will unpack each product in the <strong>returns</strong> array into separate events and combine them with any associated product reviews.</p>
+
+<p>In the <strong>review/characteristics</strong> array, specific reviews for characteristics such as size and length are unpacked into new properties, allowing for separate trend computations.</p>
+
+<h2 id="before-you-begin">Before you begin</h2>
+
+<p>The instructions in this tutorial use the <a href="../guided/tutorial-0">Tutorial environment</a>, which includes a selection of topics each with a live stream of events, created to allow you to explore features in IBM Event Automation. Following the <a href="../guided/tutorial-0#deploy-the-tutorial">setup instructions</a> to deploy the demo environment gives you a complete instance of IBM Event Automation that you can use to follow this tutorial for yourself.</p>
+
+<h3 id="versions">Versions</h3>
+
+<p>This tutorial uses the following versions of Event Automation capabilities. Screenshots can differ from the current interface if you are using a newer version.</p>
+
+<ul>
+  <li>Event Endpoint Management 11.5.1</li>
+  <li>Event Processing 1.3.2</li>
+</ul>
+
+<h2 id="instructions">Instructions</h2>
+
+<h3 id="step-1-discover-the-topics-to-use">Step 1: Discover the topics to use</h3>
+
+<p>For this scenario, you need sources of the return requests and product reviews events.</p>
+
+<ol>
+  <li>
+    <p>Go to the <strong>Event Endpoint Management</strong> catalog.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/eem-catalog.png" title="Screen capture of the Event Endpoint Management catalog"><img src="/event-automation/images/ea-tutorials/eem-catalog.png" alt="screenshot" title="Screen capture of the Event Endpoint Management catalog" class="tutorial-screenshot" /></a></p>
+
+    <p>If you need a reminder about how to access the Event Endpoint Management catalog, you can review <a href="../guided/tutorial-access#event-endpoint-management">Accessing the tutorial environment</a>.</p>
+  </li>
+  <li>
+    <p>Find the <code class="language-plaintext highlighter-rouge">Return requests</code> and <code class="language-plaintext highlighter-rouge">Product reviews</code> topics.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-14-7.png" title="Screen capture of the Event Endpoint Management catalog"><img src="/event-automation/images/ea-tutorials/tutorial-14-7.png" alt="screenshot" title="Screen capture of the Event Endpoint Management catalog" class="tutorial-screenshot" /></a></p>
+  </li>
+  <li>
+    <p>Click into the topics to review the information about the events that are available here.
+Look at the schema to see the properties in the events, and get an idea of what to expect from events on these topics.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-14-8.png" title="Screen capture of the Event Endpoint Management catalog"><img src="/event-automation/images/ea-tutorials/tutorial-14-8.png" alt="screenshot" title="Screen capture of the Event Endpoint Management catalog" class="tutorial-screenshot" /></a></p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-14-9.png" title="Screen capture of the Event Endpoint Management catalog"><img src="/event-automation/images/ea-tutorials/tutorial-14-9.png" alt="screenshot" title="Screen capture of the Event Endpoint Management catalog" class="tutorial-screenshot" /></a></p>
+
+    <p><strong>Tip</strong>: Keep this page open. It is helpful to have the catalog available while you work on your Event Processing flows to refer to the information about the events as you work. Complete the following steps in a separate browser window or tab.</p>
+  </li>
+</ol>
+
+<h3 id="step-2-create-a-flow">Step 2: Create a flow</h3>
+
+<p>To create a flow, complete the following steps:</p>
+
+<ol>
+  <li>
+    <p>Go to the <strong>Event Processing</strong> home page.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/ep-home.png" title="Screen capture of the Event Processing home page"><img src="/event-automation/images/ea-tutorials/ep-home.png" alt="screenshot" title="Screen capture of the Event Processing home page" class="tutorial-screenshot" /></a></p>
+
+    <p>If you need a reminder about how to access the Event Processing home page, you can review <a href="../guided/tutorial-access#event-processing">Accessing the tutorial environment</a>.</p>
+  </li>
+  <li>
+    <p>Create a flow, and give it a name and description to explain that you will use it to have more insight into the reasons for product return.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-14-1.png" title="Event Processing home page"><img src="/event-automation/images/ea-tutorials/tutorial-14-1.png" alt="screenshot" title="Event Processing home page" class="tutorial-screenshot" /></a></p>
+  </li>
+</ol>
+
+<h3 id="step-3-add-an-event-source-node-for-the-return-requests-topic">Step 3: Add an event source node for the Return Requests topic</h3>
+
+<p>The next step is to bring the stream of events you discovered in the catalog into Event Processing.</p>
+
+<p>To create an event source, complete the following steps:</p>
+
+<ol>
+  <li>
+    <p>Add an <strong>Event source</strong> node.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-14-3a.png" title="Adding an event source node"><img src="/event-automation/images/ea-tutorials/tutorial-14-3a.png" alt="screenshot" title="Adding an event source node" class="tutorial-screenshot" /></a></p>
+
+    <p>When you create a flow, an event source node is automatically added to your canvas. A purple checkbox <img src="/event-automation/images/unconfigured_node.svg" alt="unconfigured_node icon" title="Diagram showing the unconfigured node icon." height="30px" width="15px" /> is displayed on the event source node indicating that the node is yet to be configured.</p>
+
+    <p>Hover over the node, and click <img src="/event-automation/images/rename.svg" alt="Edit icon" title="The edit icon." height="30px" width="15px" /> <strong>Edit</strong> to configure the node.</p>
+  </li>
+  <li>
+    <p>Ensure that the <strong>Add event source</strong> tile is selected, and then click <strong>Next</strong>.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-1-5.png" title="Add an event source"><img src="/event-automation/images/ea-tutorials/tutorial-1-5.png" alt="screenshot" title="Add an event source" class="tutorial-screenshot" /></a></p>
+  </li>
+  <li>
+    <p>Get the server address for the event source from the Event Endpoint Management topic page.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-14-3.png" title="Getting connection details from the catalog"><img src="/event-automation/images/ea-tutorials/tutorial-14-3.png" alt="screenshot" title="Getting connection details from the catalog" class="tutorial-screenshot" /></a></p>
+
+    <p>Click the <strong>Copy</strong> icon next to the <strong>Servers</strong> address to copy the address to the clipboard.</p>
+  </li>
+  <li>
+    <p>Go to Event Processing, and configure the new event source.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-1-6-new1.png" title="connection details for the event source"><img src="/event-automation/images/ea-tutorials/tutorial-1-6-new1.png" alt="screenshot" title="connection details for the event source" class="tutorial-screenshot" /></a></p>
+
+    <p>In the <strong>Bootstrap server</strong> field, paste the server address that you copied from Event Endpoint Management in the previous step.</p>
+
+    <p>Click <strong>Next</strong>.</p>
+  </li>
+  <li>
+    <p>Generate access credentials for accessing this stream of events from the Event Endpoint Management page.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-14-2.png" title="Getting the credentials to use"><img src="/event-automation/images/ea-tutorials/tutorial-14-2.png" alt="screenshot" title="Getting the credentials to use" class="tutorial-screenshot" /></a></p>
+
+    <p>Click <strong>Subscribe</strong>, and provide your contact details.</p>
+  </li>
+  <li>
+    <p>Copy the username and password from Event Endpoint Management and paste into Event Processing to access the topic.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/example1-9-new1.png" title="specifying credentials for event source"><img src="/event-automation/images/ea-tutorials/example1-9-new1.png" alt="screenshot" title="specifying credentials for event source" class="tutorial-screenshot" /></a></p>
+
+    <p>The username starts with <code class="language-plaintext highlighter-rouge">eem-</code>.</p>
+
+    <p>Click <strong>Next</strong> to go to the <strong>Topic selection</strong> pane.</p>
+  </li>
+  <li>
+    <p>Select the <code class="language-plaintext highlighter-rouge">PRODUCT.RETURNS</code> topic to process events from, and click <strong>Next</strong>.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/product-returns.png" title="Select a topic to use"><img src="/event-automation/images/ea-tutorials/product-returns.png" alt="screenshot" title="Select a topic to use" class="tutorial-screenshot" /></a></p>
+  </li>
+  <li>
+    <p>Get the schema for return requests node from Event Endpoint Management.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-14-5.png" title="Event information"><img src="/event-automation/images/ea-tutorials/tutorial-14-5.png" alt="screenshot" title="Event information" class="tutorial-screenshot" /></a></p>
+
+    <p>Click the <strong>Copy</strong> icon in the schema section to copy the schema to the clipboard.</p>
+
+    <p>You need to give Event Processing a description of the events available from the topic. The information in the schema enables Event Processing to give guidance for creating Event Processing nodes.</p>
+  </li>
+  <li>
+    <p>The <code class="language-plaintext highlighter-rouge">Avro</code> message format is auto-selected in the <strong>Message format</strong> drop-down. Paste the schema into the <strong>Avro schema</strong> field, and click <strong>Next</strong>.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/avro.png" title="Paste schema into the event source"><img src="/event-automation/images/ea-tutorials/avro.png" alt="screenshot" title="Paste schema into the event source" class="tutorial-screenshot" /></a></p>
+  </li>
+  <li>
+    <p>In the <strong>Key and headers</strong> pane, click <strong>Next</strong>.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial1-key-headers-new.png" title="map key and header"><img src="/event-automation/images/ea-tutorials/tutorial1-key-headers-new.png" alt="screenshot" title="map key and headers" class="tutorial-screenshot" /></a></p>
+
+    <p><strong>Note:</strong> The key and headers are displayed automatically if they are available in the selected topic message.</p>
+  </li>
+  <li>
+    <p>In the <strong>Event details</strong> pane, change the <code class="language-plaintext highlighter-rouge">returntime</code> property type to <code class="language-plaintext highlighter-rouge">Timestamp (with time zone)</code>.</p>
+
+    <p><strong>Note:</strong> The <code class="language-plaintext highlighter-rouge">returntime</code> string is converted to a timestamp to use <code class="language-plaintext highlighter-rouge">returntime</code> as event time. Only properties with a timestamp type can be used as event time to perform time-based processing.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/return-time.png" title="Creating an event source node"><img src="/event-automation/images/ea-tutorials/return-time-1.png" alt="screenshot" title="Creating an event source node" class="tutorial-screenshot" /></a></p>
+  </li>
+  <li>
+    <p>Configure the event source to use the <code class="language-plaintext highlighter-rouge">returntime</code> property as the source of the event time, and to tolerate lateness of up to <strong>1 minute(s)</strong>.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-14-26.png" title="Creating an event source node"><img src="/event-automation/images/ea-tutorials/return-time.png" alt="screenshot" title="Creating an event source node" class="tutorial-screenshot" /></a></p>
+  </li>
+  <li>
+    <p>Click <strong>Configure</strong> to finalize the event source configuration.</p>
+  </li>
+</ol>
+
+<h3 id="step-4-unpack-the-returned-products-into-events">Step 4: Unpack the returned products into events</h3>
+
+<p>The next step is to unpack the returns array that contains product returns into events.</p>
+
+<p>To add an unpack array node, complete the following steps:</p>
+
+<p>For more information about how to create an unpack array node, see <a href="/event-automation/ep/nodes/processornodes/#adding-an-unpack-array-node">unpack array node</a>.</p>
+
+<ol>
+  <li>
+    <p>Add an unpack array node and link the <code class="language-plaintext highlighter-rouge">Return requests</code> node to the unpack array node.</p>
+  </li>
+  <li>
+    <p>Hover over the unpack array node, and click <img src="/event-automation/images/rename.svg" alt="Edit icon" title="The edit icon." height="30px" width="15px" /> <strong>Edit</strong> to configure the node.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-14-4aa.png" title="Screen capture of the unpack arrays node configuration"><img src="/event-automation/images/ea-tutorials/tutorial-14-4aa.png" alt="screenshot" title="Screen capture of the unpack arrays node configuration" class="tutorial-screenshot" /></a></p>
+  </li>
+  <li>
+    <p>In the <strong>Node name</strong> field, enter the name of the unpack array node as <code class="language-plaintext highlighter-rouge">Unpack product returns</code>, and then click <strong>Next</strong>.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-14-4a.png" title="Screen capture of the unpack arrays node configuration"><img src="/event-automation/images/ea-tutorials/tutorial-14-4a.png" alt="screenshot" title="Screen capture of the unpack arrays node configuration" class="tutorial-screenshot" /></a></p>
+  </li>
+  <li>
+    <p>In the <strong>Array selection</strong> pane, select the <strong>returns</strong> array, and then click <strong>Next</strong>.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-14-4b.png" title="Screen capture of the unpack arrays node configuration"><img src="/event-automation/images/ea-tutorials/tutorial-14-4b.png" alt="screenshot" title="Screen capture of the unpack arrays node configuration" class="tutorial-screenshot" /></a></p>
+  </li>
+  <li>
+    <p>In the <strong>Unpack into events</strong> tab, enter <code class="language-plaintext highlighter-rouge">return</code> in the <strong>Property name</strong> field, and then click <strong>Next</strong>.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-14-4c.png" title="Screen capture of the unpack arrays node configuration"><img src="/event-automation/images/ea-tutorials/tutorial-14-4c.png" alt="screenshot" title="Screen capture of the unpack arrays node configuration" class="tutorial-screenshot" /></a></p>
+
+    <p><strong>Note:</strong> By default, the <strong>Unpack the array</strong> pane displays the <strong>Unpack into events</strong> tab.</p>
+
+    <p>In the <strong>Output properties</strong> pane, you can see that each event has only one single return object, and there is no returns array anymore.</p>
+  </li>
+  <li>
+    <p>Click <strong>Configure</strong> to finalize the unpack array node configuration.</p>
+  </li>
+</ol>
+
+<h3 id="step-5-test-the-flow">Step 5: Test the flow</h3>
+
+<p>The next step is to run your Event Processing flow and view the results.</p>
+
+<p>Use the <strong>Run flow</strong> menu, and select <strong>Include historical</strong> to run the current flow on the history of <code class="language-plaintext highlighter-rouge">Return requests</code> events.</p>
+
+<p>Verify that each returned product for a given return request is now displayed in a separate event.</p>
+
+<p><strong>Note:</strong> You can also notice in the <strong>Output events</strong> table that <strong>Unable to display data</strong> is displayed for the addresses array. Complex data types cannot be displayed in this table. To view the complete result including complex data types, pause new events and download the results as a <code class="language-plaintext highlighter-rouge">.csv</code> file.</p>
+
+<p>Click <strong>Stop flow</strong>.</p>
+
+<h3 id="step-6-identify-trends-for-return-reasons-per-product">Step 6: Identify trends for return reasons per product</h3>
+
+<p>In this step you need to add an aggregate node to identify the trends of the product returns.</p>
+
+<p>To add an aggregate node, complete the following steps:</p>
+
+<p>For more information about how to create an aggregate node, see <a href="/event-automation/ep/nodes/windowednodes/#adding-an-aggregate-node">Adding an aggregate node</a>.</p>
+
+<ol>
+  <li>Add an aggregate node and link the <code class="language-plaintext highlighter-rouge">Unpack product returns</code> node (the unpack array node that you created in step 4) to the aggregate node.</li>
+  <li>
+    <p>Hover over the aggregate node, and click <img src="/event-automation/images/rename.svg" alt="Edit icon" title="The edit icon." height="30px" width="15px" /> <strong>Edit</strong> to configure the node.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-14-6aa.png" title="Screen capture of the aggregate node configuration"><img src="/event-automation/images/ea-tutorials/tutorial-14-6aa.png" alt="screenshot" title="Screen capture of the aggregate node configuration" class="tutorial-screenshot" /></a></p>
+  </li>
+  <li>
+    <p>In the <strong>Node name</strong> field, enter the name of the aggregate node as <code class="language-plaintext highlighter-rouge">Identify trends for return reasons per product</code>, and then click <strong>Next</strong>.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-14-6a.png" title="Screen capture of the aggregate node configuration"><img src="/event-automation/images/ea-tutorials/tutorial-14-6a.png" alt="screenshot" title="Screen capture of the aggregate node configuration" class="tutorial-screenshot" /></a></p>
+  </li>
+  <li>
+    <p>Use the <strong>Time window</strong> pane to define the time window duration, and click <strong>Next</strong>: <strong>1 hour(s)</strong>.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-14-6b.png" title="Screen capture of the aggregate node configuration"><img src="/event-automation/images/ea-tutorials/tutorial-14-6b.png" alt="screenshot" title="Screen capture of the aggregate node configuration" class="tutorial-screenshot" /></a></p>
+
+    <p><strong>Note:</strong> If you have set up the tutorial environment more than 1 hour ago, you can increase the size of the time window. It allows you to have more events that are used to run the aggregate functions. Ensure to use the same time window for the <code class="language-plaintext highlighter-rouge">Identify review trends per product</code> aggregate node that will be created later.</p>
+  </li>
+  <li>In the <strong>Aggregate function</strong> pane, select the options from the following fields:
+    <ul>
+      <li>From the <strong>Aggregate function</strong> drop-down, select <strong>COUNT</strong>.</li>
+      <li>From the <strong>Property to aggregate</strong> drop-down, select <strong>return/reason</strong>.</li>
+      <li>From the <strong>Additional property to group by</strong> drop-down, select <strong>return/product/id</strong>, and then click <strong>Group by another property +</strong>, and select <strong>return/reason</strong> as additional property to group by.</li>
+    </ul>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-14-6c.png" title="Screen capture of the aggregate node configuration"><img src="/event-automation/images/ea-tutorials/tutorial-14-6c.png" alt="screenshot" title="Screen capture of the aggregate node configuration" class="tutorial-screenshot" /></a></p>
+  </li>
+  <li>Click <strong>Next</strong>, and then click <strong>Configure</strong> to finalize the aggregate node configuration.</li>
+</ol>
+
+<h3 id="step-7-test-the-flow">Step 7: Test the flow</h3>
+
+<p>The next step is to run your Event Processing flow and view the results.</p>
+
+<p>Use the <strong>Run flow</strong> menu, and select <strong>Include historical</strong> to run the current flow on the history of <code class="language-plaintext highlighter-rouge">Return requests</code> events.</p>
+
+<p>Verify that for a given time period, there is only one event per product ID and return reason.</p>
+
+<p>Click <strong>Stop flow</strong>.</p>
+
+<h3 id="step-8-identify-top-return-reason-per-product">Step 8: Identify top return reason per product</h3>
+
+<p>In this step, add a top-n node to identify top reason for return of products.</p>
+
+<p>To add a top-n node, complete the following steps:</p>
+
+<p>For more information about how to create a top-n node, see <a href="/event-automation/ep/nodes/windowednodes/#adding-a-top-n-node">Adding a top-n node</a>.</p>
+
+<ol>
+  <li>Add a <strong>Top-n</strong> node and link the <code class="language-plaintext highlighter-rouge">Identify trends for return reasons per product</code> aggregate node (the aggregate node that you created in step 6) to the top-n node.</li>
+  <li>
+    <p>Hover over the top-n node, and click <img src="/event-automation/images/rename.svg" alt="Edit icon" title="The edit icon." height="30px" width="15px" /> <strong>Edit</strong> to configure the node.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-14-8aa.png" title="Screen capture of the top-n node configuration"><img src="/event-automation/images/ea-tutorials/tutorial-14-8aa.png" alt="screenshot" title="Screen capture of the top-n node configuration" class="tutorial-screenshot" /></a></p>
+  </li>
+  <li>
+    <p>In the <strong>Node name</strong> field, enter the name of the top-n node as <code class="language-plaintext highlighter-rouge">Identify top return reason per product</code>, and then click <strong>Next</strong>.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-14-8a.png" title="Screen capture of the top-n node configuration"><img src="/event-automation/images/ea-tutorials/tutorial-14-8a.png" alt="screenshot" title="Screen capture of the top-n node configuration" class="tutorial-screenshot" /></a></p>
+  </li>
+  <li>
+    <p>In the <strong>Time window</strong> pane, ensure that the reuse time window switch is set to <strong>Yes</strong>, and click <strong>Next</strong>.</p>
+
+    <p><strong>Note:</strong> The duration for <code class="language-plaintext highlighter-rouge">Identify top return reason per product</code> node is already defined under <a href="#step-6-identify-trends-for-return-reasons-per-product">step 6</a> as <strong>1 hour(s)</strong>.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-14-8b.png" title="Screen capture of the top-n node configuration"><img src="/event-automation/images/ea-tutorials/tutorial-14-8b.png" alt="screenshot" title="Screen capture of the top-n node configuration" class="tutorial-screenshot" /></a></p>
+  </li>
+  <li>In the <strong>Condition</strong> pane, enter the values in the following fields, and then click <strong>Next</strong>:
+    <ul>
+      <li><strong>Number of results to keep on each window</strong>: 1</li>
+      <li><strong>Ordered by</strong>: <code class="language-plaintext highlighter-rouge">COUNT_return_reason, Descending</code></li>
+      <li><strong>Grouped by</strong>: <code class="language-plaintext highlighter-rouge">return_product_id</code></li>
+    </ul>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-14-8c.png" title="Screen capture of the top-n node configuration"><img src="/event-automation/images/ea-tutorials/tutorial-14-8c.png" alt="screenshot" title="Screen capture of the top-n node configuration" class="tutorial-screenshot" /></a></p>
+  </li>
+  <li>In the <strong>Output properties</strong> pane, you can choose the output properties that will be useful to return.</li>
+  <li>Click <strong>Configure</strong> to finalize the top-n node configuration.</li>
+</ol>
+
+<h3 id="step-9-test-the-flow">Step 9: Test the flow</h3>
+
+<p>The next step is to run your Event Processing flow and view the results.</p>
+
+<p>Use the <strong>Run flow</strong> menu, and select <strong>Include historical</strong> to run the current flow on the history of <code class="language-plaintext highlighter-rouge">Return requests</code> events.</p>
+
+<p>For a given time period, there is now only one event by product ID that contains the return reason that appears most often.</p>
+
+<p>Click <strong>Stop flow</strong>.</p>
+
+<h3 id="step-10-add-another-source-of-events-to-the-flow">Step 10: Add another source of events to the flow</h3>
+
+<p>The next step is to bring this additional stream of events that you discovered in the catalog into Event Processing.</p>
+
+<p>To create an event source node, complete the following steps:</p>
+
+<ol>
+  <li>
+    <p>Create an event source node for the <code class="language-plaintext highlighter-rouge">Product reviews</code>.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-14-8a.png" title="Screen capture of the second event source configuration"><img src="/event-automation/images/ea-tutorials/tutorial-14-10aa.png" alt="screenshot" title="Screen capture of the second event source configuration" class="tutorial-screenshot" /></a></p>
+  </li>
+  <li>
+    <p>Repeat steps 1-6 under <a href="#step-3-add-an-event-source-node-for-the-return-requests-topic">step 3</a>.</p>
+
+    <p><strong>Note:</strong></p>
+    <ul>
+      <li>Give the node a name that describes this stream of events: <code class="language-plaintext highlighter-rouge">Product reviews</code>.</li>
+      <li>Generate different credentials for <code class="language-plaintext highlighter-rouge">Product reviews</code> node because credentials are specific to a topic.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Select the <code class="language-plaintext highlighter-rouge">PRODUCT.REVIEWS</code> topic to process events from, and click <strong>Next</strong>.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-14-14.png" title="Screen capture of the second event source configuration"><img src="/event-automation/images/ea-tutorials/tutorial-14-14.png" alt="screenshot" title="Screen capture of the second event source configuration" class="tutorial-screenshot" /></a></p>
+  </li>
+  <li>
+    <p>Get the schema for product reviews from Event Endpoint Management.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-14-15.png" title="Screen capture of the Event Endpoint Management UI"><img src="/event-automation/images/ea-tutorials/tutorial-14-15.png" alt="screenshot" title="Screen capture of the Event Endpoint Management UI" class="tutorial-screenshot" /></a></p>
+
+    <p>Click the <strong>Copy</strong> icon in the schema section to copy the schema to the clipboard.</p>
+
+    <p>You need to give Event Processing a description of the events available from the topic. The information in the schema enables Event Processing to give guidance for creating Event Processing nodes.</p>
+  </li>
+  <li>
+    <p>Repeat steps 9-12 under <a href="#step-3-add-an-event-source-node-for-the-return-requests-topic">step 3</a>.</p>
+
+    <p><strong>Note:</strong></p>
+    <ul>
+      <li>Change the type of the <code class="language-plaintext highlighter-rouge">reviewtime</code> property to <code class="language-plaintext highlighter-rouge">Timestamp (with time zone)</code>.</li>
+      <li>The <code class="language-plaintext highlighter-rouge">reviewtime</code> string is converted to a timestamp to use <code class="language-plaintext highlighter-rouge">reviewtime</code> as event time. Only properties with a timestamp type can be used as event time to perform time-based processing.</li>
+      <li>Configure the event source to use the <code class="language-plaintext highlighter-rouge">reviewtime</code> property as the source of the event time, and to tolerate lateness of up to <strong>1 minute(s)</strong>.</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="step-11-unpack-the-review-characteristics-into-properties">Step 11: Unpack the review characteristics into properties</h3>
+
+<p>In this step, add another unpack array node to unpack the product review characteristics such as size and length into properties.</p>
+
+<p>To add another unpack array node, complete the following steps:</p>
+
+<p>For more information about how to create an unpack array node, see <a href="/event-automation/ep/nodes/processornodes/#adding-an-unpack-array-node">unpack array node</a>.</p>
+
+<ol>
+  <li>Add an <strong>Unpack array</strong> node and link the <code class="language-plaintext highlighter-rouge">Product reviews</code> node (the event source that you created in step 10) to the unpack array node.</li>
+  <li>Hover over the unpack array node, and click <img src="/event-automation/images/rename.svg" alt="Edit icon" title="The edit icon." height="30px" width="15px" /> <strong>Edit</strong> to configure the node.</li>
+  <li>
+    <p>In the <strong>Node name</strong> field, enter the name of the unpack array node as <code class="language-plaintext highlighter-rouge">Unpack review characteristics</code>, and then click <strong>Next</strong>.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-14-19.png" title="Screen capture of the unpack node configuration"><img src="/event-automation/images/ea-tutorials/tutorial-14-19.png" alt="screenshot" title="Screen capture of the unpack node configuration" class="tutorial-screenshot" /></a></p>
+  </li>
+  <li>
+    <p>In the <strong>Array selection</strong> pane, select the <strong>review.characteristics[]</strong> array, and then click <strong>Next</strong>.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-14-20.png" title="Screen capture of the unpack node configuration"><img src="/event-automation/images/ea-tutorials/tutorial-14-20.png" alt="screenshot" title="Screen capture of the unpack node configuration" class="tutorial-screenshot" /></a></p>
+  </li>
+  <li>In the <strong>Unpack into properties</strong> tab, click <strong>Add next element</strong> to add a second element.</li>
+  <li>
+    <p>Enter size and length as property names, and click <strong>Next</strong>.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-14-21.png" title="Screen capture of the unpack node configuration"><img src="/event-automation/images/ea-tutorials/tutorial-14-21.png" alt="screenshot" title="Screen capture of the unpack node configuration" class="tutorial-screenshot" /></a></p>
+
+    <p><strong>Note:</strong> In the <strong>Output properties</strong> pane, you can see that each event has a size object and length object in the review object. There is no longer a characteristics array.</p>
+  </li>
+  <li>Click <strong>Configure</strong> to finalize the unpack array node configuration.</li>
+</ol>
+
+<h3 id="step-12-identify-review-trends-per-product">Step 12: Identify review trends per product</h3>
+
+<p>In this step you need to add an aggregate node to identify the trends of the review of products.</p>
+
+<p>To add another aggregate node, complete the following steps:</p>
+
+<p>For more information about how to create an aggregate node, see <a href="#step-6-identify-trends-for-return-reasons-per-product">step 6</a>.</p>
+
+<ol>
+  <li>Add an aggregate node and link the <code class="language-plaintext highlighter-rouge">Unpack review characteristics</code> unpack array node (the unpack array node that you created in step 11) to the aggregate node.</li>
+  <li>
+    <p>Hover over the aggregate node, and click <img src="/event-automation/images/rename.svg" alt="Edit icon" title="The edit icon." height="30px" width="15px" /> <strong>Edit</strong> to configure the node.</p>
+  </li>
+  <li>
+    <p>In the <strong>Node name</strong> field, enter the name of the aggregate node as <code class="language-plaintext highlighter-rouge">Identify review trends per product</code>, and then click <strong>Next</strong>.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-14-23.png" title="Screen capture of the aggregate node configuration"><img src="/event-automation/images/ea-tutorials/tutorial-14-23.png" alt="screenshot" title="Screen capture of the aggregate node configuration" class="tutorial-screenshot" /></a></p>
+  </li>
+  <li>
+    <p>Enter the same time window as defined under <a href="#step-6-identify-trends-for-return-reasons-per-product">step 6</a>, and then click <strong>Next</strong>: <strong>1 hour(s)</strong>.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-14-24.png" title="Screen capture of the aggregate node configuration"><img src="/event-automation/images/ea-tutorials/tutorial-14-24.png" alt="screenshot" title="Screen capture of the aggregate node configuration" class="tutorial-screenshot" /></a></p>
+
+    <p><strong>Note:</strong> If you have set up the tutorial environment more than 1 hour ago, you can increase the size of the time window. It allows you to have more events that are used to run the aggregate functions. But ensure that you enter the same time window in the two aggregate nodes (the one for product returns and the one for product reviews).</p>
+  </li>
+  <li>From the <strong>Aggregate function</strong> drop-down, select <strong>AVG</strong>, and then from the <strong>Property to aggregate</strong> drop-down, select the <strong>review/rating</strong> options.</li>
+  <li>Click <strong>Add another aggregate function +</strong>.</li>
+  <li>From the <strong>Aggregate function</strong> drop-down, select <strong>AVG</strong>, and then from the <strong>Property to aggregate</strong> drop-down, select the <strong>review/size/ranking</strong> options.</li>
+  <li>Again click <strong>Add another aggregate function +</strong>.</li>
+  <li>From the <strong>Aggregate function</strong> drop-down, select <strong>AVG</strong>, and then from the <strong>Property to aggregate</strong> drop-down, select the <strong>review/length/ranking</strong> options.</li>
+  <li>
+    <p>From the <strong>Additional property to group by</strong> drop-down, select <strong>product</strong>.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-14-25.png" title="Screen capture of the aggregate node configuration"><img src="/event-automation/images/ea-tutorials/tutorial-14-25.png" alt="screenshot" title="Screen capture of the aggregate node configuration" class="tutorial-screenshot" /></a></p>
+  </li>
+  <li>Click <strong>Next</strong>, and then click <strong>Configure</strong> to finalize the node configuration.</li>
+</ol>
+
+<h3 id="step-13-consolidate-information-per-product">Step 13: Consolidate information per product</h3>
+
+<p>The next step is to define an interval join node to merge the two event streams to identify review trends (that is average rating, average size ranking, and average length ranking), if any, that might be related to a given top return reason for a product within a given time period.</p>
+
+<p>To add an interval join node, complete the following steps:</p>
+
+<p>For more information about how to add an interval join node, see <a href="/event-automation/ep/nodes/joins/#adding-an-interval-join-node">Adding an interval join node</a>.</p>
+
+<ol>
+  <li>Add an <strong>Interval join</strong> node and link the <code class="language-plaintext highlighter-rouge">Identify top return reason per product</code> and <code class="language-plaintext highlighter-rouge">Identify review trends per product</code> nodes to the interval join node.</li>
+  <li>
+    <p>Hover over the interval join node, and click <img src="/event-automation/images/rename.svg" alt="Edit icon" title="The edit icon." height="30px" width="15px" /> <strong>Edit</strong> to configure the node.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-14-28.png" title="Screen capture of the interval join node configuration"><img src="/event-automation/images/ea-tutorials/tutorial-14-28.png" alt="screenshot" title="Screen capture of the interval join node configuration" class="tutorial-screenshot" /></a></p>
+  </li>
+  <li>
+    <p>In the <strong>Node name</strong> field, enter the name of the interval join node as <code class="language-plaintext highlighter-rouge">Consolidate information per product</code>, and then click <strong>Next</strong>.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-14-29.png" title="Screen capture of the interval join node configuration"><img src="/event-automation/images/ea-tutorials/tutorial-14-29.png" alt="screenshot" title="Screen capture of the interval join node configuration" class="tutorial-screenshot" /></a></p>
+  </li>
+  <li>
+    <p>In the <strong>Join condition</strong> pane, enter the following join condition in the <strong>Define events</strong> field:</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="sb">`</span>Identify top <span class="k">return </span>reason per product<span class="sb">`</span>.<span class="sb">`</span>return_product_id<span class="sb">`</span> <span class="o">=</span> <span class="sb">`</span>Identify review trends per product<span class="sb">`</span>.<span class="sb">`</span>product<span class="sb">`</span>
+</code></pre></div>    </div>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-14-30.png" title="Screen capture of the interval join node configuration"><img src="/event-automation/images/ea-tutorials/tutorial-14-30.png" alt="screenshot" title="Screen capture of the interval join node configuration" class="tutorial-screenshot" /></a></p>
+
+    <p>Then click <strong>Next</strong> to go to the <strong>Time window condition</strong> section.</p>
+  </li>
+  <li>To identify review trends that might be related to a given top return reason for a product, in the <strong>Event to detect</strong> drop-down, select <code class="language-plaintext highlighter-rouge">Identify review trends per product (aggregateResultTime)</code>.</li>
+  <li>Provide inputs in the following fields, and click <strong>Next</strong>:
+    <ul>
+      <li>From the <strong>Event to set the time window</strong> drop-down, select <strong>Identify top return reason per product (aggregateResultTime)</strong>.</li>
+      <li>In the <strong>Offset from event to start the time window</strong> field, enter -7 and days(s) options.</li>
+      <li>In the <strong>Offset from event to end the time window</strong> field, enter 1.</li>
+    </ul>
+
+    <p><strong>Note:</strong> These settings allows to detect the review trend events that occur within 7 days before and 1 day after a top return reason event for a given product.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-14-31.png" title="Screen capture of the interval join node configuration"><img src="/event-automation/images/ea-tutorials/tutorial-14-31.png" alt="screenshot" title="Screen capture of the interval join node configuration" class="tutorial-screenshot" /></a></p>
+  </li>
+  <li>
+    <p>In the <strong>Matching criteria</strong> section, keep the default selection to use an <strong>inner join</strong> to merge the review trend events and the top return reason events for a given product that match the join condition, and then click <strong>Next</strong>.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-14-32.png" title="Screen capture of the interval join node configuration"><img src="/event-automation/images/ea-tutorials/tutorial-14-32.png" alt="screenshot" title="Screen capture of the interval join node configuration" class="tutorial-screenshot" /></a></p>
+  </li>
+  <li>
+    <p>Rename the <code class="language-plaintext highlighter-rouge">aggregateResultTime property</code> of <code class="language-plaintext highlighter-rouge">Identify top return reason per product</code> and <code class="language-plaintext highlighter-rouge">Identify review trends per product properties</code> to <code class="language-plaintext highlighter-rouge">returnResultTime</code> and <code class="language-plaintext highlighter-rouge">reviewResultTime</code> respectively.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-14-33.png" title="Screen capture of the interval join node configuration"><img src="/event-automation/images/ea-tutorials/tutorial-14-33.png" alt="screenshot" title="Screen capture of the interval join node configuration" class="tutorial-screenshot" /></a></p>
+  </li>
+  <li>Remove the following properties to exclude them from the merged events:
+    <ul>
+      <li>Identify top return reason per product: <code class="language-plaintext highlighter-rouge">aggregateStartTime</code></li>
+      <li>Identify top return reason per product: <code class="language-plaintext highlighter-rouge">aggregateEndTime</code></li>
+      <li>Identify review trends per product: <code class="language-plaintext highlighter-rouge">aggregateStartTime</code></li>
+      <li>Identify review trends per product: <code class="language-plaintext highlighter-rouge">aggregateEndTime</code></li>
+      <li>Identify review trends per product: <code class="language-plaintext highlighter-rouge">product</code></li>
+    </ul>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-14-33a.png" title="Screen capture of the interval join node configuration"><img src="/event-automation/images/ea-tutorials/tutorial-14-33a.png" alt="screenshot" title="Screen capture of the interval join node configuration" class="tutorial-screenshot" /></a></p>
+  </li>
+  <li>
+    <p>Click <strong>Configure</strong> to finalize the interval join node configuration.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-14-34.png" title="Screen capture of the interval join node configuration"><img src="/event-automation/images/ea-tutorials/tutorial-14-34.png" alt="screenshot" title="Screen capture of the interval join node configuration" class="tutorial-screenshot" /></a></p>
+  </li>
+</ol>
+
+<h3 id="step-14-test-the-flow">Step 14: Test the flow</h3>
+
+<p>The next step is to run your Event Processing flow and view the results.</p>
+
+<p>Use the <strong>Run flow</strong> menu, and select <strong>Include historical</strong> to run the current flow on the history of <code class="language-plaintext highlighter-rouge">Return requests</code> and <code class="language-plaintext highlighter-rouge">Product reviews</code> events.</p>
+
+<p><a href="/event-automation/images/ea-tutorials/tutorial-14-35.png" title="Screen capture of the running flow"><img src="/event-automation/images/ea-tutorials/tutorial-14-35.png" alt="screenshot" title="Screen capture of the running flow" class="tutorial-screenshot" /></a></p>
+
+<p>Verify that the output events now contain both a return reason and a review trend (average rating, average size ranking, and average length ranking) for a given returned product.</p>
+
+<p>Click <strong>Stop flow</strong>.</p>
+
+<h3 id="conclusion">Conclusion</h3>
+
+<p>The following are the insights gained from this tutorial for your product return:</p>
+
+<ul>
+  <li><strong>Return reasons:</strong> By analyzing return requests, you have gained insights into the reasons why customers are returning products. This includes the top return reason, which indicates a common issue or problem with the product.</li>
+  <li><strong>Size and length rankings:</strong> In addition to the top return reason, you have also obtained average size and length rankings from product reviews. These rankings can help identify potential issues with product sizing or length, which can be contributing to returns.</li>
+  <li><strong>Ranking scale:</strong> The following are the descriptions of the size and length rankings that use a scale of 1-3:
+    <ul>
+      <li><strong>1:</strong> Small, short (indicating that the product is too small or too short for the customer’s needs).</li>
+      <li><strong>2:</strong> Spot on (indicating that the product is the correct size and length for the customer’s needs).</li>
+      <li><strong>3:</strong> Large, long (indicating that the product is too large or too long for the customer’s needs).</li>
+    </ul>
+  </li>
+</ul>
+
+<p>By analyzing these rankings, you can identify potential issues with product sizing or length and make adjustments to improve the fit and satisfaction of your products.</p>
+
+<h2 id="recap">Recap</h2>
+
+<p><strong>For the return requests event stream:</strong></p>
+<ul>
+  <li>You used an array unpack node to unpack each product in return requests into separate events.</li>
+  <li>You used an aggregate node to count the number of occurrences of each return reason per returned product within a time period.</li>
+  <li>Then you used a top-n node to identify the top return reason per product (that is the return reason with the greatest count) within a same time period.</li>
+</ul>
+
+<p><strong>For the Product reviews event stream:</strong></p>
+<ul>
+  <li>You used an unpack array node to unpack each characteristic review (size and length) in new properties included in the same event.</li>
+  <li>Then you used an aggregate node to compute the average review rating and average ranking for the size and length per product within a same time period.</li>
+</ul>
+
+<p>Finally, you used a join node to merge the two event streams to identify review trends (average rating, average size ranking, and average length ranking), if any, that can be related to a given top return reason for a product within a given time period.</p>
+
+
+          </div>
+
+
+          
+        </section>
+
+        <aside class="sidebar__right ">
+          
+          <div class="fixedSidebar">
+            <nav class="toc">
+              <ul class="toc__menu">
+  <li><a href="#unpack-arrays">Unpack arrays</a></li>
+  <li><a href="#scenario">Scenario</a></li>
+  <li><a href="#before-you-begin">Before you begin</a>
+    <ul>
+      <li><a href="#versions">Versions</a></li>
+    </ul>
+  </li>
+  <li><a href="#instructions">Instructions</a>
+    <ul>
+      <li><a href="#step-1-discover-the-topics-to-use">Step 1: Discover the topics to use</a></li>
+      <li><a href="#step-2-create-a-flow">Step 2: Create a flow</a></li>
+      <li><a href="#step-3-add-an-event-source-node-for-the-return-requests-topic">Step 3: Add an event source node for the Return Requests topic</a></li>
+      <li><a href="#step-4-unpack-the-returned-products-into-events">Step 4: Unpack the returned products into events</a></li>
+      <li><a href="#step-5-test-the-flow">Step 5: Test the flow</a></li>
+      <li><a href="#step-6-identify-trends-for-return-reasons-per-product">Step 6: Identify trends for return reasons per product</a></li>
+      <li><a href="#step-7-test-the-flow">Step 7: Test the flow</a></li>
+      <li><a href="#step-8-identify-top-return-reason-per-product">Step 8: Identify top return reason per product</a></li>
+      <li><a href="#step-9-test-the-flow">Step 9: Test the flow</a></li>
+      <li><a href="#step-10-add-another-source-of-events-to-the-flow">Step 10: Add another source of events to the flow</a></li>
+      <li><a href="#step-11-unpack-the-review-characteristics-into-properties">Step 11: Unpack the review characteristics into properties</a></li>
+      <li><a href="#step-12-identify-review-trends-per-product">Step 12: Identify review trends per product</a></li>
+      <li><a href="#step-13-consolidate-information-per-product">Step 13: Consolidate information per product</a></li>
+      <li><a href="#step-14-test-the-flow">Step 14: Test the flow</a></li>
+      <li><a href="#conclusion">Conclusion</a></li>
+    </ul>
+  </li>
+  <li><a href="#recap">Recap</a></li>
+</ul>
+            </nav>
+          </div>
+          
+        </aside>
+
+
+      </div>
+      <div class="pageEnd">
+        
+      </div>
+    </div>
+
+
+  </div> <!-- Main content -->
+
+</main></div>
+
+
+    
+      <div class="page__footer">
+          <footer>
+            <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+
+            
+<div class="page__footer-copyright"><a href="https://www.ibm.com/privacy/us/en/" rel="nofollow" target="_blank">Privacy Policy</a>  &nbsp;© Copyright IBM Corporation 2025</br>
+<a href="https://www.ibm.com/legal/terms" rel="nofollow" target="_blank">Terms of use</a> </br> <a href="https://ibm.github.io/event-automation/accessibility/" rel="nofollow" target="_blank">Accessibility</a> </br> <a href="https://ibm.github.io/event-automation/notices/" rel="nofollow" target="_blank">Notices</a></br>
+          </footer>
+      </div>      
+    
+
+
+    
+  <script src="/event-automation/assets/js/main.min.js"></script>
+  <!-- <script src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script> -->
+
+
+
+
+
+
+<script src="/event-automation/assets/js/design.js"></script>
+
+
+
+
+
+<script src="/event-automation/assets/js/lunr/lunr.min.js"></script>
+<script src="/event-automation/assets/js/lunr/lunr-store.js"></script>
+<script src="/event-automation/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+    
+
+    
+  </body>
+</html>

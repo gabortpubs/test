@@ -1,0 +1,708 @@
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>6 - Share events for discovery by others - IBM Event Automation</title>
+<meta name="description" content="Publish the results of your event processing to the Catalog to allow them to be shared and reused by others.">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="IBM Event Automation">
+<meta property="og:url" content="https://ibm.github.io/event-automation/tutorials/guided/tutorial-6" />
+<meta property="og:title" content="Tutorials | 6 - Share events for discovery by others" />
+<meta property="og:description" content="Publish the results of your event processing to the Catalog to allow them to be shared and reused by others." />
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="IBM Event Automation | 6 - Share events for discovery by others" />
+
+
+
+
+  <meta property="og:description" content="Publish the results of your event processing to the Catalog to allow them to be shared and reused by others.">
+
+
+
+  <meta property="og:image" content="https://ibm.github.io/event-automation/assets/siteMeta/appIcon_og_fb.png">
+  <meta name="twitter:image" content="https://ibm.github.io/event-automation/assets/siteMeta/appIcon_og_square.png">
+
+
+
+  <meta property="article:published_time" content="2025-11-07T03:45:08-05:00">
+
+
+
+
+
+
+<link rel="canonical" href="https://ibm.github.io/event-automation/tutorials/guided/tutorial-6">
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Organization",
+      "url": "https://ibm.github.io/event-automation",
+      "logo": "https://ibm.github.io/event-automation/assets/siteMeta/appIcon_og_fb.png"
+    }
+  </script>
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": null,
+      "url": "https://ibm.github.io/event-automation",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/event-automation/feed.xml" type="application/atom+xml" rel="alternate" title="IBM Event Automation Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/event-automation/assets/css/main.css">
+
+<script src="/event-automation/assets/js/scrollsidebar.js"></script>
+<script src="/event-automation/assets/js/copytoclipboard.js"></script>
+<script src="/event-automation/assets/js/highlighter.js"></script>
+<script src="/event-automation/assets/js/newtab.js"></script>
+
+
+
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<link rel="apple-touch-icon" sizes="180x180" href="https://ibm.github.io/event-automation/assets/siteMeta/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://ibm.github.io/event-automation/assets/siteMeta/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://ibm.github.io/event-automation/assets/siteMeta/favicon-16x16.png">
+<link rel="manifest" href="https://ibm.github.io/event-automation/assets/siteMeta/site.webmanifest">
+<link rel="mask-icon" href="https://ibm.github.io/event-automation/assets/siteMeta/safari-pinned-tab.svg" color="#000000">
+<link rel="shortcut icon" href="https://ibm.github.io/event-automation/assets/siteMeta/favicon.ico">
+<link rel="shortcut icon" type="image/png" href="https://ibm.github.io/event-automation/assets/siteMeta/favicon-16x16.png"/>
+<link rel="shortcut icon" type="image/png" href="https://ibm.github.io/event-automation/assets/siteMeta/favicon-32x32.png"/>
+<meta name="msapplication-TileColor" content="#000000">
+<meta name="msapplication-config" content="https://ibm.github.io/event-automation/assets/siteMeta/browserconfig.xml">
+<meta name="theme-color" content="#000000">
+
+
+
+<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,600%7CIBM+Plex+Serif:300,400,500%7CIBM+Plex+Mono:300,400,500,700" rel="stylesheet">
+
+<!-- end custom head snippets -->
+
+    <link rel="shortcut icon" type="image/x-icon" href="/event-automation/assets/favicon.ico" >
+    
+    <base target="_parent">
+
+  </head>
+  <script src="/event-automation/assets/animation/lottie.js" type="text/javascript"></script>
+  <script src="/event-automation/assets/js/connectors.js"></script>
+  <script src="/event-automation/assets/js/copytoclipboard.js"></script>
+  <script src="/event-automation/assets/js/highlighter.js"></script>
+
+
+  
+  <body onload="" class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+
+
+  
+
+
+
+
+
+
+<div id="masthead" class="masthead">
+  <!--
+  <div class="masthead__goToIBMCloud">
+  <div>
+    You are viewing the documentation for the container-native version of IBM Event Automation.
+  </div>
+    <a class="link" target="_self" href="https://cloud.ibm.com/docs/EventStreams?topic=EventStreams-getting-started">Looking for the managed service on IBM Cloud? Click here.</a>
+</div>
+-->
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="mastheadNav">
+
+      
+
+
+        <div class="mastheadTitle">
+          
+          <a class="site-title" href="/event-automation/" target="_self"><span>IBM</span>&nbsp;Event Automation</a>
+          <div class="viewOnIBMcom">
+            <a href="https://www.ibm.com/products/event-automation" target="_blank">View product page</a>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+
+        <div class="mastheadControls">
+            <div class="menuScrollContainer">
+
+        
+
+                <ul id="visible-links" class="visible-links">
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/es/','_self')">
+                      <a href="https://ibm.github.io/event-automation/es/" >Event Streams</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/eem/','_self')">
+                      <a href="https://ibm.github.io/event-automation/eem/" >Event Endpoint Management</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/ep/','_self')">
+                      <a href="https://ibm.github.io/event-automation/ep/" >Event Processing</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/connectors/','_self')">
+                      <a href="https://ibm.github.io/event-automation/connectors/" >Connect catalog</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item active" onclick="window.open('https://ibm.github.io/event-automation/tutorials/','_self')">
+                      <a href="https://ibm.github.io/event-automation/tutorials/" >Tutorials</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/api/','_self')">
+                      <a href="https://ibm.github.io/event-automation/api/" >APIs...</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/support/','_self')">
+                      <a href="https://ibm.github.io/event-automation/support/" >Support</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/search/','_self')">
+                      <button aria-label="Search Button" role="button" id="searchButton" class="search__toggle " type="button" name="search Button">
+                        <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                          <path
+                            d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z"
+                            transform="translate(-.01)"></path>
+                        </svg>
+                      </button>
+                    </li>
+                  
+
+                  
+                </ul>
+        
+
+      </div>
+    </div>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div id="initial-content" class="initial-content" role="main">
+
+
+
+
+
+
+<main id="main" class="mainContainer" role="main">
+    
+
+    
+  
+
+
+
+  <div class="mainContent">
+    
+      
+      
+      <div class="subMenu backMenu"> 
+    <a href="
+        https://ibm.github.io/event-automation/tutorials
+      "><img alt="" role="presentation" src="https://ibm.github.io/event-automation/assets/images/icons/previous.svg" />
+        Back to tutorials
+      </a>
+  </div>
+    
+    <div id="pageContainer" class="page" itemscope itemtype="http://schema.org/CreativeWork">
+      
+      <div class="page__inner-wrap">
+      
+
+        
+        <section class="page__content pageSpacing" itemprop="text">
+          
+        
+          <header>
+            <h1 id="page-title" class="page__title" itemprop="headline">
+              6 - Share events for discovery by others
+</h1>
+            
+          </header>  
+        
+        
+
+                    
+          <div class="content">
+            <!-- **Note:** To follow the step-by-step instructions in this tutorial, you can watch the video or read the instructions on the page.
+
+<video class="animateIn fourth" controls>
+  <source src="https://ibm.github.io/event-automation/videos/tutorials/guided/06-discover.mp4" type="video/mp4">
+</video>{: class="tutorial-video" }-->
+
+<h2 id="scenario">Scenario: Sharing results of analysis and processing</h2>
+
+<p>The EMEA operations team wants to share their new topic of EMEA orders for use by other teams in their enterprise.</p>
+
+<h2 id="before-you-begin">Before you begin</h2>
+
+<p>The instructions in this tutorial use the <a href="./tutorial-0">Tutorial environment</a>, which includes a selection of topics each with a live stream of events, created to allow you to explore features in IBM Event Automation. Following the <a href="./tutorial-0#deploy-the-tutorial">setup instructions</a> to deploy the demo environment gives you a complete instance of IBM Event Automation that you can use to follow this tutorial for yourself.</p>
+
+<h3 id="versions">Versions</h3>
+
+<p>This tutorial uses the following versions of Event Automation capabilities. Screenshots may differ from the current interface if you are using a newer version.</p>
+
+<ul>
+  <li>Event Streams 12.0.0</li>
+  <li>Event Endpoint Management 11.6.3</li>
+  <li>Event Processing 1.4.5</li>
+</ul>
+
+<h2 id="instructions">Instructions</h2>
+
+<h3 id="step-1-create-a-flow">Step 1: Create a flow</h3>
+
+<p>This tutorial begins with the flow that is created in <a href="./tutorial-5">Triggering actions</a>.</p>
+
+<p>If you haven’t completed that tutorial yet, you should do it now.</p>
+
+<h3 id="step-2-add-the-topic-to-the-catalog">Step 2: Add the topic to the catalog</h3>
+
+<p>The next step is to provide the topic details to create an entry in the catalog. Add the EMEA orders topic created in the previous tutorial to the catalog as follows.</p>
+
+<p><strong>Note:</strong> You can also apply the same steps for the EMEA large orders topic, or for any other topic.</p>
+
+<ol>
+  <li>
+    <p>Go to the Event Streams page for the new <code class="language-plaintext highlighter-rouge">ORDERS.EMEA</code> topic created in <a href="./tutorial-5">the previous tutorial</a>.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-5-12.png" title="running the flow"><img src="/event-automation/images/ea-tutorials/tutorial-5-12.png" alt="screenshot" title="running the flow" class="tutorial-screenshot" /></a></p>
+
+    <p>If you need a reminder of how to access Event Streams, you can review <a href="./tutorial-access#event-endpoint-management">Accessing the tutorial environment</a>.</p>
+  </li>
+  <li>
+    <p>Click <strong>Share for reuse</strong>.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-6-2.png" title="screenshot of the Event Endpoint Management topics page"><img src="/event-automation/images/ea-tutorials/tutorial-6-2.png" alt="screenshot" title="screenshot of the Event Endpoint Management topics page" class="tutorial-screenshot" /></a></p>
+  </li>
+  <li>
+    <p>Click <strong>Next</strong>.</p>
+  </li>
+  <li>
+    <p>Paste your access token from Event Endpoint Management cluster.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-6-3.png" title="screenshot of the Event Endpoint Management topics page"><img src="/event-automation/images/ea-tutorials/tutorial-6-3.png" alt="screenshot" title="screenshot of the Event Endpoint Management topics page" class="tutorial-screenshot" /></a></p>
+
+    <p>You can <a href="/event-automation/eem/security/api-tokens#creating-a-token">generate access tokens</a> from the profile page in Event Endpoint Management.</p>
+  </li>
+  <li>
+    <p>Give the event source the name <code class="language-plaintext highlighter-rouge">EMEA orders</code>.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-6-4.png" title="screenshot of Event Endpoint Management"><img src="/event-automation/images/ea-tutorials/tutorial-6-4.png" alt="screenshot" title="screenshot of Event Endpoint Management" class="tutorial-screenshot" /></a></p>
+
+    <p>Verify the sample message selected.</p>
+  </li>
+  <li>
+    <p>Click <strong>Share for reuse</strong>.</p>
+  </li>
+</ol>
+
+<h3 id="step-3-document-the-topic">Step 3: Document the topic</h3>
+
+<p>The next step is to document the topic to describe the events that your processing flow is producing.</p>
+
+<ol>
+  <li>
+    <p>In the Event Endpoint Management UI, go to the <strong>Manage topics</strong> page.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-6-1.png" title="Screenshot of the Manage topics page in the Event Endpoint Management UI"><img src="/event-automation/images/ea-tutorials/tutorial-6-1.png" alt="screenshot" title="Screenshot of the Manage topics page in the Event Endpoint Management UI" class="tutorial-screenshot" /></a></p>
+
+    <p>If you need a reminder of how to access Event Endpoint Management, you can review <a href="./tutorial-access#event-endpoint-management">Accessing the tutorial environment</a>.</p>
+  </li>
+  <li>
+    <p>Click the new <code class="language-plaintext highlighter-rouge">EMEA orders</code> topic.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-6-5.png" title="screenshot of Event Endpoint Management"><img src="/event-automation/images/ea-tutorials/tutorial-6-5.png" alt="screenshot" title="Screenshot of the Event Endpoint Management UI" class="tutorial-screenshot" /></a></p>
+  </li>
+  <li>
+    <p>Click <strong>Edit information</strong> to provide documentation for the topic.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-6-6.png" title="screenshot of Event Endpoint Management"><img src="/event-automation/images/ea-tutorials/tutorial-6-6.png" alt="screenshot" title="Screenshot of the Event Endpoint Management UI" class="tutorial-screenshot" /></a></p>
+  </li>
+  <li>
+    <p>Add a description of the events generated by your processing flow.</p>
+
+    <p>For example: Events from the EMEA region recorded by the order management system.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-6-7.png" title="Screenshot showing edit event information panel in Event Endpoint Management UI"><img src="/event-automation/images/ea-tutorials/tutorial-6-7.png" alt="screenshot" title="Screenshot showing edit event information panel in Event Endpoint Management UI" class="tutorial-screenshot" /></a></p>
+  </li>
+  <li>
+    <p>Click <strong>Event information</strong> in the navigation, and verify that the message format is set to <strong>JSON</strong>.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-6-1d.png" title="Screenshot showing edit event information panel in Event Endpoint Management UI"><img src="/event-automation/images/ea-tutorials/tutorial-6-1d.png" alt="screenshot" title="Screenshot showing edit event information panel in Event Endpoint Management UI" class="tutorial-screenshot" /></a></p>
+  </li>
+  <li>
+    <p>Click <strong>Save</strong>.</p>
+  </li>
+</ol>
+
+<h3 id="step-4-publish-the-topic">Step 4: Publish the topic</h3>
+
+<p>The final step is to publish the new topic in the catalog so that it can be discovered by other teams in your enterprise.</p>
+
+<p>Creating two options for the topic will allow teams to consume the topic in different ways: one option with full, unredacted access to all properties in the events that will require your approval, and a second option which can be accessed without approval, but which redacts the customer name from events.</p>
+
+<ol>
+  <li>
+    <p>Click the <strong>Create option</strong> button in the <strong>Options</strong> tab.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-6-10.png" title="screenshot of topics editor"><img src="/event-automation/images/ea-tutorials/tutorial-6-10.png" alt="screenshot" title="screenshot of topics editor" class="tutorial-screenshot" /></a></p>
+  </li>
+  <li>
+    <p>Create a name for the first access option that you are creating.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-6-10-i.png" title="screenshot of topics editor"><img src="/event-automation/images/ea-tutorials/tutorial-6-10-i.png" alt="screenshot" title="screenshot of topics editor" class="tutorial-screenshot" /></a></p>
+
+    <p>Calling the option “Full access (approval required)” is a good way to describe a topic being published without redactions.</p>
+  </li>
+  <li>
+    <p>Create a topic alias for the option.</p>
+
+    <p>To distinguish it from the second option, <code class="language-plaintext highlighter-rouge">ORDERS.EMEA.FULL</code> is a reasonable alias.</p>
+  </li>
+  <li>
+    <p>Click <strong>Next</strong> to proceed to the Controls page.</p>
+  </li>
+  <li>
+    <p>Click the <strong>Add control</strong> button to define the control for this option.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-6-10-ii.png" title="screenshot of topics editor"><img src="/event-automation/images/ea-tutorials/tutorial-6-10-ii.png" alt="screenshot" title="screenshot of topics editor" class="tutorial-screenshot" /></a></p>
+  </li>
+  <li>
+    <p>Select the <strong>Approval</strong> control and click <strong>Add control</strong>.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-6-10-iv.png" title="screenshot of controls editor"><img src="/event-automation/images/ea-tutorials/tutorial-6-10-iv.png" alt="screenshot" title="screenshot of controls editor" class="tutorial-screenshot" /></a></p>
+  </li>
+  <li>
+    <p>As we are not adding any additional controls, click <strong>Save</strong>.</p>
+  </li>
+  <li>
+    <p>Click <strong>Publish</strong>.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-6-10-iii.png" title="screenshot of topics editor"><img src="/event-automation/images/ea-tutorials/tutorial-6-10-iii.png" alt="screenshot" title="screenshot of topics editor" class="tutorial-screenshot" /></a></p>
+  </li>
+  <li>
+    <p>Confirm the gateway group and click <strong>Publish</strong>.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-6-11.png" title="screenshot of topics editor"><img src="/event-automation/images/ea-tutorials/tutorial-6-11.png" alt="screenshot" title="screenshot of topics editor" class="tutorial-screenshot" /></a></p>
+  </li>
+  <li>
+    <p>Click the <strong>Create option</strong> button again to start adding the second option.</p>
+  </li>
+  <li>
+    <p>Create a name for the second access option that you are creating.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-6-10-v.png" title="screenshot of topics editor"><img src="/event-automation/images/ea-tutorials/tutorial-6-10-v.png" alt="screenshot" title="screenshot of topics editor" class="tutorial-screenshot" /></a></p>
+
+    <p>Calling the option “Self service (redacted)” is a good way to describe a topic being published without any approval requirements.</p>
+  </li>
+  <li>
+    <p>Create a topic alias for the option.</p>
+
+    <p>To distinguish it from the first option, <code class="language-plaintext highlighter-rouge">ORDERS.EMEA.REDACTED</code> is a reasonable alias.</p>
+  </li>
+  <li>
+    <p>Click <strong>Next</strong> to proceed to the Controls page.</p>
+  </li>
+  <li>
+    <p>Click the <strong>Add control</strong> button to define the control for this option.</p>
+  </li>
+  <li>
+    <p>Select the <strong>Redaction</strong> control and click <strong>Next</strong>.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-6-10-vi.png" title="screenshot of controls editor"><img src="/event-automation/images/ea-tutorials/tutorial-6-10-vi.png" alt="screenshot" title="screenshot of controls editor" class="tutorial-screenshot" /></a></p>
+  </li>
+  <li>
+    <p>Specify <strong>$.customer</strong> as the property to redact, and enter <strong>redacted</strong> as the value to replace customer names with.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-6-10-vii.png" title="screenshot of controls editor"><img src="/event-automation/images/ea-tutorials/tutorial-6-10-vii.png" alt="screenshot" title="screenshot of controls editor" class="tutorial-screenshot" /></a></p>
+  </li>
+  <li>
+    <p>Click on <strong>Add control</strong>.</p>
+  </li>
+  <li>
+    <p>As we are not adding any additional controls, click <strong>Save</strong>.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-6-10-viii.png" title="screenshot of controls editor"><img src="/event-automation/images/ea-tutorials/tutorial-6-10-viii.png" alt="screenshot" title="screenshot of controls editor" class="tutorial-screenshot" /></a></p>
+  </li>
+  <li>
+    <p>Click <strong>Publish</strong>.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-6-10-ix.png" title="screenshot of topics editor"><img src="/event-automation/images/ea-tutorials/tutorial-6-10-ix.png" alt="screenshot" title="screenshot of topics editor" class="tutorial-screenshot" /></a></p>
+  </li>
+  <li>
+    <p>Confirm the gateway group and click <strong>Publish</strong>.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-6-10-x.png" title="screenshot of topics editor"><img src="/event-automation/images/ea-tutorials/tutorial-6-10-x.png" alt="screenshot" title="screenshot of topics editor" class="tutorial-screenshot" /></a></p>
+  </li>
+  <li>
+    <p>Confirm that the topic is published by switching to the catalog.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-6-12.png" title="screenshot of catalog"><img src="/event-automation/images/ea-tutorials/tutorial-6-12.png" alt="screenshot" title="screenshot of catalog" class="tutorial-screenshot" /></a></p>
+  </li>
+  <li>
+    <p>Confirm that your sample message and description are displayed in the topic details page.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-6-13.png" title="screenshot of catalog"><img src="/event-automation/images/ea-tutorials/tutorial-6-13.png" alt="screenshot" title="screenshot of catalog" class="tutorial-screenshot" /></a></p>
+  </li>
+</ol>
+
+<h2 id="recap">Recap</h2>
+
+<p>You published the results of your event processing flow to a catalog.</p>
+
+<p>The documentation you provided will enable other people in your enterprise to make use of the events your flow is producing, and the catalog will allow them to create their own credentials for using the topic. The options you created provide a good compromise between instant, self-service access for non-sensitive event properties, and controlled access to sensitive properties when needed.</p>
+
+<h2 id="next-step">Next step</h2>
+
+<p>You have completed the guided tutorial. You used all three capabilities in IBM Event Automation: creating topics in Event Streams, discovering and publishing topics in Event Endpoint Management, and processing events in Event Processing.</p>
+
+<p>If you would like more ideas of things to try in Event Processing, we have more <a href="/event-automation/tutorials">Tutorials for Event Processing</a>, which are there to show you other things that you can do, and inspire you with ideas for your own projects.</p>
+
+          </div>
+
+
+          
+        </section>
+
+        <aside class="sidebar__right ">
+          
+          <div class="fixedSidebar">
+            <nav class="toc">
+              <ul class="toc__menu">
+  <li><a href="#scenario">Scenario: Sharing results of analysis and processing</a></li>
+  <li><a href="#before-you-begin">Before you begin</a>
+    <ul>
+      <li><a href="#versions">Versions</a></li>
+    </ul>
+  </li>
+  <li><a href="#instructions">Instructions</a>
+    <ul>
+      <li><a href="#step-1-create-a-flow">Step 1: Create a flow</a></li>
+      <li><a href="#step-2-add-the-topic-to-the-catalog">Step 2: Add the topic to the catalog</a></li>
+      <li><a href="#step-3-document-the-topic">Step 3: Document the topic</a></li>
+      <li><a href="#step-4-publish-the-topic">Step 4: Publish the topic</a></li>
+    </ul>
+  </li>
+  <li><a href="#recap">Recap</a></li>
+  <li><a href="#next-step">Next step</a></li>
+</ul>
+            </nav>
+          </div>
+          
+        </aside>
+
+
+      </div>
+      <div class="pageEnd">
+        
+      </div>
+    </div>
+
+
+  </div> <!-- Main content -->
+
+</main></div>
+
+
+    
+      <div class="page__footer">
+          <footer>
+            <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+
+            
+<div class="page__footer-copyright"><a href="https://www.ibm.com/privacy/us/en/" rel="nofollow" target="_blank">Privacy Policy</a>  &nbsp;© Copyright IBM Corporation 2025</br>
+<a href="https://www.ibm.com/legal/terms" rel="nofollow" target="_blank">Terms of use</a> </br> <a href="https://ibm.github.io/event-automation/accessibility/" rel="nofollow" target="_blank">Accessibility</a> </br> <a href="https://ibm.github.io/event-automation/notices/" rel="nofollow" target="_blank">Notices</a></br>
+          </footer>
+      </div>      
+    
+
+
+    
+  <script src="/event-automation/assets/js/main.min.js"></script>
+  <!-- <script src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script> -->
+
+
+
+
+
+
+<script src="/event-automation/assets/js/design.js"></script>
+
+
+
+
+
+<script src="/event-automation/assets/js/lunr/lunr.min.js"></script>
+<script src="/event-automation/assets/js/lunr/lunr-store.js"></script>
+<script src="/event-automation/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+    
+
+    
+  </body>
+</html>

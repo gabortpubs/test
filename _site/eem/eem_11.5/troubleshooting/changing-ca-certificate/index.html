@@ -1,0 +1,2244 @@
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Error when logging in to UI after changing CA certificate - Event Endpoint Management</title>
+<meta name="description" content="Logging in to UI fails with error Failed to create SSL connection.">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="IBM Event Automation">
+<meta property="og:url" content="https://ibm.github.io/event-automation/eem/eem_11.5/troubleshooting/changing-ca-certificate/" />
+<meta property="og:title" content="Event Endpoint Management | Error when logging in to UI after changing CA certificate" />
+<meta property="og:description" content="Logging in to UI fails with error Failed to create SSL connection." />
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="IBM Event Automation | Error when logging in to UI after changing CA certificate" />
+
+
+
+
+  <meta property="og:description" content="Logging in to UI fails with error Failed to create SSL connection.">
+
+
+
+  <meta property="og:image" content="https://ibm.github.io/event-automation/assets/siteMeta/appIcon_og_fb.png">
+  <meta name="twitter:image" content="https://ibm.github.io/event-automation/assets/siteMeta/appIcon_og_square.png">
+
+
+
+  <meta property="article:published_time" content="2025-11-07T03:45:08-05:00">
+
+
+
+
+
+
+<link rel="canonical" href="https://ibm.github.io/event-automation/eem/eem_11.5/troubleshooting/changing-ca-certificate/">
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Organization",
+      "url": "https://ibm.github.io/event-automation",
+      "logo": "https://ibm.github.io/event-automation/assets/siteMeta/appIcon_og_fb.png"
+    }
+  </script>
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": null,
+      "url": "https://ibm.github.io/event-automation",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/event-automation/feed.xml" type="application/atom+xml" rel="alternate" title="IBM Event Automation Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/event-automation/assets/css/main.css">
+
+<script src="/event-automation/assets/js/scrollsidebar.js"></script>
+<script src="/event-automation/assets/js/copytoclipboard.js"></script>
+<script src="/event-automation/assets/js/highlighter.js"></script>
+<script src="/event-automation/assets/js/newtab.js"></script>
+
+
+
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<link rel="apple-touch-icon" sizes="180x180" href="https://ibm.github.io/event-automation/assets/siteMeta/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://ibm.github.io/event-automation/assets/siteMeta/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://ibm.github.io/event-automation/assets/siteMeta/favicon-16x16.png">
+<link rel="manifest" href="https://ibm.github.io/event-automation/assets/siteMeta/site.webmanifest">
+<link rel="mask-icon" href="https://ibm.github.io/event-automation/assets/siteMeta/safari-pinned-tab.svg" color="#000000">
+<link rel="shortcut icon" href="https://ibm.github.io/event-automation/assets/siteMeta/favicon.ico">
+<link rel="shortcut icon" type="image/png" href="https://ibm.github.io/event-automation/assets/siteMeta/favicon-16x16.png"/>
+<link rel="shortcut icon" type="image/png" href="https://ibm.github.io/event-automation/assets/siteMeta/favicon-32x32.png"/>
+<meta name="msapplication-TileColor" content="#000000">
+<meta name="msapplication-config" content="https://ibm.github.io/event-automation/assets/siteMeta/browserconfig.xml">
+<meta name="theme-color" content="#000000">
+
+
+
+<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,600%7CIBM+Plex+Serif:300,400,500%7CIBM+Plex+Mono:300,400,500,700" rel="stylesheet">
+
+<!-- end custom head snippets -->
+
+    <link rel="shortcut icon" type="image/x-icon" href="/event-automation/assets/favicon.ico" >
+    
+    <base target="_parent">
+
+  </head>
+  <script src="/event-automation/assets/animation/lottie.js" type="text/javascript"></script>
+  <script src="/event-automation/assets/js/connectors.js"></script>
+  <script src="/event-automation/assets/js/copytoclipboard.js"></script>
+  <script src="/event-automation/assets/js/highlighter.js"></script>
+
+
+  
+  <body onload="urlChecker()" class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+
+
+  
+
+
+
+
+
+
+<div id="masthead" class="masthead">
+  <!--
+  <div class="masthead__goToIBMCloud">
+  <div>
+    You are viewing the documentation for the container-native version of IBM Event Automation.
+  </div>
+    <a class="link" target="_self" href="https://cloud.ibm.com/docs/EventStreams?topic=EventStreams-getting-started">Looking for the managed service on IBM Cloud? Click here.</a>
+</div>
+-->
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="mastheadNav">
+
+      
+
+
+        <div class="mastheadTitle">
+          
+          <a class="site-title" href="/event-automation/" target="_self"><span>IBM</span>&nbsp;Event Automation</a>
+          <div class="viewOnIBMcom">
+            <a href="https://www.ibm.com/products/event-automation" target="_blank">View product page</a>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+
+        <div class="mastheadControls">
+            <div class="menuScrollContainer">
+
+        
+
+                <ul id="visible-links" class="visible-links">
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/es/','_self')">
+                      <a href="https://ibm.github.io/event-automation/es/" >Event Streams</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item active" onclick="window.open('https://ibm.github.io/event-automation/eem/','_self')">
+                      <a href="https://ibm.github.io/event-automation/eem/" >Event Endpoint Management</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/ep/','_self')">
+                      <a href="https://ibm.github.io/event-automation/ep/" >Event Processing</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/connectors/','_self')">
+                      <a href="https://ibm.github.io/event-automation/connectors/" >Connect catalog</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/tutorials/','_self')">
+                      <a href="https://ibm.github.io/event-automation/tutorials/" >Tutorials</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/api/','_self')">
+                      <a href="https://ibm.github.io/event-automation/api/" >APIs...</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/support/','_self')">
+                      <a href="https://ibm.github.io/event-automation/support/" >Support</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/search/','_self')">
+                      <button aria-label="Search Button" role="button" id="searchButton" class="search__toggle " type="button" name="search Button">
+                        <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                          <path
+                            d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z"
+                            transform="translate(-.01)"></path>
+                        </svg>
+                      </button>
+                    </li>
+                  
+
+                  
+                </ul>
+        
+
+      </div>
+    </div>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div id="initial-content" class="initial-content" role="main">
+
+
+
+
+
+
+<main id="main" class="mainContainer" role="main">
+    
+      <div id="subMenu" class="subMenu">
+        <div tabindex="0" class="menuIcon" id="menuIcon">
+          <svg id="mobileMenu" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+            <g id="bottomLine">
+              <line class="burgerLine" x1="14" y1="29" x2="34" y2="29" />
+            </g>
+            <g id="middleLine">
+              <line class="burgerLine" x1="14" y1="24" x2="34" y2="24" />
+            </g>
+            <g id="topLine">
+              <line class="burgerLine" x1="14" y1="19" x2="34" y2="19" />
+            </g>
+          </svg>
+        </div>
+        <div id="mobileVersionShortcut" class="versionContainer" tabindex="0">
+          <a id="mobileVersionPillCurrent" class="versionPill">11.5</a>
+        </div>
+      </div>
+    
+  
+
+
+
+<div id="sidebarMask" class="sidebarMask">
+
+  </div>
+  <div id="sidebar" class="sidebar sticky">
+      <div aria-label="Change Version" role="button" aria-expanded="false"
+      
+        id="versionDropdown"
+        tabindex="0"
+        class="versionsBar"
+       >
+          <div class="selectedVersion" id="selectedVersion">
+            <div class="versionContainer" >
+              
+                <a id="versionPillCurrent" class="versionPill">11.5</a>
+                <a class="versionChange">Change Version</a>
+              
+            </div>
+          </div>
+          
+
+
+          <div class="allVersions" id="allVersions">
+            <ul>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/eem/troubleshooting/changing-ca-certificate/" onclick="openVersion('/event-automation/eem/troubleshooting/changing-ca-certificate/','eem_11.6')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/eem/troubleshooting/changing-ca-certificate/" class="versionPill inactive">11.6</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        Latest
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/eem/eem_11.5/troubleshooting/changing-ca-certificate/" onclick="openVersion('/event-automation/eem/eem_11.5/troubleshooting/changing-ca-certificate/','eem_11.5')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/eem/eem_11.5/troubleshooting/changing-ca-certificate/" class="versionPill active">11.5</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                          <img alt="" src="https://ibm.github.io/event-automation/images/checkbox.svg" />
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/eem/eem_11.4/troubleshooting/changing-ca-certificate/" onclick="openVersion('/event-automation/eem/eem_11.4/troubleshooting/changing-ca-certificate/','eem_11.4')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/eem/eem_11.4/troubleshooting/changing-ca-certificate/" class="versionPill inactive">11.4</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/eem/eem_11.3/troubleshooting/changing-ca-certificate/" onclick="openVersion('/event-automation/eem/eem_11.3/troubleshooting/changing-ca-certificate/','eem_11.3')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/eem/eem_11.3/troubleshooting/changing-ca-certificate/" class="versionPill inactive">11.3</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/eem/eem_11.2/troubleshooting/changing-ca-certificate/" onclick="openVersion('/event-automation/eem/eem_11.2/troubleshooting/changing-ca-certificate/','eem_11.2')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/eem/eem_11.2/troubleshooting/changing-ca-certificate/" class="versionPill inactive">11.2</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/eem/eem_11.1/troubleshooting/changing-ca-certificate/" onclick="openVersion('/event-automation/eem/eem_11.1/troubleshooting/changing-ca-certificate/','eem_11.1')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/eem/eem_11.1/troubleshooting/changing-ca-certificate/" class="versionPill inactive">11.1</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/eem/eem_11.0/troubleshooting/changing-ca-certificate/" onclick="openVersion('/event-automation/eem/eem_11.0/troubleshooting/changing-ca-certificate/','eem_11.0')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/eem/eem_11.0/troubleshooting/changing-ca-certificate/" class="versionPill inactive">11.0</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+            </ul>
+          </div>
+        </div>
+
+  
+    
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <ul class="nav__items">
+
+    
+      <li>
+        
+          <span class="nav__sub-title">About</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.5/about/overview/" class="">Introduction</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.5/about/whats-new/" class="">What's new</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.5/about/key-concepts/" class="">Key concepts</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Installing</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.5/installing/prerequisites/" class="">Prerequisites</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.5/installing/planning/" class="">Planning your installation</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.5/installing/overview/" class="">Installation overview</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.5/installing/installing/" class="">Installing the Manager in an online OpenShift environment</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.5/installing/offline/" class="">Installing the Manager in an offline environment</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.5/installing/installing-on-kubernetes/" class="">Installing the Manager on other Kubernetes platforms</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.5/installing/install-gateway/" class="">Installing the Event Gateway</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.5/installing/configuring/" class="">Configuring</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.5/installing/post-installation/" class="">Post-installation tasks</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.5/installing/backup-restore/" class="">Backing up and restoring</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.5/installing/uninstalling/" class="">Uninstalling</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.5/installing/upgrading/" class="">Upgrading Event Manager and operator-managed Event Gateways</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.5/installing/upgrading-gateways/" class="">Upgrading Docker and Kubernetes Event Gateways</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Getting started</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.5/getting-started/logging-in/" class="">Logging in</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Security</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.5/security/managing-access/" class="">Managing access</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.5/security/user-roles/" class="">Managing user roles</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.5/security/verifying-signature/" class="">Verifying container image signatures</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.5/security/network-policies/" class="">Network policies</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.5/security/gdpr-considerations/" class="">Considerations for GDPR</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.5/security/data-encryption/" class="">Encrypting your data</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.5/security/api-tokens/" class="">Managing access to the Admin API</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.5/security/ca-certs/" class="">Managing CA certificates</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.5/security/fips/" class="">Enabling FIPS</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.5/security/audit-logging/" class="">Audit logging</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Describe and publish</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.5/describe/adding-topics/" class="">Describing event sources</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.5/describe/managing-event-sources/" class="">Managing event sources</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.5/describe/managing-options/" class="">Managing options</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.5/describe/option-controls/" class="">Adding controls to options</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.5/describe/managing-clusters/" class="">Managing clusters</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.5/describe/publishing-options/" class="">Publishing options</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.5/describe/managing-user-access-to-topics/" class="">Managing user access to options</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.5/describe/managing-gateways/" class="">Managing gateways</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Subscribe</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.5/subscribe/discovering-event-endpoints/" class="">Discovering event endpoints</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.5/subscribe/subscribing-to-event-endpoints/" class="">Subscribing to event endpoints</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.5/subscribe/managing-subscriptions/" class="">Managing subscriptions</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.5/subscribe/configure-your-application-to-connect/" class="">Configuring a client application to connect to an event endpoint</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Combining API and event management</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.5/api-and-event-management/overview/" class="">Overview</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.5/api-and-event-management/combining-events-and-api-management/" class="">Why combine API and event management</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.5/api-and-event-management/personas/" class="">API and event management personas</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.5/api-and-event-management/components/" class="">Component topology</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Integrating with IBM API Connect</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.5/integrating-with-apic/overview/" class="">Overview</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.5/integrating-with-apic/apic-eem-concepts/" class="">Integration concepts and glossary</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.5/integrating-with-apic/configure-eem-for-apic/" class="">Configure the Manager as an Event Gateway Service</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.5/integrating-with-apic/generate-asyncapi/" class="">Generating an AsyncAPI document for use in API Connect</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.5/integrating-with-apic/apic-eem-scenario/" class="">API and event management: example scenario</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Reference</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.5/reference/api-reference/" class="">API reference for the CRDs</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.5/reference/metrics-reference/" class="">OpenTelemetry metrics</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.5/../eem-api/" class="">Event Endpoint Management Admin API</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Troubleshooting</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.5/troubleshooting/intro/" class="">Troubleshooting overview</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.5/troubleshooting/gathering-logs/" class="">Gathering logs</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.5/troubleshooting/trace-logging/" class="">Configuring trace logging</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.5/troubleshooting/no-such-algorithm-log/" class="">No such algorithm exception log</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.5/troubleshooting/evicted-gateway/" class="">Event Gateway in 'Evicted' state</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.5/troubleshooting/changing-ca-certificate/" class="active">Error when logging in to UI after changing CA certificate</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.5/troubleshooting/ssl-protocol-failure/" class="">Kafka application fails with SSLHandshakeException</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.5/troubleshooting/usage-based-reporting/" class="">Configuring usage-based reporting</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.5/troubleshooting/ssl-error/" class="">Event Gateway fails with SSL errors</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.5/troubleshooting/certificate-rotation/" class="">Error when logging in to UI after certificate rotation</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.5/troubleshooting/502-bad-gateway/" class="">502 Bad Gateway error when logging in to UI</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.5/troubleshooting/apic-subscription-topics-unavailable/" class="">Subscribed topics not available with API Connect subscription credentials</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.5/troubleshooting/no-main-key-backup/" class="">Event Manager fails with `Unable to find main key backup` error</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.5/troubleshooting/unexpected-option-not-publishable/" class="">Unable to publish an option due to incompatible controls</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.5/troubleshooting/controls-with-mtls/" class="">Additional controls not applied to options with mTLS only control</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+    
+  
+  </div>
+
+
+  <div class="mainContent">
+    
+    <div id="pageContainer" class="page" itemscope itemtype="http://schema.org/CreativeWork">
+      
+      <div class="page__inner-wrap">
+      
+
+        
+        <section class="page__content pageSpacing" itemprop="text">
+          
+        
+          <header>
+            <h1 id="page-title" class="page__title" itemprop="headline">
+              Error when logging in to UI after changing CA certificate
+</h1>
+            
+          </header>  
+        
+        
+
+                    
+          <div class="content">
+            <h2 id="symptoms">Symptoms</h2>
+
+<p>After the <a href="../../installing/configuring#config-tls">CA certificate</a> is changed, when attempting to log in to the UI, the following error is presented.</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"error_code"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">500</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Failed to create SSL connection"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h2 id="causes">Causes</h2>
+
+<p>When an instance of the Event Manager is created, a CA certificate secret can be referenced in the <code class="language-plaintext highlighter-rouge">EventEndpointManagement</code> custom resource YAML. If a CA certificate secret is not referenced, then the Event Endpoint Management operator creates a default one during the deployment process.</p>
+
+<p>This failure occurs when the referenced CA certificate secret is changed or added after the instance has been created.</p>
+
+<p>The Event Endpoint Management operator will pick up on the change to the configuration. It will mount the new CA certificate secret into the instance. It will change the Issuer custom resource used by the certificate manager to generate the leaf certificates.</p>
+
+<p>However, due to the way Cert Manager works, the leaf certificates are not regenerated with the Issuer change. This means the new CA does not trust the previous leaf certificate, both of which are mounted into the Event Manager pod. This failure in trust causes the SSLHandshakeException.</p>
+
+<h2 id="resolving-the-problem">Resolving the problem</h2>
+
+<p>This error can be resolved by forcing a refresh of the leaf certificate.
+To refresh the leaf certificate, delete the secret that is generated by the certificate manager. The name of the secret that is generated by the certificate manager is <code class="language-plaintext highlighter-rouge">&lt;my-instance&gt;-ibm-eem-manager</code>.</p>
+
+          </div>
+
+
+          
+        </section>
+
+        <aside class="sidebar__right ">
+          
+          <div class="fixedSidebar">
+            <nav class="toc">
+              <ul class="toc__menu">
+  <li><a href="#symptoms">Symptoms</a></li>
+  <li><a href="#causes">Causes</a></li>
+  <li><a href="#resolving-the-problem">Resolving the problem</a></li>
+</ul>
+            </nav>
+          </div>
+          
+        </aside>
+
+
+      </div>
+      <div class="pageEnd">
+        
+          
+  <nav class="pagination">
+    
+      <div class="previous" onclick="window.open('/event-automation/eem/eem_11.5/troubleshooting/evicted-gateway/','_self')">
+        <div class="container">
+          <a href="/event-automation/eem/eem_11.5/troubleshooting/evicted-gateway/" class="pagination--pager" title="Previous Item: Operator-managed Event Gateway in Evicted state
+">Previous</a>
+          <h2 class="titlePreview">Operator-managed Event Gateway in Evicted state
+</h2>
+        </div>
+      </div>
+    
+    
+      <div class="next" onclick="window.open('/event-automation/eem/eem_11.5/troubleshooting/ssl-protocol-failure/','_self')">
+        <div class="container">
+          <a href="/event-automation/eem/eem_11.5/troubleshooting/ssl-protocol-failure/" class="pagination--pager" title="Next Item: Kafka application fails with SSLHandshakeException
+">Next</a>
+          <h2 class="titlePreview">Kafka application fails with SSLHandshakeException
+</h2>
+        </div>
+      </div>
+      
+  </nav>
+
+        
+      </div>
+    </div>
+
+
+  </div> <!-- Main content -->
+
+</main></div>
+
+
+    
+      <div class="page__footer">
+          <footer>
+            <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+
+            
+<div class="page__footer-copyright"><a href="https://www.ibm.com/privacy/us/en/" rel="nofollow" target="_blank">Privacy Policy</a>  &nbsp;© Copyright IBM Corporation 2025</br>
+<a href="https://www.ibm.com/legal/terms" rel="nofollow" target="_blank">Terms of use</a> </br> <a href="https://ibm.github.io/event-automation/accessibility/" rel="nofollow" target="_blank">Accessibility</a> </br> <a href="https://ibm.github.io/event-automation/notices/" rel="nofollow" target="_blank">Notices</a></br>
+          </footer>
+      </div>      
+    
+
+
+    
+  <script src="/event-automation/assets/js/main.min.js"></script>
+  <!-- <script src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script> -->
+
+
+
+
+
+
+<script src="/event-automation/assets/js/design.js"></script>
+
+
+
+
+
+<script src="/event-automation/assets/js/lunr/lunr.min.js"></script>
+<script src="/event-automation/assets/js/lunr/lunr-store.js"></script>
+<script src="/event-automation/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+    
+
+    
+  </body>
+</html>

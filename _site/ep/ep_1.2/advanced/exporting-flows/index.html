@@ -1,0 +1,2028 @@
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Exporting and importing flows - Event Processing</title>
+<meta name="description" content="Find out how you can export your existing flows to make them available for advanced authoring and for use in other Flink instances.">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="IBM Event Automation">
+<meta property="og:url" content="https://ibm.github.io/event-automation/ep/ep_1.2/advanced/exporting-flows/" />
+<meta property="og:title" content="Event Processing | Exporting and importing flows" />
+<meta property="og:description" content="Find out how you can export your existing flows to make them available for advanced authoring and for use in other Flink instances." />
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="IBM Event Automation | Exporting and importing flows" />
+
+
+
+
+  <meta property="og:description" content="Find out how you can export your existing flows to make them available for advanced authoring and for use in other Flink instances.">
+
+
+
+  <meta property="og:image" content="https://ibm.github.io/event-automation/assets/siteMeta/appIcon_og_fb.png">
+  <meta name="twitter:image" content="https://ibm.github.io/event-automation/assets/siteMeta/appIcon_og_square.png">
+
+
+
+  <meta property="article:published_time" content="2025-11-07T03:45:08-05:00">
+
+
+
+
+
+
+<link rel="canonical" href="https://ibm.github.io/event-automation/ep/ep_1.2/advanced/exporting-flows/">
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Organization",
+      "url": "https://ibm.github.io/event-automation",
+      "logo": "https://ibm.github.io/event-automation/assets/siteMeta/appIcon_og_fb.png"
+    }
+  </script>
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": null,
+      "url": "https://ibm.github.io/event-automation",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/event-automation/feed.xml" type="application/atom+xml" rel="alternate" title="IBM Event Automation Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/event-automation/assets/css/main.css">
+
+<script src="/event-automation/assets/js/scrollsidebar.js"></script>
+<script src="/event-automation/assets/js/copytoclipboard.js"></script>
+<script src="/event-automation/assets/js/highlighter.js"></script>
+<script src="/event-automation/assets/js/newtab.js"></script>
+
+
+
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<link rel="apple-touch-icon" sizes="180x180" href="https://ibm.github.io/event-automation/assets/siteMeta/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://ibm.github.io/event-automation/assets/siteMeta/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://ibm.github.io/event-automation/assets/siteMeta/favicon-16x16.png">
+<link rel="manifest" href="https://ibm.github.io/event-automation/assets/siteMeta/site.webmanifest">
+<link rel="mask-icon" href="https://ibm.github.io/event-automation/assets/siteMeta/safari-pinned-tab.svg" color="#000000">
+<link rel="shortcut icon" href="https://ibm.github.io/event-automation/assets/siteMeta/favicon.ico">
+<link rel="shortcut icon" type="image/png" href="https://ibm.github.io/event-automation/assets/siteMeta/favicon-16x16.png"/>
+<link rel="shortcut icon" type="image/png" href="https://ibm.github.io/event-automation/assets/siteMeta/favicon-32x32.png"/>
+<meta name="msapplication-TileColor" content="#000000">
+<meta name="msapplication-config" content="https://ibm.github.io/event-automation/assets/siteMeta/browserconfig.xml">
+<meta name="theme-color" content="#000000">
+
+
+
+<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,600%7CIBM+Plex+Serif:300,400,500%7CIBM+Plex+Mono:300,400,500,700" rel="stylesheet">
+
+<!-- end custom head snippets -->
+
+    <link rel="shortcut icon" type="image/x-icon" href="/event-automation/assets/favicon.ico" >
+    
+    <base target="_parent">
+
+  </head>
+  <script src="/event-automation/assets/animation/lottie.js" type="text/javascript"></script>
+  <script src="/event-automation/assets/js/connectors.js"></script>
+  <script src="/event-automation/assets/js/copytoclipboard.js"></script>
+  <script src="/event-automation/assets/js/highlighter.js"></script>
+
+
+  
+  <body onload="urlChecker()" class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+
+
+  
+
+
+
+
+
+
+<div id="masthead" class="masthead">
+  <!--
+  <div class="masthead__goToIBMCloud">
+  <div>
+    You are viewing the documentation for the container-native version of IBM Event Automation.
+  </div>
+    <a class="link" target="_self" href="https://cloud.ibm.com/docs/EventStreams?topic=EventStreams-getting-started">Looking for the managed service on IBM Cloud? Click here.</a>
+</div>
+-->
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="mastheadNav">
+
+      
+
+
+        <div class="mastheadTitle">
+          
+          <a class="site-title" href="/event-automation/" target="_self"><span>IBM</span>&nbsp;Event Automation</a>
+          <div class="viewOnIBMcom">
+            <a href="https://www.ibm.com/products/event-automation" target="_blank">View product page</a>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+
+        <div class="mastheadControls">
+            <div class="menuScrollContainer">
+
+        
+
+                <ul id="visible-links" class="visible-links">
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/es/','_self')">
+                      <a href="https://ibm.github.io/event-automation/es/" >Event Streams</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/eem/','_self')">
+                      <a href="https://ibm.github.io/event-automation/eem/" >Event Endpoint Management</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item active" onclick="window.open('https://ibm.github.io/event-automation/ep/','_self')">
+                      <a href="https://ibm.github.io/event-automation/ep/" >Event Processing</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/connectors/','_self')">
+                      <a href="https://ibm.github.io/event-automation/connectors/" >Connect catalog</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/tutorials/','_self')">
+                      <a href="https://ibm.github.io/event-automation/tutorials/" >Tutorials</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/api/','_self')">
+                      <a href="https://ibm.github.io/event-automation/api/" >APIs...</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/support/','_self')">
+                      <a href="https://ibm.github.io/event-automation/support/" >Support</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/search/','_self')">
+                      <button aria-label="Search Button" role="button" id="searchButton" class="search__toggle " type="button" name="search Button">
+                        <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                          <path
+                            d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z"
+                            transform="translate(-.01)"></path>
+                        </svg>
+                      </button>
+                    </li>
+                  
+
+                  
+                </ul>
+        
+
+      </div>
+    </div>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div id="initial-content" class="initial-content" role="main">
+
+
+
+
+
+
+<main id="main" class="mainContainer" role="main">
+    
+      <div id="subMenu" class="subMenu">
+        <div tabindex="0" class="menuIcon" id="menuIcon">
+          <svg id="mobileMenu" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+            <g id="bottomLine">
+              <line class="burgerLine" x1="14" y1="29" x2="34" y2="29" />
+            </g>
+            <g id="middleLine">
+              <line class="burgerLine" x1="14" y1="24" x2="34" y2="24" />
+            </g>
+            <g id="topLine">
+              <line class="burgerLine" x1="14" y1="19" x2="34" y2="19" />
+            </g>
+          </svg>
+        </div>
+        <div id="mobileVersionShortcut" class="versionContainer" tabindex="0">
+          <a id="mobileVersionPillCurrent" class="versionPill">1.2</a>
+        </div>
+      </div>
+    
+  
+
+
+
+<div id="sidebarMask" class="sidebarMask">
+
+  </div>
+  <div id="sidebar" class="sidebar sticky">
+      <div aria-label="Change Version" role="button" aria-expanded="false"
+      
+        id="versionDropdown"
+        tabindex="0"
+        class="versionsBar"
+       >
+          <div class="selectedVersion" id="selectedVersion">
+            <div class="versionContainer" >
+              
+                <a id="versionPillCurrent" class="versionPill">1.2</a>
+                <a class="versionChange">Change Version</a>
+              
+            </div>
+          </div>
+          
+
+
+          <div class="allVersions" id="allVersions">
+            <ul>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/ep/advanced/exporting-flows/" onclick="openVersion('/event-automation/ep/advanced/exporting-flows/','ep_1.4')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/ep/advanced/exporting-flows/" class="versionPill inactive">1.4</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        Latest
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/ep/ep_1.3/advanced/exporting-flows/" onclick="openVersion('/event-automation/ep/ep_1.3/advanced/exporting-flows/','ep_1.3')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/ep/ep_1.3/advanced/exporting-flows/" class="versionPill inactive">1.3</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/ep/ep_1.2/advanced/exporting-flows/" onclick="openVersion('/event-automation/ep/ep_1.2/advanced/exporting-flows/','ep_1.2')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/ep/ep_1.2/advanced/exporting-flows/" class="versionPill active">1.2</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                          <img alt="" src="https://ibm.github.io/event-automation/images/checkbox.svg" />
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/ep/ep_1.1/advanced/exporting-flows/" onclick="openVersion('/event-automation/ep/ep_1.1/advanced/exporting-flows/','ep_1.1')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/ep/ep_1.1/advanced/exporting-flows/" class="versionPill inactive">1.1</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/ep/ep_1.0/advanced/exporting-flows/" onclick="openVersion('/event-automation/ep/ep_1.0/advanced/exporting-flows/','ep_1.0')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/ep/ep_1.0/advanced/exporting-flows/" class="versionPill inactive">1.0</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+            </ul>
+          </div>
+        </div>
+
+  
+    
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <ul class="nav__items">
+
+    
+      <li>
+        
+          <span class="nav__sub-title">About</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/about/overview/" class="">Introduction</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/about/whats-new/" class="">What's new</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/about/key-concepts/" class="">Key concepts</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Installing</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/installing/prerequisites/" class="">Prerequisites</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/installing/planning/" class="">Planning your installation</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/installing/overview/" class="">Installation overview</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/installing/installing/" class="">Installing in an online OpenShift environment</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/installing/offline/" class="">Installing in an offline environment</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/installing/installing-on-kubernetes/" class="">Installing on other Kubernetes platforms</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/installing/configuring/" class="">Configuring</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/installing/post-installation/" class="">Post-installation tasks</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/installing/backup-restore/" class="">Backing up and restoring</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/installing/uninstalling/" class="">Uninstalling</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/installing/upgrading/" class="">Upgrading</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Getting started with Authoring</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/getting-started/logging-in/" class="">Logging in</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/getting-started/canvas/" class="">Building a simple flow</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Security</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/security/managing-access/" class="">Managing access</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/security/user-roles/" class="">Managing user roles</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/security/verifying-signature/" class="">Verifying container image signatures</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/security/network-policies/" class="">Network policies</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/security/gdpr-considerations/" class="">Considerations for GDPR</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/security/data-encryption/" class="">Encrypting your data</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Administering</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/administering/flink-health/" class="">Monitoring Flink health</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Nodes</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/nodes/summary/" class="">Node overview</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/nodes/eventnodes/" class="">Events</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/nodes/processornodes/" class="">Processors</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/nodes/windowednodes/" class="">Windowed</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/nodes/joins/" class="">Joins</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/nodes/enrichmentnode/" class="">Enrichment</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/nodes/custom/" class="">Custom</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Deploying flows</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/advanced/exporting-flows/" class="active">Exporting and importing flows</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/advanced/deploying-customized/" class="">Deploying customized jobs</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/advanced/deploying-development/" class="">Testing jobs by using the Flink SQL client</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/advanced/deploying-production/" class="">Deploying jobs by using the Apache SQL Runner sample</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Reference</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/reference/event-structure/" class="">Event structure definition</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/reference/api-reference/" class="">API reference for the CRDs</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/reference/supported-functions/" class="">Supported Flink SQL functions</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Troubleshooting</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/troubleshooting/intro/" class="">Troubleshooting overview</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/troubleshooting/gathering-logs/" class="">Gathering logs</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/troubleshooting/trace-logging/" class="">Configuring trace logging</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/troubleshooting/changing-ca-certificate/" class="">Error when logging in to UI after changing CA certificate</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/troubleshooting/waiting-for-events/" class="">Results stuck in `Waiting for output events`</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/troubleshooting/default-scc-issues/" class="">The IBM Operator for Apache Flink not installing due to Security Context Constraint (SCC) issues</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/troubleshooting/flows-stop-working/" class="">Running flows stop working</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/troubleshooting/certificate-rotation/" class="">Error when logging in to UI after certificate rotation</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/troubleshooting/fsgroup-not-set/" class="">Flink instances cannot access jobResultStore</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/troubleshooting/rbac/" class="">Operator watching single namespace has escalated permissions</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/troubleshooting/changing-database-ca-certificate/" class="">Error when you connect to a database after modifying a CA certificate</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/troubleshooting/flink-imagepullbackoff/" class="">Flink pods enter ImagePullBackOff state</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/troubleshooting/flink-jar-permissions/" class="">Flink instances cannot access SQL runner JAR file</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/troubleshooting/migration-issue/" class="">Error in flows during upgrade or import</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/troubleshooting/no-output-event-from-api-node/" class="">Enrichment from API produces no output events</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/troubleshooting/bad-output-from-auto-detection/" class="">Auto-detection message format issues</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/troubleshooting/no-main-key-backup/" class="">Event Processing fails with `Unable to find main key backup` error</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/troubleshooting/event-time-property" class="">Incorrect event time property format causes Flink job to fail</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/troubleshooting/error-submitting-job-for-enrichment" class="">Job failure when deploying customized flows that contain API enrichment nodes</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+    
+  
+  </div>
+
+
+  <div class="mainContent">
+    
+    <div id="pageContainer" class="page" itemscope itemtype="http://schema.org/CreativeWork">
+      
+      <div class="page__inner-wrap">
+      
+
+        
+        <section class="page__content pageSpacing" itemprop="text">
+          
+        
+          <header>
+            <h1 id="page-title" class="page__title" itemprop="headline">
+              Exporting and importing flows
+</h1>
+            
+          </header>  
+        
+        
+
+                    
+          <div class="content">
+            <p>Follow the instructions to export and import your flows in Event Processing.</p>
+
+<h2 id="exporting-flows">Exporting flows</h2>
+
+<p>Export your flow to the format that you require. Exported flows can be used as a backup of your work items you created in Event Processing, and they can be imported later to reuse in other Event Processing instances, as a starting point for authoring new flows, or for running the flows in Flink instances.</p>
+
+<p>You can export your flow in the following formats:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Export format</th>
+      <th>Exported file</th>
+      <th>Sensitive credentials</th>
+      <th>Additional comments</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><img src="/event-automation/images/1.2.3plus.svg" alt="Event Processing 1.2.3 icon" title="In Event Processing 1.2.3 and later." /> <strong>JSON and configuration YAML</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">&lt;flow-name&gt;.zip</code> file that contains <code class="language-plaintext highlighter-rouge">flow.json</code> and <code class="language-plaintext highlighter-rouge">config.yaml</code></td>
+      <td>Sensitive values are redacted.</td>
+      <td>For deploying jobs <a href="../deploying-customized">customized for production or test environments</a>, by using the command-line interface, possibly as part of a CI/CD pipeline.</td>
+    </tr>
+    <tr>
+      <td><strong>JSON</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">&lt;flow-name&gt;.json</code></td>
+      <td>Contains credentials</td>
+      <td>For backing up and sharing flows with others.</td>
+    </tr>
+    <tr>
+      <td><strong>SQL</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">&lt;flow-name&gt;.sql</code></td>
+      <td>Sensitive values are redacted.</td>
+      <td>- For deploying jobs by using the <a href="../deploying-development">Flink SQL client</a> or the <a href="../deploying-production">Apache SQL Runner sample</a>. <br /> <br /> - Cannot be imported into the Event Processing UI.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><!-- pattern node * Cannot be used for flows containing the [Detect patterns node](../../nodes/pattern). pattern node --></p>
+
+<p><strong>Notes:</strong></p>
+<ul>
+  <li>The credentials used for the configuration of the <a href="https://nightlies.apache.org/flink/flink-docs-release-1.19/docs/connectors/table/kafka/" target="_blank">Kafka</a>, <a href="https://nightlies.apache.org/flink/flink-docs-release-1.19/docs/connectors/table/jdbc" target="_blank">JDBC</a>, and <a href="https://github.com/getindata/flink-http-connector/blob/0.16.0/README.md" target="_blank">HTTP</a> connectors are redacted in the <strong>JSON and configuration YAML</strong> and <strong>SQL</strong> export formats, except for the <a href="https://github.com/getindata/flink-http-connector/blob/0.16.0/README.md" target="_blank">HTTP</a> connector when used in <a href="../../nodes/custom">SQL processor nodes</a>.</li>
+  <li>Exporting a flow as <strong>JSON and configuration YAML</strong> or as <strong>SQL</strong> requires the following prerequisites to be met:
+    <ul>
+      <li><a href="../../nodes/eventnodes/#event-source">Source nodes</a> are connected to the same graph.</li>
+      <li>Connected nodes are configured and valid. A valid graph has a green checkbox <img src="/event-automation/images/checkbox_green.svg" alt="green checkbox" title="Diagram showing green checkbox." height="30px" width="15px" /> for all configured nodes.</li>
+      <li>Connected nodes define a graph that ends with only one node. Additionally, for exporting as <strong>JSON and configuration YAML</strong>, the terminal node must be an <a href="../../nodes/eventnodes/#event-destination">event destination node</a>.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>To export a flow, complete the following steps:</p>
+
+<ol>
+  <li>Go to the Event Processing home page.</li>
+  <li>Find the flow that you want to export.</li>
+  <li>In the tile of the flow you want to export, click the <strong>Options</strong> icon <img src="/event-automation/images/options.png" alt="options icon" title="Diagram showing more options." height="30px" width="15px" /> and then select <strong>Export</strong> to open the <strong>Export</strong> dialog.</li>
+  <li>Choose the export format.</li>
+  <li>Click <strong>Export</strong>.</li>
+</ol>
+
+<p><img src="/event-automation/images/1.2.3plus.svg" alt="Event Processing 1.2.3 icon" title="In Event Processing 1.2.3 and later." /> The <strong>Export</strong> features are also available in <strong>More options</strong> <img src="/event-automation/images/more_options.png" alt="More options icon" title="More options icon at end of each row." height="30px" width="15px" /> next to <strong>Run flow</strong> in the navigation banner of the canvas.</p>
+
+<h2 id="importing-flows">Importing flows</h2>
+
+<p>Flows that are exported in JSON format can be imported in the Event Processing UI to reuse any number of times.</p>
+
+<p>To import a flow, complete the following steps:</p>
+
+<ol>
+  <li>Go to the Event Processing home page.</li>
+  <li>In the <strong>Create a new flow</strong> card, click <strong>Import</strong> to open the <strong>Import a flow</strong> dialog.</li>
+  <li>In <strong>Upload files</strong>, drag your files in to the dialog or upload the file that you want to import.</li>
+  <li>After your file is uploaded, click <strong>Create</strong> to import your flow.</li>
+</ol>
+
+<p><strong>Note:</strong> Flows that you import are saved by using their flow name at export time. You can rename your file for easier identification.</p>
+
+          </div>
+
+
+          
+        </section>
+
+        <aside class="sidebar__right ">
+          
+          <div class="fixedSidebar">
+            <nav class="toc">
+              <ul class="toc__menu">
+  <li><a href="#exporting-flows">Exporting flows</a></li>
+  <li><a href="#importing-flows">Importing flows</a></li>
+</ul>
+            </nav>
+          </div>
+          
+        </aside>
+
+
+      </div>
+      <div class="pageEnd">
+        
+          
+  <nav class="pagination">
+    
+      <div class="previous" onclick="window.open('/event-automation/ep/ep_1.2/nodes/custom/','_self')">
+        <div class="container">
+          <a href="/event-automation/ep/ep_1.2/nodes/custom/" class="pagination--pager" title="Previous Item: Custom nodes
+">Previous</a>
+          <h2 class="titlePreview">Custom nodes
+</h2>
+        </div>
+      </div>
+    
+    
+      <div class="next" onclick="window.open('/event-automation/ep/ep_1.2/advanced/deploying-customized/','_self')">
+        <div class="container">
+          <a href="/event-automation/ep/ep_1.2/advanced/deploying-customized/" class="pagination--pager" title="Next Item: Deploying customized jobs
+">Next</a>
+          <h2 class="titlePreview">Deploying customized jobs
+</h2>
+        </div>
+      </div>
+      
+  </nav>
+
+        
+      </div>
+    </div>
+
+
+  </div> <!-- Main content -->
+
+</main></div>
+
+
+    
+      <div class="page__footer">
+          <footer>
+            <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+
+            
+<div class="page__footer-copyright"><a href="https://www.ibm.com/privacy/us/en/" rel="nofollow" target="_blank">Privacy Policy</a>  &nbsp;© Copyright IBM Corporation 2025</br>
+<a href="https://www.ibm.com/legal/terms" rel="nofollow" target="_blank">Terms of use</a> </br> <a href="https://ibm.github.io/event-automation/accessibility/" rel="nofollow" target="_blank">Accessibility</a> </br> <a href="https://ibm.github.io/event-automation/notices/" rel="nofollow" target="_blank">Notices</a></br>
+          </footer>
+      </div>      
+    
+
+
+    
+  <script src="/event-automation/assets/js/main.min.js"></script>
+  <!-- <script src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script> -->
+
+
+
+
+
+
+<script src="/event-automation/assets/js/design.js"></script>
+
+
+
+
+
+<script src="/event-automation/assets/js/lunr/lunr.min.js"></script>
+<script src="/event-automation/assets/js/lunr/lunr-store.js"></script>
+<script src="/event-automation/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+    
+
+    
+  </body>
+</html>

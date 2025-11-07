@@ -1,0 +1,729 @@
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Detecting patterns of events - IBM Event Automation</title>
+<meta name="description" content="With the detect patterns node, you can detect a sequence of events. Find out how a commercial website can use the detect patterns node to identify failed transactions with its bank.">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="IBM Event Automation">
+<meta property="og:url" content="https://ibm.github.io/event-automation/tutorials/detect-patterns/" />
+<meta property="og:title" content="Tutorials | Detecting patterns of events" />
+<meta property="og:description" content="With the detect patterns node, you can detect a sequence of events. Find out how a commercial website can use the detect patterns node to identify failed transactions with its bank." />
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="IBM Event Automation | Detecting patterns of events" />
+
+
+
+
+  <meta property="og:description" content="With the detect patterns node, you can detect a sequence of events. Find out how a commercial website can use the detect patterns node to identify failed transactions with its bank.">
+
+
+
+  <meta property="og:image" content="https://ibm.github.io/event-automation/assets/siteMeta/appIcon_og_fb.png">
+  <meta name="twitter:image" content="https://ibm.github.io/event-automation/assets/siteMeta/appIcon_og_square.png">
+
+
+
+  <meta property="article:published_time" content="2025-11-07T03:45:08-05:00">
+
+
+
+
+
+
+<link rel="canonical" href="https://ibm.github.io/event-automation/tutorials/detect-patterns/">
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Organization",
+      "url": "https://ibm.github.io/event-automation",
+      "logo": "https://ibm.github.io/event-automation/assets/siteMeta/appIcon_og_fb.png"
+    }
+  </script>
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": null,
+      "url": "https://ibm.github.io/event-automation",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/event-automation/feed.xml" type="application/atom+xml" rel="alternate" title="IBM Event Automation Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/event-automation/assets/css/main.css">
+
+<script src="/event-automation/assets/js/scrollsidebar.js"></script>
+<script src="/event-automation/assets/js/copytoclipboard.js"></script>
+<script src="/event-automation/assets/js/highlighter.js"></script>
+<script src="/event-automation/assets/js/newtab.js"></script>
+
+
+
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<link rel="apple-touch-icon" sizes="180x180" href="https://ibm.github.io/event-automation/assets/siteMeta/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://ibm.github.io/event-automation/assets/siteMeta/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://ibm.github.io/event-automation/assets/siteMeta/favicon-16x16.png">
+<link rel="manifest" href="https://ibm.github.io/event-automation/assets/siteMeta/site.webmanifest">
+<link rel="mask-icon" href="https://ibm.github.io/event-automation/assets/siteMeta/safari-pinned-tab.svg" color="#000000">
+<link rel="shortcut icon" href="https://ibm.github.io/event-automation/assets/siteMeta/favicon.ico">
+<link rel="shortcut icon" type="image/png" href="https://ibm.github.io/event-automation/assets/siteMeta/favicon-16x16.png"/>
+<link rel="shortcut icon" type="image/png" href="https://ibm.github.io/event-automation/assets/siteMeta/favicon-32x32.png"/>
+<meta name="msapplication-TileColor" content="#000000">
+<meta name="msapplication-config" content="https://ibm.github.io/event-automation/assets/siteMeta/browserconfig.xml">
+<meta name="theme-color" content="#000000">
+
+
+
+<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,600%7CIBM+Plex+Serif:300,400,500%7CIBM+Plex+Mono:300,400,500,700" rel="stylesheet">
+
+<!-- end custom head snippets -->
+
+    <link rel="shortcut icon" type="image/x-icon" href="/event-automation/assets/favicon.ico" >
+    
+    <base target="_parent">
+
+  </head>
+  <script src="/event-automation/assets/animation/lottie.js" type="text/javascript"></script>
+  <script src="/event-automation/assets/js/connectors.js"></script>
+  <script src="/event-automation/assets/js/copytoclipboard.js"></script>
+  <script src="/event-automation/assets/js/highlighter.js"></script>
+
+
+  
+  <body onload="" class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+
+
+  
+
+
+
+
+
+
+<div id="masthead" class="masthead">
+  <!--
+  <div class="masthead__goToIBMCloud">
+  <div>
+    You are viewing the documentation for the container-native version of IBM Event Automation.
+  </div>
+    <a class="link" target="_self" href="https://cloud.ibm.com/docs/EventStreams?topic=EventStreams-getting-started">Looking for the managed service on IBM Cloud? Click here.</a>
+</div>
+-->
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="mastheadNav">
+
+      
+
+
+        <div class="mastheadTitle">
+          
+          <a class="site-title" href="/event-automation/" target="_self"><span>IBM</span>&nbsp;Event Automation</a>
+          <div class="viewOnIBMcom">
+            <a href="https://www.ibm.com/products/event-automation" target="_blank">View product page</a>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+
+        <div class="mastheadControls">
+            <div class="menuScrollContainer">
+
+        
+
+                <ul id="visible-links" class="visible-links">
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/es/','_self')">
+                      <a href="https://ibm.github.io/event-automation/es/" >Event Streams</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/eem/','_self')">
+                      <a href="https://ibm.github.io/event-automation/eem/" >Event Endpoint Management</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/ep/','_self')">
+                      <a href="https://ibm.github.io/event-automation/ep/" >Event Processing</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/connectors/','_self')">
+                      <a href="https://ibm.github.io/event-automation/connectors/" >Connect catalog</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item active" onclick="window.open('https://ibm.github.io/event-automation/tutorials/','_self')">
+                      <a href="https://ibm.github.io/event-automation/tutorials/" >Tutorials</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/api/','_self')">
+                      <a href="https://ibm.github.io/event-automation/api/" >APIs...</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/support/','_self')">
+                      <a href="https://ibm.github.io/event-automation/support/" >Support</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/search/','_self')">
+                      <button aria-label="Search Button" role="button" id="searchButton" class="search__toggle " type="button" name="search Button">
+                        <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                          <path
+                            d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z"
+                            transform="translate(-.01)"></path>
+                        </svg>
+                      </button>
+                    </li>
+                  
+
+                  
+                </ul>
+        
+
+      </div>
+    </div>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div id="initial-content" class="initial-content" role="main">
+
+
+
+
+
+
+<main id="main" class="mainContainer" role="main">
+    
+
+    
+  
+
+
+
+  <div class="mainContent">
+    
+      
+      
+      <div class="subMenu backMenu"> 
+    <a href="
+        https://ibm.github.io/event-automation/tutorials
+      "><img alt="" role="presentation" src="https://ibm.github.io/event-automation/assets/images/icons/previous.svg" />
+        Back to tutorials
+      </a>
+  </div>
+    
+    <div id="pageContainer" class="page" itemscope itemtype="http://schema.org/CreativeWork">
+      
+      <div class="page__inner-wrap">
+      
+
+        
+        <section class="page__content pageSpacing" itemprop="text">
+          
+        
+          <header>
+            <h1 id="page-title" class="page__title" itemprop="headline">
+              Detecting patterns of events
+</h1>
+            
+          </header>  
+        
+        
+
+                    
+          <div class="content">
+            <h2 id="detect-patterns">Detect patterns</h2>
+
+<p>With the detect patterns node, you can detect a sequence of events. As events are produced into the input streams, you can use the detect patterns node to identify a pattern from the events within a specific time window.</p>
+
+<h2 id="scenario">Scenario</h2>
+
+<p>A commercial website has to perform financial transactions with its bank. Each transaction allows to transfer money in several steps instead of a single huge transfer. Each step of the transaction generates an event containing the unique identifier of the transaction, the transmitted amount of money, a timestamp and the state of the transaction that can be one of STARTED, PROCESSING or COMPLETED.</p>
+
+<p>You can use the detect patterns node to identify if there is a failed transaction. To do that, you can detect a pattern for a transaction where there is an event with STARTED state, followed by two events with PROCESSING state, but are not followed by an event with COMPLETED state within seven minutes.</p>
+
+<h2 id="before-you-begin">Before you begin</h2>
+
+<p>The instructions in this tutorial use the <a href="../guided/tutorial-0">Tutorial environment</a>, which includes a selection of topics each with a live stream of events, created to allow you to explore features in IBM Event Automation. Following the <a href="../guided/tutorial-0#deploy-the-tutorial">setup instructions</a> to deploy the demo environment gives you a complete instance of IBM Event Automation that you can use to follow this tutorial for yourself.</p>
+
+<h3 id="versions">Versions</h3>
+
+<p>This tutorial uses the following versions of Event Automation capabilities. Screenshots can differ from the current interface if you are using a newer version.</p>
+
+<ul>
+  <li>Event Endpoint Management 11.6.3</li>
+  <li>Event Processing 1.4.4</li>
+</ul>
+
+<h2 id="instructions">Instructions</h2>
+
+<h3 id="step-1-discover-the-topics-to-use">Step 1: Discover the topics to use</h3>
+
+<p>For this scenario, you need a source for the <code class="language-plaintext highlighter-rouge">Transactions</code> events.</p>
+
+<ol>
+  <li>
+    <p>Go to the <strong>Event Endpoint Management</strong> catalog.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/eem-catalog.png" title="screenshot of the Event Endpoint Management catalog"><img src="/event-automation/images/ea-tutorials/eem-catalog.png" alt="screenshot" title="screenshot of the Event Endpoint Management catalog" class="tutorial-screenshot" /></a></p>
+
+    <p>If you need a reminder about how to access the Event Endpoint Management catalog, you can review <a href="../guided/tutorial-access#event-endpoint-management">Accessing the tutorial environment</a>.</p>
+
+    <p>If there are no topics in the catalog, you might need to complete the tutorial setup step to <a href="../guided/tutorial-0#populating-the-catalog">populate the catalog</a>.</p>
+  </li>
+  <li>
+    <p>Find the <code class="language-plaintext highlighter-rouge">Transactions</code> topics.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-16-1.png" title="Screen capture of the Event Endpoint Management catalog"><img src="/event-automation/images/ea-tutorials/tutorial-16-1.png" alt="screenshot" title="Screen capture of the Event Endpoint Management catalog" class="tutorial-screenshot" /></a></p>
+  </li>
+  <li>
+    <p>Click into the topics to review the information about the events that are available here.
+Look at the schema to see the properties in the events, and get an idea of what to expect from events on these topics.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-16-2.png" title="Screen capture of the Event Endpoint Management catalog"><img src="/event-automation/images/ea-tutorials/tutorial-16-2.png" alt="screenshot" title="Screen capture of the Event Endpoint Management catalog" class="tutorial-screenshot" /></a></p>
+  </li>
+</ol>
+
+<h3 id="step-2-create-a-flow">Step 2: Create a flow</h3>
+
+<p>To create a flow, complete the following steps:</p>
+
+<ol>
+  <li>
+    <p>Go to the <strong>Event Processing</strong> home page.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/ep-home.png" title="Screen capture of the Event Processing home page"><img src="/event-automation/images/ea-tutorials/ep-home.png" alt="screenshot" title="Screen capture of the Event Processing home page" class="tutorial-screenshot" /></a></p>
+
+    <p>If you need a reminder about how to access the Event Processing home page, you can review <a href="../guided/tutorial-access#event-processing">Accessing the tutorial environment</a>.</p>
+  </li>
+  <li>
+    <p>Create a flow, and give it a name and description to explain that you will use it to have more insight into the state of your transactions.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-16-3.png" title="Event Processing home page"><img src="/event-automation/images/ea-tutorials/tutorial-16-3.png" alt="screenshot" title="Event Processing home page" class="tutorial-screenshot" /></a></p>
+  </li>
+</ol>
+
+<h3 id="step-3-add-an-event-source-node-for-the-transactions-topic">Step 3: Add an event source node for the Transactions topic</h3>
+
+<p>The next step is to bring the stream of events you discovered in the catalog into Event Processing.</p>
+
+<p>To create an event source, complete the following steps:</p>
+
+<ol>
+  <li>
+    <p>Add an <strong>Event source</strong> node.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-16-4.png" title="Adding an event source node"><img src="/event-automation/images/ea-tutorials/tutorial-16-4.png" alt="screenshot" title="Adding an event source node" class="tutorial-screenshot" /></a></p>
+
+    <p>When you create a flow, an event source node is automatically added to your canvas. A purple checkbox <img src="/event-automation/images/unconfigured_node.svg" alt="unconfigured_node icon" title="Diagram showing the unconfigured node icon." height="30px" width="15px" /> is displayed on the event source node indicating that the node is yet to be configured.</p>
+
+    <p>Hover over the node, and click <img src="/event-automation/images/rename.svg" alt="Edit icon" title="The edit icon." height="30px" width="15px" /> <strong>Edit</strong> to configure the node.</p>
+  </li>
+  <li>
+    <p>Ensure that the <strong>Add event source</strong> tile is selected, and then click <strong>Next</strong>.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-1-5.png" title="Add an event source"><img src="/event-automation/images/ea-tutorials/tutorial-1-5.png" alt="screenshot" title="Add an event source" class="tutorial-screenshot" /></a></p>
+  </li>
+  <li>
+    <p>Get the server address for the event source from the Event Endpoint Management topic page.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-16-5.png" title="Getting connection details from the catalog"><img src="/event-automation/images/ea-tutorials/tutorial-16-5.png" alt="screenshot" title="Getting connection details from the catalog" class="tutorial-screenshot" /></a></p>
+
+    <p>Click the <strong>Copy</strong> icon next to the <strong>Servers</strong> address to copy the address to the clipboard.</p>
+  </li>
+  <li>
+    <p>Go to Event Processing, and configure the new event source.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-1-6-new1.png" title="connection details for the event source"><img src="/event-automation/images/ea-tutorials/tutorial-16-6.png" alt="screenshot" title="connection details for the event source" class="tutorial-screenshot" /></a></p>
+
+    <p>In the <strong>Server</strong> field, paste the server address that you copied from Event Endpoint Management in the previous step.</p>
+
+    <p>Click <strong>Next</strong>.</p>
+  </li>
+  <li>
+    <p>Generate access credentials for accessing this stream of events from the Event Endpoint Management page.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-16-7.png" title="Getting the credentials to use"><img src="/event-automation/images/ea-tutorials/tutorial-16-7.png" alt="screenshot" title="Getting the credentials to use" class="tutorial-screenshot" /></a></p>
+
+    <p>Click <strong>Generate access credentials</strong> at the top of the page, and provide your contact details.</p>
+  </li>
+  <li>
+    <p>Copy the username and password from Event Endpoint Management and paste into Event Processing to access the topic.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-16-8.png" title="specifying credentials for event source"><img src="/event-automation/images/ea-tutorials/tutorial-16-8.png" alt="screenshot" title="specifying credentials for event source" class="tutorial-screenshot" /></a></p>
+
+    <p>The username starts with <code class="language-plaintext highlighter-rouge">eem-</code>.</p>
+
+    <p>Click <strong>Next</strong> to go to the <strong>Topic selection</strong> pane.</p>
+  </li>
+  <li>
+    <p>Select the <code class="language-plaintext highlighter-rouge">TRANSACTIONS</code> topic to process events from, and click <strong>Next</strong>.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-16-9.png" title="Select a topic to use"><img src="/event-automation/images/ea-tutorials/tutorial-16-9.png" alt="screenshot" title="Select a topic to use" class="tutorial-screenshot" /></a></p>
+  </li>
+  <li>
+    <p>The <code class="language-plaintext highlighter-rouge">JSON</code> message format is auto-selected in the <strong>Message format</strong> drop-down. Click <strong>Next</strong>.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-16-10.png" title="Paste schema into the event source"><img src="/event-automation/images/ea-tutorials/tutorial-16-10.png" alt="screenshot" title="Paste schema into the event source" class="tutorial-screenshot" /></a></p>
+  </li>
+  <li>
+    <p>In the <strong>Key and headers</strong> pane, click <strong>Next</strong>.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial1-key-headers-new.png" title="map key and header"><img src="/event-automation/images/ea-tutorials/tutorial1-key-headers-new.png" alt="screenshot" title="map key and headers" class="tutorial-screenshot" /></a></p>
+
+    <p><strong>Note:</strong> The key and headers are displayed automatically if they are available in the selected topic message.</p>
+  </li>
+  <li>
+    <p>In the <strong>Event details</strong> pane, enter the node a name that describes this stream of events: <code class="language-plaintext highlighter-rouge">transactions</code></p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-16-11.png" title="Select a topic to use"><img src="/event-automation/images/ea-tutorials/tutorial-16-11.png" alt="screenshot" title="Select a topic to use" class="tutorial-screenshot" /></a></p>
+  </li>
+  <li>
+    <p>Configure the event source to use the <code class="language-plaintext highlighter-rouge">timestamp</code> property as the source of the event time, and to tolerate lateness of up to <strong>1 minute</strong>.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-16-12.png" title="Creating an event source node"><img src="/event-automation/images/ea-tutorials/tutorial-16-12.png" alt="screenshot" title="Creating an event source node" class="tutorial-screenshot" /></a></p>
+  </li>
+  <li>
+    <p>Click <strong>Configure</strong> to finalize the event source configuration.</p>
+  </li>
+</ol>
+
+<h3 id="step-4-filter-transaction-states-into-separate-events">Step 4: Filter transaction states into separate events</h3>
+
+<p>Currently, all transaction states are consolidated into a single <code class="language-plaintext highlighter-rouge">transactions</code> event. You must filter them into distinct events for each of the <code class="language-plaintext highlighter-rouge">STARTED</code>, <code class="language-plaintext highlighter-rouge">PROCESSING</code>, and <code class="language-plaintext highlighter-rouge">COMPLETED</code> states. You can use the filter node to achieve this.</p>
+
+<ol>
+  <li>
+    <p>Add a <strong>Filter</strong> node for the <code class="language-plaintext highlighter-rouge">STARTED</code> state and link it to the <code class="language-plaintext highlighter-rouge">transactions</code> event.</p>
+
+    <p>Hover over the filter node, and click <img src="/event-automation/images/rename.svg" alt="Edit icon" title="The edit icon." height="30px" width="15px" /> <strong>Edit</strong> to configure the node.
+In the <strong>Node name</strong> field, enter the name of the filter node as <code class="language-plaintext highlighter-rouge">transactions_started</code>, and then click <strong>Next</strong>.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-16-14.png" title="Creating a filter for transactions in started state"><img src="/event-automation/images/ea-tutorials/tutorial-16-14.png" alt="screenshot" title="Creating a filter expression for transactions in started state" class="tutorial-screenshot" /></a></p>
+
+    <p>Enter the filter expression <strong>`state` LIKE ‘STARTED’</strong>, click <strong>Next</strong> to open the <strong>Output properties</strong> pane, and then click <strong>Configure</strong>.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-16-13.png" title="Creating a filter expression for transactions in started state"><img src="/event-automation/images/ea-tutorials/tutorial-16-13.png" alt="screenshot" title="Creating a filter expression for transactions in started state" class="tutorial-screenshot" /></a></p>
+  </li>
+  <li>
+    <p>Add another <strong>Filter</strong> node for the <code class="language-plaintext highlighter-rouge">PROCESSING</code> state and link it to the <code class="language-plaintext highlighter-rouge">transactions</code> event.</p>
+
+    <p>Hover over the filter node, and click <img src="/event-automation/images/rename.svg" alt="Edit icon" title="The edit icon." height="30px" width="15px" /> <strong>Edit</strong> to configure the node.
+In the <strong>Node name</strong> field, enter the name of the filter node as <code class="language-plaintext highlighter-rouge">transactions_processing</code>, and then click <strong>Next</strong>.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-16-16.png" title="Creating a filter expression for transactions in processing state"><img src="/event-automation/images/ea-tutorials/tutorial-16-16.png" alt="screenshot" title="Creating a filter expression for transactions in processing state" class="tutorial-screenshot" /></a></p>
+
+    <p>Enter the filter expression <strong>`state` LIKE ‘PROCESSING’</strong>, click <strong>Next</strong> to open the <strong>Output properties</strong> pane, and then click <strong>Configure</strong>.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-16-15.png" title="Creating a filter for transactions in processing state"><img src="/event-automation/images/ea-tutorials/tutorial-16-15.png" alt="screenshot" title="Creating an event source node" class="tutorial-screenshot" /></a></p>
+  </li>
+  <li>
+    <p>Add another <strong>Filter</strong> node for the <code class="language-plaintext highlighter-rouge">COMPLETED</code> state and link it to the <code class="language-plaintext highlighter-rouge">transactions</code> event.</p>
+
+    <p>Hover over the filter node, and click <img src="/event-automation/images/rename.svg" alt="Edit icon" title="The edit icon." height="30px" width="15px" /> <strong>Edit</strong> to configure the node. 
+In the <strong>Node name</strong> field, enter the name of the filter node as <code class="language-plaintext highlighter-rouge">transactions_completed</code>, and then click <strong>Next</strong>.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-16-18.png" title="Creating a filter for transactions in completed state"><img src="/event-automation/images/ea-tutorials/tutorial-16-18.png" alt="screenshot" title="Creating an event source node" class="tutorial-screenshot" /></a></p>
+
+    <p>Enter the filter expression <strong>`state` LIKE ‘COMPLETED’</strong>, click <strong>Next</strong> to open the <strong>Output properties</strong> pane, and then click <strong>Configure</strong>.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-16-17.png" title="Creating a filter expression for transactions in processing state"><img src="/event-automation/images/ea-tutorials/tutorial-16-17.png" alt="screenshot" title="Creating a filter expression for transactions in processing state" class="tutorial-screenshot" /></a></p>
+  </li>
+</ol>
+
+<h3 id="step-5-detect-transactions-that-are-not-completed">Step 5: Detect transactions that are not completed</h3>
+
+<p>To detect failed transactions, use the detect patterns node as follows.</p>
+
+<ol>
+  <li>
+    <p>Add a <strong>Detect patterns</strong> node and link it to each output of your three filters.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-16-19.png" title="Creating a detect patterns node"><img src="/event-automation/images/ea-tutorials/tutorial-16-19.png" alt="screenshot" title="Creating a detect patterns node" class="tutorial-screenshot" /></a></p>
+
+    <p>Hover over the detect patterns node, and click <img src="/event-automation/images/rename.svg" alt="Edit icon" title="The edit icon." height="30px" width="15px" /> <strong>Edit</strong> to configure the node.</p>
+  </li>
+  <li>
+    <p>In the <strong>Node name</strong> field, enter the name of the detect patterns node as <code class="language-plaintext highlighter-rouge">transactions_completed</code>, and then click <strong>Next</strong>.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-16-20.png" title="Creating a detect patterns node name"><img src="/event-automation/images/ea-tutorials/tutorial-16-20.png" alt="screenshot" title="Creating a detect patterns node name" class="tutorial-screenshot" /></a></p>
+  </li>
+  <li>
+    <p>In the <strong>Define context</strong>, select <strong>id</strong> from each dropdown list, and then click <strong>Next</strong>.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-16-21.png" title="Creating a detect patterns node context"><img src="/event-automation/images/ea-tutorials/tutorial-16-21.png" alt="screenshot" title="Creating a detect patterns node context" class="tutorial-screenshot" /></a></p>
+  </li>
+  <li>
+    <p>In the <strong>Define pattern</strong>, create the following matching condition:</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Event: transaction_started, occurrence: 1
+Condition: Followed by
+Event: transaction_processing, occurrence: 2
+Condition: Not followed by
+Event: transaction_completed, occurrence: 1
+</code></pre></div>    </div>
+
+    <p>For the <strong>Time window duration</strong>, select <code class="language-plaintext highlighter-rouge">7 minutes</code>.</p>
+
+    <p>For the <strong>Detection mode</strong>, select <strong>Real time</strong>, then click <strong>Next</strong>.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-16-22.png" title="Creating a detect patterns node pattern"><img src="/event-automation/images/ea-tutorials/tutorial-16-22.png" alt="screenshot" title="Creating a detect patterns node pattern" class="tutorial-screenshot" /></a></p>
+  </li>
+  <li>
+    <p>In the <strong>Output properties</strong>, remove property <code class="language-plaintext highlighter-rouge">patternMatchTime</code> and rename property <code class="language-plaintext highlighter-rouge">contextKey</code> to <code class="language-plaintext highlighter-rouge">transactionId</code>, then click <strong>Configure</strong>.</p>
+  </li>
+  <li>
+    <p>From the menu, click button <strong>Run flow</strong> then select <strong>Include historical</strong>.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-16-24.png" title="CRunning a detect patterns flow"><img src="/event-automation/images/ea-tutorials/tutorial-16-24.png" alt="screenshot" title="Running a detect patterns flow" class="tutorial-screenshot" /></a></p>
+
+    <p>After a moment, the output will be displayed.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/tutorial-16-25.png" title="Pattern detected from the detect patterns running flow"><img src="/event-automation/images/ea-tutorials/tutorial-16-25.png" alt="screenshot" title="Pattern detected from the detect patterns running flow" class="tutorial-screenshot" /></a></p>
+  </li>
+</ol>
+
+<h2 id="recap">Recap</h2>
+
+<p>You used filter node to filter the state of your transactions into separate events and detected failed transactions by using the detect patterns node.</p>
+
+          </div>
+
+
+          
+        </section>
+
+        <aside class="sidebar__right ">
+          
+          <div class="fixedSidebar">
+            <nav class="toc">
+              <ul class="toc__menu">
+  <li><a href="#detect-patterns">Detect patterns</a></li>
+  <li><a href="#scenario">Scenario</a></li>
+  <li><a href="#before-you-begin">Before you begin</a>
+    <ul>
+      <li><a href="#versions">Versions</a></li>
+    </ul>
+  </li>
+  <li><a href="#instructions">Instructions</a>
+    <ul>
+      <li><a href="#step-1-discover-the-topics-to-use">Step 1: Discover the topics to use</a></li>
+      <li><a href="#step-2-create-a-flow">Step 2: Create a flow</a></li>
+      <li><a href="#step-3-add-an-event-source-node-for-the-transactions-topic">Step 3: Add an event source node for the Transactions topic</a></li>
+      <li><a href="#step-4-filter-transaction-states-into-separate-events">Step 4: Filter transaction states into separate events</a></li>
+      <li><a href="#step-5-detect-transactions-that-are-not-completed">Step 5: Detect transactions that are not completed</a></li>
+    </ul>
+  </li>
+  <li><a href="#recap">Recap</a></li>
+</ul>
+            </nav>
+          </div>
+          
+        </aside>
+
+
+      </div>
+      <div class="pageEnd">
+        
+      </div>
+    </div>
+
+
+  </div> <!-- Main content -->
+
+</main></div>
+
+
+    
+      <div class="page__footer">
+          <footer>
+            <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+
+            
+<div class="page__footer-copyright"><a href="https://www.ibm.com/privacy/us/en/" rel="nofollow" target="_blank">Privacy Policy</a>  &nbsp;© Copyright IBM Corporation 2025</br>
+<a href="https://www.ibm.com/legal/terms" rel="nofollow" target="_blank">Terms of use</a> </br> <a href="https://ibm.github.io/event-automation/accessibility/" rel="nofollow" target="_blank">Accessibility</a> </br> <a href="https://ibm.github.io/event-automation/notices/" rel="nofollow" target="_blank">Notices</a></br>
+          </footer>
+      </div>      
+    
+
+
+    
+  <script src="/event-automation/assets/js/main.min.js"></script>
+  <!-- <script src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script> -->
+
+
+
+
+
+
+<script src="/event-automation/assets/js/design.js"></script>
+
+
+
+
+
+<script src="/event-automation/assets/js/lunr/lunr.min.js"></script>
+<script src="/event-automation/assets/js/lunr/lunr-store.js"></script>
+<script src="/event-automation/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,2198 @@
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Processor nodes - Event Processing</title>
+<meta name="description" content="Event Processing provides a set of nodes to create event stream processing flows">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="IBM Event Automation">
+<meta property="og:url" content="https://ibm.github.io/event-automation/ep/ep_1.1/nodes/processornodes/" />
+<meta property="og:title" content="Event Processing | Processor nodes" />
+<meta property="og:description" content="Event Processing provides a set of nodes to create event stream processing flows" />
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="IBM Event Automation | Processor nodes" />
+
+
+
+
+  <meta property="og:description" content="Event Processing provides a set of nodes to create event stream processing flows">
+
+
+
+  <meta property="og:image" content="https://ibm.github.io/event-automation/assets/siteMeta/appIcon_og_fb.png">
+  <meta name="twitter:image" content="https://ibm.github.io/event-automation/assets/siteMeta/appIcon_og_square.png">
+
+
+
+  <meta property="article:published_time" content="2025-11-07T03:45:08-05:00">
+
+
+
+
+
+
+<link rel="canonical" href="https://ibm.github.io/event-automation/ep/ep_1.1/nodes/processornodes/">
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Organization",
+      "url": "https://ibm.github.io/event-automation",
+      "logo": "https://ibm.github.io/event-automation/assets/siteMeta/appIcon_og_fb.png"
+    }
+  </script>
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": null,
+      "url": "https://ibm.github.io/event-automation",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/event-automation/feed.xml" type="application/atom+xml" rel="alternate" title="IBM Event Automation Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/event-automation/assets/css/main.css">
+
+<script src="/event-automation/assets/js/scrollsidebar.js"></script>
+<script src="/event-automation/assets/js/copytoclipboard.js"></script>
+<script src="/event-automation/assets/js/highlighter.js"></script>
+<script src="/event-automation/assets/js/newtab.js"></script>
+
+
+
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<link rel="apple-touch-icon" sizes="180x180" href="https://ibm.github.io/event-automation/assets/siteMeta/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://ibm.github.io/event-automation/assets/siteMeta/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://ibm.github.io/event-automation/assets/siteMeta/favicon-16x16.png">
+<link rel="manifest" href="https://ibm.github.io/event-automation/assets/siteMeta/site.webmanifest">
+<link rel="mask-icon" href="https://ibm.github.io/event-automation/assets/siteMeta/safari-pinned-tab.svg" color="#000000">
+<link rel="shortcut icon" href="https://ibm.github.io/event-automation/assets/siteMeta/favicon.ico">
+<link rel="shortcut icon" type="image/png" href="https://ibm.github.io/event-automation/assets/siteMeta/favicon-16x16.png"/>
+<link rel="shortcut icon" type="image/png" href="https://ibm.github.io/event-automation/assets/siteMeta/favicon-32x32.png"/>
+<meta name="msapplication-TileColor" content="#000000">
+<meta name="msapplication-config" content="https://ibm.github.io/event-automation/assets/siteMeta/browserconfig.xml">
+<meta name="theme-color" content="#000000">
+
+
+
+<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,600%7CIBM+Plex+Serif:300,400,500%7CIBM+Plex+Mono:300,400,500,700" rel="stylesheet">
+
+<!-- end custom head snippets -->
+
+    <link rel="shortcut icon" type="image/x-icon" href="/event-automation/assets/favicon.ico" >
+    
+    <base target="_parent">
+
+  </head>
+  <script src="/event-automation/assets/animation/lottie.js" type="text/javascript"></script>
+  <script src="/event-automation/assets/js/connectors.js"></script>
+  <script src="/event-automation/assets/js/copytoclipboard.js"></script>
+  <script src="/event-automation/assets/js/highlighter.js"></script>
+
+
+  
+  <body onload="urlChecker()" class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+
+
+  
+
+
+
+
+
+
+<div class="eosBanner" style= "top:  0rem ; ">
+    <svg xmlns="http://www.w3.org/2000/svg" class="bx--inline-notification__icon" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M10,1c-5,0-9,4-9,9s4,9,9,9s9-4,9-9S15,1,10,1z M9.2,5h1.5v7H9.2V5z M10,16c-0.6,0-1-0.4-1-1s0.4-1,1-1	s1,0.4,1,1S10.6,16,10,16z"></path><path d="M9.2,5h1.5v7H9.2V5z M10,16c-0.6,0-1-0.4-1-1s0.4-1,1-1s1,0.4,1,1S10.6,16,10,16z" data-icon-path="inner-path" opacity="0"></path></svg>
+    <p><b>&nbsp;&nbsp; Attention:</b> This version of Event Processing has reached End of Support. For more information about supported versions, see the <a href="/event-automation/support/matrix/" target="_blank">support matrix</a>.
+  </p>
+  </div>
+  
+<div id="masthead" class="masthead">
+  <!--
+  <div class="masthead__goToIBMCloud">
+  <div>
+    You are viewing the documentation for the container-native version of IBM Event Automation.
+  </div>
+    <a class="link" target="_self" href="https://cloud.ibm.com/docs/EventStreams?topic=EventStreams-getting-started">Looking for the managed service on IBM Cloud? Click here.</a>
+</div>
+-->
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="mastheadNav">
+
+      
+
+
+        <div class="mastheadTitle">
+          
+          <a class="site-title" href="/event-automation/" target="_self"><span>IBM</span>&nbsp;Event Automation</a>
+          <div class="viewOnIBMcom">
+            <a href="https://www.ibm.com/products/event-automation" target="_blank">View product page</a>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+
+        <div class="mastheadControls">
+            <div class="menuScrollContainer">
+
+        
+
+                <ul id="visible-links" class="visible-links">
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/es/','_self')">
+                      <a href="https://ibm.github.io/event-automation/es/" >Event Streams</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/eem/','_self')">
+                      <a href="https://ibm.github.io/event-automation/eem/" >Event Endpoint Management</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item active" onclick="window.open('https://ibm.github.io/event-automation/ep/','_self')">
+                      <a href="https://ibm.github.io/event-automation/ep/" >Event Processing</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/connectors/','_self')">
+                      <a href="https://ibm.github.io/event-automation/connectors/" >Connect catalog</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/tutorials/','_self')">
+                      <a href="https://ibm.github.io/event-automation/tutorials/" >Tutorials</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/api/','_self')">
+                      <a href="https://ibm.github.io/event-automation/api/" >APIs...</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/support/','_self')">
+                      <a href="https://ibm.github.io/event-automation/support/" >Support</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/search/','_self')">
+                      <button aria-label="Search Button" role="button" id="searchButton" class="search__toggle " type="button" name="search Button">
+                        <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                          <path
+                            d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z"
+                            transform="translate(-.01)"></path>
+                        </svg>
+                      </button>
+                    </li>
+                  
+
+                  
+                </ul>
+        
+
+      </div>
+    </div>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div id="initial-content" class="initial-content" role="main">
+
+
+
+
+
+
+<main id="main" class="mainContainer" role="main">
+    
+      <div id="subMenu" class="subMenu">
+        <div tabindex="0" class="menuIcon" id="menuIcon">
+          <svg id="mobileMenu" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+            <g id="bottomLine">
+              <line class="burgerLine" x1="14" y1="29" x2="34" y2="29" />
+            </g>
+            <g id="middleLine">
+              <line class="burgerLine" x1="14" y1="24" x2="34" y2="24" />
+            </g>
+            <g id="topLine">
+              <line class="burgerLine" x1="14" y1="19" x2="34" y2="19" />
+            </g>
+          </svg>
+        </div>
+        <div id="mobileVersionShortcut" class="versionContainer" tabindex="0">
+          <a id="mobileVersionPillCurrent" class="versionPill">1.1</a>
+        </div>
+      </div>
+    
+  
+
+
+
+<div id="sidebarMask" class="sidebarMask">
+
+  </div>
+  <div id="sidebar" class="sidebar sticky">
+      <div aria-label="Change Version" role="button" aria-expanded="false"
+      
+        id="versionDropdown"
+        tabindex="0"
+        class="versionsBar"
+       >
+          <div class="selectedVersion" id="selectedVersion">
+            <div class="versionContainer" >
+              
+                <a id="versionPillCurrent" class="versionPill">1.1</a>
+                <a class="versionChange">Change Version</a>
+              
+            </div>
+          </div>
+          
+
+
+          <div class="allVersions" id="allVersions">
+            <ul>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/ep/nodes/processornodes/" onclick="openVersion('/event-automation/ep/nodes/processornodes/','ep_1.4')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/ep/nodes/processornodes/" class="versionPill inactive">1.4</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        Latest
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/ep/ep_1.3/nodes/processornodes/" onclick="openVersion('/event-automation/ep/ep_1.3/nodes/processornodes/','ep_1.3')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/ep/ep_1.3/nodes/processornodes/" class="versionPill inactive">1.3</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/ep/ep_1.2/nodes/processornodes/" onclick="openVersion('/event-automation/ep/ep_1.2/nodes/processornodes/','ep_1.2')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/ep/ep_1.2/nodes/processornodes/" class="versionPill inactive">1.2</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/ep/ep_1.1/nodes/processornodes/" onclick="openVersion('/event-automation/ep/ep_1.1/nodes/processornodes/','ep_1.1')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/ep/ep_1.1/nodes/processornodes/" class="versionPill active">1.1</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                          <img alt="" src="https://ibm.github.io/event-automation/images/checkbox.svg" />
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/ep/ep_1.0/nodes/processornodes/" onclick="openVersion('/event-automation/ep/ep_1.0/nodes/processornodes/','ep_1.0')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/ep/ep_1.0/nodes/processornodes/" class="versionPill inactive">1.0</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+            </ul>
+          </div>
+        </div>
+
+  
+    
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <ul class="nav__items">
+
+    
+      <li>
+        
+          <span class="nav__sub-title">About</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/about/overview/" class="">Introduction</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/about/whats-new/" class="">What's new</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/about/key-concepts/" class="">Key concepts</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Installing</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/installing/prerequisites/" class="">Prerequisites</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/installing/planning/" class="">Planning your installation</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/installing/overview/" class="">Installation overview</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/installing/installing/" class="">Installing in an online OpenShift environment</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/installing/offline/" class="">Installing in an offline environment</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/installing/installing-on-kubernetes/" class="">Installing on other Kubernetes platforms</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/installing/configuring/" class="">Configuring</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/installing/post-installation/" class="">Post-installation tasks</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/installing/backup-restore/" class="">Backing up and restoring</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/installing/uninstalling/" class="">Uninstalling</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/installing/upgrading/" class="">Upgrading</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Getting started with Authoring</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/getting-started/logging-in/" class="">Logging in</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/getting-started/canvas/" class="">Building a simple flow</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Security</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/security/managing-access/" class="">Managing access</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/security/user-roles/" class="">Managing user roles</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/security/verifying-signature/" class="">Verifying container image signatures</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/security/network-policies/" class="">Network policies</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/security/gdpr-considerations/" class="">Considerations for GDPR</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/security/data-encryption/" class="">Encrypting your data</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Administering</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/administering/flink-health/" class="">Monitoring Flink health</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Nodes</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/nodes/summary/" class="">Node overview</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/nodes/eventnodes/" class="">Events</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/nodes/processornodes/" class="active">Processors</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/nodes/windowednodes/" class="">Windowed</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/nodes/joins/" class="">Joins</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/nodes/enrichmentnode/" class="">Enrichment</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Deploying advanced flows</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/advanced/exporting-flows/" class="">Exporting and importing flows</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/advanced/deploying-development/" class="">Deploying jobs in development environments</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/advanced/deploying-production/" class="">Deploying jobs in production environments</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Reference</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/reference/api-reference/" class="">API reference for the CRDs</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/reference/supported-functions/" class="">Supported Flink SQL functions</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Troubleshooting</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/troubleshooting/intro/" class="">Troubleshooting overview</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/troubleshooting/gathering-logs/" class="">Gathering logs</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/troubleshooting/trace-logging/" class="">Configuring trace logging</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/troubleshooting/changing-ca-certificate/" class="">Error when logging in to UI after changing CA certificate</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/troubleshooting/waiting-for-events/" class="">Results stuck in `Waiting for output events`</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/troubleshooting/default-scc-issues/" class="">The IBM Operator for Apache Flink not installing due to Security Context Constraint (SCC) issues</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/troubleshooting/flows-stop-working/" class="">Running flows stop working</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/troubleshooting/certificate-rotation/" class="">Error when logging in to UI after certificate rotation</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/troubleshooting/fsgroup-not-set/" class="">Flink instances cannot access jobResultStore</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/troubleshooting/rbac/" class="">Operator watching single namespace has escalated permissions</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/troubleshooting/changing-database-ca-certificate/" class="">Error when you connect to a database after modifying a CA certificate</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/troubleshooting/flink-imagepullbackoff/" class="">Flink pods enter ImagePullBackOff state</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/troubleshooting/flink-jar-permissions/" class="">Flink instances cannot access SQL runner JAR file</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/troubleshooting/enrichment-filter/" class="">Filters are not applied after enriching events with database nodes</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/troubleshooting/migration-issue/" class="">Error in flows during upgrade or import</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/troubleshooting/no-output-event-from-api-node/" class="">Enrichment from API produces no output events</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/troubleshooting/bad-output-from-auto-detection/" class="">Auto-detection message format issues</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/troubleshooting/no-main-key-backup/" class="">Event Processing fails with `Unable to find main key backup` error</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.1/troubleshooting/image-not-upgraded/" class="">IBM Operator for Apache Flink fails to automatically update the image to 1.1.8 after upgrading</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+    
+  
+  </div>
+
+
+  <div class="mainContent">
+    
+    <div id="pageContainer" class="page" itemscope itemtype="http://schema.org/CreativeWork">
+      
+      <div class="page__inner-wrap">
+      
+
+        
+        <section class="page__content pageSpacing" itemprop="text">
+          
+        
+          <header>
+            <h1 id="page-title" class="page__title" itemprop="headline">
+              Processor nodes
+</h1>
+            
+          </header>  
+        
+        
+
+                    
+          <div class="content">
+            <p>The following processor nodes are available in Event Processing:</p>
+<ul>
+  <li><a href="#filter">Filter</a></li>
+  <li><a href="#transform">Transform</a></li>
+  <li><a href="#unpack-arrays">Unpack arrays</a></li>
+</ul>
+
+<h2 id="filter">Filter</h2>
+
+<p>A filter node takes in a stream of events and applies an expression to determine which events to allow to pass and which to block. The output of the filter node is a single stream of events that can be used for analysis or other processing. This node helps to reduce the amount of data by allowing events that match the expression.</p>
+
+<h3 id="adding-a-filter-node">Adding a filter node</h3>
+
+<p>To add a filter node, complete the following steps:</p>
+
+<ol>
+  <li>Ensure that a stream of events is available, from an event source node or from the output of any previously configured node.</li>
+  <li>In the <strong>Palette</strong>, under <strong>Processors</strong>, drag the <strong>Filter</strong> node into the canvas.</li>
+  <li>Connect the node to an event source by dragging the <strong>Output port</strong> from a source node into the <strong>Input port</strong> of this node. A purple checkbox <img src="/event-automation/images/unconfigured_node.svg" alt="unconfigured_node icon" title="Diagram showing the unconfigured node icon." height="30px" width="15px" /> is displayed on the filter node indicating that the node is yet to be configured.</li>
+  <li>Hover over the node and click <img src="/event-automation/images/rename.svg" alt="Edit icon" title="The edit icon." height="30px" width="15px" /> <strong>Edit</strong> to configure the node.</li>
+</ol>
+
+<p>The <strong>Configure a Filter</strong> window opens.</p>
+
+<h3 id="configuring-a-filter-node">Configuring a filter node</h3>
+
+<p>To configure a filter node, complete the following steps:</p>
+
+<ol>
+  <li>In the <strong>Details</strong> section, enter a name for your node. The output stream of events from this node will be referred with the name you entered.</li>
+  <li>
+    <p>Click <strong>Next</strong> to open the <strong>Define Filter</strong> pane.</p>
+
+    <p><img src="/event-automation/images/1.1.9.svg" alt="Event Processing 1.1.9 icon" title="In Event Processing 1.1.9 and later." /> <strong>Note:</strong> A tree view of the event structure is available. To view all the input properties of the current node, click <strong>View input properties</strong> in the upper-right corner of the pane.</p>
+  </li>
+  <li>
+    <p>Enter an expression in the <strong>Filter Expression</strong> text box to filter the events. The expression consists of a property, a mathematical condition, and a value. You can create a simple expression with one condition or a complex expression with multiple conditions based on your requirement. You can create multiple conditions within an expression by using <code class="language-plaintext highlighter-rouge">AND</code> or <code class="language-plaintext highlighter-rouge">OR</code>.</p>
+
+    <p>Examples:</p>
+    <ul>
+      <li>
+        <p>Simple expression:</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>example_property &gt; 100
+</code></pre></div>        </div>
+      </li>
+      <li>
+        <p>Complex expression:</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> example_property1 &gt; 50 AND example_property2 &gt; 30 OR example_property3 &lt; 25 AND example_property4 &lt; 250
+</code></pre></div>        </div>
+      </li>
+      <li>
+        <p><img src="/event-automation/images/1.1.3.svg" alt="Event Processing 1.1.3 icon" title="In Event Processing 1.1.3 and later." /> Expression with complex object property:</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> example_property.nested_property IS NOT NULL AND example_property.nested_property.leaf_property &gt; 100
+</code></pre></div>        </div>
+      </li>
+      <li>
+        <p><img src="/event-automation/images/1.1.4.svg" alt="Event Processing 1.1.4 icon" title="In Event Processing 1.1.4 and later." /> Expression with an array property:</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> example_array_property[1] IS NOT NULL AND ARRAY_CONTAINS(example_array_property, 10)
+</code></pre></div>        </div>
+      </li>
+      <li>
+        <p><img src="/event-automation/images/1.1.8.svg" alt="Event Processing 1.1.8 icon" title="In Event Processing 1.1.8 and later." /> Expression with complex array property:</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> example_array_of_array_property[1][1] IS NOT NULL AND ARRAY_CONTAINS(example_array_of_array_property[1][1], 10)
+</code></pre></div>        </div>
+      </li>
+    </ul>
+
+    <p><strong>Note:</strong> The index of arrays starts at 1, not at 0.</p>
+
+    <p><strong>Note:</strong> Expressions are prioritized based on <a href="https://calcite.apache.org/docs/reference.html#operators-and-functions" target="_blank">operator precedence</a>.</p>
+
+    <p>Alternatively, you can use the assistant to create an expression. Select <strong>Assistant</strong> at the right end of the text-box to open the assistant. The assistant provides a drop-down list of properties and conditions that you can use to create the expression.</p>
+
+    <p><strong>Note:</strong> The <strong>Assistant</strong> drop-down menu does not support array properties. However, you can manually write the expressions by selecting the property from the list that appears when you press Ctrl+Space in the <strong>Expression</strong> field.</p>
+  </li>
+  <li>Scroll down and click <strong>Configure Filter</strong> to complete the configuration.</li>
+</ol>
+
+<p>A green checkbox <img src="/event-automation/images/checkbox_green.svg" alt="green checkbox" title="Icon showing a green checkbox." height="30px" width="15px" /> appears on the filter node if the node is configured correctly. If there is any error in your configuration, a red checkbox <img src="/event-automation/images/errornode.svg" alt="red checkbox" title="Icon showing a red checkbox." height="30px" width="15px" /> appears.</p>
+
+<p>User actions are <a href="../../getting-started/canvas/#save">saved</a> automatically. For save status updates, see the canvas header.</p>
+
+<h2 id="transform">Transform</h2>
+
+<p>A transform node takes in a stream of events to modify your existing properties or create new properties. Existing properties can be removed or renamed, and new properties can be added. The value of a new property is determined by the expression you create.</p>
+
+<p>Transform node supports various functions to create an expression. For more information about functions, see the <a href="https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/dev/table/functions/systemfunctions/#scalar-functions" target="_blank">Flink documentation</a>.</p>
+
+<h3 id="adding-a-transform-node">Adding a transform node</h3>
+
+<p>To add a transform node, complete the following steps:</p>
+
+<ol>
+  <li>Ensure that a stream of events is available, from an event source node or from the output of any previously configured node.</li>
+  <li>In the <strong>Palette</strong>, under <strong>Processor</strong>, drag-and-drop the <strong>Transform</strong> node into the canvas.</li>
+  <li>Connect the node to an event source by dragging the <strong>Output port</strong> from a source node into the <strong>Input port</strong> of this node. A purple checkbox <img src="/event-automation/images/unconfigured_node.svg" alt="unconfigured_node icon" title="Diagram showing the unconfigured node icon." height="30px" width="15px" /> is displayed on the transform node indicating that the node is yet to be configured.</li>
+  <li>
+    <p>Hover over the node and click <img src="/event-automation/images/rename.svg" alt="Edit icon" title="The edit icon." height="30px" width="15px" /> <strong>Edit</strong> to configure the node.</p>
+
+    <p>The <strong>Configure Transform</strong> window appears.</p>
+  </li>
+</ol>
+
+<h3 id="configuring-a-transform-node">Configuring a transform node</h3>
+
+<p>To configure a transform node, complete the following steps:</p>
+
+<ol>
+  <li>In the <strong>Details</strong> section, enter a name for your node. The output stream of events from this node will be referred with the name you entered.</li>
+  <li>
+    <p>Click <strong>Next</strong> to open the <strong>Create properties</strong> pane.</p>
+
+    <p><img src="/event-automation/images/1.1.9.svg" alt="Event Processing 1.1.9 icon" title="In Event Processing 1.1.9 and later." /> <strong>Note:</strong> A tree view of the event structure is available. To view all the input properties of the current node, click <strong>View input properties</strong> in the upper-right corner of the pane.</p>
+  </li>
+  <li>Click <strong>Create new property</strong> to add a new property to the table.</li>
+  <li>Hover over the property name and click the <strong>Edit</strong> icon <img src="/event-automation/images/rename.svg" alt="edit icon" title="The edit icon." height="30px" width="15px" /> and enter a name for your property.</li>
+  <li>
+    <p>Enter your expression in the <strong>Expression</strong> text box to define your property.</p>
+
+    <p>Examples:</p>
+    <ul>
+      <li>
+        <p>Simple expressions:</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- example_number_property1 * example_number_property2
+- POWER(`example_number_property1`, 2)
+</code></pre></div>        </div>
+      </li>
+      <li>
+        <p>Complex expressions:</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> - REGEXP_EXTRACT(`example_property`, '([A-Z]+)\-([0-9]+)\-([0-9]+)', 1)
+ - IF(`example_number_property` &gt;= 20, 'high', 'low')
+ - TO_TIMESTAMP(example_string_property, 'EEE MMM dd HH:mm:ss zzz yyyy')
+ - DAYOFWEEK( CAST(example_timestamp_property AS DATE) )
+</code></pre></div>        </div>
+      </li>
+      <li>
+        <p><img src="/event-automation/images/1.1.3.svg" alt="Event Processing 1.1.3 icon" title="In Event Processing 1.1.3 and later." /> Expressions with complex object property:</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> - example_property.nested_object_property
+ - example_property.nested_object_property.leaf_property
+ - CONCAT( CAST(example_property.nested_object_property.leaf_property AS STRING), ‘$’)
+</code></pre></div>        </div>
+      </li>
+      <li>
+        <p><img src="/event-automation/images/1.1.4.svg" alt="Event Processing 1.1.4 icon" title="In Event Processing 1.1.4 and later." /> Expressions with array properties:</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> - ARRAY_JOIN(`example_string_array_property`, ', ')
+ - ARRAY_REMOVE(example_property.nested_object_property.leaf_array_property, NULL)
+ - example_property BETWEEN example_array_property[1] AND example_array_property[2]
+ - example_property.nested_object_property.leaf_array_property
+</code></pre></div>        </div>
+      </li>
+      <li>
+        <p><img src="/event-automation/images/1.1.8.svg" alt="Event Processing 1.1.8 icon" title="In Event Processing 1.1.8 and later." /> Expressions with complex array properties:</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> - CARDINALITY(example_array_of_object_property) = 1
+ - CARDINALITY(example_array_of_array_of_object_property[1][1].stringArray) = 1 AND example_array_of_array_of_object_property[1][1].stringArray[1] LIKE 'red'
+ - CARDINALITY(example_array_of_array_of_object_property[1][1].booleanArray) = 1 AND ELEMENT(example_array_of_array_of_object_property[1][1].booleanArray) IS TRUE
+ - ARRAY_CONTAINS(example_array_of_array_property[2], 'red') 
+</code></pre></div>        </div>
+      </li>
+    </ul>
+
+    <p><img src="/event-automation/images/1.1.3.svg" alt="Event Processing 1.1.3 icon" title="In Event Processing 1.1.3 and later." /> <strong>Note:</strong> The expression can also simply refer to existing properties. This is particularly useful when renaming complex object properties or when moving nested properties to the top-level.</p>
+  </li>
+  <li>Optional: To use the assistant to enter an expression, complete the following steps:
+    <ol>
+      <li>Click the <strong>Assistant</strong> drop-down menu to open the assistant.</li>
+      <li>From the <strong>Function</strong> list, select a function with which you want to create an expression.</li>
+      <li>In the function you selected previously, enter the required values.</li>
+      <li>
+        <p>Select <strong>Insert into expression</strong> to add the expression in the text-box.</p>
+
+        <p><strong>Note:</strong> Ensure you choose the values with correct data type for your expression. Properties that are used as values in the comparison operations must be of the same data type. Arithmetic operations are only allowed on integer and double data types. String operations are only possible with properties of string data type. Some temporal functions require a timestamp data type.</p>
+      </li>
+    </ol>
+
+    <p><strong>Note:</strong> The <strong>Assistant</strong> drop-down menu does not support array properties. However, you can manually write the expressions by selecting the property from the list that appears when you press Ctrl+Space in the <strong>Expression</strong> field.</p>
+  </li>
+  <li>Optional: Repeat steps 3 to 6 to create more properties.</li>
+  <li>Click <strong>Next</strong> to open the <strong>Output properties</strong> pane. You can manage the properties that come from this node to suit your requirements.</li>
+  <li>
+    <p><img src="/event-automation/images/1.1.3.svg" alt="Event Processing 1.1.3 icon" title="In Event Processing 1.1.3 and later." /> Only <strong>leaf</strong> properties are listed in the <strong>Output properties</strong> table. You can remove specific properties from an object, or if you want to remove the entire object, remove all the properties related to it one by one.</p>
+
+    <p>Click <strong>Remove property</strong> <img src="/event-automation/images/remove.svg" alt="remove icon" title="Diagram showing remove icon." height="30px" width="15px" /> to remove a property so that it is not displayed in the output.</p>
+
+    <p><strong>Note:</strong> Nested properties are displayed by using a forward slash (<code class="language-plaintext highlighter-rouge">/</code>) as a separator for each level of nesting. For example, <code class="language-plaintext highlighter-rouge">product / id</code> or <code class="language-plaintext highlighter-rouge">customer / address / city</code>.</p>
+  </li>
+  <li>
+    <p><img src="/event-automation/images/1.1.3.svg" alt="Event Processing 1.1.3 icon" title="In Event Processing 1.1.3 and later." /> Only <strong>leaf</strong> properties are listed in the <strong>Output properties</strong> table. You can only rename the last nested property within nested properties, you cannot rename the top-level or any other properties in between. For example, in the case of <code class="language-plaintext highlighter-rouge">customer / address / city</code>, you can only rename <code class="language-plaintext highlighter-rouge">city</code>, but not <code class="language-plaintext highlighter-rouge">address</code> or <code class="language-plaintext highlighter-rouge">customer</code>.</p>
+
+    <p><strong>Note:</strong> To rename the top-level property <code class="language-plaintext highlighter-rouge">customer/address/city</code> (in this case, <code class="language-plaintext highlighter-rouge">customer</code>), create a new property and add details in the following fields:</p>
+    <ul>
+      <li><strong>Property name:</strong> Add a new name for the property.</li>
+      <li><strong>Expression</strong>: Add the name of the property to rename, for example, customer.</li>
+    </ul>
+  </li>
+  <li>Optional: To rename a property, hover over the property name and click the <strong>Edit</strong> icon <img src="/event-automation/images/rename.svg" alt="edit icon" title="The edit icon." height="30px" width="15px" />.
+    <ul>
+      <li>In the text-box, enter a new name for your property.</li>
+      <li>Click outside the text-box or press Enter on your keyboard to rename the property.</li>
+    </ul>
+  </li>
+  <li>Optional: To add a property that was previously removed, go to the <strong>Properties to remove</strong> table that lists the removed properties. For the property you want to add back, click the <strong>Add</strong> icon <img src="/event-automation/images/add.svg" alt="add icon" title="Diagram showing add icon." height="30px" width="15px" />.</li>
+  <li>To complete the transform node configuration, click <strong>Configure</strong>.</li>
+</ol>
+
+<p>A green checkbox <img src="/event-automation/images/checkbox_green.svg" alt="green checkbox" title="Icon showing a green checkbox." height="30px" width="15px" /> appears on the transform node if the node is configured correctly. If there is any error in your configuration, a red checkbox <img src="/event-automation/images/errornode.svg" alt="red checkbox" title="DiagIconram showing red checkbox." height="30px" width="15px" /> appears.</p>
+
+<p>User actions are <a href="../../getting-started/canvas/#save">saved</a> automatically. For save status updates, see the canvas header.</p>
+
+<h2 id="unpack-arrays">Unpack arrays</h2>
+
+<p><img src="/event-automation/images/1.1.7.svg" alt="Event Processing 1.1.7 icon" title="In Event Processing 1.1.7 and later." />  An unpack array node takes an existing array of elements in a stream of events to unpack it. You can unpack each array element into a new property in separate events, or unpack the array elements into new properties that are all included in the same event.</p>
+
+<h3 id="adding-an-unpack-array-node">Adding an unpack array node</h3>
+
+<p>To add an unpack array node, complete the following steps:</p>
+
+<ol>
+  <li>Ensure that a stream of events is available, from an event source node or from the output of any previously configured node.</li>
+  <li>In the <strong>Palette</strong>, under <strong>Processors</strong>, drag-and-drop the <strong>Unpack arrays</strong> node into the canvas.</li>
+  <li>Connect the node to an input stream by dragging the <strong>Output Port</strong> from an input node into the <strong>Input Port</strong> of this node. A purple checkbox <img src="/event-automation/images/unconfigured_node.svg" alt="unconfigured_node icon" title="Diagram showing the unconfigured node icon." height="30px" width="15px" /> is displayed on the filter node indicating that the node is yet to be configured.</li>
+  <li>
+    <p>Hover over the node, and click <img src="/event-automation/images/rename.svg" alt="Edit icon" title="The edit icon." height="30px" width="15px" /> <strong>Edit</strong> to configure the node.</p>
+
+    <p>The <strong>Configure unpack node</strong> window opens.</p>
+  </li>
+</ol>
+
+<h3 id="configuring-unpack-array-node">Configuring unpack array node</h3>
+
+<p>To configure the unpack array node, complete the following steps:</p>
+
+<ol>
+  <li>In the <strong>Details</strong> section, enter a name for your node. The output stream of events from this node will be referred with the name you entered.</li>
+  <li>
+    <p>Click <strong>Next</strong> to open the <strong>Array selection</strong> pane.</p>
+
+    <p><img src="/event-automation/images/1.1.9.svg" alt="Event Processing 1.1.9 icon" title="In Event Processing 1.1.9 and later." /> <strong>Note:</strong> A tree view of the event structure is available. To view all the input properties of the current node, click <strong>View input properties</strong> in the upper-right corner of the pane.</p>
+  </li>
+  <li>
+    <p>Select the radio button <img src="/event-automation/images/radio-button.svg" alt="radio button" title="Diagram showing unchecked radio button." height="30px" width="15px" /> of the array you want to unpack.</p>
+
+    <p><strong>Note:</strong> You can use the search bar to search for a particular array. As you start typing the array name in the search bar, you get a filtered list of matching arrays.</p>
+  </li>
+  <li>Click <strong>Next</strong> to open the <strong>Unpacking the array</strong> pane.</li>
+  <li>
+    <p>The following options are available to unpack the array:</p>
+
+    <ul>
+      <li><strong>Unpack into events:</strong> To unpack each array element into a new property in separate events, in the <strong>Property name</strong> field, provide a name for the property that represents the array element. You will have as many events as array elements and each event contains the property with one of the array elements.</li>
+      <li>
+        <p><strong>Unpack into properties:</strong> To unpack each array element into properties within an event, provide a name in the <strong>Property name</strong> field for each property that represents the array element. By default, properties are listed sequentially (1, 2, 3,…).</p>
+
+        <ul>
+          <li>To add a property, click <strong>Add next element</strong>, and provide a name for the property in the <strong>Property name</strong> field.</li>
+          <li>To remove a property, click the <strong>Delete property</strong> icon <img src="/event-automation/images/trashcan.svg" alt="trash icon" title="Remove topic icon." height="30px" width="15px" /> corresponding to the property you want to remove.</li>
+          <li>To edit the name of a property, hover over the name, and click the <strong>Edit</strong> icon <img src="/event-automation/images/rename.svg" alt="Edit icon" title="The edit icon." height="30px" width="15px" />.</li>
+        </ul>
+      </li>
+    </ul>
+
+    <p><strong>Note:</strong></p>
+    <ul>
+      <li>The order of the properties in the table corresponds to the order in the array: For example, if you define the properties p1, p2, and p3 in this order, and you have the array [1, 2, 3], then the first property p1 is mapped to the first array element 1, p2 is mapped to 2, and p3 is mapped to 3.</li>
+      <li>If the array contains more elements than the number of properties, elements with no mapping are dropped: For example, if you define the properties p1, p2, and p3 in this order, and you have the array [1, 2, 3, 4], then the first property p1 is mapped to the first array element 1, p2 is mapped to 2, p3 is mapped to 3, and 4 is dropped.</li>
+      <li>If the array contains fewer elements than the number of properties, then the properties with no mapping carries a null value: For example, if you define the properties p1, p2, and p3 in this order, and you have the array [1, 2], then the first property p1 is mapped to the first array element 1, p2 mapped to 2, and p3 is null.</li>
+      <li>If you define a property p, and you have the array [1, 2], you will have one event where p equals 1 and another event where p equals 2.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Click <strong>Next</strong> to open the <strong>Output properties</strong> pane.</p>
+
+    <p>The properties that you added in the previous step are displayed in the <strong>Output properties</strong>. You can manage the properties that come from this node to suit your requirements.</p>
+
+    <p><strong>Note:</strong> The array that you selected to unpack is not part of the output properties.</p>
+  </li>
+  <li>To complete an unpack node configuration, click <strong>Configure</strong>.</li>
+</ol>
+
+<p>A green checkbox <img src="/event-automation/images/checkbox_green.svg" alt="green checkbox" title="Icon showing a green checkbox." height="30px" width="15px" /> is displayed on the unpack array node if the node is configured correctly. If there is any error in your configuration, a red checkbox <img src="/event-automation/images/errornode.svg" alt="red checkbox" title="Icon showing a red checkbox." height="30px" width="15px" /> is displayed.</p>
+
+
+          </div>
+
+
+          
+        </section>
+
+        <aside class="sidebar__right ">
+          
+          <div class="fixedSidebar">
+            <nav class="toc">
+              <ul class="toc__menu">
+  <li><a href="#filter">Filter</a>
+    <ul>
+      <li><a href="#adding-a-filter-node">Adding a filter node</a></li>
+      <li><a href="#configuring-a-filter-node">Configuring a filter node</a></li>
+    </ul>
+  </li>
+  <li><a href="#transform">Transform</a>
+    <ul>
+      <li><a href="#adding-a-transform-node">Adding a transform node</a></li>
+      <li><a href="#configuring-a-transform-node">Configuring a transform node</a></li>
+    </ul>
+  </li>
+  <li><a href="#unpack-arrays">Unpack arrays</a>
+    <ul>
+      <li><a href="#adding-an-unpack-array-node">Adding an unpack array node</a></li>
+      <li><a href="#configuring-unpack-array-node">Configuring unpack array node</a></li>
+    </ul>
+  </li>
+</ul>
+            </nav>
+          </div>
+          
+        </aside>
+
+
+      </div>
+      <div class="pageEnd">
+        
+          
+  <nav class="pagination">
+    
+      <div class="previous" onclick="window.open('/event-automation/ep/ep_1.1/nodes/eventnodes/','_self')">
+        <div class="container">
+          <a href="/event-automation/ep/ep_1.1/nodes/eventnodes/" class="pagination--pager" title="Previous Item: Event nodes
+">Previous</a>
+          <h2 class="titlePreview">Event nodes
+</h2>
+        </div>
+      </div>
+    
+    
+      <div class="next" onclick="window.open('/event-automation/ep/ep_1.1/nodes/windowednodes/','_self')">
+        <div class="container">
+          <a href="/event-automation/ep/ep_1.1/nodes/windowednodes/" class="pagination--pager" title="Next Item: Windowed nodes
+">Next</a>
+          <h2 class="titlePreview">Windowed nodes
+</h2>
+        </div>
+      </div>
+      
+  </nav>
+
+        
+      </div>
+    </div>
+
+
+  </div> <!-- Main content -->
+
+</main></div>
+
+
+    
+      <div class="page__footer">
+          <footer>
+            <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+
+            
+<div class="page__footer-copyright"><a href="https://www.ibm.com/privacy/us/en/" rel="nofollow" target="_blank">Privacy Policy</a>  &nbsp;© Copyright IBM Corporation 2025</br>
+<a href="https://www.ibm.com/legal/terms" rel="nofollow" target="_blank">Terms of use</a> </br> <a href="https://ibm.github.io/event-automation/accessibility/" rel="nofollow" target="_blank">Accessibility</a> </br> <a href="https://ibm.github.io/event-automation/notices/" rel="nofollow" target="_blank">Notices</a></br>
+          </footer>
+      </div>      
+    
+
+
+    
+  <script src="/event-automation/assets/js/main.min.js"></script>
+  <!-- <script src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script> -->
+
+
+
+
+
+
+<script src="/event-automation/assets/js/design.js"></script>
+
+
+
+
+
+<script src="/event-automation/assets/js/lunr/lunr.min.js"></script>
+<script src="/event-automation/assets/js/lunr/lunr-store.js"></script>
+<script src="/event-automation/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+    
+
+    
+  </body>
+</html>

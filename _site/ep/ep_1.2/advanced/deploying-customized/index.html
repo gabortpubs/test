@@ -1,0 +1,2382 @@
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Deploying customized jobs - Event Processing</title>
+<meta name="description" content="Find out how to deploy in a Flink cluster your flows customized for production or test environments.">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="IBM Event Automation">
+<meta property="og:url" content="https://ibm.github.io/event-automation/ep/ep_1.2/advanced/deploying-customized/" />
+<meta property="og:title" content="Event Processing | Deploying customized jobs" />
+<meta property="og:description" content="Find out how to deploy in a Flink cluster your flows customized for production or test environments." />
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="IBM Event Automation | Deploying customized jobs" />
+
+
+
+
+  <meta property="og:description" content="Find out how to deploy in a Flink cluster your flows customized for production or test environments.">
+
+
+
+  <meta property="og:image" content="https://ibm.github.io/event-automation/assets/siteMeta/appIcon_og_fb.png">
+  <meta name="twitter:image" content="https://ibm.github.io/event-automation/assets/siteMeta/appIcon_og_square.png">
+
+
+
+  <meta property="article:published_time" content="2025-11-07T03:45:08-05:00">
+
+
+
+
+
+
+<link rel="canonical" href="https://ibm.github.io/event-automation/ep/ep_1.2/advanced/deploying-customized/">
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Organization",
+      "url": "https://ibm.github.io/event-automation",
+      "logo": "https://ibm.github.io/event-automation/assets/siteMeta/appIcon_og_fb.png"
+    }
+  </script>
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": null,
+      "url": "https://ibm.github.io/event-automation",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/event-automation/feed.xml" type="application/atom+xml" rel="alternate" title="IBM Event Automation Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/event-automation/assets/css/main.css">
+
+<script src="/event-automation/assets/js/scrollsidebar.js"></script>
+<script src="/event-automation/assets/js/copytoclipboard.js"></script>
+<script src="/event-automation/assets/js/highlighter.js"></script>
+<script src="/event-automation/assets/js/newtab.js"></script>
+
+
+
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<link rel="apple-touch-icon" sizes="180x180" href="https://ibm.github.io/event-automation/assets/siteMeta/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://ibm.github.io/event-automation/assets/siteMeta/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://ibm.github.io/event-automation/assets/siteMeta/favicon-16x16.png">
+<link rel="manifest" href="https://ibm.github.io/event-automation/assets/siteMeta/site.webmanifest">
+<link rel="mask-icon" href="https://ibm.github.io/event-automation/assets/siteMeta/safari-pinned-tab.svg" color="#000000">
+<link rel="shortcut icon" href="https://ibm.github.io/event-automation/assets/siteMeta/favicon.ico">
+<link rel="shortcut icon" type="image/png" href="https://ibm.github.io/event-automation/assets/siteMeta/favicon-16x16.png"/>
+<link rel="shortcut icon" type="image/png" href="https://ibm.github.io/event-automation/assets/siteMeta/favicon-32x32.png"/>
+<meta name="msapplication-TileColor" content="#000000">
+<meta name="msapplication-config" content="https://ibm.github.io/event-automation/assets/siteMeta/browserconfig.xml">
+<meta name="theme-color" content="#000000">
+
+
+
+<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,600%7CIBM+Plex+Serif:300,400,500%7CIBM+Plex+Mono:300,400,500,700" rel="stylesheet">
+
+<!-- end custom head snippets -->
+
+    <link rel="shortcut icon" type="image/x-icon" href="/event-automation/assets/favicon.ico" >
+    
+    <base target="_parent">
+
+  </head>
+  <script src="/event-automation/assets/animation/lottie.js" type="text/javascript"></script>
+  <script src="/event-automation/assets/js/connectors.js"></script>
+  <script src="/event-automation/assets/js/copytoclipboard.js"></script>
+  <script src="/event-automation/assets/js/highlighter.js"></script>
+
+
+  
+  <body onload="urlChecker()" class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+
+
+  
+
+
+
+
+
+
+<div id="masthead" class="masthead">
+  <!--
+  <div class="masthead__goToIBMCloud">
+  <div>
+    You are viewing the documentation for the container-native version of IBM Event Automation.
+  </div>
+    <a class="link" target="_self" href="https://cloud.ibm.com/docs/EventStreams?topic=EventStreams-getting-started">Looking for the managed service on IBM Cloud? Click here.</a>
+</div>
+-->
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="mastheadNav">
+
+      
+
+
+        <div class="mastheadTitle">
+          
+          <a class="site-title" href="/event-automation/" target="_self"><span>IBM</span>&nbsp;Event Automation</a>
+          <div class="viewOnIBMcom">
+            <a href="https://www.ibm.com/products/event-automation" target="_blank">View product page</a>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+
+        <div class="mastheadControls">
+            <div class="menuScrollContainer">
+
+        
+
+                <ul id="visible-links" class="visible-links">
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/es/','_self')">
+                      <a href="https://ibm.github.io/event-automation/es/" >Event Streams</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/eem/','_self')">
+                      <a href="https://ibm.github.io/event-automation/eem/" >Event Endpoint Management</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item active" onclick="window.open('https://ibm.github.io/event-automation/ep/','_self')">
+                      <a href="https://ibm.github.io/event-automation/ep/" >Event Processing</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/connectors/','_self')">
+                      <a href="https://ibm.github.io/event-automation/connectors/" >Connect catalog</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/tutorials/','_self')">
+                      <a href="https://ibm.github.io/event-automation/tutorials/" >Tutorials</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/api/','_self')">
+                      <a href="https://ibm.github.io/event-automation/api/" >APIs...</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/support/','_self')">
+                      <a href="https://ibm.github.io/event-automation/support/" >Support</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/search/','_self')">
+                      <button aria-label="Search Button" role="button" id="searchButton" class="search__toggle " type="button" name="search Button">
+                        <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                          <path
+                            d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z"
+                            transform="translate(-.01)"></path>
+                        </svg>
+                      </button>
+                    </li>
+                  
+
+                  
+                </ul>
+        
+
+      </div>
+    </div>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div id="initial-content" class="initial-content" role="main">
+
+
+
+
+
+
+<main id="main" class="mainContainer" role="main">
+    
+      <div id="subMenu" class="subMenu">
+        <div tabindex="0" class="menuIcon" id="menuIcon">
+          <svg id="mobileMenu" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+            <g id="bottomLine">
+              <line class="burgerLine" x1="14" y1="29" x2="34" y2="29" />
+            </g>
+            <g id="middleLine">
+              <line class="burgerLine" x1="14" y1="24" x2="34" y2="24" />
+            </g>
+            <g id="topLine">
+              <line class="burgerLine" x1="14" y1="19" x2="34" y2="19" />
+            </g>
+          </svg>
+        </div>
+        <div id="mobileVersionShortcut" class="versionContainer" tabindex="0">
+          <a id="mobileVersionPillCurrent" class="versionPill">1.2</a>
+        </div>
+      </div>
+    
+  
+
+
+
+<div id="sidebarMask" class="sidebarMask">
+
+  </div>
+  <div id="sidebar" class="sidebar sticky">
+      <div aria-label="Change Version" role="button" aria-expanded="false"
+      
+        id="versionDropdown"
+        tabindex="0"
+        class="versionsBar"
+       >
+          <div class="selectedVersion" id="selectedVersion">
+            <div class="versionContainer" >
+              
+                <a id="versionPillCurrent" class="versionPill">1.2</a>
+                <a class="versionChange">Change Version</a>
+              
+            </div>
+          </div>
+          
+
+
+          <div class="allVersions" id="allVersions">
+            <ul>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/ep/advanced/deploying-customized/" onclick="openVersion('/event-automation/ep/advanced/deploying-customized/','ep_1.4')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/ep/advanced/deploying-customized/" class="versionPill inactive">1.4</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        Latest
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/ep/ep_1.3/advanced/deploying-customized/" onclick="openVersion('/event-automation/ep/ep_1.3/advanced/deploying-customized/','ep_1.3')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/ep/ep_1.3/advanced/deploying-customized/" class="versionPill inactive">1.3</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/ep/ep_1.2/advanced/deploying-customized/" onclick="openVersion('/event-automation/ep/ep_1.2/advanced/deploying-customized/','ep_1.2')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/ep/ep_1.2/advanced/deploying-customized/" class="versionPill active">1.2</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                          <img alt="" src="https://ibm.github.io/event-automation/images/checkbox.svg" />
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/ep/ep_1.1/advanced/deploying-customized/" onclick="openVersion('/event-automation/ep/ep_1.1/advanced/deploying-customized/','ep_1.1')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/ep/ep_1.1/advanced/deploying-customized/" class="versionPill inactive">1.1</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/ep/ep_1.0/advanced/deploying-customized/" onclick="openVersion('/event-automation/ep/ep_1.0/advanced/deploying-customized/','ep_1.0')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/ep/ep_1.0/advanced/deploying-customized/" class="versionPill inactive">1.0</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+            </ul>
+          </div>
+        </div>
+
+  
+    
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <ul class="nav__items">
+
+    
+      <li>
+        
+          <span class="nav__sub-title">About</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/about/overview/" class="">Introduction</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/about/whats-new/" class="">What's new</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/about/key-concepts/" class="">Key concepts</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Installing</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/installing/prerequisites/" class="">Prerequisites</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/installing/planning/" class="">Planning your installation</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/installing/overview/" class="">Installation overview</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/installing/installing/" class="">Installing in an online OpenShift environment</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/installing/offline/" class="">Installing in an offline environment</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/installing/installing-on-kubernetes/" class="">Installing on other Kubernetes platforms</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/installing/configuring/" class="">Configuring</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/installing/post-installation/" class="">Post-installation tasks</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/installing/backup-restore/" class="">Backing up and restoring</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/installing/uninstalling/" class="">Uninstalling</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/installing/upgrading/" class="">Upgrading</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Getting started with Authoring</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/getting-started/logging-in/" class="">Logging in</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/getting-started/canvas/" class="">Building a simple flow</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Security</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/security/managing-access/" class="">Managing access</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/security/user-roles/" class="">Managing user roles</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/security/verifying-signature/" class="">Verifying container image signatures</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/security/network-policies/" class="">Network policies</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/security/gdpr-considerations/" class="">Considerations for GDPR</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/security/data-encryption/" class="">Encrypting your data</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Administering</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/administering/flink-health/" class="">Monitoring Flink health</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Nodes</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/nodes/summary/" class="">Node overview</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/nodes/eventnodes/" class="">Events</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/nodes/processornodes/" class="">Processors</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/nodes/windowednodes/" class="">Windowed</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/nodes/joins/" class="">Joins</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/nodes/enrichmentnode/" class="">Enrichment</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/nodes/custom/" class="">Custom</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Deploying flows</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/advanced/exporting-flows/" class="">Exporting and importing flows</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/advanced/deploying-customized/" class="active">Deploying customized jobs</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/advanced/deploying-development/" class="">Testing jobs by using the Flink SQL client</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/advanced/deploying-production/" class="">Deploying jobs by using the Apache SQL Runner sample</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Reference</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/reference/event-structure/" class="">Event structure definition</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/reference/api-reference/" class="">API reference for the CRDs</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/reference/supported-functions/" class="">Supported Flink SQL functions</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Troubleshooting</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/troubleshooting/intro/" class="">Troubleshooting overview</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/troubleshooting/gathering-logs/" class="">Gathering logs</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/troubleshooting/trace-logging/" class="">Configuring trace logging</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/troubleshooting/changing-ca-certificate/" class="">Error when logging in to UI after changing CA certificate</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/troubleshooting/waiting-for-events/" class="">Results stuck in `Waiting for output events`</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/troubleshooting/default-scc-issues/" class="">The IBM Operator for Apache Flink not installing due to Security Context Constraint (SCC) issues</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/troubleshooting/flows-stop-working/" class="">Running flows stop working</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/troubleshooting/certificate-rotation/" class="">Error when logging in to UI after certificate rotation</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/troubleshooting/fsgroup-not-set/" class="">Flink instances cannot access jobResultStore</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/troubleshooting/rbac/" class="">Operator watching single namespace has escalated permissions</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/troubleshooting/changing-database-ca-certificate/" class="">Error when you connect to a database after modifying a CA certificate</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/troubleshooting/flink-imagepullbackoff/" class="">Flink pods enter ImagePullBackOff state</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/troubleshooting/flink-jar-permissions/" class="">Flink instances cannot access SQL runner JAR file</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/troubleshooting/migration-issue/" class="">Error in flows during upgrade or import</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/troubleshooting/no-output-event-from-api-node/" class="">Enrichment from API produces no output events</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/troubleshooting/bad-output-from-auto-detection/" class="">Auto-detection message format issues</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/troubleshooting/no-main-key-backup/" class="">Event Processing fails with `Unable to find main key backup` error</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/troubleshooting/event-time-property" class="">Incorrect event time property format causes Flink job to fail</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.2/troubleshooting/error-submitting-job-for-enrichment" class="">Job failure when deploying customized flows that contain API enrichment nodes</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+    
+  
+  </div>
+
+
+  <div class="mainContent">
+    
+    <div id="pageContainer" class="page" itemscope itemtype="http://schema.org/CreativeWork">
+      
+      <div class="page__inner-wrap">
+      
+
+        
+        <section class="page__content pageSpacing" itemprop="text">
+          
+        
+          <header>
+            <h1 id="page-title" class="page__title" itemprop="headline">
+              Deploying customized jobs
+</h1>
+            
+          </header>  
+        
+        
+
+                    
+          <div class="content">
+            <p><img src="/event-automation/images/1.2.3plus.svg" alt="Event Processing 1.2.3 icon" title="In Event Processing 1.2.3 and later." /> Find out how to deploy your Flink jobs that are customized for production or test environments in an <a href="https://nightlies.apache.org/flink/flink-docs-release-1.19/docs/concepts/flink-architecture/#flink-application-cluster" target="_blank">application mode</a> Flink cluster.</p>
+
+<p>Benefits of customized Flink jobs include:</p>
+
+<ul>
+  <li>Compatibility when working on an automation in a continuous integration and continuous delivery (CI/CD) pipeline.</li>
+  <li>The ability to reuse and easily customize the connector configuration across different targeted environments, such as test, staging, pre-production, and production (with the <strong>JSON and configuration YAML</strong> export option).</li>
+  <li>
+    <p>Support for the automatic upgrade of your IBM Operator for Apache Flink version.</p>
+
+    <p><strong>Note:</strong> Automatic upgrade is not supported if the <code class="language-plaintext highlighter-rouge">FlinkDeployment</code> custom resource uses an extension of the IBM Flink image. In this case, the extension of the image must be rebuilt to use the upgraded IBM Flink image.</p>
+  </li>
+</ul>
+
+<!-- pattern node * Can be used for flows containing the [Detect patterns node](../../nodes/pattern). pattern node -->
+
+<p><strong>Important:</strong> This deployment cannot be used with the Event Processing UI.</p>
+
+<h2 id="prerequisites">Prerequisites</h2>
+
+<ul>
+  <li>
+    <p>You <a href="../exporting-flows">exported</a> your flow from the Event Processing UI in the <strong>JSON and configuration YAML</strong> format, and saved it to a file, for example, <code class="language-plaintext highlighter-rouge">flow.zip</code>.</p>
+  </li>
+  <li>
+    <p>You downloaded the exported flow file (for example, <code class="language-plaintext highlighter-rouge">flow.zip</code>), and extracted it to have the <code class="language-plaintext highlighter-rouge">flow.json</code> and <code class="language-plaintext highlighter-rouge">config.yaml</code> files.</p>
+  </li>
+</ul>
+
+<h2 id="preparing-the-configyaml-file-to-match-the-target-environment">Preparing the <code class="language-plaintext highlighter-rouge">config.yaml</code> file to match the target environment</h2>
+
+<p>Before deploying the Flink job, edit the <code class="language-plaintext highlighter-rouge">config.yaml</code> file. The following is an example <code class="language-plaintext highlighter-rouge">config.yaml</code> file exported from the Event Processing UI:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">config</span><span class="pi">:</span>
+  <span class="na">source</span><span class="pi">:</span>
+    <span class="na">source___TABLE</span><span class="pi">:</span>
+      <span class="s">properties.sasl.jaas.config</span><span class="pi">:</span> <span class="s">org.apache.kafka.common.security.scram.ScramLoginModule</span>
+        <span class="s">required username="&lt;username_redacted&gt;" password="&lt;password_redacted&gt;";</span>
+      <span class="na">connector</span><span class="pi">:</span> <span class="s">kafka</span>
+      <span class="na">format</span><span class="pi">:</span> <span class="s">json</span>
+      <span class="s">json.ignore-parse-errors</span><span class="pi">:</span> <span class="s1">'</span><span class="s">true'</span>
+      <span class="s">properties.bootstrap.servers</span><span class="pi">:</span> <span class="s">kafka.01:9002</span>
+      <span class="s">properties.isolation.level</span><span class="pi">:</span> <span class="s">read_committed</span>
+      <span class="s">properties.sasl.mechanism</span><span class="pi">:</span> <span class="s">SCRAM-SHA-512</span>
+      <span class="s">properties.security.protocol</span><span class="pi">:</span> <span class="s">SASL_SSL</span>
+      <span class="s">properties.ssl.endpoint.identification.algorithm</span><span class="pi">:</span> <span class="s1">'</span><span class="s">'</span>
+      <span class="s">properties.ssl.truststore.certificates</span><span class="pi">:</span> <span class="s1">'</span><span class="s">-----BEGIN</span><span class="nv"> </span><span class="s">CERTIFICATE-----</span><span class="nv"> </span><span class="s">[...]</span><span class="nv"> </span><span class="s">-----END</span><span class="nv"> </span><span class="s">CERTIFICATE-----'</span>
+      <span class="s">properties.ssl.truststore.type</span><span class="pi">:</span> <span class="s">PEM</span>
+      <span class="s">properties.tls.pemChainIncluded</span><span class="pi">:</span> <span class="s1">'</span><span class="s">false'</span>
+      <span class="s">scan.startup.mode</span><span class="pi">:</span> <span class="s">earliest-offset</span>
+      <span class="na">topic</span><span class="pi">:</span> <span class="s">input-topic</span>
+  <span class="na">sink_1</span><span class="pi">:</span>
+    <span class="na">sink_1</span><span class="pi">:</span>
+      <span class="s">properties.sasl.jaas.config</span><span class="pi">:</span> <span class="s">org.apache.kafka.common.security.scram.ScramLoginModule</span>
+        <span class="s">required username="&lt;username_redacted&gt;" password="&lt;password_redacted&gt;";</span>
+      <span class="na">connector</span><span class="pi">:</span> <span class="s">kafka</span>
+      <span class="na">format</span><span class="pi">:</span> <span class="s">json</span>
+      <span class="s">properties.bootstrap.servers</span><span class="pi">:</span> <span class="s">kafka.01:9002</span>
+      <span class="s">properties.sasl.mechanism</span><span class="pi">:</span> <span class="s">SCRAM-SHA-512</span>
+      <span class="s">properties.security.protocol</span><span class="pi">:</span> <span class="s">SASL_SSL</span>
+      <span class="s">properties.ssl.endpoint.identification.algorithm</span><span class="pi">:</span> <span class="s1">'</span><span class="s">'</span>
+      <span class="s">properties.ssl.truststore.certificates</span><span class="pi">:</span> <span class="s1">'</span><span class="s">-----BEGIN</span><span class="nv"> </span><span class="s">CERTIFICATE-----</span><span class="nv"> </span><span class="s">[...]</span><span class="nv"> </span><span class="s">-----END</span><span class="nv"> </span><span class="s">CERTIFICATE-----'</span>
+      <span class="s">properties.ssl.truststore.type</span><span class="pi">:</span> <span class="s">PEM</span>
+      <span class="s">properties.tls.pemChainIncluded</span><span class="pi">:</span> <span class="s1">'</span><span class="s">false'</span>
+      <span class="na">topic</span><span class="pi">:</span> <span class="s">output-topic</span>
+
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">config.yaml</code> file contains information about the nodes, tables, and their connector properties where:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">config</code>: Lists the names of the nodes that use <a href="https://nightlies.apache.org/flink/flink-docs-release-1.19/docs/connectors/table/kafka/" target="_blank">Kafka</a>, <a href="https://nightlies.apache.org/flink/flink-docs-release-1.19/docs/connectors/table/jdbc" target="_blank">JDBC</a>, and <a href="https://github.com/getindata/flink-http-connector/blob/0.16.0/README.md" target="_blank">HTTP</a> connectors. In the example snippet, the <code class="language-plaintext highlighter-rouge">source</code> and <code class="language-plaintext highlighter-rouge">sink_1</code> nodes are listed.</li>
+  <li><code class="language-plaintext highlighter-rouge">config.source</code>: Lists the tables present in the SQL generated for the <code class="language-plaintext highlighter-rouge">source</code> node. In the example snippet, there is only one table for the <code class="language-plaintext highlighter-rouge">source</code> node: <code class="language-plaintext highlighter-rouge">source___TABLE</code></li>
+  <li><code class="language-plaintext highlighter-rouge">config.source.source___TABLE</code>: Lists the connector properties of the <code class="language-plaintext highlighter-rouge">source___TABLE</code> table.</li>
+  <li><code class="language-plaintext highlighter-rouge">config.sink_1</code>: Lists the tables present in the SQL generated for the <code class="language-plaintext highlighter-rouge">sink_1</code> node.  In the example snippet, there is only one table for the <code class="language-plaintext highlighter-rouge">sink_1</code> node: <code class="language-plaintext highlighter-rouge">sink_1</code> (table name is same as the node name).</li>
+  <li><code class="language-plaintext highlighter-rouge">config.sink_1.sink_1</code>: Lists the connector properties of the <code class="language-plaintext highlighter-rouge">sink_1</code> table.</li>
+</ul>
+
+<p><strong>Note:</strong> Sensitive properties, which have redacted values, are listed first, in alphabetical order of the connector property name. Unredacted properties are then listed also in the alphabetical order. Their value is based on what you configured in the Event Processing UI.</p>
+
+<p>You can edit the <code class="language-plaintext highlighter-rouge">config.yaml</code> file as follows:</p>
+
+<ul>
+  <li>An actual value must be provided for the properties with redacted values. Otherwise, the deployment fails.</li>
+  <li>Do not modify node names and table names. It must match the values in the <code class="language-plaintext highlighter-rouge">flow.json</code> file.</li>
+  <li>Optional: values of unredacted properties can be modified.
+    <ul>
+      <li><strong>Important:</strong> The property <code class="language-plaintext highlighter-rouge">scan.startup.mode</code> has always the value <code class="language-plaintext highlighter-rouge">earliest-offset</code> in the exported <code class="language-plaintext highlighter-rouge">config.yaml</code> file. It can be changed for instance to <code class="language-plaintext highlighter-rouge">latest-offset</code>, as required.</li>
+    </ul>
+  </li>
+  <li>Optional: connector properties can be added or removed.</li>
+  <li>For security reasons, the values containing sensitive credentials, such as username and password, are removed when exporting the flow from the Event Processing UI, so you must restore them.</li>
+</ul>
+
+<p>Also, the exported <code class="language-plaintext highlighter-rouge">config.yaml</code> file contains connector configuration that is applicable to the environment targeted in the Event Processing UI. When deploying to a different target environment, you might need to adapt the connector properties to the target environment.</p>
+
+<p>See the following table for credentials and connector properties information about supported Flink SQL connectors:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Flink SQL connector</th>
+      <th>Used by nodes</th>
+      <th>Sensitive credentials</th>
+      <th>Connector properties</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Kafka</strong></td>
+      <td><a href="../nodes/eventnodes/#event-source">Source</a> and <a href="../nodes/eventnodes/#event-destination">destination</a></td>
+      <td><a href="https://nightlies.apache.org/flink/flink-docs-release-1.19/docs/connectors/table/kafka/" target="_blank">About Kafka connector</a> <br /> <br />  <strong>Note:</strong> When configuring SCRAM authentication for the Kafka connector, ensure you use double quotes only. Do not use a backslash character (<code class="language-plaintext highlighter-rouge">\</code>) to escape the double quotes. The valid format is: <code class="language-plaintext highlighter-rouge">username="&lt;username&gt;" password="&lt;password&gt;"</code></td>
+      <td><a href="https://nightlies.apache.org/flink/flink-docs-release-1.19/docs/connectors/table/kafka/#connector-options" target="_blank">Kafka connector properties</a> <br /> <br /> For more information about how events can be consumed from Kafka topics, see the <a href="https://nightlies.apache.org/flink/flink-docs-release-1.19/docs/connectors/table/kafka/#start-reading-position" target="_blank">Flink documentation</a>. <br /> <br />  <strong>Note:</strong> The Kafka <a href="https://nightlies.apache.org/flink/flink-docs-release-1.19/docs/connectors/table/kafka/#connector" target="_blank">connector</a> value must be <code class="language-plaintext highlighter-rouge">kafka</code>.</td>
+    </tr>
+    <tr>
+      <td><strong>JDBC</strong></td>
+      <td><a href="../../nodes/enrichmentnode/#enrichment-from-a-database">Database</a></td>
+      <td><a href="https://nightlies.apache.org/flink/flink-docs-release-1.19/docs/connectors/table/jdbc" target="_blank">About JDBC connector</a></td>
+      <td><a href="https://nightlies.apache.org/flink/flink-docs-release-1.19/docs/connectors/table/jdbc/#connector-options" target="_blank">JDBC connector properties</a></td>
+    </tr>
+    <tr>
+      <td><strong>HTTP</strong></td>
+      <td><a href="../../nodes/enrichmentnode/#enrichment-from-an-api">API</a></td>
+      <td><a href="https://github.com/getindata/flink-http-connector/blob/0.16.0/README.md" target="_blank">About HTTP connector</a></td>
+      <td><a href="https://github.com/getindata/flink-http-connector/blob/0.16.0/README.md#table-api-connector-options" target="_blank">HTTP connector properties</a>. <br /> <br /> <img src="/event-automation/images/1.2.3plus.svg" alt="Event Processing 1.2.3 icon" title="In Event Processing 1.2.3 and later." /> <strong>Note:</strong> the HTTP connector version for Event Processing versions 1.2.3 and later is 0.16.0. For earlier Event Processing 1.2.x releases, see the 0.15.0 connector documentation.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Important:</strong></p>
+<ul>
+  <li>The value of the <code class="language-plaintext highlighter-rouge">format</code> property of the <a href="https://nightlies.apache.org/flink/flink-docs-release-1.19/docs/connectors/table/kafka/" target="_blank">Kafka connector</a>, which allows to select between Avro, Avro (schema registry), and JSON, should not be changed in the <code class="language-plaintext highlighter-rouge">config.yaml</code>. Instead, change it by editing the flow in the Event Processing UI, test the flow, then export the flow again.</li>
+  <li>The <code class="language-plaintext highlighter-rouge">flow.json</code> file must not be modified.</li>
+</ul>
+
+<h2 id="use-of-templating">Use of templating</h2>
+
+<p>The values of the connector properties in the <code class="language-plaintext highlighter-rouge">config.yaml</code> file can be turned into template variables by manually editing the <code class="language-plaintext highlighter-rouge">config.yaml</code> file.</p>
+
+<p>The actual values can then be provided in a CI/CD pipeline, by using any templating engine.</p>
+
+<p>For example (the exact syntax might vary based on the templating engine):</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">properties.sasl.jaas.config</span><span class="pi">:</span> <span class="s">org.apache.kafka.common.security.scram.ScramLoginModule</span>
+  <span class="s">required username="{{ kafka.username }}" password="{{ kafka.password }}";</span>
+</code></pre></div></div>
+
+<h2 id="deploy-the-flink-job">Deploy the Flink job</h2>
+
+<p>You can use a Kubernetes <code class="language-plaintext highlighter-rouge">FlinkDeployment</code> custom resource in <a href="https://nightlies.apache.org/flink/flink-docs-release-1.19/docs/concepts/flink-architecture/#flink-application-cluster" target="_blank">application mode</a> to deploy a Flink job.</p>
+
+<ol>
+  <li>
+    <p>Log in to your Kubernetes cluster as a cluster administrator by setting your <code class="language-plaintext highlighter-rouge">kubectl</code> <a href="https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/" target="_blank">context</a>.</p>
+  </li>
+  <li>
+    <p>Switch to the namespace where the IBM Operator for Apache Flink is installed:</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kubectl config set-context <span class="nt">--current</span> <span class="nt">--namespace</span><span class="o">=</span>&lt;namespace&gt;
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Deploy a Kubernetes secret holding the <code class="language-plaintext highlighter-rouge">flow.json</code> and <code class="language-plaintext highlighter-rouge">config.yaml</code> files:</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kubectl create secret generic &lt;k8s_secret_name&gt; <span class="se">\</span>
+  <span class="nt">--from-file</span><span class="o">=</span>flow.json<span class="o">=</span>./flow.json <span class="se">\</span>
+  <span class="nt">--from-file</span><span class="o">=</span>config.yaml<span class="o">=</span>./config.yaml
+</code></pre></div>    </div>
+
+    <p>Where <code class="language-plaintext highlighter-rouge">&lt;k8s_secret_name</code> must match the name specified for the secret in the <code class="language-plaintext highlighter-rouge">FlinkDeployment</code>, for instance:</p>
+
+    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">volumes</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">flow-volume</span>
+    <span class="na">secret</span><span class="pi">:</span>
+      <span class="na">secretName</span><span class="pi">:</span> <span class="s">application-cluster-prod</span>
+</code></pre></div>    </div>
+
+    <p>A simple way for allowing the coexistence of multiple Flink instances in the same namespace is to use for the Kubernetes secret the same name as for the Flink instance. This way, the mapping between Flink instances and Kubernetes secrets is clear, and there is no clash.</p>
+  </li>
+  <li>
+    <p>Create the IBM Operator for Apache Flink <code class="language-plaintext highlighter-rouge">FlinkDeployment</code> custom resource.</p>
+
+    <p>a. Choose the <a href="../../installing/planning/#flink-production-application-cluster-sample">Production - Flink Application cluster</a> sample, or a Flink custom resource in <a href="https://nightlies.apache.org/flink/flink-docs-release-1.19/docs/concepts/flink-architecture/#flink-application-cluster" target="_blank">application mode</a>, configured with persistent storage. If you prefer to not use a provided sample, add the following parameter to set a timeout period for event sources when they are marked idle. This allows downstream tasks to advance their watermark. Idleness is not detected by default. The parameter is included in all the provided samples.</p>
+
+    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">spec</span><span class="pi">:</span>
+  <span class="na">flinkConfiguration</span><span class="pi">:</span>
+    <span class="s">table.exec.source.idle-timeout</span><span class="pi">:</span> <span class="s1">'</span><span class="s">30</span><span class="nv"> </span><span class="s">s'</span>
+</code></pre></div>    </div>
+
+    <p>For more information about <code class="language-plaintext highlighter-rouge">table.exec.source.idle-timeout</code>, see the <a href="https://nightlies.apache.org/flink/flink-docs-release-1.19/docs/dev/table/config/#table-exec-source-idle-timeout" target="_blank">Flink documentation</a>.</p>
+
+    <p>b. Prepare the <code class="language-plaintext highlighter-rouge">FlinkDeployment</code> custom resource as described in step 1 of <a href="../../installing/installing#installing-a-flink-instance-by-using-the-cli">installing a Flink instance</a>.</p>
+  </li>
+  <li>
+    <p>Apply the modified <code class="language-plaintext highlighter-rouge">FlinkDeployment</code> custom resource by using the <a href="../../installing/installing#Installing-a-flink-instance-using-the-yaml-view">UI</a> or the <a href="../../installing/installing#Installing-a-flink-instance-by-using-the-cli">CLI</a>.</p>
+  </li>
+</ol>
+
+<!-- HIDE UDF until supported at authoring time
+## Use Flink user-defined functions
+
+Optionally, [user-defined functions (UDFs)](https://nightlies.apache.org/flink/flink-docs-release-1.19/docs/dev/table/functions/udfs/){:target="_blank"} can be used as a complement of the [built-in functions](https://nightlies.apache.org/flink/flink-docs-release-1.19/docs/dev/table/functions/systemfunctions/){:target="_blank"}. UDFs can be used in the SQL of [SQL processor nodes](../nodes/custom) authored in the Event Processing UI.
+
+For more information, see [UDFs in the exported SQL](../../reference/supported-functions#user-defined-functions-in-the-exported-sql).
+
+For deploying jobs that use UDFs, the JAR file that contains the UDF classes needs to be copied into the Flink image, using the following steps:
+
+1. Execute the following command to extract the Flink image name including its SHA digest from the `ClusterServiceVersion` (CSV). For example, if you are running on Flink version 1.4.5:
+
+   ```shell
+   kubectl get csv -o jsonpath='{.spec.install.spec.deployments[*].spec.template.spec.containers[0].env[?(@.name=="IBM_FLINK_IMAGE")].value}' ibm-eventautomation-flink.v1.4.5
+   ```
+   
+   Alternatively, you can obtain the image name from the Flink operator pod's environment variable:
+
+   ```shell
+   kubectl set env pod/<flink_operator_pod_name> --list -n <flink_operator_namespace> | grep IBM_FLINK_IMAGE
+   ```
+
+2. Create a `Dockerfile` with a `FROM` clause to use the IBM Flink image with its SHA digest, as determined in the previous step, and adding the UDF jar.
+
+    ```Dockerfile
+    FROM --platform=<platform> <IBM Flink image with digest>
+    COPY --chown=flink:root <path-of-the-udf-jar> /opt/flink/lib
+    ```
+
+   Where `<platform>` is `linux/amd64` or `linux/s390x`, depending on your deployment target, and `<path-of-the-udf-jar>` is the path of the UDF jar, for instance `/udfproject/target/udf.jar`.
+
+3. Build the docker image and push it to a registry accessible from your OpenShift Container Platform. If your registry requires authentication, configure the image pull secret, for example, by using the [global cluster pull secret](https://docs.openshift.com/container-platform/4.17/openshift_images/managing_images/using-image-pull-secrets.html#images-update-global-pull-secret_using-image-pull-secrets){:target="_blank"}.
+
+4. Specify this image in the `spec.image` field of the Flink custom resource.
+
+   ```yaml
+   spec:
+     image: <image built at step 3>
+   ```
+
+## Changing the parallelism
+
+1. Edit the `FlinkDeployment` custom resource.
+
+   a. Ensure that the Flink cluster has enough task slots to fulfill the targeted parallelism value.
+
+   ```shell
+   Task slots = spec.taskmanager.replicas × spec.flinkConfiguration["taskmanager.numberOfTaskSlots"] 
+   ```
+
+   b. Change the `spec.job.parallelism` value, then set `spec.job.state` to `running` and `spec.job.upgradeMode` to `savepoint`.
+
+   ```yaml
+   spec:
+     job:
+       jarURI: local:///opt/flink/ibm-flow/ibm-ep-flow-deployer.jar
+       args: []
+       parallelism: 2
+       state: running
+       upgradeMode: savepoint
+       allowNonRestoredState: true
+   ```
+
+2. Apply the modified `FlinkDeployment` custom resource.
+
+   The following operations are automatically performed by Flink:
+   - A savepoint is created before the Flink job is suspended.
+   - The Flink cluster is shutdown, the `JobManager` and `TaskManager` pods are terminated.
+   - A Flink cluster is created with new `JobManager` and `TaskManager` pods.
+   - The Flink job is restarted from the savepoint.
+-->
+
+<h2 id="stop-a-flink-job-with-a-savepoint">Stop a Flink job with a savepoint</h2>
+
+<p>You can temporarily stop a running Flink job while capturing its current state by creating a savepoint, and allowing you to restart the job from the exact point where it stopped by using the savepoint when required.</p>
+
+<ol>
+  <li>
+    <p>Edit the <code class="language-plaintext highlighter-rouge">FlinkDeployment</code> custom resource.</p>
+  </li>
+  <li>
+    <p>Make the following modifications:</p>
+
+    <p>a. Set the value of <code class="language-plaintext highlighter-rouge">spec.job.upgradeMode</code> to <code class="language-plaintext highlighter-rouge">savepoint</code>.</p>
+
+    <p>b. Set the value of <code class="language-plaintext highlighter-rouge">spec.job.state</code> to <code class="language-plaintext highlighter-rouge">suspended</code> to stop the Flink job.</p>
+
+    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">spec</span><span class="pi">:</span>
+  <span class="na">job</span><span class="pi">:</span>
+    <span class="na">jarURI</span><span class="pi">:</span> <span class="s">local:///opt/flink/ibm-flow/ibm-ep-flow-deployer.jar</span>
+    <span class="na">args</span><span class="pi">:</span> <span class="pi">[]</span>
+    <span class="na">state</span><span class="pi">:</span> <span class="s">suspended</span>
+    <span class="na">upgradeMode</span><span class="pi">:</span> <span class="s">savepoint</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Save the changes in the <code class="language-plaintext highlighter-rouge">FlinkDeployment</code> custom resource.</p>
+
+    <p>A savepoint is triggered and written to a location in the PVC, which is indicated in the <code class="language-plaintext highlighter-rouge">status.jobStatus.savepointInfo.lastSavepoint.location</code> field of the <code class="language-plaintext highlighter-rouge">FlinkDeployment</code> custom resource.</p>
+
+    <p>For example:</p>
+
+    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">status</span><span class="pi">:</span>
+  <span class="pi">[</span><span class="nv">...</span><span class="pi">]</span>
+  <span class="na">jobStatus</span><span class="pi">:</span>
+    <span class="pi">[</span><span class="nv">...</span><span class="pi">]</span>
+    <span class="na">savepointInfo</span><span class="pi">:</span>
+      <span class="pi">[</span><span class="nv">...</span><span class="pi">]</span>
+      <span class="na">lastSavepoint</span><span class="pi">:</span>
+        <span class="na">formatType</span><span class="pi">:</span> <span class="s">CANONICAL</span>
+        <span class="na">location</span><span class="pi">:</span> <span class="s1">'</span><span class="s">file:/opt/flink/volume/flink-sp/savepoint-e372fa-9069a1c0563e'</span>
+        <span class="na">timeStamp</span><span class="pi">:</span> <span class="m">1733957991559</span>
+        <span class="na">triggerNonce</span><span class="pi">:</span> <span class="m">1</span>
+        <span class="na">triggerType</span><span class="pi">:</span> <span class="s">UPGRADE</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h2 id="resume-a-suspended-flink-job">Resume a suspended Flink job</h2>
+
+<p>You can resume a suspended job from the exact point where it stopped by using the savepoint created during its suspension.</p>
+
+<ol>
+  <li>
+    <p>Edit the <code class="language-plaintext highlighter-rouge">FlinkDeployment</code> custom resource of a Flink job that you <a href="#stop-a-flink-job-with-a-savepoint">suspended</a> earlier:</p>
+
+    <p>a. Set the value of <code class="language-plaintext highlighter-rouge">spec.job.upgradeMode</code> to <code class="language-plaintext highlighter-rouge">savepoint</code>.</p>
+
+    <p>b. Set the value of <code class="language-plaintext highlighter-rouge">spec.job.state</code> to <code class="language-plaintext highlighter-rouge">running</code> to resume the Flink job.</p>
+
+    <p>c. Remove <code class="language-plaintext highlighter-rouge">spec.job.savepointTriggerNonce</code> and its value.</p>
+
+    <p>d. Set the value of <code class="language-plaintext highlighter-rouge">spec.job.initialSavepointPath</code> to the savepoint location found as described in step 3 of <a href="./#stop-a-flink-job-with-a-savepoint">suspended</a> the job.</p>
+
+    <p>For example:</p>
+
+    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">job</span><span class="pi">:</span>
+  <span class="na">jarURI</span><span class="pi">:</span> <span class="s">local:///opt/flink/ibm-flow/ibm-ep-flow-deployer.jar</span>
+  <span class="na">args</span><span class="pi">:</span> <span class="pi">[]</span>
+  <span class="na">state</span><span class="pi">:</span> <span class="s">running</span>
+  <span class="na">upgradeMode</span><span class="pi">:</span> <span class="s">savepoint</span>
+  <span class="na">initialSavepointPath</span><span class="pi">:</span> <span class="s">file:/opt/flink/volume/flink-sp/savepoint-e372fa-9069a1c0563e</span>
+  <span class="na">allowNonRestoredState</span><span class="pi">:</span> <span class="no">true</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Apply the modified <code class="language-plaintext highlighter-rouge">FlinkDeployment</code> custom resource.</p>
+  </li>
+</ol>
+
+<h2 id="enable-ssl-connection-for-your-database">Enable SSL connection for your database</h2>
+
+<p>To securely connect Flink jobs to a database such as PostgreSQL, MySQL, or Oracle, enable an SSL connection with the database as follows:</p>
+
+<ol>
+  <li>
+    <p>Ensure you <a href="../../installing/configuring/#add-the-ca-certificate-to-the-truststore">added the CA certificate</a> for your database to the truststore and then <a href="../../installing/configuring/#create-a-secret-with-the-truststore">created a secret</a> with the truststore.</p>
+  </li>
+  <li>
+    <p>Edit the <code class="language-plaintext highlighter-rouge">FlinkDeployment</code> custom resource.</p>
+  </li>
+  <li>
+    <p>Complete the following modifications:</p>
+
+    <ul>
+      <li>
+        <p>In the <code class="language-plaintext highlighter-rouge">spec.flinkConfiguration</code> section, add:</p>
+
+        <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">env.java.opts.taskmanager</span><span class="pi">:</span> <span class="pi">&gt;-</span>
+   <span class="s">-Djavax.net.ssl.trustStore=/certs/truststore.&lt;keystore-extension&gt;</span>
+   <span class="s">-Djavax.net.ssl.trustStorePassword=&lt;chosen password&gt;</span>
+<span class="s">env.java.opts.jobmanager</span><span class="pi">:</span> <span class="pi">&gt;-</span>
+   <span class="s">-Djavax.net.ssl.trustStore=/certs/truststore.&lt;keystore-extension&gt;</span>
+   <span class="s">-Djavax.net.ssl.trustStorePassword=&lt;chosen password&gt;</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+
+    <p>Where:</p>
+
+    <ul>
+      <li>
+        <p><code class="language-plaintext highlighter-rouge">&lt;keystore-extension&gt;</code> is the extension for your keystore format. For example, <code class="language-plaintext highlighter-rouge">jks</code> for Java Keystore and <code class="language-plaintext highlighter-rouge">p12</code> for Public-Key Cryptography Standards.</p>
+      </li>
+      <li>
+        <p>In <code class="language-plaintext highlighter-rouge">spec.podTemplate.spec.containers.volumeMounts</code> section, add:</p>
+
+        <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="pi">-</span> <span class="na">mountPath</span><span class="pi">:</span> <span class="s">/certs</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">truststore</span>
+  <span class="na">readOnly</span><span class="pi">:</span> <span class="no">true</span>
+</code></pre></div>        </div>
+      </li>
+      <li>
+        <p>In <code class="language-plaintext highlighter-rouge">spec.podTemplate.spec.volumes</code> section, add:</p>
+
+        <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">truststore</span>
+  <span class="na">secret</span><span class="pi">:</span>
+    <span class="na">items</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">key</span><span class="pi">:</span> <span class="s">truststore.&lt;keystore-extension&gt;</span>
+        <span class="na">path</span><span class="pi">:</span> <span class="s">truststore.&lt;keystore-extension&gt;</span>
+    <span class="na">secretName</span><span class="pi">:</span> <span class="s">ssl-truststore</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Apply the modified <code class="language-plaintext highlighter-rouge">FlinkDeployment</code> custom resource:</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kubectl apply <span class="nt">-f</span> &lt;custom-resource-file-path&gt;
+</code></pre></div>    </div>
+
+    <p>For example:</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kubectl apply <span class="nt">-f</span> flinkdeployment_demo.yaml
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<p>A secure SSL connection is enabled between Flink and the database.</p>
+
+<h2 id="troubleshooting">Troubleshooting</h2>
+
+<p>The successful execution of the Flink job when deploying depends on the correctness of the actual connector configuration.</p>
+
+<p>For troubleshooting:</p>
+
+<ul>
+  <li>Check the logs of the active Flink Job Manager (for errors due to invalid <code class="language-plaintext highlighter-rouge">config.yaml</code> file, search for <code class="language-plaintext highlighter-rouge">com.ibm.ei.streamproc.model.deploy.imports.ConfigModelException</code>).</li>
+  <li>Errors due to incorrect configuration can also lead to Flink exceptions, which are logged in the Flink task manager pods.</li>
+</ul>
+
+          </div>
+
+
+          
+        </section>
+
+        <aside class="sidebar__right ">
+          
+          <div class="fixedSidebar">
+            <nav class="toc">
+              <ul class="toc__menu">
+  <li><a href="#prerequisites">Prerequisites</a></li>
+  <li><a href="#preparing-the-configyaml-file-to-match-the-target-environment">Preparing the config.yaml file to match the target environment</a></li>
+  <li><a href="#use-of-templating">Use of templating</a></li>
+  <li><a href="#deploy-the-flink-job">Deploy the Flink job</a></li>
+  <li><a href="#stop-a-flink-job-with-a-savepoint">Stop a Flink job with a savepoint</a></li>
+  <li><a href="#resume-a-suspended-flink-job">Resume a suspended Flink job</a></li>
+  <li><a href="#enable-ssl-connection-for-your-database">Enable SSL connection for your database</a></li>
+  <li><a href="#troubleshooting">Troubleshooting</a></li>
+</ul>
+            </nav>
+          </div>
+          
+        </aside>
+
+
+      </div>
+      <div class="pageEnd">
+        
+          
+  <nav class="pagination">
+    
+      <div class="previous" onclick="window.open('/event-automation/ep/ep_1.2/advanced/exporting-flows/','_self')">
+        <div class="container">
+          <a href="/event-automation/ep/ep_1.2/advanced/exporting-flows/" class="pagination--pager" title="Previous Item: Exporting and importing flows
+">Previous</a>
+          <h2 class="titlePreview">Exporting and importing flows
+</h2>
+        </div>
+      </div>
+    
+    
+      <div class="next" onclick="window.open('/event-automation/ep/ep_1.2/advanced/deploying-development/','_self')">
+        <div class="container">
+          <a href="/event-automation/ep/ep_1.2/advanced/deploying-development/" class="pagination--pager" title="Next Item: Testing jobs by using the Flink SQL client
+">Next</a>
+          <h2 class="titlePreview">Testing jobs by using the Flink SQL client
+</h2>
+        </div>
+      </div>
+      
+  </nav>
+
+        
+      </div>
+    </div>
+
+
+  </div> <!-- Main content -->
+
+</main></div>
+
+
+    
+      <div class="page__footer">
+          <footer>
+            <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+
+            
+<div class="page__footer-copyright"><a href="https://www.ibm.com/privacy/us/en/" rel="nofollow" target="_blank">Privacy Policy</a>  &nbsp;© Copyright IBM Corporation 2025</br>
+<a href="https://www.ibm.com/legal/terms" rel="nofollow" target="_blank">Terms of use</a> </br> <a href="https://ibm.github.io/event-automation/accessibility/" rel="nofollow" target="_blank">Accessibility</a> </br> <a href="https://ibm.github.io/event-automation/notices/" rel="nofollow" target="_blank">Notices</a></br>
+          </footer>
+      </div>      
+    
+
+
+    
+  <script src="/event-automation/assets/js/main.min.js"></script>
+  <!-- <script src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script> -->
+
+
+
+
+
+
+<script src="/event-automation/assets/js/design.js"></script>
+
+
+
+
+
+<script src="/event-automation/assets/js/lunr/lunr.min.js"></script>
+<script src="/event-automation/assets/js/lunr/lunr-store.js"></script>
+<script src="/event-automation/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,915 @@
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Monitoring Event Streams cluster health with Prometheus and Grafana - IBM Event Automation</title>
+<meta name="description" content="Monitor your Event Streams installations by visualizing system metrics by using Grafana.">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="IBM Event Automation">
+<meta property="og:url" content="https://ibm.github.io/event-automation/tutorials/monitor-es-using-prometheus/" />
+<meta property="og:title" content="Tutorials | Monitoring Event Streams cluster health with Prometheus and Grafana" />
+<meta property="og:description" content="Monitor your Event Streams installations by visualizing system metrics by using Grafana." />
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="IBM Event Automation | Monitoring Event Streams cluster health with Prometheus and Grafana" />
+
+
+
+
+  <meta property="og:description" content="Monitor your Event Streams installations by visualizing system metrics by using Grafana.">
+
+
+
+  <meta property="og:image" content="https://ibm.github.io/event-automation/assets/siteMeta/appIcon_og_fb.png">
+  <meta name="twitter:image" content="https://ibm.github.io/event-automation/assets/siteMeta/appIcon_og_square.png">
+
+
+
+  <meta property="article:published_time" content="2025-11-07T03:45:08-05:00">
+
+
+
+
+
+
+<link rel="canonical" href="https://ibm.github.io/event-automation/tutorials/monitor-es-using-prometheus/">
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Organization",
+      "url": "https://ibm.github.io/event-automation",
+      "logo": "https://ibm.github.io/event-automation/assets/siteMeta/appIcon_og_fb.png"
+    }
+  </script>
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": null,
+      "url": "https://ibm.github.io/event-automation",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/event-automation/feed.xml" type="application/atom+xml" rel="alternate" title="IBM Event Automation Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/event-automation/assets/css/main.css">
+
+<script src="/event-automation/assets/js/scrollsidebar.js"></script>
+<script src="/event-automation/assets/js/copytoclipboard.js"></script>
+<script src="/event-automation/assets/js/highlighter.js"></script>
+<script src="/event-automation/assets/js/newtab.js"></script>
+
+
+
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<link rel="apple-touch-icon" sizes="180x180" href="https://ibm.github.io/event-automation/assets/siteMeta/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://ibm.github.io/event-automation/assets/siteMeta/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://ibm.github.io/event-automation/assets/siteMeta/favicon-16x16.png">
+<link rel="manifest" href="https://ibm.github.io/event-automation/assets/siteMeta/site.webmanifest">
+<link rel="mask-icon" href="https://ibm.github.io/event-automation/assets/siteMeta/safari-pinned-tab.svg" color="#000000">
+<link rel="shortcut icon" href="https://ibm.github.io/event-automation/assets/siteMeta/favicon.ico">
+<link rel="shortcut icon" type="image/png" href="https://ibm.github.io/event-automation/assets/siteMeta/favicon-16x16.png"/>
+<link rel="shortcut icon" type="image/png" href="https://ibm.github.io/event-automation/assets/siteMeta/favicon-32x32.png"/>
+<meta name="msapplication-TileColor" content="#000000">
+<meta name="msapplication-config" content="https://ibm.github.io/event-automation/assets/siteMeta/browserconfig.xml">
+<meta name="theme-color" content="#000000">
+
+
+
+<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,600%7CIBM+Plex+Serif:300,400,500%7CIBM+Plex+Mono:300,400,500,700" rel="stylesheet">
+
+<!-- end custom head snippets -->
+
+    <link rel="shortcut icon" type="image/x-icon" href="/event-automation/assets/favicon.ico" >
+    
+    <base target="_parent">
+
+  </head>
+  <script src="/event-automation/assets/animation/lottie.js" type="text/javascript"></script>
+  <script src="/event-automation/assets/js/connectors.js"></script>
+  <script src="/event-automation/assets/js/copytoclipboard.js"></script>
+  <script src="/event-automation/assets/js/highlighter.js"></script>
+
+
+  
+  <body onload="" class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+
+
+  
+
+
+
+
+
+
+<div id="masthead" class="masthead">
+  <!--
+  <div class="masthead__goToIBMCloud">
+  <div>
+    You are viewing the documentation for the container-native version of IBM Event Automation.
+  </div>
+    <a class="link" target="_self" href="https://cloud.ibm.com/docs/EventStreams?topic=EventStreams-getting-started">Looking for the managed service on IBM Cloud? Click here.</a>
+</div>
+-->
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="mastheadNav">
+
+      
+
+
+        <div class="mastheadTitle">
+          
+          <a class="site-title" href="/event-automation/" target="_self"><span>IBM</span>&nbsp;Event Automation</a>
+          <div class="viewOnIBMcom">
+            <a href="https://www.ibm.com/products/event-automation" target="_blank">View product page</a>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+
+        <div class="mastheadControls">
+            <div class="menuScrollContainer">
+
+        
+
+                <ul id="visible-links" class="visible-links">
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/es/','_self')">
+                      <a href="https://ibm.github.io/event-automation/es/" >Event Streams</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/eem/','_self')">
+                      <a href="https://ibm.github.io/event-automation/eem/" >Event Endpoint Management</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/ep/','_self')">
+                      <a href="https://ibm.github.io/event-automation/ep/" >Event Processing</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/connectors/','_self')">
+                      <a href="https://ibm.github.io/event-automation/connectors/" >Connect catalog</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item active" onclick="window.open('https://ibm.github.io/event-automation/tutorials/','_self')">
+                      <a href="https://ibm.github.io/event-automation/tutorials/" >Tutorials</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/api/','_self')">
+                      <a href="https://ibm.github.io/event-automation/api/" >APIs...</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/support/','_self')">
+                      <a href="https://ibm.github.io/event-automation/support/" >Support</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/search/','_self')">
+                      <button aria-label="Search Button" role="button" id="searchButton" class="search__toggle " type="button" name="search Button">
+                        <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                          <path
+                            d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z"
+                            transform="translate(-.01)"></path>
+                        </svg>
+                      </button>
+                    </li>
+                  
+
+                  
+                </ul>
+        
+
+      </div>
+    </div>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div id="initial-content" class="initial-content" role="main">
+
+
+
+
+
+
+<main id="main" class="mainContainer" role="main">
+    
+
+    
+  
+
+
+
+  <div class="mainContent">
+    
+      
+      
+      <div class="subMenu backMenu"> 
+    <a href="
+        https://ibm.github.io/event-automation/tutorials
+      "><img alt="" role="presentation" src="https://ibm.github.io/event-automation/assets/images/icons/previous.svg" />
+        Back to tutorials
+      </a>
+  </div>
+    
+    <div id="pageContainer" class="page" itemscope itemtype="http://schema.org/CreativeWork">
+      
+      <div class="page__inner-wrap">
+      
+
+        
+        <section class="page__content pageSpacing" itemprop="text">
+          
+        
+          <header>
+            <h1 id="page-title" class="page__title" itemprop="headline">
+              Monitoring Event Streams cluster health with Prometheus and Grafana
+</h1>
+            
+          </header>  
+        
+        
+
+                    
+          <div class="content">
+            <h2 id="before-you-begin">Before you begin</h2>
+
+<p>The instructions in this tutorial use the <a href="../guided/tutorial-0">tutorial environment</a>, which includes a selection of topics each with a live stream of events, created to allow you to explore features in IBM Event Automation. Following the <a href="../guided/tutorial-0#deploy-the-tutorial">setup instructions</a> to deploy the demo environment gives you a complete instance of Event Automation that you can use to follow this tutorial for yourself.</p>
+
+<h3 id="versions">Versions</h3>
+
+<p>This tutorial uses the following versions of Event Automation capabilities. Screenshots might differ from the current interface if you are using a newer version.</p>
+
+<ul>
+  <li>Event Streams 11.6.1</li>
+</ul>
+
+<h3 id="choosing-a-monitoring-platform">Choosing a monitoring platform</h3>
+
+<p>The focus of this tutorial is to illustrate the types of monitoring that can be useful for Event Streams, and the sorts of metrics that you can use to enable this.</p>
+
+<p>Grafana is used in this tutorial to display metrics, but it is not required for monitoring Event Streams. There are many alternative options available that can be used to visualize these metrics or to trigger alerts and notifications when they change.</p>
+
+<p>Choosing the best monitoring platform depends on your specific use case and is beyond the scope of this tutorial. For an overview of available options, see <a href="../../es/administering/cluster-health/">Monitoring Kafka cluster health</a>.</p>
+
+<h2 id="instructions">Instructions</h2>
+
+<ol>
+  <li>
+    <p>Set up <a href="../guided/tutorial-0#monitoring">monitoring</a> in the tutorial environment.</p>
+
+    <p>This installs the Grafana community operator and creates two sample Grafana dashboards to help you get started.</p>
+  </li>
+  <li>
+    <p><a href="../guided/tutorial-access#accessing-grafana-dashboards">Access the tutorial dashboards</a>.</p>
+
+    <p>The following sections of this tutorial will explain how to use these dashboards.</p>
+  </li>
+</ol>
+
+<h2 id="monitoring-use-cases">Monitoring use cases</h2>
+
+<p>There are many reasons for an Event Streams administrator to use metrics. This tutorial focuses on two common use cases:</p>
+
+<ul>
+  <li>
+    <p><strong>Health monitoring</strong> - Ensuring that the Event Streams cluster is healthy, and detecting early warnings of potential problems that need attention.</p>
+  </li>
+  <li>
+    <p><strong>Performance monitoring</strong> - Assessing the workload the cluster is currently supporting, and identifying signs that the cluster is struggling to support the workload.</p>
+  </li>
+</ul>
+
+<p>There is naturally overlap between these two use cases. Some metrics could be helpful for both use cases, and the objective of this tutorial is not to try and classify the available metrics.</p>
+
+<p>Monitoring is not a single one-size-fits-all activity. The goal of this tutorial is to encourage you to consider what your objective is, and to select metrics to monitor that support that objective.</p>
+
+<p><strong>Note:</strong> The focus of this tutorial is on use cases for cluster administrators. Other users also monitor Kafka metrics. For example, users responsible for applications that use an Event Streams cluster can monitor metrics specific to their application and the Kafka topics that their application uses.</p>
+
+<h2 id="monitoring-cluster-health">Monitoring cluster health</h2>
+
+<p>A common use case for Event Streams metrics is ensuring that the cluster is functioning correctly, and identifying any issues that require attention.</p>
+
+<p>The demo playbook creates a sample Grafana dashboard called <strong>Event Streams (Health)</strong>, which provides insights into relevant health metrics.</p>
+
+<p>View the metrics displayed in this dashboard to assess the status of your cluster.</p>
+
+<h3 id="kafka-topics">Kafka topics</h3>
+
+<p>Some metrics indicate the health of the topic partitions within the Event Streams cluster. The first section of the demo dashboard gives examples of the kinds of values that a cluster administrator can monitor for changes.</p>
+
+<p><a href="/event-automation/images/ea-tutorials/monitoring-es-health-01.png" title="screenshot of a Grafana dashboard"><img src="/event-automation/images/ea-tutorials/monitoring-es-health-01.png" alt="screenshot" title="screenshot of a Grafana dashboard" class="tutorial-screenshot" /></a></p>
+
+<p><strong>Offline partitions</strong></p>
+
+<p>Metric: <code class="language-plaintext highlighter-rouge">kafka.controller:type=KafkaController,name=OfflinePartitionsCount</code></p>
+
+<p>An “offline” partition is a topic partition that doesn’t have an active leader.</p>
+
+<p>Without an active leader, client applications cannot produce to or consume from a topic partition. The partition remains unavailable until a leader is restored.</p>
+
+<p>The number of partitions in this state should normally be zero.</p>
+
+<p><strong>Unclean leader elections</strong></p>
+
+<p>Metric: <code class="language-plaintext highlighter-rouge">kafka.controller:type=ControllerStats,name=UncleanLeaderElectionsPerSec</code></p>
+
+<p>A leader election is the process for choosing which replica will be used by producer and consumer client applications.</p>
+
+<p>Normally, an in-sync replica is chosen. However, if there are no in-sync replicas to choose from, the last resort is to select an out-of-sync replica as the new leader.</p>
+
+<p>This results in the loss of some events that were missing on the new leader, and so the number of unclean leader elections should be zero.</p>
+
+<p><strong>Under-replicated partitions</strong></p>
+
+<p>Metric: <code class="language-plaintext highlighter-rouge">kafka.server:type=ReplicaManager,name=UnderReplicatedPartitions</code></p>
+
+<p>An under-replicated topic partition is a topic partition where some replicas are not keeping up with the partition leader.</p>
+
+<p>This metric should ideally be zero.</p>
+
+<p><strong>Fetcher lag</strong></p>
+
+<p>Metric: <code class="language-plaintext highlighter-rouge">kafka.server:type=FetcherLagMetrics,name=ConsumerLag</code></p>
+
+<p>Fetcher lag measures the number of events follower replicas have yet to retrieve from topic partition leader. It is a measure of whether replication is keeping up and how far behind the topic replicas are falling.</p>
+
+<p>The lag should be less than the maximum batch size used by producer applications, indicating that cluster is able to keep up with the rate of traffic it is handling.</p>
+
+<h3 id="kafka-brokers">Kafka brokers</h3>
+
+<p>Some metrics indicate the health of the Kafka brokers in the Event Streams cluster. The second section of the demo dashboard provides examples of the kinds of values that a cluster administrator can track for changes.</p>
+
+<p><a href="/event-automation/images/ea-tutorials/monitoring-es-health-02.png" title="screenshot of a Grafana dashboard"><img src="/event-automation/images/ea-tutorials/monitoring-es-health-02.png" alt="screenshot" title="screenshot of a Grafana dashboard" class="tutorial-screenshot" /></a></p>
+
+<p><strong>Active controllers</strong></p>
+
+<p>Metric: <code class="language-plaintext highlighter-rouge">kafka.controller:type=KafkaController,name=ActiveControllerCount</code></p>
+
+<p>A Kafka cluster will always have one broker acting as the controller. Several critical cluster operations depend on the controller, such as partition leadership management and replica assignment. If there is no active controller, the cluster might become unstable.</p>
+
+<p>If there is more than one controller, this is described as a <strong>split brain</strong> and the potential for conflicting decisions by multiple controllers risks data integrity.</p>
+
+<p>The value for this metric should always be one (you might briefly see zero or two while the cluster transfers control to a different broker, but this should quickly return to one).</p>
+
+<p><strong>Number of online brokers</strong></p>
+
+<p>Metric: <code class="language-plaintext highlighter-rouge">kafka.controller:type=KafkaController,name=ActiveBrokerCount</code></p>
+
+<p>Kafka’s high-availability design allows applications to continue to functioning even after a broker fails. As a result, it is important to monitor that all brokers are currently online, as the loss of a broker cannot always be detected by application behavior.</p>
+
+<p>The Event Streams cluster created by the tutorial playbook has three brokers.</p>
+
+<h3 id="kafka-pods">Kafka pods</h3>
+
+<p>Kubernetes is also a useful source of metrics about the Kafka brokers that make up the Event Streams cluster. The third section of the demo dashboard gives examples of the kinds of values that a cluster administrator can use.</p>
+
+<p><a href="/event-automation/images/ea-tutorials/monitoring-es-health-02.png" title="screenshot of a Grafana dashboard"><img src="/event-automation/images/ea-tutorials/monitoring-es-health-02.png" alt="screenshot" title="screenshot of a Grafana dashboard" class="tutorial-screenshot" /></a></p>
+
+<p><strong>Broker uptime</strong></p>
+
+<p>Metric: <code class="language-plaintext highlighter-rouge">kube_pod_container_state_started</code></p>
+
+<p>If the start time for a Kafka broker is more recent than the last time a Kafka broker pod was administratively modified or restarted, this indicates an unexpected restart.</p>
+
+<p><strong>Restart count</strong></p>
+
+<p>Metric: <code class="language-plaintext highlighter-rouge">kube_pod_container_status_restarts_total</code></p>
+
+<p>If the Kubernetes probes registered by Event Streams fail, then Kubernetes will restart the Kafka container. The number of restarts will be zero for a healthy broker.</p>
+
+<h3 id="disks">Disks</h3>
+
+<p>Some metrics indicate the health of the disks used by Kafka brokers. The fourth section of the demo dashboard gives examples of the kinds of values that a cluster administrator can monitor.</p>
+
+<p><a href="/event-automation/images/ea-tutorials/monitoring-es-health-03.png" title="screenshot of a Grafana dashboard"><img src="/event-automation/images/ea-tutorials/monitoring-es-health-03.png" alt="screenshot" title="screenshot of a Grafana dashboard" class="tutorial-screenshot" /></a></p>
+
+<p><strong>Disk space remaining</strong></p>
+
+<p>Metric: <code class="language-plaintext highlighter-rouge">kubelet_volume_stats_available_bytes</code></p>
+
+<p>Disk space for Kafka brokers must be closely monitored. If Kafka fills the disk space available to it, it leads to error conditions that are difficult to resolve.</p>
+
+<p>An administrator must take action long before the disk becomes full. Monitoring the remaining disk space for each broker is a key part of this.</p>
+
+<h3 id="network">Network</h3>
+
+<p>Some metrics indicate the network activity by Kafka brokers. The fifth section of the demo dashboard gives examples of the kinds of values that a cluster administrator can monitor.</p>
+
+<p><a href="/event-automation/images/ea-tutorials/monitoring-es-health-03.png" title="screenshot of a Grafana dashboard"><img src="/event-automation/images/ea-tutorials/monitoring-es-health-03.png" alt="screenshot" title="screenshot of a Grafana dashboard" class="tutorial-screenshot" /></a></p>
+
+<p><strong>Network request errors</strong></p>
+
+<p>Metric: <code class="language-plaintext highlighter-rouge">kafka.network:type=RequestMetrics,name=ErrorsPerSec</code></p>
+
+<p>A healthy Kafka cluster should report zero network errors.</p>
+
+<p>If sustained network errors are reported, this will likely impact consumer and producer applications and needs attention.</p>
+
+<h3 id="using-the-dashboard">Using the dashboard</h3>
+
+<p>The health dashboard will likely not contain a lot of interesting data for your tutorial cluster. Most of the values displayed will be zero.</p>
+
+<p>To see the dashboard in action, kill the Java process for one of the Kafka brokers and see the impact described by the metrics in the dashboard.</p>
+
+<p>Run the following command to kill one of the brokers (for example, broker 0):</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>oc <span class="nb">exec</span> <span class="nt">-it</span> <span class="se">\</span>
+  <span class="nt">-n</span> event-automation <span class="se">\</span>
+  my-kafka-cluster-kafka-0 <span class="nt">--</span> <span class="se">\</span>
+  pkill <span class="nt">--signal</span> 9 <span class="nt">--parent</span> 1 java
+</code></pre></div></div>
+
+<p>You might see a brief increase in under-replicated partitions, as the replicas hosted on broker 0 fall behind the leader partitions on broker 1 and broker 2. This should quickly return to zero after the replacement broker 0 starts.</p>
+
+<p><a href="/event-automation/images/ea-tutorials/monitoring-es-health-04.png" title="screenshot of a Grafana dashboard"><img src="/event-automation/images/ea-tutorials/monitoring-es-health-04.png" alt="screenshot" title="screenshot of a Grafana dashboard" class="tutorial-screenshot" /></a></p>
+
+<p>If broker 0 was the controller of your Event Streams cluster, you will see a brief change to the number of active controllers as the control transfers to one of the other brokers.</p>
+
+<p><a href="/event-automation/images/ea-tutorials/monitoring-es-health-05.png" title="screenshot of a Grafana dashboard"><img src="/event-automation/images/ea-tutorials/monitoring-es-health-05.png" alt="screenshot" title="screenshot of a Grafana dashboard" class="tutorial-screenshot" /></a></p>
+
+<p>The restart of broker 0 will be shown in Kafka broker 0 gauge.</p>
+
+<p><a href="/event-automation/images/ea-tutorials/monitoring-es-health-06.png" title="screenshot of a Grafana dashboard"><img src="/event-automation/images/ea-tutorials/monitoring-es-health-06.png" alt="screenshot" title="screenshot of a Grafana dashboard" class="tutorial-screenshot" /></a></p>
+
+<p>It is likely that you will see a few network errors as broker 1 and broker 2 report their failures to submit requests to broker 0 as it was killed. This should quickly stop as they successfully retry their requests to the replacement broker 0.</p>
+
+<h2 id="monitoring-cluster-performance">Monitoring cluster performance</h2>
+
+<p>A common use case for Event Streams metrics is to understand the current level of traffic that the cluster is supporting, and to identify if the scaling of the Event Streams cluster and underlying infrastructure is insufficient to support the workload.</p>
+
+<p>The demo playbook creates a sample Grafana dashboard called <strong>Event Streams (Performance)</strong> to show the sorts of metrics that can be used for this.</p>
+
+<p>View the metrics displayed in this dashboard.</p>
+
+<h3 id="messages">Messages</h3>
+
+<p>Some metrics describe the message throughput that the Event Streams cluster is handling. The first section of the demo dashboard gives examples of the kinds of values that a cluster administrator can use to get insight into this.</p>
+
+<p><a href="/event-automation/images/ea-tutorials/monitoring-es-performance-01.png" title="screenshot of a Grafana dashboard"><img src="/event-automation/images/ea-tutorials/monitoring-es-performance-01.png" alt="screenshot" title="screenshot of a Grafana dashboard" class="tutorial-screenshot" /></a></p>
+
+<p><strong>Messages in</strong></p>
+
+<p>Metric: <code class="language-plaintext highlighter-rouge">kafka.server:type=BrokerTopicMetrics,name=MessagesInPerSec</code></p>
+
+<p>This metric tracks the number of messages per second that the cluster is receiving. This is a good summary of the level of traffic that the cluster is handling.</p>
+
+<p>The <a href="https://github.com/IBM/kafka-connect-loosehangerjeans-source">data generator in the tutorial environment</a> generates a very low level of traffic for the Event Streams cluster, which will be visible in the graph.</p>
+
+<p><strong>Notice:</strong> If you killed one of the Kafka brokers in the previous step, you can see this reflected in the graph as a brief dip in the rate of messages.</p>
+
+<p><strong>Produce requests</strong></p>
+
+<p>Metric: <code class="language-plaintext highlighter-rouge">kafka.server:type=BrokerTopicMetrics,name=TotalProduceRequestsPerSec</code></p>
+
+<p>This metric measures the number of produce requests the cluster receives per second. Efficient applications will use batching to produce multiple messages in a single request, so this might be lower than the number of messages per second.</p>
+
+<p>This is a good summary of the level of traffic that the cluster is handling.</p>
+
+<p>The <a href="https://github.com/IBM/kafka-connect-loosehangerjeans-source">data generator in the tutorial environment</a> generates a very low level of traffic for the Event Streams cluster, which will be visible in the graph.</p>
+
+<p><strong>Notice:</strong> If you killed one of the Kafka brokers in the previous step, you can see this reflected in the graph as a brief dip in the rate of produce requests.</p>
+
+<h3 id="topics">Topics</h3>
+
+<p>Some metrics indicate the performance of topic replication performed by the Kafka brokers. The second section of the demo dashboard gives examples of the kinds of values that a cluster administrator can use to get insight into this.</p>
+
+<p><a href="/event-automation/images/ea-tutorials/monitoring-es-performance-01.png" title="screenshot of a Grafana dashboard"><img src="/event-automation/images/ea-tutorials/monitoring-es-performance-01.png" alt="screenshot" title="screenshot of a Grafana dashboard" class="tutorial-screenshot" /></a></p>
+
+<p><strong>Under minimum-in-sync replicas</strong></p>
+
+<p><code class="language-plaintext highlighter-rouge">kafka.server:type=ReplicaManager,name=UnderMinIsrPartitionCount</code></p>
+
+<p>This metric tracks the number of topic partitions that have a number of in-sync replicas which is under their minimum in-sync replica configuration.</p>
+
+<p>Producer applications cannot produce to these partitions, and will be blocked until the issue is resolved. As a result, the number of partitions in this state will be zero for a healthy cluster.</p>
+
+<p><strong>Replicas per broker</strong></p>
+
+<p>Metric: <code class="language-plaintext highlighter-rouge">kafka.server:type=ReplicaManager,name=PartitionCount</code></p>
+
+<p>In a healthy cluster, each of the Kafka brokers should handle a roughly equal proportion of the work for the cluster. One indicator of this is the number of topic partition replicas held on each broker.</p>
+
+<p>It can never be exactly identical across all brokers, however having one broker responsible for a disproportionately high level of topic partition replicas should be avoided.</p>
+
+<p><strong>Tip:</strong> Instructions for how to re-distribute topic replicas more evenly can be found in <a href="../../es/administering/cruise-control/">Optimizing Kafka cluster with Cruise Control</a>.</p>
+
+<h3 id="brokers">Brokers</h3>
+
+<p>Some metrics indicate the amount of work that each of the Kafka brokers is individually doing. The third section of the demo dashboard gives examples of the kinds of values that a cluster administrator can use to get insight into this.</p>
+
+<p><a href="/event-automation/images/ea-tutorials/monitoring-es-performance-02.png" title="screenshot of a Grafana dashboard"><img src="/event-automation/images/ea-tutorials/monitoring-es-performance-02.png" alt="screenshot" title="screenshot of a Grafana dashboard" class="tutorial-screenshot" /></a></p>
+
+<p><strong>Messages in</strong></p>
+
+<p>Metric: <code class="language-plaintext highlighter-rouge">kafka.server:type=BrokerTopicMetrics,name=MessagesInPerSec</code></p>
+
+<p>In a healthy cluster, each of the Kafka brokers should handle a roughly equal proportion of the work for the cluster. One indicator of this is the number of messages per second received by each broker.</p>
+
+<p>It can never be exactly identical across all brokers, however having one broker responsible for a disproportionately high level of messages for the cluster should be avoided.</p>
+
+<p><strong>Tip:</strong> Instructions for how to re-distribute topic replicas more evenly can be found in <a href="../../es/administering/cruise-control/">Optimizing Kafka cluster with Cruise Control</a>.</p>
+
+<p><strong>Bytes in</strong></p>
+
+<p>Metric: <code class="language-plaintext highlighter-rouge">kafka.server:type=BrokerTopicMetrics,name=BytesInPerSec</code></p>
+
+<p>In a healthy cluster, each of the Kafka brokers should handle a roughly equal proportion of the work for the cluster. One indicator of this is the amount of data per second received by each broker.</p>
+
+<p>It can never be exactly identical across all brokers, however having one broker responsible for a disproportionately high level of data for the cluster should be avoided.</p>
+
+<p><strong>Tip:</strong> Instructions for how to re-distribute topic replicas more evenly can be found in <a href="../../es/administering/cruise-control/">Optimizing Kafka cluster with Cruise Control</a>.</p>
+
+<h3 id="java-jvm">Java (JVM)</h3>
+
+<p>Kafka brokers are Java applications, so the Java Virtual Machine is also a useful source of metrics about the Kafka brokers that make up the Event Streams cluster. The fourth section of the demo dashboard gives examples of the kinds of values that a cluster administrator can use.</p>
+
+<p><a href="/event-automation/images/ea-tutorials/monitoring-es-performance-02.png" title="screenshot of a Grafana dashboard"><img src="/event-automation/images/ea-tutorials/monitoring-es-performance-02.png" alt="screenshot" title="screenshot of a Grafana dashboard" class="tutorial-screenshot" /></a></p>
+
+<p><strong>Garbage collection time</strong></p>
+
+<p>Metric: <code class="language-plaintext highlighter-rouge">jvm_gc_collection_seconds_count</code></p>
+
+<p><strong>Heap memory usage</strong></p>
+
+<p>Metric: <code class="language-plaintext highlighter-rouge">jvm_memory_used_bytes</code></p>
+
+<h3 id="kafka-pods-1">Kafka pods</h3>
+
+<p>Kubernetes is also a useful source of metrics about the Kafka brokers that make up the Event Streams cluster. The fifth section of the demo dashboard gives examples of the kinds of values that a cluster administrator can use.</p>
+
+<p><a href="/event-automation/images/ea-tutorials/monitoring-es-performance-03.png" title="screenshot of a Grafana dashboard"><img src="/event-automation/images/ea-tutorials/monitoring-es-performance-03.png" alt="screenshot" title="screenshot of a Grafana dashboard" class="tutorial-screenshot" /></a></p>
+
+<p><strong>CPU</strong></p>
+
+<p>Metric: <code class="language-plaintext highlighter-rouge">container_cpu_user_seconds_total</code></p>
+
+<p><strong>Memory</strong></p>
+
+<p>Metric: <code class="language-plaintext highlighter-rouge">container_memory_usage_bytes</code></p>
+
+<p>A cluster administrator can monitor these metrics to identify if they need to modify <a href="../../es/installing/planning">the resource limits</a> specified in the <code class="language-plaintext highlighter-rouge">EventStreams</code> custom resource to better fit the current workload demands.</p>
+
+<h3 id="disks-1">Disks</h3>
+
+<p>Some metrics indicate the ability of the disks used by Kafka brokers to support the current workload. The sixth section of the demo dashboard gives examples of the kinds of values that a cluster administrator can monitor.</p>
+
+<p><a href="/event-automation/images/ea-tutorials/monitoring-es-performance-03.png" title="screenshot of a Grafana dashboard"><img src="/event-automation/images/ea-tutorials/monitoring-es-performance-03.png" alt="screenshot" title="screenshot of a Grafana dashboard" class="tutorial-screenshot" /></a></p>
+
+<p><strong>Log flush rate</strong></p>
+
+<p>Metric: <code class="language-plaintext highlighter-rouge">kafka.log:type=LogFlushStats,name=LogFlushRateAndTimeMs</code></p>
+
+<p>Log flush rate is the rate at which log data is written to disk, in milliseconds.</p>
+
+<p>It is a measure of the time taken to flush messages from in-memory log buffers to physical disks. Higher latency will slow down the request times for producer applications, and potentially lead to data loss in the event of a crash before a flush has completed.</p>
+
+<p>The visualization in the demo dashboard shows the value for the 99th percentile - so 99% of the log latency measured is under the value displayed here.</p>
+
+<p><strong>Request handler pool</strong></p>
+
+<p>Metric: <code class="language-plaintext highlighter-rouge">kafka.server:type=KafkaRequestHandlerPool,name=RequestHandlerAvgIdlePercent</code></p>
+
+<p>This metric is a measure of the amount of time the request handler threads in the Kafka broker are spending idle. It is an indicator of how busy the broker is when processing requests from client applications and other brokers.</p>
+
+<p>A high value indicates the request threads are mostly idle, and that the broker is under a low workload. A low value indicates the request handlers are fully utilized and potentially struggling to keep up with a high workload.</p>
+
+<h3 id="network-1">Network</h3>
+
+<p>Some metrics describe the network traffic that the Event Streams cluster is handling. The final section of the demo dashboard gives examples of the kinds of values that a cluster administrator can use to get insight into this.</p>
+
+<p><a href="/event-automation/images/ea-tutorials/monitoring-es-performance-04.png" title="screenshot of a Grafana dashboard"><img src="/event-automation/images/ea-tutorials/monitoring-es-performance-04.png" alt="screenshot" title="screenshot of a Grafana dashboard" class="tutorial-screenshot" /></a></p>
+
+<p><strong>Bytes in</strong></p>
+
+<p>Metric: <code class="language-plaintext highlighter-rouge">kafka.server:type=BrokerTopicMetrics,name=BytesInPerSec</code></p>
+
+<p><strong>Bytes out</strong></p>
+
+<p>Metric: <code class="language-plaintext highlighter-rouge">kafka.server:type=BrokerTopicMetrics,name=BytesOutPerSec</code></p>
+
+<p><strong>Note:</strong> These metrics only describe network traffic to or from client applications. Separate metrics can be used to monitor inter-broker network traffic (for example, replication).</p>
+
+<h3 id="using-the-dashboard-1">Using the dashboard</h3>
+
+<p><strong>Note:</strong> The tutorial setup generates a very small and slow workload, so the performance dashboard does not show you what to expect for a busy cluster. To see the dashboard reflect a busier Event Streams cluster, you can run some workload applications. Follow the instructions for <a href="../guided/tutorial-0#kafka-workload-applications">starting Kafka workload applications</a>. This will create a new Kafka topic (<code class="language-plaintext highlighter-rouge">WORKLOAD</code>) and start a several high-throughput Kafka producers and consumers.</p>
+
+<p>You can use the <a href="#instructions">two sample dashboards</a> that you previously created to monitor the impact of your applications:</p>
+
+<ul>
+  <li>
+    <p>You can see that there is an increase in messages handled by the cluster.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/monitoring-es-workload-01.png" title="screenshot of a Grafana dashboard"><img src="/event-automation/images/ea-tutorials/monitoring-es-workload-01.png" alt="screenshot" title="screenshot of a Grafana dashboard" class="tutorial-screenshot" /></a></p>
+  </li>
+  <li>
+    <p>You can also see that the Kafka brokers have to work harder to handle the increased traffic, such as through an increase in CPU and memory usage, and an increase in the amount of time spent garbage collecting.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/monitoring-es-workload-02.png" title="screenshot of a Grafana dashboard"><img src="/event-automation/images/ea-tutorials/monitoring-es-workload-02.png" alt="screenshot" title="screenshot of a Grafana dashboard" class="tutorial-screenshot" /></a></p>
+  </li>
+  <li>
+    <p>As there is (intentionally) no quota applied to the Kafka credentials being used by the workload applications, it will likely lead to the Kafka brokers reaching their maximum CPU and memory capacity.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/monitoring-es-workload-03.png" title="screenshot of a Grafana dashboard"><img src="/event-automation/images/ea-tutorials/monitoring-es-workload-03.png" alt="screenshot" title="screenshot of a Grafana dashboard" class="tutorial-screenshot" /></a></p>
+  </li>
+  <li>
+    <p>You might see increases in other infrastructure-related values such as an increase in the time taken to flush the log to disk because of the increase in the amount of disk space caused by the workload applications.</p>
+
+    <p>You will be able to monitor the disk space used by the new <code class="language-plaintext highlighter-rouge">WORKLOAD</code> Kafka topic as it rapidly reduces the disk space remaining on the Kafka brokers.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/monitoring-es-workload-05.png" title="screenshot of a Grafana dashboard"><img src="/event-automation/images/ea-tutorials/monitoring-es-workload-05.png" alt="screenshot" title="screenshot of a Grafana dashboard" class="tutorial-screenshot" /></a></p>
+  </li>
+  <li>
+    <p>You can increase the impact of the workload applications by restarting one of the Kafka brokers while the workload applications are running by using the following command:</p>
+
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>oc delete pods <span class="se">\</span>
+  <span class="nt">-n</span> event-automation <span class="se">\</span>
+  my-kafka-cluster-kafka-0
+</code></pre></div>    </div>
+
+    <p>This command forces one broker to fall further behind, as it attempts to catch up with what it missed, which will result in several network request errors being reported, as the Kafka cluster is working harder than the first time you restarted a broker.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/monitoring-es-workload-06.png" title="screenshot of a Grafana dashboard"><img src="/event-automation/images/ea-tutorials/monitoring-es-workload-06.png" alt="screenshot" title="screenshot of a Grafana dashboard" class="tutorial-screenshot" /></a></p>
+  </li>
+  <li>
+    <p>You might also see other results, such as replication for some topic partitions failing to keep up, and an increase in the replica fetcher lag.</p>
+
+    <p><a href="/event-automation/images/ea-tutorials/monitoring-es-workload-04.png" title="screenshot of a Grafana dashboard"><img src="/event-automation/images/ea-tutorials/monitoring-es-workload-04.png" alt="screenshot" title="screenshot of a Grafana dashboard" class="tutorial-screenshot" /></a></p>
+  </li>
+</ul>
+
+<p>This type of insight and analysis is why it is essential to monitor a production Event Streams cluster.</p>
+
+<p><strong>Important:</strong> After you finished using the dashboards while Event Streams is supporting a high-throughput workload, it is recommended that you follow the instructions to <a href="../guided/tutorial-0#kafka-workload-applications">stop and remove the workload application resources</a>.</p>
+
+<h2 id="selecting-metrics">Selecting metrics</h2>
+
+<p>The descriptions earlier of each of the metrics used in this tutorial includes the metric “Mbean name” (for example, <code class="language-plaintext highlighter-rouge">kafka.server:type=BrokerTopicMetrics,name=BytesInPerSec</code>) as documented in the <a href="https://kafka.apache.org/documentation/#monitoring" target="_blank">Kafka documentation about monitoring</a>. You can refer to the Kafka documentation for more information about these metrics.</p>
+
+<p>The demo dashboards used in this tutorial are not intended to be an exhaustive representation of the metrics available for Event Streams administrators. The intent of this tutorial is to encourage you to consider what your objective is for monitoring your Event Streams cluster. Use the examples described here as a starting point for exploring the <a href="https://kafka.apache.org/documentation/#monitoring" target="_blank">monitoring tables</a> and selecting the appropriate metrics for your use case.</p>
+
+<p>You can use the Grafana installation provided by the demo playbook to explore and experiment with the metrics that are available in the Grafana dashboard. The <strong>Explore</strong> section for the data source is a useful way to try this.</p>
+
+<p><a href="/event-automation/images/ea-tutorials/monitoring-es-grafana.png" title="screenshot of a Grafana data source"><img src="/event-automation/images/ea-tutorials/monitoring-es-grafana.png" alt="screenshot" title="screenshot of a Grafana data source" class="tutorial-screenshot" /></a></p>
+
+<p>After you have identified the metrics you want to collect, you can follow the instructions for <a href="../../es/installing/configuring/#configuring-external-monitoring-through-prometheus">configuring monitoring</a> to collect these metrics in your (non-demo) Event Streams clusters.</p>
+
+<h2 id="next-steps">Next steps</h2>
+
+<p>If you have not yet explored the options for monitoring Event Endpoint Management, you can follow the <a href="./monitor-eem-using-prometheus">Monitoring Event Endpoint Management</a> tutorial, which uses the same Grafana instance as this tutorial. This is an example of how you can collect metrics for your whole IBM Event Automation deployment into a single place.</p>
+
+          </div>
+
+
+          
+        </section>
+
+        <aside class="sidebar__right ">
+          
+          <div class="fixedSidebar">
+            <nav class="toc">
+              <ul class="toc__menu">
+  <li><a href="#before-you-begin">Before you begin</a>
+    <ul>
+      <li><a href="#versions">Versions</a></li>
+      <li><a href="#choosing-a-monitoring-platform">Choosing a monitoring platform</a></li>
+    </ul>
+  </li>
+  <li><a href="#instructions">Instructions</a></li>
+  <li><a href="#monitoring-use-cases">Monitoring use cases</a></li>
+  <li><a href="#monitoring-cluster-health">Monitoring cluster health</a>
+    <ul>
+      <li><a href="#kafka-topics">Kafka topics</a></li>
+      <li><a href="#kafka-brokers">Kafka brokers</a></li>
+      <li><a href="#kafka-pods">Kafka pods</a></li>
+      <li><a href="#disks">Disks</a></li>
+      <li><a href="#network">Network</a></li>
+      <li><a href="#using-the-dashboard">Using the dashboard</a></li>
+    </ul>
+  </li>
+  <li><a href="#monitoring-cluster-performance">Monitoring cluster performance</a>
+    <ul>
+      <li><a href="#messages">Messages</a></li>
+      <li><a href="#topics">Topics</a></li>
+      <li><a href="#brokers">Brokers</a></li>
+      <li><a href="#java-jvm">Java (JVM)</a></li>
+      <li><a href="#kafka-pods-1">Kafka pods</a></li>
+      <li><a href="#disks-1">Disks</a></li>
+      <li><a href="#network-1">Network</a></li>
+      <li><a href="#using-the-dashboard-1">Using the dashboard</a></li>
+    </ul>
+  </li>
+  <li><a href="#selecting-metrics">Selecting metrics</a></li>
+  <li><a href="#next-steps">Next steps</a></li>
+</ul>
+            </nav>
+          </div>
+          
+        </aside>
+
+
+      </div>
+      <div class="pageEnd">
+        
+      </div>
+    </div>
+
+
+  </div> <!-- Main content -->
+
+</main></div>
+
+
+    
+      <div class="page__footer">
+          <footer>
+            <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+
+            
+<div class="page__footer-copyright"><a href="https://www.ibm.com/privacy/us/en/" rel="nofollow" target="_blank">Privacy Policy</a>  &nbsp;© Copyright IBM Corporation 2025</br>
+<a href="https://www.ibm.com/legal/terms" rel="nofollow" target="_blank">Terms of use</a> </br> <a href="https://ibm.github.io/event-automation/accessibility/" rel="nofollow" target="_blank">Accessibility</a> </br> <a href="https://ibm.github.io/event-automation/notices/" rel="nofollow" target="_blank">Notices</a></br>
+          </footer>
+      </div>      
+    
+
+
+    
+  <script src="/event-automation/assets/js/main.min.js"></script>
+  <!-- <script src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script> -->
+
+
+
+
+
+
+<script src="/event-automation/assets/js/design.js"></script>
+
+
+
+
+
+<script src="/event-automation/assets/js/lunr/lunr.min.js"></script>
+<script src="/event-automation/assets/js/lunr/lunr-store.js"></script>
+<script src="/event-automation/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+    
+
+    
+  </body>
+</html>

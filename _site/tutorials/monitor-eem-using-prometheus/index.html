@@ -1,0 +1,756 @@
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Monitoring Event Endpoint Management with Prometheus and Grafana - IBM Event Automation</title>
+<meta name="description" content="Monitor your Event Endpoint Management installations by visualizing system metrics by using Grafana.">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="IBM Event Automation">
+<meta property="og:url" content="https://ibm.github.io/event-automation/tutorials/monitor-eem-using-prometheus/" />
+<meta property="og:title" content="Tutorials | Monitoring Event Endpoint Management with Prometheus and Grafana" />
+<meta property="og:description" content="Monitor your Event Endpoint Management installations by visualizing system metrics by using Grafana." />
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="IBM Event Automation | Monitoring Event Endpoint Management with Prometheus and Grafana" />
+
+
+
+
+  <meta property="og:description" content="Monitor your Event Endpoint Management installations by visualizing system metrics by using Grafana.">
+
+
+
+  <meta property="og:image" content="https://ibm.github.io/event-automation/assets/siteMeta/appIcon_og_fb.png">
+  <meta name="twitter:image" content="https://ibm.github.io/event-automation/assets/siteMeta/appIcon_og_square.png">
+
+
+
+  <meta property="article:published_time" content="2025-11-07T03:45:08-05:00">
+
+
+
+
+
+
+<link rel="canonical" href="https://ibm.github.io/event-automation/tutorials/monitor-eem-using-prometheus/">
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Organization",
+      "url": "https://ibm.github.io/event-automation",
+      "logo": "https://ibm.github.io/event-automation/assets/siteMeta/appIcon_og_fb.png"
+    }
+  </script>
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": null,
+      "url": "https://ibm.github.io/event-automation",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/event-automation/feed.xml" type="application/atom+xml" rel="alternate" title="IBM Event Automation Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/event-automation/assets/css/main.css">
+
+<script src="/event-automation/assets/js/scrollsidebar.js"></script>
+<script src="/event-automation/assets/js/copytoclipboard.js"></script>
+<script src="/event-automation/assets/js/highlighter.js"></script>
+<script src="/event-automation/assets/js/newtab.js"></script>
+
+
+
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<link rel="apple-touch-icon" sizes="180x180" href="https://ibm.github.io/event-automation/assets/siteMeta/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://ibm.github.io/event-automation/assets/siteMeta/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://ibm.github.io/event-automation/assets/siteMeta/favicon-16x16.png">
+<link rel="manifest" href="https://ibm.github.io/event-automation/assets/siteMeta/site.webmanifest">
+<link rel="mask-icon" href="https://ibm.github.io/event-automation/assets/siteMeta/safari-pinned-tab.svg" color="#000000">
+<link rel="shortcut icon" href="https://ibm.github.io/event-automation/assets/siteMeta/favicon.ico">
+<link rel="shortcut icon" type="image/png" href="https://ibm.github.io/event-automation/assets/siteMeta/favicon-16x16.png"/>
+<link rel="shortcut icon" type="image/png" href="https://ibm.github.io/event-automation/assets/siteMeta/favicon-32x32.png"/>
+<meta name="msapplication-TileColor" content="#000000">
+<meta name="msapplication-config" content="https://ibm.github.io/event-automation/assets/siteMeta/browserconfig.xml">
+<meta name="theme-color" content="#000000">
+
+
+
+<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,600%7CIBM+Plex+Serif:300,400,500%7CIBM+Plex+Mono:300,400,500,700" rel="stylesheet">
+
+<!-- end custom head snippets -->
+
+    <link rel="shortcut icon" type="image/x-icon" href="/event-automation/assets/favicon.ico" >
+    
+    <base target="_parent">
+
+  </head>
+  <script src="/event-automation/assets/animation/lottie.js" type="text/javascript"></script>
+  <script src="/event-automation/assets/js/connectors.js"></script>
+  <script src="/event-automation/assets/js/copytoclipboard.js"></script>
+  <script src="/event-automation/assets/js/highlighter.js"></script>
+
+
+  
+  <body onload="" class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+
+
+  
+
+
+
+
+
+
+<div id="masthead" class="masthead">
+  <!--
+  <div class="masthead__goToIBMCloud">
+  <div>
+    You are viewing the documentation for the container-native version of IBM Event Automation.
+  </div>
+    <a class="link" target="_self" href="https://cloud.ibm.com/docs/EventStreams?topic=EventStreams-getting-started">Looking for the managed service on IBM Cloud? Click here.</a>
+</div>
+-->
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="mastheadNav">
+
+      
+
+
+        <div class="mastheadTitle">
+          
+          <a class="site-title" href="/event-automation/" target="_self"><span>IBM</span>&nbsp;Event Automation</a>
+          <div class="viewOnIBMcom">
+            <a href="https://www.ibm.com/products/event-automation" target="_blank">View product page</a>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+
+        <div class="mastheadControls">
+            <div class="menuScrollContainer">
+
+        
+
+                <ul id="visible-links" class="visible-links">
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/es/','_self')">
+                      <a href="https://ibm.github.io/event-automation/es/" >Event Streams</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/eem/','_self')">
+                      <a href="https://ibm.github.io/event-automation/eem/" >Event Endpoint Management</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/ep/','_self')">
+                      <a href="https://ibm.github.io/event-automation/ep/" >Event Processing</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/connectors/','_self')">
+                      <a href="https://ibm.github.io/event-automation/connectors/" >Connect catalog</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item active" onclick="window.open('https://ibm.github.io/event-automation/tutorials/','_self')">
+                      <a href="https://ibm.github.io/event-automation/tutorials/" >Tutorials</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/api/','_self')">
+                      <a href="https://ibm.github.io/event-automation/api/" >APIs...</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/support/','_self')">
+                      <a href="https://ibm.github.io/event-automation/support/" >Support</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/search/','_self')">
+                      <button aria-label="Search Button" role="button" id="searchButton" class="search__toggle " type="button" name="search Button">
+                        <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                          <path
+                            d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z"
+                            transform="translate(-.01)"></path>
+                        </svg>
+                      </button>
+                    </li>
+                  
+
+                  
+                </ul>
+        
+
+      </div>
+    </div>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div id="initial-content" class="initial-content" role="main">
+
+
+
+
+
+
+<main id="main" class="mainContainer" role="main">
+    
+
+    
+  
+
+
+
+  <div class="mainContent">
+    
+      
+      
+      <div class="subMenu backMenu"> 
+    <a href="
+        https://ibm.github.io/event-automation/tutorials
+      "><img alt="" role="presentation" src="https://ibm.github.io/event-automation/assets/images/icons/previous.svg" />
+        Back to tutorials
+      </a>
+  </div>
+    
+    <div id="pageContainer" class="page" itemscope itemtype="http://schema.org/CreativeWork">
+      
+      <div class="page__inner-wrap">
+      
+
+        
+        <section class="page__content pageSpacing" itemprop="text">
+          
+        
+          <header>
+            <h1 id="page-title" class="page__title" itemprop="headline">
+              Monitoring Event Endpoint Management with Prometheus and Grafana
+</h1>
+            
+          </header>  
+        
+        
+
+                    
+          <div class="content">
+            <h2 id="before-you-begin">Before you begin</h2>
+
+<p>The instructions in this tutorial use the <a href="../guided/tutorial-0">tutorial environment</a>, which includes a selection of topics each with a live stream of events, created to allow you to explore features in IBM Event Automation. Following the <a href="../guided/tutorial-0#deploy-the-tutorial">setup instructions</a> to deploy the demo environment gives you a complete instance of Event Automation that you can use to follow this tutorial for yourself.</p>
+
+<h3 id="versions">Versions</h3>
+
+<p>This tutorial uses the following versions of Event Automation capabilities. Screenshots might differ from the current interface if you are using a newer version.</p>
+
+<ul>
+  <li>Event Endpoint Management 11.5.1</li>
+</ul>
+
+<h3 id="choosing-a-monitoring-platform">Choosing a monitoring platform</h3>
+
+<p>The focus of this tutorial is to illustrate the types of monitoring that can be useful for Event Endpoint Management, and the sorts of metrics that you can use to enable this.</p>
+
+<p>Grafana is used in this tutorial to display metrics, but it is not required for monitoring Event Endpoint Management. There are many alternative options available that can be used to visualize these metrics and to trigger alerts and notifications when they change.</p>
+
+<p>Choosing the best monitoring platform depends on your specific use case and is beyond the scope of this tutorial.</p>
+
+<h2 id="instructions">Instructions</h2>
+
+<ol>
+  <li>
+    <p>Set up <a href="../guided/tutorial-0#monitoring">monitoring</a> in the tutorial environment.</p>
+
+    <p>This installs the Grafana community operator and creates two sample Grafana dashboards to help you get started.</p>
+  </li>
+  <li>
+    <p><a href="../guided/tutorial-access#accessing-grafana-dashboards">Access the tutorial dashboards</a>.</p>
+
+    <p>The following sections of this tutorial will explain how to use these dashboards.</p>
+  </li>
+</ol>
+
+<h2 id="monitoring-use-cases">Monitoring use cases</h2>
+
+<p>There are many reasons for a Event Endpoint Management user to use metrics. This tutorial focuses on two common use cases:</p>
+
+<ul>
+  <li>
+    <p><strong>Health monitoring</strong> - Ensuring that Event Endpoint Management is healthy, and detecting early warnings of potential problems that need attention.</p>
+  </li>
+  <li>
+    <p><strong>Activity monitoring</strong> - Understanding the workload the cluster is currently supporting, which topics are being used, and how applications are behaving.</p>
+  </li>
+</ul>
+
+<p>There is overlap between these two use cases. Some metrics could be helpful for both use cases, and the objective of this tutorial is not to try and classify the available metrics.</p>
+
+<p>Monitoring is not a single one-size-fits-all activity. The goal of this tutorial is to encourage you to consider what your objective is, and to select metrics to monitor that support that objective.</p>
+
+<h2 id="monitoring-system-health">Monitoring system health</h2>
+
+<p>A common use case for Event Endpoint Management metrics is ensuring that the cluster is functioning correctly, and identifying issues that require attention.</p>
+
+<p>The demo playbook creates a sample Grafana dashboard called <strong>Event Endpoint Management (Health)</strong>, which provides insights into relevant health metrics.</p>
+
+<p>View the metrics displayed in this dashboard to assess the status of your cluster.</p>
+
+<h3 id="service-health">Service health</h3>
+
+<p>Some metrics indicate the health of the components that make up Event Endpoint Management. The first section of the demo dashboard gives examples of the kinds of values that an administrator can monitor for changes.</p>
+
+<p><a href="/event-automation/images/ea-tutorials/monitoring-eem-health-01.png" title="screenshot of a Grafana dashboard"><img src="/event-automation/images/ea-tutorials/monitoring-eem-health-01.png" alt="screenshot" title="screenshot of a Grafana dashboard" class="tutorial-screenshot" /></a></p>
+
+<p><strong>Uptime</strong></p>
+
+<p>Metric: <code class="language-plaintext highlighter-rouge">kube_pod_container_state_started</code></p>
+
+<p>If the start time for an Event Gateway (shown in the dashboard as <strong>egw</strong>) or Event Manager (shown in the dashboard as <strong>manager</strong>) pod is more recent than the last time it was administratively modified or restarted, this indicates an unexpected restart.</p>
+
+<p><strong>Restarts</strong></p>
+
+<p>Metric: <code class="language-plaintext highlighter-rouge">kube_pod_container_status_restarts_total</code></p>
+
+<p>If the Kubernetes probes registered by Event Endpoint Management fail, then Kubernetes will restart the containers. The number of restarts should be zero for a healthy component. It is useful to monitor this for both Event Gateways (shown in the dashboard as <strong>egw</strong>) and Event Manager (shown in the dashboard as <strong>manager</strong>).</p>
+
+<p><strong>Event Manager services health</strong></p>
+
+<p>Metric: <code class="language-plaintext highlighter-rouge">eemmanager_services_ready</code></p>
+
+<p>The Event Manager consists of multiple internal subsystems, such as a storage provider, key management system, and gateway communications system. Monitoring the health of individual subsystems provides a granular view of the current state of the system.</p>
+
+<h3 id="api-call-handling">API call handling</h3>
+
+<p>One of the primary functions of the Event Manager is to handle REST API requests. Understanding the requests that it is receiving, and the types of responses these are leading to, is helpful for monitoring.</p>
+
+<p><a href="/event-automation/images/ea-tutorials/monitoring-eem-health-02.png" title="screenshot of a Grafana dashboard"><img src="/event-automation/images/ea-tutorials/monitoring-eem-health-02.png" alt="screenshot" title="screenshot of a Grafana dashboard" class="tutorial-screenshot" /></a></p>
+
+<p><strong>API calls / second</strong></p>
+
+<p>Metric: <code class="language-plaintext highlighter-rouge">eemmanager_api_responses_total</code></p>
+
+<p>This visualization shows the number of API calls that the Event Manager receives per second. There will be a consistent background workload, such as API calls made by Event Gateways to retrieve information about topics, clusters, and subscriptions. Additional activity, such as users browsing the catalog or applications invoking the <a href="../../eem-api/">Admin API</a>, will be shown as spikes in addition to that background workload.</p>
+
+<p>In the demo visualization, counts are grouped by the HTTP response status code, providing additional insight into the current activity. For example, if you observe a large number of HTTP 401 requests, this indicates something trying to use invalid credentials to access the Event Manager UI or API.</p>
+
+<p>HTTP 403 responses indicates something trying to access resources that they are not permitted to, or that roles have been misconfigured.</p>
+
+<p>HTTP 500 responses suggest a system problem that needs further attention and investigation.</p>
+
+<h3 id="event-endpoint-management-pods">Event Endpoint Management pods</h3>
+
+<p>The third section of the demo dashboard gives examples of the kinds of resource usage values that an administrator can use.</p>
+
+<p><a href="/event-automation/images/ea-tutorials/monitoring-eem-health-03.png" title="screenshot of a Grafana dashboard"><img src="/event-automation/images/ea-tutorials/monitoring-eem-health-03.png" alt="screenshot" title="screenshot of a Grafana dashboard" class="tutorial-screenshot" /></a></p>
+
+<p><strong>CPU</strong></p>
+
+<p>Metric: <code class="language-plaintext highlighter-rouge">container_cpu_user_seconds_total</code></p>
+
+<p><strong>Memory</strong></p>
+
+<p>Metric: <code class="language-plaintext highlighter-rouge">container_memory_usage_bytes</code></p>
+
+<p>An administrator can monitor these metrics to identify if they need to modify <a href="../../eem/installing/planning">the resource limits</a> specified in the <code class="language-plaintext highlighter-rouge">EventEndpointManagement</code> and <code class="language-plaintext highlighter-rouge">EventGateway</code> operands to better fit the current workload demands.</p>
+
+<h3 id="using-the-dashboard">Using the dashboard</h3>
+
+<p>There are actions you can take to see the values in the demo dashboard change.</p>
+
+<p>For example, kill the Java process for the Event Manager pod, to see the impact described by the metrics in the dashboard.</p>
+
+<p>Run the following command:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>oc <span class="nb">exec</span> <span class="nt">-it</span> <span class="se">\</span>
+  <span class="nt">-n</span> event-automation <span class="se">\</span>
+  my-eem-manager-ibm-eem-manager-0 <span class="nt">--</span> <span class="se">\</span>
+  pkill <span class="nt">--signal</span> 15 java
+</code></pre></div></div>
+
+<p>You will see the number of restarts for the Event Manager container increase by one, and the number of services that are ready will decrease while the replacement manager container starts.</p>
+
+<p><a href="/event-automation/images/ea-tutorials/monitoring-eem-health-04.png" title="screenshot of a Grafana dashboard"><img src="/event-automation/images/ea-tutorials/monitoring-eem-health-04.png" alt="screenshot" title="screenshot of a Grafana dashboard" class="tutorial-screenshot" /></a></p>
+
+<p>You can use the Event Manager web UI in unusual ways to cause other API response codes.</p>
+
+<ul>
+  <li>To cause HTTP 404 (Not Found):
+    <ul>
+      <li>Access a topic from the catalog.</li>
+      <li>Edit the UUID string in the URL in your web browser to try to access the page for a non-existent topic.</li>
+      <li>This will result in an HTTP 404 (not found) error page being displayed.</li>
+    </ul>
+  </li>
+  <li>To cause HTTP 409 (Conflict):
+    <ul>
+      <li>Open the Topic page in two browser windows at the same time</li>
+      <li>Prepare a new topic option with the same name for the same topic in both browser windows</li>
+      <li>Click on the Save button in both browser windows</li>
+      <li>The first to complete will be successful, while the second will result in an HTTP 409 (conflict) error being reported.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>This sort of behaviour will be reflected as small numbers of API calls with different status codes being displayed in the dashboard.</p>
+
+<p>In a real cluster, occasional error codes such as 404 (Not Found) or 409 (Conflict) would not be a cause for concern. However, a large or consistent number of error codes would require further investigation.</p>
+
+<p><a href="/event-automation/images/ea-tutorials/monitoring-eem-health-05.png" title="screenshot of a Grafana dashboard"><img src="/event-automation/images/ea-tutorials/monitoring-eem-health-05.png" alt="screenshot" title="screenshot of a Grafana dashboard" class="tutorial-screenshot" /></a></p>
+
+<p>Start a large number of applications that use topics from Event Endpoint Management. To keep this simple, you can use Event Processing flows or run <code class="language-plaintext highlighter-rouge">kafka-console-consumer.sh</code> with properties files downloaded from the catalog. Let the applications run for a short time, then stop them.</p>
+
+<p>You should see changes in CPU usage in the Event Gateway as a result.</p>
+
+<p><a href="/event-automation/images/ea-tutorials/monitoring-eem-health-06.png" title="screenshot of a Grafana dashboard"><img src="/event-automation/images/ea-tutorials/monitoring-eem-health-06.png" alt="screenshot" title="screenshot of a Grafana dashboard" class="tutorial-screenshot" /></a></p>
+
+<h2 id="monitoring-usage-and-activity">Monitoring usage and activity</h2>
+
+<p>A common use case for Event Endpoint Management metrics is to understand what topics are being used and the behavior of applications.</p>
+
+<p>The demo playbook creates a sample Grafana dashboard called <strong>Event Endpoint Management (Activity)</strong> to show the sorts of metrics that can be used to monitor topic usage and application behavior.</p>
+
+<p>View the metrics displayed in this dashboard.</p>
+
+<h3 id="subscriptions">Subscriptions</h3>
+
+<p>Some metrics describe the topics that users have created subscriptions for. The first section of the demo dashboard gives examples of the kinds of values that can give insight into which topics in the catalog are currently popular.</p>
+
+<p><a href="/event-automation/images/ea-tutorials/monitoring-eem-activity-01.png" title="screenshot of a Grafana dashboard"><img src="/event-automation/images/ea-tutorials/monitoring-eem-activity-01.png" alt="screenshot" title="screenshot of a Grafana dashboard" class="tutorial-screenshot" /></a></p>
+
+<p>Metric: <code class="language-plaintext highlighter-rouge">eemmanager_options</code></p>
+
+<p>All of the visualizations in this section use the same metric, visualizing the data in different ways.</p>
+
+<p><strong>Note:</strong> If you have completed the earlier Event Automation tutorials, you will have already created subscriptions for some topic. If you have not already done this, you can subscribe to some of the topics now to see this reflected in the dashboard.</p>
+
+<p><strong>Most popular topics</strong></p>
+
+<p>The table in the demo dashboard uses this metric to display the topics in the catalog which have had the most subscriptions created for them. This is an example of how metrics can be used to identify which of the topics are currently getting the most attention.</p>
+
+<p><strong>Number of topics</strong></p>
+
+<p>The number of active topics in the catalog uses this metric to show how many shared topics are being used.</p>
+
+<p><strong>Subscriptions</strong></p>
+
+<p>The time series visualization shows how the number of subscriptions for each topic changes over time. This is an example of how you can see increases in interest and popularity for some topics in the catalog.</p>
+
+<h3 id="applications">Applications</h3>
+
+<p>Some metrics describe the applications that are currently using topics in the catalog. The second section of the demo dashboard give examples of the kinds of values that can give insight into what applications are doing.</p>
+
+<p><a href="/event-automation/images/ea-tutorials/monitoring-eem-activity-03.png" title="screenshot of a Grafana dashboard"><img src="/event-automation/images/ea-tutorials/monitoring-eem-activity-03.png" alt="screenshot" title="screenshot of a Grafana dashboard" class="tutorial-screenshot" /></a></p>
+
+<p><strong>Active clients</strong></p>
+
+<p>Metric: <code class="language-plaintext highlighter-rouge">eemgateway_connected_clients</code></p>
+
+<p>As applications that use topics from the catalog start and stop, you will see the number of connected clients reflected in the first graph.</p>
+
+<p><strong>Note:</strong> When using topics with multiple partitions, each connection to a partition is reflected as a separate connected client in this graph.</p>
+
+<p><strong>Consumer activity</strong></p>
+
+<p>Metrics: <code class="language-plaintext highlighter-rouge">eemgateway_consumers_bytes_total</code> and <code class="language-plaintext highlighter-rouge">eemgateway_consumers_msgs_total</code></p>
+
+<p>These metrics measure the data that is being received through the Event Gateway by Kafka consumer applications (both as a data quantity in bytes, and as a number of Kafka messages).</p>
+
+<p>The metrics provide granular records about individual applications, but in the demo dashboard these are aggregated to provide an overall view of application activity.</p>
+
+<p>This is a good summary of the level of traffic that the Event Gateway is handling.</p>
+
+<p><strong>Producer activity</strong></p>
+
+<p>Metrics: <code class="language-plaintext highlighter-rouge">eemgateway_producers_bytes_total</code> and <code class="language-plaintext highlighter-rouge">eemgateway_producers_msgs_total</code></p>
+
+<p>These metrics measure the data that is being delivered to Kafka topics through the Event Gateway by Kafka producer applications (both as a data quantity in bytes, and as a number of Kafka messages).</p>
+
+<p>The metrics provide granular records about individual applications, but in the demo dashboard these are aggregated to provide an overall view of application activity.</p>
+
+<p>This is a good summary of the level of traffic that the Event Gateway is handling.</p>
+
+<h3 id="poorly-behaved-applications">Poorly-behaved applications</h3>
+
+<p>Some metrics provide an insight into applications that are doing things that owners of topics in the catalog might not approve of. The final section of the demo dashboard gives examples of these kinds of metrics.</p>
+
+<p><a href="/event-automation/images/ea-tutorials/monitoring-eem-activity-04.png" title="screenshot of a Grafana dashboard"><img src="/event-automation/images/ea-tutorials/monitoring-eem-activity-04.png" alt="screenshot" title="screenshot of a Grafana dashboard" class="tutorial-screenshot" /></a></p>
+
+<p><strong>Rejected clients</strong></p>
+
+<p>Metrics: <code class="language-plaintext highlighter-rouge">eemgateway_login_failed_total</code> and <code class="language-plaintext highlighter-rouge">eemgateway_topic_authz_failed_total</code></p>
+
+<p>These metrics measure the connection attempts (per second) that have been rejected by the Event Gateway.</p>
+
+<p>To see an application reported as <strong>login failed</strong>, you can run a Kafka application (such as <code class="language-plaintext highlighter-rouge">kafka-console-consumer.sh</code>) using a username and password that was not created in Event Endpoint Management.</p>
+
+<p>To see an application reported as <strong>auth failed</strong>, you can run a Kafka application (such as <code class="language-plaintext highlighter-rouge">kafka-console-consumer.sh</code>) using credentials created in Event Endpoint Management, but attempting to access a different topic from the catalog.</p>
+
+<p>In a real cluster, occasional errors such as this would not be a cause for concern, as users will accidentally use incorrect credentials with their applications. A large or consistent number of errors would need further investigation.</p>
+
+<p><strong>Throttled clients</strong></p>
+
+<p>Metric: <code class="language-plaintext highlighter-rouge">eemgateway_quota_delay</code></p>
+
+<p>Some metrics provide insight into the controls that the Event Gateway are applying. The demo dashboard uses one of these to show the impact of quota enforcement controls. The time series graph shows the delay that has been applied to different applications.</p>
+
+<h2 id="selecting-metrics">Selecting metrics</h2>
+
+<p>The descriptions earlier of each of the metrics used in this tutorial includes the metric name as documented in the <a href="../../eem/reference/metrics-reference/">metrics reference</a>.</p>
+
+<p>The demo dashboards used in this tutorial are not intended to be an exhaustive representation of the metrics available for Event Endpoint Management users. The intent of this tutorial is to encourage you to consider what your objective is for monitoring Event Endpoint Management. Use the examples described here as a starting point for exploring the <a href="../../eem/reference/metrics-reference/">metrics reference</a> and selecting appropriate metrics for your use case.</p>
+
+<p>You can use the Grafana installation provided by the demo playbook to explore and experiment with the metrics that are available in the Grafana dashboard. The <strong>Explore</strong> section for the data source is a useful way to try this.</p>
+
+<p><a href="/event-automation/images/ea-tutorials/monitoring-eem-grafana.png" title="screenshot of a Grafana data source"><img src="/event-automation/images/ea-tutorials/monitoring-eem-grafana.png" alt="screenshot" title="screenshot of a Grafana data source" class="tutorial-screenshot" /></a></p>
+
+<p>After you have identified the metrics you want to collect, you can follow the instructions for <a href="../../eem/installing/configuring/#exporting-metrics-with-opentelemetry">configuring monitoring</a> to collect these metrics in your (non-demo) Event Endpoint Management.</p>
+
+<h2 id="next-steps">Next steps</h2>
+
+<p>If you have not yet explored the options for monitoring Event Streams, you can follow the <a href="./monitor-es-using-prometheus">Monitoring Event Streams cluster health</a> tutorial, which uses the same Grafana instance as this tutorial. This is an example of how you can collect metrics for your whole IBM Event Automation deployment into a single place.</p>
+
+          </div>
+
+
+          
+        </section>
+
+        <aside class="sidebar__right ">
+          
+          <div class="fixedSidebar">
+            <nav class="toc">
+              <ul class="toc__menu">
+  <li><a href="#before-you-begin">Before you begin</a>
+    <ul>
+      <li><a href="#versions">Versions</a></li>
+      <li><a href="#choosing-a-monitoring-platform">Choosing a monitoring platform</a></li>
+    </ul>
+  </li>
+  <li><a href="#instructions">Instructions</a></li>
+  <li><a href="#monitoring-use-cases">Monitoring use cases</a></li>
+  <li><a href="#monitoring-system-health">Monitoring system health</a>
+    <ul>
+      <li><a href="#service-health">Service health</a></li>
+      <li><a href="#api-call-handling">API call handling</a></li>
+      <li><a href="#event-endpoint-management-pods">Event Endpoint Management pods</a></li>
+      <li><a href="#using-the-dashboard">Using the dashboard</a></li>
+    </ul>
+  </li>
+  <li><a href="#monitoring-usage-and-activity">Monitoring usage and activity</a>
+    <ul>
+      <li><a href="#subscriptions">Subscriptions</a></li>
+      <li><a href="#applications">Applications</a></li>
+      <li><a href="#poorly-behaved-applications">Poorly-behaved applications</a></li>
+    </ul>
+  </li>
+  <li><a href="#selecting-metrics">Selecting metrics</a></li>
+  <li><a href="#next-steps">Next steps</a></li>
+</ul>
+            </nav>
+          </div>
+          
+        </aside>
+
+
+      </div>
+      <div class="pageEnd">
+        
+      </div>
+    </div>
+
+
+  </div> <!-- Main content -->
+
+</main></div>
+
+
+    
+      <div class="page__footer">
+          <footer>
+            <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+
+            
+<div class="page__footer-copyright"><a href="https://www.ibm.com/privacy/us/en/" rel="nofollow" target="_blank">Privacy Policy</a>  &nbsp;© Copyright IBM Corporation 2025</br>
+<a href="https://www.ibm.com/legal/terms" rel="nofollow" target="_blank">Terms of use</a> </br> <a href="https://ibm.github.io/event-automation/accessibility/" rel="nofollow" target="_blank">Accessibility</a> </br> <a href="https://ibm.github.io/event-automation/notices/" rel="nofollow" target="_blank">Notices</a></br>
+          </footer>
+      </div>      
+    
+
+
+    
+  <script src="/event-automation/assets/js/main.min.js"></script>
+  <!-- <script src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script> -->
+
+
+
+
+
+
+<script src="/event-automation/assets/js/design.js"></script>
+
+
+
+
+
+<script src="/event-automation/assets/js/lunr/lunr.min.js"></script>
+<script src="/event-automation/assets/js/lunr/lunr-store.js"></script>
+<script src="/event-automation/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+    
+
+    
+  </body>
+</html>

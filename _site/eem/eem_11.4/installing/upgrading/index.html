@@ -1,0 +1,2632 @@
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Upgrading - Event Endpoint Management</title>
+<meta name="description" content="Upgrade your installation to the latest version.">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="IBM Event Automation">
+<meta property="og:url" content="https://ibm.github.io/event-automation/eem/eem_11.4/installing/upgrading/" />
+<meta property="og:title" content="Event Endpoint Management | Upgrading" />
+<meta property="og:description" content="Upgrade your installation to the latest version." />
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="IBM Event Automation | Upgrading" />
+
+
+
+
+  <meta property="og:description" content="Upgrade your installation to the latest version.">
+
+
+
+  <meta property="og:image" content="https://ibm.github.io/event-automation/assets/siteMeta/appIcon_og_fb.png">
+  <meta name="twitter:image" content="https://ibm.github.io/event-automation/assets/siteMeta/appIcon_og_square.png">
+
+
+
+  <meta property="article:published_time" content="2025-11-07T03:45:08-05:00">
+
+
+
+
+
+
+<link rel="canonical" href="https://ibm.github.io/event-automation/eem/eem_11.4/installing/upgrading/">
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Organization",
+      "url": "https://ibm.github.io/event-automation",
+      "logo": "https://ibm.github.io/event-automation/assets/siteMeta/appIcon_og_fb.png"
+    }
+  </script>
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": null,
+      "url": "https://ibm.github.io/event-automation",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/event-automation/feed.xml" type="application/atom+xml" rel="alternate" title="IBM Event Automation Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/event-automation/assets/css/main.css">
+
+<script src="/event-automation/assets/js/scrollsidebar.js"></script>
+<script src="/event-automation/assets/js/copytoclipboard.js"></script>
+<script src="/event-automation/assets/js/highlighter.js"></script>
+<script src="/event-automation/assets/js/newtab.js"></script>
+
+
+
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<link rel="apple-touch-icon" sizes="180x180" href="https://ibm.github.io/event-automation/assets/siteMeta/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://ibm.github.io/event-automation/assets/siteMeta/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://ibm.github.io/event-automation/assets/siteMeta/favicon-16x16.png">
+<link rel="manifest" href="https://ibm.github.io/event-automation/assets/siteMeta/site.webmanifest">
+<link rel="mask-icon" href="https://ibm.github.io/event-automation/assets/siteMeta/safari-pinned-tab.svg" color="#000000">
+<link rel="shortcut icon" href="https://ibm.github.io/event-automation/assets/siteMeta/favicon.ico">
+<link rel="shortcut icon" type="image/png" href="https://ibm.github.io/event-automation/assets/siteMeta/favicon-16x16.png"/>
+<link rel="shortcut icon" type="image/png" href="https://ibm.github.io/event-automation/assets/siteMeta/favicon-32x32.png"/>
+<meta name="msapplication-TileColor" content="#000000">
+<meta name="msapplication-config" content="https://ibm.github.io/event-automation/assets/siteMeta/browserconfig.xml">
+<meta name="theme-color" content="#000000">
+
+
+
+<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,600%7CIBM+Plex+Serif:300,400,500%7CIBM+Plex+Mono:300,400,500,700" rel="stylesheet">
+
+<!-- end custom head snippets -->
+
+    <link rel="shortcut icon" type="image/x-icon" href="/event-automation/assets/favicon.ico" >
+    
+    <base target="_parent">
+
+  </head>
+  <script src="/event-automation/assets/animation/lottie.js" type="text/javascript"></script>
+  <script src="/event-automation/assets/js/connectors.js"></script>
+  <script src="/event-automation/assets/js/copytoclipboard.js"></script>
+  <script src="/event-automation/assets/js/highlighter.js"></script>
+
+
+  
+  <body onload="urlChecker()" class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+
+
+  
+
+
+
+
+
+
+<div id="masthead" class="masthead">
+  <!--
+  <div class="masthead__goToIBMCloud">
+  <div>
+    You are viewing the documentation for the container-native version of IBM Event Automation.
+  </div>
+    <a class="link" target="_self" href="https://cloud.ibm.com/docs/EventStreams?topic=EventStreams-getting-started">Looking for the managed service on IBM Cloud? Click here.</a>
+</div>
+-->
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="mastheadNav">
+
+      
+
+
+        <div class="mastheadTitle">
+          
+          <a class="site-title" href="/event-automation/" target="_self"><span>IBM</span>&nbsp;Event Automation</a>
+          <div class="viewOnIBMcom">
+            <a href="https://www.ibm.com/products/event-automation" target="_blank">View product page</a>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+
+        <div class="mastheadControls">
+            <div class="menuScrollContainer">
+
+        
+
+                <ul id="visible-links" class="visible-links">
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/es/','_self')">
+                      <a href="https://ibm.github.io/event-automation/es/" >Event Streams</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item active" onclick="window.open('https://ibm.github.io/event-automation/eem/','_self')">
+                      <a href="https://ibm.github.io/event-automation/eem/" >Event Endpoint Management</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/ep/','_self')">
+                      <a href="https://ibm.github.io/event-automation/ep/" >Event Processing</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/connectors/','_self')">
+                      <a href="https://ibm.github.io/event-automation/connectors/" >Connect catalog</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/tutorials/','_self')">
+                      <a href="https://ibm.github.io/event-automation/tutorials/" >Tutorials</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/api/','_self')">
+                      <a href="https://ibm.github.io/event-automation/api/" >APIs...</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/support/','_self')">
+                      <a href="https://ibm.github.io/event-automation/support/" >Support</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/search/','_self')">
+                      <button aria-label="Search Button" role="button" id="searchButton" class="search__toggle " type="button" name="search Button">
+                        <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                          <path
+                            d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z"
+                            transform="translate(-.01)"></path>
+                        </svg>
+                      </button>
+                    </li>
+                  
+
+                  
+                </ul>
+        
+
+      </div>
+    </div>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div id="initial-content" class="initial-content" role="main">
+
+
+
+
+
+
+<main id="main" class="mainContainer" role="main">
+    
+      <div id="subMenu" class="subMenu">
+        <div tabindex="0" class="menuIcon" id="menuIcon">
+          <svg id="mobileMenu" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+            <g id="bottomLine">
+              <line class="burgerLine" x1="14" y1="29" x2="34" y2="29" />
+            </g>
+            <g id="middleLine">
+              <line class="burgerLine" x1="14" y1="24" x2="34" y2="24" />
+            </g>
+            <g id="topLine">
+              <line class="burgerLine" x1="14" y1="19" x2="34" y2="19" />
+            </g>
+          </svg>
+        </div>
+        <div id="mobileVersionShortcut" class="versionContainer" tabindex="0">
+          <a id="mobileVersionPillCurrent" class="versionPill">11.4</a>
+        </div>
+      </div>
+    
+  
+
+
+
+<div id="sidebarMask" class="sidebarMask">
+
+  </div>
+  <div id="sidebar" class="sidebar sticky">
+      <div aria-label="Change Version" role="button" aria-expanded="false"
+      
+        id="versionDropdown"
+        tabindex="0"
+        class="versionsBar"
+       >
+          <div class="selectedVersion" id="selectedVersion">
+            <div class="versionContainer" >
+              
+                <a id="versionPillCurrent" class="versionPill">11.4</a>
+                <a class="versionChange">Change Version</a>
+              
+            </div>
+          </div>
+          
+
+
+          <div class="allVersions" id="allVersions">
+            <ul>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/eem/installing/upgrading/" onclick="openVersion('/event-automation/eem/installing/upgrading/','eem_11.6')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/eem/installing/upgrading/" class="versionPill inactive">11.6</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        Latest
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/eem/eem_11.5/installing/upgrading/" onclick="openVersion('/event-automation/eem/eem_11.5/installing/upgrading/','eem_11.5')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/eem/eem_11.5/installing/upgrading/" class="versionPill inactive">11.5</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/eem/eem_11.4/installing/upgrading/" onclick="openVersion('/event-automation/eem/eem_11.4/installing/upgrading/','eem_11.4')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/eem/eem_11.4/installing/upgrading/" class="versionPill active">11.4</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                          <img alt="" src="https://ibm.github.io/event-automation/images/checkbox.svg" />
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/eem/eem_11.3/installing/upgrading/" onclick="openVersion('/event-automation/eem/eem_11.3/installing/upgrading/','eem_11.3')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/eem/eem_11.3/installing/upgrading/" class="versionPill inactive">11.3</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/eem/eem_11.2/installing/upgrading/" onclick="openVersion('/event-automation/eem/eem_11.2/installing/upgrading/','eem_11.2')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/eem/eem_11.2/installing/upgrading/" class="versionPill inactive">11.2</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/eem/eem_11.1/installing/upgrading/" onclick="openVersion('/event-automation/eem/eem_11.1/installing/upgrading/','eem_11.1')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/eem/eem_11.1/installing/upgrading/" class="versionPill inactive">11.1</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/eem/eem_11.0/installing/upgrading/" onclick="openVersion('/event-automation/eem/eem_11.0/installing/upgrading/','eem_11.0')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/eem/eem_11.0/installing/upgrading/" class="versionPill inactive">11.0</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+            </ul>
+          </div>
+        </div>
+
+  
+    
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <ul class="nav__items">
+
+    
+      <li>
+        
+          <span class="nav__sub-title">About</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.4/about/overview/" class="">Introduction</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.4/about/whats-new/" class="">What's new</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.4/about/key-concepts/" class="">Key concepts</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Installing</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.4/installing/prerequisites/" class="">Prerequisites</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.4/installing/planning/" class="">Planning your installation</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.4/installing/overview/" class="">Installation overview</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.4/installing/installing/" class="">Installing the Manager in an online OpenShift environment</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.4/installing/offline/" class="">Installing the Manager in an offline environment</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.4/installing/installing-on-kubernetes/" class="">Installing the Manager on other Kubernetes platforms</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.4/installing/deploy-gateways/" class="">Installing Event Gateways on the same cluster</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.4/installing/standalone-gateways/" class="">Installing and upgrading stand-alone Event Gateways</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.4/installing/configuring/" class="">Configuring</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.4/installing/post-installation/" class="">Post-installation tasks</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.4/installing/backup-restore/" class="">Backing up and restoring</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.4/installing/uninstalling/" class="">Uninstalling</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.4/installing/upgrading/" class="active">Upgrading</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Getting started</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.4/getting-started/logging-in/" class="">Logging in</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Security</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.4/security/managing-access/" class="">Managing access</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.4/security/user-roles/" class="">Managing user roles</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.4/security/verifying-signature/" class="">Verifying container image signatures</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.4/security/network-policies/" class="">Network policies</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.4/security/gdpr-considerations/" class="">Considerations for GDPR</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.4/security/data-encryption/" class="">Encrypting your data</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.4/security/api-tokens/" class="">Managing access to the Admin API</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.4/security/fips/" class="">Enabling FIPS</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.4/security/audit-logging/" class="">Audit logging</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Describe and publish</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.4/describe/adding-topics/" class="">Describing event sources</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.4/describe/managing-event-sources/" class="">Managing event sources</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.4/describe/managing-options/" class="">Managing options</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.4/describe/option-controls/" class="">Adding controls to options</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.4/describe/managing-clusters/" class="">Managing clusters</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.4/describe/publishing-options/" class="">Publishing options</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.4/describe/managing-user-access-to-topics/" class="">Managing user access to options</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.4/describe/managing-gateways/" class="">Managing gateways</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Subscribe</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.4/subscribe/discovering-event-endpoints/" class="">Discovering event endpoints</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.4/subscribe/subscribing-to-event-endpoints/" class="">Subscribing to event endpoints</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.4/subscribe/managing-subscriptions/" class="">Managing subscriptions</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.4/subscribe/configure-your-application-to-connect/" class="">Configuring a client application to connect to an event endpoint</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Combining API and event management</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.4/api-and-event-management/overview/" class="">Overview</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.4/api-and-event-management/combining-events-and-api-management/" class="">Why combine API and event management</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.4/api-and-event-management/personas/" class="">API and event management personas</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.4/api-and-event-management/components/" class="">Component topology</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Integrating with IBM API Connect</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.4/integrating-with-apic/overview/" class="">Overview</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.4/integrating-with-apic/apic-eem-concepts/" class="">Integration concepts and glossary</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.4/integrating-with-apic/configure-eem-for-apic/" class="">Configure the Manager as an Event Gateway Service</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.4/integrating-with-apic/generate-asyncapi/" class="">Generating an AsyncAPI document for use in API Connect</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.4/integrating-with-apic/apic-eem-scenario/" class="">API and event management: example scenario</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Reference</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.4/reference/api-reference/" class="">API reference for the CRDs</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.4/reference/metrics-reference/" class="">OpenTelemetry metrics</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.4/../eem-api/" class="">Event Endpoint Management Admin API</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Troubleshooting</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.4/troubleshooting/intro/" class="">Troubleshooting overview</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.4/troubleshooting/gathering-logs/" class="">Gathering logs</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.4/troubleshooting/trace-logging/" class="">Configuring trace logging</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.4/troubleshooting/no-such-algorithm-log/" class="">No such algorithm exception log</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.4/troubleshooting/evicted-gateway/" class="">Event Gateway in 'Evicted' state</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.4/troubleshooting/changing-ca-certificate/" class="">Error when logging in to UI after changing CA certificate</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.4/troubleshooting/ssl-protocol-failure/" class="">Kafka application fails with SSLHandshakeException</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.4/troubleshooting/usage-based-reporting/" class="">Configuring usage-based reporting</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.4/troubleshooting/ssl-error/" class="">Event Gateway fails with SSL errors</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.4/troubleshooting/certificate-rotation/" class="">Error when logging in to UI after certificate rotation</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.4/troubleshooting/502-bad-gateway/" class="">502 Bad Gateway error when logging in to UI</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.4/troubleshooting/apic-subscription-topics-unavailable/" class="">Subscribed topics not available with API Connect subscription credentials</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.4/troubleshooting/no-main-key-backup/" class="">Event Manager fails with `Unable to find main key backup` error</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.4/troubleshooting/unexpected-option-not-publishable/" class="">Unable to publish an option due to incompatible controls</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.4/troubleshooting/unable-to-register-gateway/" class="">Unable to register an Event Gateway to an existing gateway group</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.4/troubleshooting/unable-to-replace-ca-cert/" class="">Unable to replace the CA certificate uploaded when an mTLS control was created</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/eem/eem_11.4/troubleshooting/controls-with-mtls/" class="">Additional controls not applied to options with mTLS only control</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+    
+  
+  </div>
+
+
+  <div class="mainContent">
+    
+    <div id="pageContainer" class="page" itemscope itemtype="http://schema.org/CreativeWork">
+      
+      <div class="page__inner-wrap">
+      
+
+        
+        <section class="page__content pageSpacing" itemprop="text">
+          
+        
+          <header>
+            <h1 id="page-title" class="page__title" itemprop="headline">
+              Upgrading
+</h1>
+            
+          </header>  
+        
+        
+
+                    
+          <div class="content">
+            <p>Upgrade your Event Endpoint Management installation as follows. The Event Endpoint Management operator handles the upgrade of your Event Manager, and all Event Gateway instances that are on the same cluster. To upgrade a stand-alone Event Gateway, see <a href="../standalone-gateways/#upgrade-stand-alone-egw">upgrading a stand-alone Event Gateway</a>.</p>
+
+<p>Review the upgrade procedure and decide the right steps to take for your deployment based on your platform, current version, and target version.</p>
+
+<h2 id="upgrade-paths">Upgrade paths</h2>
+
+<!-- Below text to be used for .1, .2,... releases (non .0 releases) -->
+<p>You can upgrade Event Endpoint Management to the <a href="/event-automation/support/matrix/#event-endpoint-management">latest 11.4.x version</a> directly from any earlier 11.4.x or 11.3.x version by using the latest 11.4.x operator.</p>
+
+<!-- Below text to be used for .0 releases -->
+<!-- You can upgrade Event Endpoint Management to the [11.4.0](/event-automation/support/matrix/#event-endpoint-management) directly from any 11.3.x by using the latest 11.4.0 operator. -->
+
+<p>If you are upgrading from Event Endpoint Management version 11.2.x or earlier, you must first <a href="/event-automation/eem/eem_11.3/installing/upgrading/">upgrade your installation to 11.3.x</a>, and then follow these instructions to upgrade to 11.4.1.</p>
+
+<ul>
+  <li>
+    <p>On OpenShift, you can upgrade to the latest version by using operator channel v11.4. Review the general upgrade <a href="#prerequisites">prerequisites</a> before you follow the instructions to <a href="#upgrading-on-the-openshift-container-platform">upgrade on OpenShift</a>.</p>
+  </li>
+  <li>
+    <p>On other Kubernetes platforms, you must update the Helm repository for any level version update (any digit update: major, minor, or patch), and then upgrade by using the Helm chart. Review the general upgrade <a href="#prerequisites">prerequisites</a> before you follow the instructions to <a href="#upgrading-on-other-kubernetes-platforms-by-using-helm">upgrade on other Kubernetes platforms</a>.</p>
+  </li>
+</ul>
+
+<h2 id="prerequisites">Prerequisites</h2>
+
+<ul>
+  <li>
+    <p>Ensure that you have a supported version of the OpenShift Container Platform installed. For supported versions, see the <a href="/event-automation/support/matrix/#event-endpoint-management">support matrix</a>.</p>
+  </li>
+  <li>
+    <p>If you installed as part of IBM Cloud Pak for Integration, ensure that you followed the <a href="https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.1.0?topic=upgrading" target="_blank">upgrade steps for IBM Cloud Pak for Integration</a> before you upgrade Event Endpoint Management.</p>
+  </li>
+  <li>
+    <p>To upgrade successfully, your Event Manager instance must have persistent storage enabled. If you upgrade an Event Manager instance with ephemeral storage, all data is lost.</p>
+  </li>
+  <li>
+    <p>Ensure that both your Event Gateway and Event Manager instances are from the same version of Event Endpoint Management, or that the Event Gateway is from an earlier version.</p>
+  </li>
+  <li>
+    <p>Upgrade stand-alone Event Gateway instances after you upgrade your Event Manager.</p>
+  </li>
+</ul>
+
+<p><strong>Important:</strong> If you have Event Gateway instances from Event Endpoint Management version 11.2.0 and earlier, <a href="#enable-earlier-egw-instances-to-register">review the additional upgrade steps</a>.</p>
+
+<p><strong>Important:</strong> The upgrade process requires some downtime as Event Endpoint Management and Event Gateway pods are restarted.</p>
+
+<h2 id="upgrading-on-the-openshift-container-platform">Upgrading on the OpenShift Container Platform</h2>
+
+<p>Find out how to upgrade your deployment on an OpenShift Container Platform.</p>
+
+<h3 id="planning-your-upgrade">Planning your upgrade</h3>
+
+<p>Complete the following steps to plan your upgrade on OpenShift.</p>
+
+<ol>
+  <li>
+    <p>Determine which Operator Lifecycle Manager (OLM) channel is used by your existing Subscription. You can check the channel that you are subscribed to in the <a href="#upgrading-subscription-by-using-the-openshift-web-console">web console</a> (see <strong>Update channel</strong> section), or by using the CLI as follows:</p>
+
+    <p>a. Run the following command to check your subscription details:</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   oc get subscription
+</code></pre></div>    </div>
+
+    <p>b. Check the <code class="language-plaintext highlighter-rouge">CHANNEL</code> column for the channel you are subscribed to, for example, v11.3 in the following snippet:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   NAME                                      PACKAGE                          SOURCE                                     CHANNEL
+   ibm-eventendpointmanagement               ibm-eventendpointmanagement      ibm-eventendpointmanagement-catalog        v11.3
+</code></pre></div>    </div>
+
+    <p>This is the <a href="../installing/#install-the-event-endpoint-management-operator">subscription created during installation</a>.</p>
+  </li>
+</ol>
+
+<p>If your existing Subscription uses a channel earlier than v11.3, you must first <a href="/event-automation/eem/eem_11.3/installing/upgrading/">upgrade your installation to 11.3.x</a> before you can upgrade to 11.4.x.</p>
+
+<!-- Below line for non .0 releases only -->
+<p>If your existing Subscription is already on the v11.4 channel, your upgrade is a change to the patch level (third digit) only. <a href="#making-new-catalog-source-available">Make the catalog source for your new version available</a> to upgrade to the latest level. If you installed by using the IBM Operator Catalog with the <code class="language-plaintext highlighter-rouge">latest</code> label, new versions are automatically available. The operator will upgrade your Event Endpoint Management instance automatically.</p>
+
+<h3 id="making-new-catalog-source-available">Making new catalog source available</h3>
+
+<p>Before you can upgrade, make the catalog source for the target version available in your cluster. The procedure depends on how you created the <a href="../installing/#creating-the-catalog-sources">catalog sources</a> for your deployment:</p>
+
+<ul>
+  <li>
+    <p>Latest versions: If your catalog source is the IBM Operator Catalog, the latest versions are always available when published, and you do not have to make new catalog sources available.</p>
+  </li>
+  <li>
+    <p>Specific versions: If you used the CASE bundle to install the catalog source for a previous version, you must download and use a new CASE bundle for your target version.</p>
+    <ul>
+      <li>If you used the CASE bundle for an online installation, <a href="../installing/#add-specific-version-sources-for-production-environments-case">apply the new catalog source</a> to update the <code class="language-plaintext highlighter-rouge">CatalogSource</code>.</li>
+      <li>If you used the CASE bundle for an offline installation that uses a private registry, follow the instructions in <a href="../offline/#download-the-case-bundle">installing offline</a> to remirror images and update the <code class="language-plaintext highlighter-rouge">CatalogSource</code>.</li>
+      <li>In both cases, wait for the <code class="language-plaintext highlighter-rouge">status.installedCSV</code> field in the <code class="language-plaintext highlighter-rouge">Subscription</code> to update. It eventually reflects the latest version available in the new <code class="language-plaintext highlighter-rouge">CatalogSource</code> image for the currently selected channel in the <code class="language-plaintext highlighter-rouge">Subscription</code>:
+        <ul>
+          <li>In the OpenShift Container Platform web console, the current version of the operator is displayed under <code class="language-plaintext highlighter-rouge">Installed Operators</code>.</li>
+          <li>If you are using the CLI, check the status of the <code class="language-plaintext highlighter-rouge">Subscription</code> custom resource, the <code class="language-plaintext highlighter-rouge">status.installedCSV</code> field shows the current operator version.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="upgrading-subscription-by-using-the-openshift-cli">Upgrading Subscription by using the OpenShift CLI</h3>
+
+<p>If you are using the OpenShift command-line interface (CLI), complete the steps in the following sections to upgrade your Event Endpoint Management installation.</p>
+
+<ol>
+  <li>Log in to your Red Hat OpenShift Container Platform as a cluster administrator by using the <code class="language-plaintext highlighter-rouge">oc</code> <a href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/cli_tools/openshift-cli-oc#cli-getting-started" target="_blank">CLI</a> (<code class="language-plaintext highlighter-rouge">oc login</code>).</li>
+  <li>
+    <p>Ensure the required Event Endpoint Management Operator Upgrade Channel is available:</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>oc get packagemanifest ibm-eventendpointmanagement <span class="nt">-o</span><span class="o">=</span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">'{.status.channels[*].name}'</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Change the subscription to move to the required update channel, where <code class="language-plaintext highlighter-rouge">vX.Y</code> is the required update channel (for example, <code class="language-plaintext highlighter-rouge">v11.4</code>):</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>oc patch subscription <span class="nt">-n</span> &lt;namespace&gt; ibm-eventendpointmanagement <span class="nt">--patch</span> <span class="s1">'{"spec":{"channel":"vX.Y"}}'</span> <span class="nt">--type</span><span class="o">=</span>merge
+</code></pre></div>    </div>
+    <!-- This step can be commented out from releases that do not require license updates. -->
+  </li>
+  <li>If you are upgrading from 11.3.x, then update the <code class="language-plaintext highlighter-rouge">spec.license.license</code> field in the custom resources of your Event Manager and Event Gateway instances to the <a href="/event-automation/support/licensing/#ibm-event-automation-license-information">license ID</a> for 11.4.0 and later. The instances will not upgrade until the license ID is updated.</li>
+</ol>
+
+<p>All Event Endpoint Management pods that are updated as part of the upgrade are restarted.</p>
+
+<h3 id="upgrading-subscription-by-using-the-openshift-web-console">Upgrading Subscription by using the OpenShift web console</h3>
+
+<p>If you are using the  web console, complete the steps in the following sections to upgrade your Event Endpoint Management installation.</p>
+
+<ol>
+  <li>Log in to the OpenShift Container Platform <a href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/web_console/web-console" target="_blank">web console</a> using your login credentials.</li>
+  <li>
+    <p>Expand <strong>Operators</strong> in the navigation on the left, and click <strong>Installed Operators</strong>.</p>
+
+    <p><img src="/event-automation/images/rhocp_menu_installedoperators.png" alt="Operators &gt; Installed Operators" title="Screen capture showing how to select Operators &gt; Installed Operators from navigation menu" height="50%" width="50%" /></p>
+  </li>
+  <li>From the <strong>Project</strong> list, select the project (namespace) the instance is installed in.</li>
+  <li>Locate the operator that manages your Event Manager instance in the project. It is called <strong>Event Endpoint Management</strong> in the <strong>Name</strong> column. Click the <strong>Event Endpoint Management</strong> link in the row.</li>
+  <li>Click the <strong>Subscription</strong> tab to display the <strong>Subscription details</strong> for the Event Endpoint Management operator.</li>
+  <li>Select the version number link in the <strong>Update channel</strong> section (for example, <strong>v11.3</strong>). The <strong>Change Subscription update channel</strong> dialog is displayed, showing the channels that are available to upgrade to.</li>
+  <li>Select the required channel, for example <strong>v11.4</strong>, and click <strong>Save</strong> on the <strong>Change Subscription update channel</strong> dialog.
+<!-- This step can be commented out from releases that do not require license updates. --></li>
+  <li>If you are upgrading from 11.3.x, then update the <code class="language-plaintext highlighter-rouge">spec.license.license</code> field in the custom resources of your Event Manager and Event Gateway instances to the <a href="/event-automation/support/licensing/#ibm-event-automation-license-information">license ID</a> for 11.4.0 and later. The instances will not upgrade until the license ID is updated.</li>
+</ol>
+
+<p>All Event Endpoint Management pods that are updated as part of the upgrade are restarted.</p>
+
+<h2 id="upgrading-on-other-kubernetes-platforms-by-using-helm">Upgrading on other Kubernetes platforms by using Helm</h2>
+
+<p>If you are running Event Endpoint Management on Kubernetes platforms that support the Red Hat Universal Base Images (UBI) containers, you can upgrade Event Endpoint Management by using the Helm chart.</p>
+
+<h3 id="planning-your-upgrade-1">Planning your upgrade</h3>
+
+<p>Complete the following steps to plan your upgrade on other Kubernetes platforms.</p>
+
+<ol>
+  <li>
+    <p>Determine the chart version for your existing deployment:</p>
+
+    <p>a. Change to the namespace where your Event Manager instance is installed:</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   kubectl config set-context <span class="nt">--current</span> <span class="nt">--namespace</span><span class="o">=</span>&lt;namespace&gt;
+</code></pre></div>    </div>
+
+    <p>b. Run the following command to check what version is installed:</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   helm list
+</code></pre></div>    </div>
+
+    <p>c. Check the version installed in the <code class="language-plaintext highlighter-rouge">CHART</code> column, for example, <code class="language-plaintext highlighter-rouge">&lt;chart-name&gt;-11.3.2</code> in the following snippet:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   NAME                  NAMESPACE  REVISION  UPDATED                                 STATUS   CHART                        APP VERSION    
+   ibm-eem-operator      eem        1         2023-11-22 12:27:03.6018574 +0000 UTC   deployed ibm-eem-operator-11.3.2      7133459-483976d  
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Check the latest chart version that you can upgrade to:</p>
+
+    <p>a. Log in to your Kubernetes cluster as a cluster administrator by setting your <code class="language-plaintext highlighter-rouge">kubectl</code> <a href="https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/" target="_blank">context</a>.</p>
+
+    <p>b. Add the <a href="https://github.com/IBM/charts/tree/master/repo/ibm-helm" target="_blank">IBM Helm repository</a>:</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   helm repo add ibm-helm https://raw.githubusercontent.com/IBM/charts/master/repo/ibm-helm
+</code></pre></div>    </div>
+
+    <p>c. Update the Helm repository:</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   helm repo update ibm-helm
+</code></pre></div>    </div>
+
+    <p>d. Confirm the version of the chart that you are upgrading to:</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   helm show chart ibm-helm/ibm-eem-operator
+</code></pre></div>    </div>
+
+    <p>Check the <code class="language-plaintext highlighter-rouge">version:</code> value in the output, for example: <code class="language-plaintext highlighter-rouge">version: 11.4.2</code></p>
+  </li>
+</ol>
+
+<p>If the chart version for your existing deployment is earlier than 11.3.x, you must first <a href="/event-automation/eem/eem_11.3/installing/upgrading/">upgrade your installation to 11.3.x</a>, including any post-upgrade tasks. Return to these instructions to complete your upgrade to the 11.4.1 version.</p>
+
+<p>If your existing installation is in an offline environment, you must repeat the steps in the offline installation instructions to <a href="../offline/#download-the-case-bundle">Download the CASE bundle</a> and <a href="../offline/#mirror-the-images">mirror the images</a> before you upgrade.</p>
+
+<p>If the chart version for your existing deployment is 11.3.x, then proceed to <a href="#upgrading-by-using-helm">helm upgrade</a>.</p>
+
+<!-- Below line applies to non .0 releases only -->
+<p>If the chart version for your existing deployment is 11.4.x, your upgrade is a change in patch level only. Follow the steps in <a href="#upgrading-by-using-helm">upgrading by using Helm</a> to update your Custom Resource Definitions (CRDs) and operator charts to the latest version. The operator will then upgrade your Event Manager instance automatically.</p>
+
+<h3 id="upgrading-by-using-helm">Upgrading by using Helm</h3>
+
+<p>You can upgrade your Event Endpoint Management on other Kubernetes platforms by using Helm.</p>
+
+<ol>
+  <li>Log in to your Kubernetes cluster as a cluster administrator by setting your <code class="language-plaintext highlighter-rouge">kubectl</code> <a href="https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/" target="_blank">context</a>.</li>
+  <li>
+    <p>Identify the namespace where the installation is located and the Helm release that is managing the CRDs:</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kubectl get crd eventendpointmanagements.events.ibm.com <span class="nt">-o</span> <span class="nv">jsonpath</span><span class="o">=</span><span class="s1">'{.metadata.annotations}'</span>
+</code></pre></div>    </div>
+
+    <p>Example output that shows CRDs managed by Helm release <code class="language-plaintext highlighter-rouge">eem-crds</code> in namespace <code class="language-plaintext highlighter-rouge">my-eem</code>:</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">{</span><span class="s2">"meta.helm.sh/release-name"</span>: <span class="s2">"eem-crds"</span>, <span class="s2">"meta.helm.sh/release-namespace"</span>: <span class="s2">"eem"</span><span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Set your current namespace to the namespace that you identified in step 2.
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kubectl config set-context <span class="nt">--current</span> <span class="nt">--namespace</span><span class="o">=</span>&lt;namespace&gt;
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Add the <a href="https://github.com/IBM/charts/tree/master/repo/ibm-helm" target="_blank">IBM Helm repository</a>:</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>helm repo add ibm-helm https://raw.githubusercontent.com/IBM/charts/master/repo/ibm-helm
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Update the Helm repository:</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>helm repo update ibm-helm
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Upgrade the Helm release that manages your Event Endpoint Management CRDs (as identified in step 2):</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>helm upgrade &lt;crd_release_name&gt; ibm-helm/ibm-eem-operator-crd
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Upgrade the Helm release of your operator installation.</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>helm <span class="nt">-n</span> &lt;ibm-eem-operator namespace&gt; upgrade &lt;eem_release_name&gt; ibm-helm/ibm-eem-operator &lt;install_flags&gt;
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<!-- This step can be commented out from releases that do not require license updates. -->
+<ol>
+  <li>If you are upgrading from 11.3.x, then update the <code class="language-plaintext highlighter-rouge">spec.license.license</code> field in the custom resources of your Event Manager and Event Gateway instances to the <a href="/event-automation/support/licensing/#ibm-event-automation-license-information">license ID</a> for 11.4.0 and later. The instances will not upgrade until the license ID is updated.</li>
+</ol>
+
+<p>Where:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">&lt;crd_release_name&gt;</code> is the Helm release name of the Helm installation that manages the Event Endpoint Management CRDs.</li>
+  <li><code class="language-plaintext highlighter-rouge">&lt;eem_release_name&gt;</code> is the Helm release name of the Helm installation of the operator.</li>
+  <li><code class="language-plaintext highlighter-rouge">&lt;install_flags&gt;</code> are any optional installation property settings, such as <code class="language-plaintext highlighter-rouge">--set watchAnyNamespace=true</code></li>
+  <li><code class="language-plaintext highlighter-rouge">&lt;ibm-eem-operator namespace&gt;</code> is the namespace where your Event Endpoint Management is installed.</li>
+</ul>
+
+<h2 id="post-upgrade-tasks">Post-upgrade tasks</h2>
+
+<h3 id="verifying-the-upgrade">Verifying the upgrade</h3>
+
+<p>After the upgrade, verify the status of the Event Endpoint Management, by using the <a href="../post-installation/#using-the-openshift-container-platform-cli">CLI</a> or the <a href="../post-installation/#using-the-openshift-container-platform-ui">UI</a>.</p>
+
+<h3 id="enable-earlier-egw-instances-to-register">Enable Event Gateway instances from version 11.2.0 and earlier to work with 11.4.0 and later</h3>
+
+<p>By default, Event Endpoint Management 11.4.0 and later versions do not allow any Event Gateway from Event Endpoint Management version 11.2.0 and earlier to register with the Event Manager and publish topics to them.</p>
+
+<p>You can configure any such Event Gateway instances to continue to work with Event Manager instances from Event Endpoint Management 11.4.x as follows.</p>
+
+<p><strong>Note:</strong> Support for using an Event Gateway from Event Endpoint Management version 11.2.0 and earlier with 11.4.0 and later deployments will be removed in a future release.</p>
+
+<ol>
+  <li>
+    <p>Determine your current Event Gateway version by obtaining the <code class="language-plaintext highlighter-rouge">sha256</code> digests for the deployed Event Gateway container images. The steps to do this depend on whether your Event Gateway is <a href="#operator-managed-event-gateway-instances">operator-managed</a> or a <a href="#stand-alone-event-gateway-instances">stand-alone deployment</a>.</p>
+  </li>
+  <li>
+    <p>Check if your Event Gateway images match any of the following digests:</p>
+
+    <ul>
+      <li>11.2.0: <code class="language-plaintext highlighter-rouge">sha256:3a0651f5cf79bdb29afffa7328db796c06d27fe62748a86701f4bdbf501cf570</code></li>
+      <li>11.1.5: <code class="language-plaintext highlighter-rouge">sha256:168a2017976c6b59ff32a5966994946abb880ae8ddb3ee8e79dac2aab8f1f504</code></li>
+      <li>11.1.4: <code class="language-plaintext highlighter-rouge">sha256:6369e5416cbb55e861eafae7657bbccddf5b360a67e9626e922f2636a94a5be0</code></li>
+      <li>11.1.3: <code class="language-plaintext highlighter-rouge">sha256:83ae7964b1b85e690b50784889355b28f2d5181f9d793bf9f5fb004a112cbd4f</code></li>
+      <li>11.1.2: <code class="language-plaintext highlighter-rouge">sha256:fa0e266f1974467297469392b22175111541933619b2419d68ee7f4dd387d321</code></li>
+      <li>11.1.1: <code class="language-plaintext highlighter-rouge">sha256:2e4c371259b599b01bacf29ac96bc1cc90764c3a33cb202fb127472dffddc6c7</code></li>
+      <li>11.1.0: <code class="language-plaintext highlighter-rouge">sha256:8fa25e9f2774f20181e8fe8108d58aa1f473108ead013271a0a75dc0e3e87de6</code></li>
+      <li>11.0.5: <code class="language-plaintext highlighter-rouge">sha256:cf303004c78434741ec3bd492c4df84b7647091a8f1e13e44c919fa8aad8092c</code></li>
+      <li>11.0.4: <code class="language-plaintext highlighter-rouge">sha256:cade81de88d1567e04c319e2b6dd5115e7b1042e772253eadb728e543aef8794</code></li>
+      <li>11.0.3: <code class="language-plaintext highlighter-rouge">sha256:4e4a05f15639ed76e134a8d75f925fca68c86bb639c45da024bf8f26fb8d40f9</code></li>
+      <li>11.0.2: <code class="language-plaintext highlighter-rouge">sha256:ccaea352f4453bbc162692016af78b1b72dcdc466fdd477a356a34bdf198a12f</code></li>
+      <li>11.0.1: <code class="language-plaintext highlighter-rouge">sha256:96597a18b0bd50a71d1d341fb2d9acdda970d006fa35ceadfbe4d2396fec3eed</code></li>
+      <li>11.0.0: <code class="language-plaintext highlighter-rouge">sha256:cfdf937b0c1e20debb4f13bb63027ee8cb0840f96850095e3ceb6141f490a590</code></li>
+    </ul>
+  </li>
+  <li>
+    <p>If your gateway matches one of the digests listed in the previous step, it will not work with your Event Manager after upgrading unless you complete one of the following tasks:</p>
+
+    <ul>
+      <li>Upgrade your Event Gateway instance to the version from the Event Endpoint Management you are upgrading to.</li>
+      <li>Apply the following configuration to the <code class="language-plaintext highlighter-rouge">EventEndpointManagement</code> custom resource that defines your Event Manager instance:</li>
+    </ul>
+
+    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">spec</span><span class="pi">:</span>
+  <span class="na">manager</span><span class="pi">:</span>
+    <span class="na">template</span><span class="pi">:</span>
+      <span class="na">pod</span><span class="pi">:</span>
+        <span class="na">spec</span><span class="pi">:</span>
+          <span class="na">containers</span><span class="pi">:</span>
+            <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">manager</span>
+              <span class="na">env</span><span class="pi">:</span>
+                <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">ALLOW_PRE_V11.2.0_GATEWAYS</span>
+                  <span class="na">value</span><span class="pi">:</span> <span class="s2">"</span><span class="s">true"</span>
+</code></pre></div>    </div>
+
+    <p><strong>Important:</strong> The <code class="language-plaintext highlighter-rouge">ALLOW_PRE_V11.2.0_GATEWAYS</code> configuration option will be removed in a future Event Endpoint Management release. To ensure  compatibility, it is recommended that both your Event Gateway and Event Manager instances are from the same version of Event Endpoint Management.</p>
+  </li>
+</ol>
+
+<h4 id="operator-managed-event-gateway-instances">Operator-managed Event Gateway instances</h4>
+
+<p>The <code class="language-plaintext highlighter-rouge">sha256</code> digest is visible in the <code class="language-plaintext highlighter-rouge">Deployment</code> of any Event Gateway, which has been created and managed by the Operator.</p>
+
+<p>For example, where the <code class="language-plaintext highlighter-rouge">Deployment</code> is named <code class="language-plaintext highlighter-rouge">&lt;GATEWAY INSTANCE NAME&gt;-ibm-egw-gateway</code>, where <code class="language-plaintext highlighter-rouge">&lt;GATEWAY INSTANCE NAME&gt;</code> is the name of your <code class="language-plaintext highlighter-rouge">EventGateway</code> custom resource, the <code class="language-plaintext highlighter-rouge">sha256</code> value is a part of the <code class="language-plaintext highlighter-rouge">image</code> value:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">...</span>
+          <span class="na">ports</span><span class="pi">:</span>
+            <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">egw</span>
+              <span class="na">containerPort</span><span class="pi">:</span> <span class="m">8092</span>
+              <span class="na">protocol</span><span class="pi">:</span> <span class="s">TCP</span>
+          <span class="na">imagePullPolicy</span><span class="pi">:</span> <span class="s">IfNotPresent</span>
+          <span class="na">volumeMounts</span><span class="pi">:</span>
+            <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">egw-certs</span>
+              <span class="na">readOnly</span><span class="pi">:</span> <span class="no">true</span>
+              <span class="na">mountPath</span><span class="pi">:</span> <span class="s">/certs/eem</span>
+            <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">config</span>
+              <span class="na">readOnly</span><span class="pi">:</span> <span class="no">true</span>
+              <span class="na">mountPath</span><span class="pi">:</span> <span class="s">/config</span>
+            <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">manager-cache</span>
+              <span class="na">mountPath</span><span class="pi">:</span> <span class="s">/tmp</span>
+            <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">manager-audit</span>
+              <span class="na">mountPath</span><span class="pi">:</span> <span class="s">/var/log/audit</span>
+          <span class="na">terminationMessagePolicy</span><span class="pi">:</span> <span class="s">File</span>
+          <span class="na">image</span><span class="pi">:</span> <span class="s1">'</span><span class="s">cp.icr.io/cp/ibm-eventendpointmanagement/egw@sha256:3a0651f5cf79bdb29afffa7328db796c06d27fe62748a86701f4bdbf501cf570'</span>
+<span class="err">      </span><span class="na">serviceAccount</span><span class="pi">:</span> <span class="s">&lt;GATEWAY INSTANCE NAME&gt;-ibm-egw-sa</span>
+<span class="nn">...</span>
+</code></pre></div></div>
+
+<h4 id="stand-alone-event-gateway-instances">Stand-alone Event Gateway instances</h4>
+
+<p>If you have a stand-alone Event Gateway instance, run the following command to list the digests of the running images on the host system:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker image inspect <span class="si">$(</span>docker ps <span class="nt">-a</span> <span class="nt">--filter</span> <span class="nv">label</span><span class="o">=</span><span class="s2">"description=gateway microservice"</span> <span class="nt">--format</span> <span class="s2">"{{.Image}}"</span> | <span class="nb">sort</span><span class="si">)</span> <span class="nt">--format</span><span class="o">=</span><span class="s2">"{{.RepoTags}}:{{.Id}}"</span>
+</code></pre></div></div>
+
+<p>The following shows an example result:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>cp.icr.io/cp/ibm-eventendpointmanagement/egw:11.0.0]:sha256:b328f6c844117e1c59ce0e6406c7691b8169d72dd73665bbe602835b8e06388c
+</code></pre></div></div>
+
+<p>Review the returned <code class="language-plaintext highlighter-rouge">sha256</code> string or tag that is associated with the image to determine the version of your Event Gateway instance.</p>
+
+          </div>
+
+
+          
+        </section>
+
+        <aside class="sidebar__right ">
+          
+          <div class="fixedSidebar">
+            <nav class="toc">
+              <ul class="toc__menu">
+  <li><a href="#upgrade-paths">Upgrade paths</a></li>
+  <li><a href="#prerequisites">Prerequisites</a></li>
+  <li><a href="#upgrading-on-the-openshift-container-platform">Upgrading on the OpenShift Container Platform</a>
+    <ul>
+      <li><a href="#planning-your-upgrade">Planning your upgrade</a></li>
+      <li><a href="#making-new-catalog-source-available">Making new catalog source available</a></li>
+      <li><a href="#upgrading-subscription-by-using-the-openshift-cli">Upgrading Subscription by using the OpenShift CLI</a></li>
+      <li><a href="#upgrading-subscription-by-using-the-openshift-web-console">Upgrading Subscription by using the OpenShift web console</a></li>
+    </ul>
+  </li>
+  <li><a href="#upgrading-on-other-kubernetes-platforms-by-using-helm">Upgrading on other Kubernetes platforms by using Helm</a>
+    <ul>
+      <li><a href="#planning-your-upgrade-1">Planning your upgrade</a></li>
+      <li><a href="#upgrading-by-using-helm">Upgrading by using Helm</a></li>
+    </ul>
+  </li>
+  <li><a href="#post-upgrade-tasks">Post-upgrade tasks</a>
+    <ul>
+      <li><a href="#verifying-the-upgrade">Verifying the upgrade</a></li>
+      <li><a href="#enable-earlier-egw-instances-to-register">Enable Event Gateway instances from version 11.2.0 and earlier to work with 11.4.0 and later</a></li>
+    </ul>
+  </li>
+</ul>
+            </nav>
+          </div>
+          
+        </aside>
+
+
+      </div>
+      <div class="pageEnd">
+        
+          
+  <nav class="pagination">
+    
+      <div class="previous" onclick="window.open('/event-automation/eem/eem_11.4/installing/uninstalling/','_self')">
+        <div class="container">
+          <a href="/event-automation/eem/eem_11.4/installing/uninstalling/" class="pagination--pager" title="Previous Item: Uninstalling
+">Previous</a>
+          <h2 class="titlePreview">Uninstalling
+</h2>
+        </div>
+      </div>
+    
+    
+      <div class="next" onclick="window.open('/event-automation/eem/eem_11.4/getting-started/logging-in/','_self')">
+        <div class="container">
+          <a href="/event-automation/eem/eem_11.4/getting-started/logging-in/" class="pagination--pager" title="Next Item: Logging in
+">Next</a>
+          <h2 class="titlePreview">Logging in
+</h2>
+        </div>
+      </div>
+      
+  </nav>
+
+        
+      </div>
+    </div>
+
+
+  </div> <!-- Main content -->
+
+</main></div>
+
+
+    
+      <div class="page__footer">
+          <footer>
+            <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+
+            
+<div class="page__footer-copyright"><a href="https://www.ibm.com/privacy/us/en/" rel="nofollow" target="_blank">Privacy Policy</a>  &nbsp;© Copyright IBM Corporation 2025</br>
+<a href="https://www.ibm.com/legal/terms" rel="nofollow" target="_blank">Terms of use</a> </br> <a href="https://ibm.github.io/event-automation/accessibility/" rel="nofollow" target="_blank">Accessibility</a> </br> <a href="https://ibm.github.io/event-automation/notices/" rel="nofollow" target="_blank">Notices</a></br>
+          </footer>
+      </div>      
+    
+
+
+    
+  <script src="/event-automation/assets/js/main.min.js"></script>
+  <!-- <script src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script> -->
+
+
+
+
+
+
+<script src="/event-automation/assets/js/design.js"></script>
+
+
+
+
+
+<script src="/event-automation/assets/js/lunr/lunr.min.js"></script>
+<script src="/event-automation/assets/js/lunr/lunr-store.js"></script>
+<script src="/event-automation/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+    
+
+    
+  </body>
+</html>

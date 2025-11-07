@@ -1,0 +1,2343 @@
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Post-installation tasks - Event Processing</title>
+<meta name="description" content="Post-installation tasks after successfully installing Event Processing.">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="IBM Event Automation">
+<meta property="og:url" content="https://ibm.github.io/event-automation/ep/ep_1.3/installing/post-installation/" />
+<meta property="og:title" content="Event Processing | Post-installation tasks" />
+<meta property="og:description" content="Post-installation tasks after successfully installing Event Processing." />
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="IBM Event Automation | Post-installation tasks" />
+
+
+
+
+  <meta property="og:description" content="Post-installation tasks after successfully installing Event Processing.">
+
+
+
+  <meta property="og:image" content="https://ibm.github.io/event-automation/assets/siteMeta/appIcon_og_fb.png">
+  <meta name="twitter:image" content="https://ibm.github.io/event-automation/assets/siteMeta/appIcon_og_square.png">
+
+
+
+  <meta property="article:published_time" content="2025-11-07T03:45:08-05:00">
+
+
+
+
+
+
+<link rel="canonical" href="https://ibm.github.io/event-automation/ep/ep_1.3/installing/post-installation/">
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Organization",
+      "url": "https://ibm.github.io/event-automation",
+      "logo": "https://ibm.github.io/event-automation/assets/siteMeta/appIcon_og_fb.png"
+    }
+  </script>
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": null,
+      "url": "https://ibm.github.io/event-automation",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/event-automation/feed.xml" type="application/atom+xml" rel="alternate" title="IBM Event Automation Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/event-automation/assets/css/main.css">
+
+<script src="/event-automation/assets/js/scrollsidebar.js"></script>
+<script src="/event-automation/assets/js/copytoclipboard.js"></script>
+<script src="/event-automation/assets/js/highlighter.js"></script>
+<script src="/event-automation/assets/js/newtab.js"></script>
+
+
+
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<link rel="apple-touch-icon" sizes="180x180" href="https://ibm.github.io/event-automation/assets/siteMeta/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://ibm.github.io/event-automation/assets/siteMeta/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://ibm.github.io/event-automation/assets/siteMeta/favicon-16x16.png">
+<link rel="manifest" href="https://ibm.github.io/event-automation/assets/siteMeta/site.webmanifest">
+<link rel="mask-icon" href="https://ibm.github.io/event-automation/assets/siteMeta/safari-pinned-tab.svg" color="#000000">
+<link rel="shortcut icon" href="https://ibm.github.io/event-automation/assets/siteMeta/favicon.ico">
+<link rel="shortcut icon" type="image/png" href="https://ibm.github.io/event-automation/assets/siteMeta/favicon-16x16.png"/>
+<link rel="shortcut icon" type="image/png" href="https://ibm.github.io/event-automation/assets/siteMeta/favicon-32x32.png"/>
+<meta name="msapplication-TileColor" content="#000000">
+<meta name="msapplication-config" content="https://ibm.github.io/event-automation/assets/siteMeta/browserconfig.xml">
+<meta name="theme-color" content="#000000">
+
+
+
+<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,600%7CIBM+Plex+Serif:300,400,500%7CIBM+Plex+Mono:300,400,500,700" rel="stylesheet">
+
+<!-- end custom head snippets -->
+
+    <link rel="shortcut icon" type="image/x-icon" href="/event-automation/assets/favicon.ico" >
+    
+    <base target="_parent">
+
+  </head>
+  <script src="/event-automation/assets/animation/lottie.js" type="text/javascript"></script>
+  <script src="/event-automation/assets/js/connectors.js"></script>
+  <script src="/event-automation/assets/js/copytoclipboard.js"></script>
+  <script src="/event-automation/assets/js/highlighter.js"></script>
+
+
+  
+  <body onload="urlChecker()" class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+
+
+  
+
+
+
+
+
+
+<div id="masthead" class="masthead">
+  <!--
+  <div class="masthead__goToIBMCloud">
+  <div>
+    You are viewing the documentation for the container-native version of IBM Event Automation.
+  </div>
+    <a class="link" target="_self" href="https://cloud.ibm.com/docs/EventStreams?topic=EventStreams-getting-started">Looking for the managed service on IBM Cloud? Click here.</a>
+</div>
+-->
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="mastheadNav">
+
+      
+
+
+        <div class="mastheadTitle">
+          
+          <a class="site-title" href="/event-automation/" target="_self"><span>IBM</span>&nbsp;Event Automation</a>
+          <div class="viewOnIBMcom">
+            <a href="https://www.ibm.com/products/event-automation" target="_blank">View product page</a>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+
+        <div class="mastheadControls">
+            <div class="menuScrollContainer">
+
+        
+
+                <ul id="visible-links" class="visible-links">
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/es/','_self')">
+                      <a href="https://ibm.github.io/event-automation/es/" >Event Streams</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/eem/','_self')">
+                      <a href="https://ibm.github.io/event-automation/eem/" >Event Endpoint Management</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item active" onclick="window.open('https://ibm.github.io/event-automation/ep/','_self')">
+                      <a href="https://ibm.github.io/event-automation/ep/" >Event Processing</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/connectors/','_self')">
+                      <a href="https://ibm.github.io/event-automation/connectors/" >Connect catalog</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/tutorials/','_self')">
+                      <a href="https://ibm.github.io/event-automation/tutorials/" >Tutorials</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/api/','_self')">
+                      <a href="https://ibm.github.io/event-automation/api/" >APIs...</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/support/','_self')">
+                      <a href="https://ibm.github.io/event-automation/support/" >Support</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('https://ibm.github.io/event-automation/search/','_self')">
+                      <button aria-label="Search Button" role="button" id="searchButton" class="search__toggle " type="button" name="search Button">
+                        <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                          <path
+                            d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z"
+                            transform="translate(-.01)"></path>
+                        </svg>
+                      </button>
+                    </li>
+                  
+
+                  
+                </ul>
+        
+
+      </div>
+    </div>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div id="initial-content" class="initial-content" role="main">
+
+
+
+
+
+
+<main id="main" class="mainContainer" role="main">
+    
+      <div id="subMenu" class="subMenu">
+        <div tabindex="0" class="menuIcon" id="menuIcon">
+          <svg id="mobileMenu" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+            <g id="bottomLine">
+              <line class="burgerLine" x1="14" y1="29" x2="34" y2="29" />
+            </g>
+            <g id="middleLine">
+              <line class="burgerLine" x1="14" y1="24" x2="34" y2="24" />
+            </g>
+            <g id="topLine">
+              <line class="burgerLine" x1="14" y1="19" x2="34" y2="19" />
+            </g>
+          </svg>
+        </div>
+        <div id="mobileVersionShortcut" class="versionContainer" tabindex="0">
+          <a id="mobileVersionPillCurrent" class="versionPill">1.3</a>
+        </div>
+      </div>
+    
+  
+
+
+
+<div id="sidebarMask" class="sidebarMask">
+
+  </div>
+  <div id="sidebar" class="sidebar sticky">
+      <div aria-label="Change Version" role="button" aria-expanded="false"
+      
+        id="versionDropdown"
+        tabindex="0"
+        class="versionsBar"
+       >
+          <div class="selectedVersion" id="selectedVersion">
+            <div class="versionContainer" >
+              
+                <a id="versionPillCurrent" class="versionPill">1.3</a>
+                <a class="versionChange">Change Version</a>
+              
+            </div>
+          </div>
+          
+
+
+          <div class="allVersions" id="allVersions">
+            <ul>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/ep/installing/post-installation/" onclick="openVersion('/event-automation/ep/installing/post-installation/','ep_1.4')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/ep/installing/post-installation/" class="versionPill inactive">1.4</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        Latest
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/ep/ep_1.3/installing/post-installation/" onclick="openVersion('/event-automation/ep/ep_1.3/installing/post-installation/','ep_1.3')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/ep/ep_1.3/installing/post-installation/" class="versionPill active">1.3</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                          <img alt="" src="https://ibm.github.io/event-automation/images/checkbox.svg" />
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/ep/ep_1.2/installing/post-installation/" onclick="openVersion('/event-automation/ep/ep_1.2/installing/post-installation/','ep_1.2')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/ep/ep_1.2/installing/post-installation/" class="versionPill inactive">1.2</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/ep/ep_1.1/installing/post-installation/" onclick="openVersion('/event-automation/ep/ep_1.1/installing/post-installation/','ep_1.1')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/ep/ep_1.1/installing/post-installation/" class="versionPill inactive">1.1</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/ep/ep_1.0/installing/post-installation/" onclick="openVersion('/event-automation/ep/ep_1.0/installing/post-installation/','ep_1.0')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/ep/ep_1.0/installing/post-installation/" class="versionPill inactive">1.0</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+            </ul>
+          </div>
+        </div>
+
+  
+    
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <ul class="nav__items">
+
+    
+      <li>
+        
+          <span class="nav__sub-title">About</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.3/about/overview/" class="">Introduction</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.3/about/whats-new/" class="">What's new</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.3/about/key-concepts/" class="">Key concepts</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Installing</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.3/installing/prerequisites/" class="">Prerequisites</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.3/installing/planning/" class="">Planning your installation</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.3/installing/overview/" class="">Installation overview</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.3/installing/installing/" class="">Installing in an online OpenShift environment</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.3/installing/offline/" class="">Installing in an offline environment</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.3/installing/installing-on-kubernetes/" class="">Installing on other Kubernetes platforms</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.3/installing/configuring/" class="">Configuring</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.3/installing/post-installation/" class="active">Post-installation tasks</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.3/installing/backup-restore/" class="">Backing up and restoring</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.3/installing/uninstalling/" class="">Uninstalling</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.3/installing/upgrading/" class="">Upgrading</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Getting started with Authoring</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.3/getting-started/logging-in/" class="">Logging in</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.3/getting-started/canvas/" class="">Building a simple flow</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.3/getting-started/flink-session-job/" class="">Deploying a custom Flink session job</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Security</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.3/security/managing-access/" class="">Managing access</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.3/security/user-roles/" class="">Managing user roles</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.3/security/verifying-signature/" class="">Verifying container image signatures</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.3/security/network-policies/" class="">Network policies</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.3/security/gdpr-considerations/" class="">Considerations for GDPR</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.3/security/data-encryption/" class="">Encrypting your data</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Administering</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.3/administering/flink-health/" class="">Monitoring Flink health</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Nodes</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.3/nodes/summary/" class="">Node overview</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.3/nodes/eventnodes/" class="">Events</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.3/nodes/processornodes/" class="">Processors</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.3/nodes/windowednodes/" class="">Windowed</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.3/nodes/joins/" class="">Joins</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.3/nodes/enrichmentnode/" class="">Enrichment</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.3/nodes/custom/" class="">Custom</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Deploying flows</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.3/advanced/exporting-flows/" class="">Exporting and importing flows</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.3/advanced/deploying-customized/" class="">Deploying customized jobs</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.3/advanced/deploying-development/" class="">Testing jobs by using the Flink SQL client</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.3/advanced/deploying-production/" class="">Deploying jobs by using the Apache SQL Runner sample</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Reference</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.3/reference/event-structure/" class="">Event structure definition</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.3/reference/api-reference/" class="">API reference for the CRDs</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.3/reference/supported-functions/" class="">Supported Flink SQL functions</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Troubleshooting</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.3/troubleshooting/intro/" class="">Troubleshooting overview</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.3/troubleshooting/gathering-logs/" class="">Gathering logs</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.3/troubleshooting/trace-logging/" class="">Configuring trace logging</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.3/troubleshooting/changing-ca-certificate/" class="">Error when logging in to UI after changing CA certificate</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.3/troubleshooting/waiting-for-events/" class="">Results stuck in `Waiting for output events`</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.3/troubleshooting/default-scc-issues/" class="">The IBM Operator for Apache Flink not installing due to Security Context Constraint (SCC) issues</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.3/troubleshooting/flows-stop-working/" class="">Running flows stop working</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.3/troubleshooting/certificate-rotation/" class="">Error when logging in to UI after certificate rotation</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.3/troubleshooting/fsgroup-not-set/" class="">Flink instances cannot access jobResultStore</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.3/troubleshooting/rbac/" class="">Operator watching single namespace has escalated permissions</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.3/troubleshooting/changing-database-ca-certificate/" class="">Error when you connect to a database after modifying a CA certificate</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.3/troubleshooting/flink-imagepullbackoff/" class="">Flink pods enter ImagePullBackOff state</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.3/troubleshooting/flink-jar-permissions/" class="">Flink instances cannot access SQL runner JAR file</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.3/troubleshooting/migration-issue/" class="">Error in flows during upgrade or import</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.3/troubleshooting/no-output-event-from-api-node/" class="">Enrichment from API produces no output events</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.3/troubleshooting/bad-output-from-auto-detection/" class="">Auto-detection message format issues</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.3/troubleshooting/no-main-key-backup/" class="">Event Processing fails with `Unable to find main key backup` error</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.3/troubleshooting/event-time-property" class="">Incorrect event time property format causes Flink job to fail</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.3/troubleshooting/api-node-exported-sql-flink-120" class="">Customized SQL queries with a `TIMESTAMP_LTZ` join condition fail to produce expected results</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.3/troubleshooting/recover-flink-deployment" class="">Recover a Flink application deployment to restore to a specified state</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.3/troubleshooting/error-submitting-job-for-enrichment" class="">Job failure when deploying customized flows that contain API or watsonx.ai enrichment nodes</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/ep_1.3/troubleshooting/missing-flink-resources" class="">Flink resources are unexpectedly missing from the cluster</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+    
+  
+  </div>
+
+
+  <div class="mainContent">
+    
+    <div id="pageContainer" class="page" itemscope itemtype="http://schema.org/CreativeWork">
+      
+      <div class="page__inner-wrap">
+      
+
+        
+        <section class="page__content pageSpacing" itemprop="text">
+          
+        
+          <header>
+            <h1 id="page-title" class="page__title" itemprop="headline">
+              Post-installation tasks
+</h1>
+            
+          </header>  
+        
+        
+
+                    
+          <div class="content">
+            <p>Consider the following tasks after installing Event Processing and Flink.</p>
+
+<h2 id="verifying-an-installation">Verifying an installation</h2>
+
+<p>To verify that your Event Processing and Flink installations deployed successfully, you can check the status
+of your instances either by using the command line (CLI), or if running on OpenShift Container Platform, by using the web console (UI).</p>
+
+<h3 id="using-the-openshift-container-platform-ui">Using the OpenShift Container Platform UI</h3>
+
+<p>For Event Processing:</p>
+
+<ol>
+  <li>Log in to the OpenShift Container Platform <a href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/web_console/web-console" target="_blank">web console</a> using your login credentials.</li>
+  <li>Expand the <strong>Operators</strong> dropdown and select <strong>Installed Operators</strong> to open the <strong>Installed Operators</strong> page.</li>
+  <li>Expand the <strong>Project</strong> dropdown and select the project the instance is installed in. Click the operator called <strong>IBM Event Processing</strong> managing the project.</li>
+  <li>Select the <strong>EventProcessing</strong> tab and search for the installed instance(s).</li>
+  <li>The <strong>Status</strong> column displays the current state of the <code class="language-plaintext highlighter-rouge">EventProcessing</code> custom resource. When the 
+Event Processing instance is ready, the phase displays <code class="language-plaintext highlighter-rouge">Phase: Running</code>.</li>
+</ol>
+
+<p>For Flink:</p>
+
+<ol>
+  <li>Log in to the OpenShift Container Platform <a href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/web_console/web-console" target="_blank">web console</a> using your login credentials.</li>
+  <li>Expand the <strong>Operators</strong> dropdown and select <strong>Installed Operators</strong> to open the <strong>Installed Operators</strong> page.</li>
+  <li>Expand the <strong>Project</strong> dropdown and select the project the instance is installed in. Click the operator called <strong>IBM Operator for Apache Flink</strong>.</li>
+  <li>Select the <strong>FlinkDeployment</strong> tab and click the installed instance.</li>
+  <li>Select the YAML tab.</li>
+  <li>The <code class="language-plaintext highlighter-rouge">status</code> field displays the current state of the <code class="language-plaintext highlighter-rouge">FlinkDeployment</code> custom resource. When the Flink instance is ready, the custom resource displays <code class="language-plaintext highlighter-rouge">status.lifecycleState: STABLE</code> and <code class="language-plaintext highlighter-rouge">status.jobManagerDeploymentStatus: READY</code>.</li>
+</ol>
+
+<h3 id="using-the-cli">Using the CLI</h3>
+
+<p>After all the components of an Event Processing instance are active and ready, the <code class="language-plaintext highlighter-rouge">EventProcessing</code> custom resource will have a <code class="language-plaintext highlighter-rouge">Running</code> phase in the status.</p>
+
+<p>To verify the status:</p>
+
+<ol>
+  <li>Log in to your Kubernetes cluster as a cluster administrator by setting your <code class="language-plaintext highlighter-rouge">kubectl</code> <a href="https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/" target="_blank">context</a>.</li>
+  <li>
+    <p>For Event Processing, run the following command:</p>
+
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kubectl get eventprocessing &lt;instance-name&gt; <span class="nt">-n</span> &lt;namespace&gt; <span class="nt">-o</span> <span class="nv">jsonpath</span><span class="o">=</span><span class="s1">'{.status.phase}'</span>
+</code></pre></div>    </div>
+
+    <p>An example output for a successful deployment:</p>
+
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kubectl get eventprocessing development <span class="nt">-n</span> myepnamespace <span class="nt">-o</span> <span class="nv">jsonpath</span><span class="o">=</span><span class="s1">'{.status.phase}'</span>
+Running
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>For Flink, run the following commands:</p>
+
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kubectl get flinkdeployment &lt;instance-name&gt; <span class="nt">-n</span> &lt;namespace&gt; <span class="nt">-o</span> <span class="nv">jsonpath</span><span class="o">=</span><span class="s1">'{.status.lifecycleState}'</span>
+kubectl get flinkdeployment &lt;instance-name&gt; <span class="nt">-n</span> &lt;namespace&gt; <span class="nt">-o</span> <span class="nv">jsonpath</span><span class="o">=</span><span class="s1">'{.status.jobManagerDeploymentStatus}'</span>
+</code></pre></div>    </div>
+
+    <p>An example output for a successful deployment:</p>
+
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kubectl get flinkdeployment session-cluster-quick-start <span class="nt">-n</span> myepnamespace <span class="nt">-o</span> <span class="nv">jsonpath</span><span class="o">=</span><span class="s1">'{.status.lifecycleState}'</span>
+STABLE
+kubectl get flinkdeployment session-cluster-quick-start <span class="nt">-n</span> myepnamespace <span class="nt">-o</span> <span class="nv">jsonpath</span><span class="o">=</span><span class="s1">'{.status.jobManagerDeploymentStatus}'</span>
+READY
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<p><strong>Note:</strong> It might take several minutes for all the resources to be created and the instance to become ready.</p>
+
+<h2 id="setting-up-access">Setting up access</h2>
+
+<p>After the Event Processing instance is successfully created, set up user authentication and authorization for your chosen implementation. Event Processing supports locally defined authentication for testing purposes and <a href="https://openid.net/connect/" target="_blank">OpenID Connect (OIDC) authentication</a> for production purposes.</p>
+
+<ul>
+  <li>If you have selected <code class="language-plaintext highlighter-rouge">LOCAL</code> authentication, ensure you create user credentials before you access the Event Processing instance.  For more information, see <a href="../../security/managing-access">managing access</a>.</li>
+  <li>After setting up <code class="language-plaintext highlighter-rouge">LOCAL</code> or <code class="language-plaintext highlighter-rouge">OIDC</code> authentication, assign users to roles. For more information, see <a href="../../security/user-roles">managing roles</a>.</li>
+</ul>
+
+<h2 id="backup-the-data-encryption-key">Backup the data encryption key</h2>
+
+<p>The secret <code class="language-plaintext highlighter-rouge">&lt;instance-name&gt;-ibm-ep-mek</code> contains an important key for decrypting the data stored by Event Processing. Ensure you back up and store the key safely outside your cluster.</p>
+
+<p>To save the key to a file, complete the following steps.</p>
+
+<ol>
+  <li>Log in to your Kubernetes cluster as a cluster administrator by setting your <code class="language-plaintext highlighter-rouge">kubectl</code> <a href="https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/" target="_blank">context</a>.</li>
+  <li>
+    <p>Run the following command to retrieve the encryption secret:</p>
+
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kubectl get secret &lt;instance-name&gt;-ibm-ep-mek <span class="nt">-n</span> &lt;namespace&gt;
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Create a backup of the encryption secret with the command:</p>
+
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kubectl get secret &lt;instance-name&gt;-ibm-ep-mek <span class="nt">-n</span> &lt;namespace&gt; <span class="nt">-o</span> yaml <span class="o">&gt;</span> encryption-secret.yaml
+</code></pre></div>    </div>
+
+    <p>This command retrieves the encryption secret in YAML format and redirects the output to a file named <code class="language-plaintext highlighter-rouge">encryption-secret.yaml</code>.</p>
+  </li>
+  <li>Ensure that the backup file (<code class="language-plaintext highlighter-rouge">encryption-secret.yaml</code>) is stored in a secure location outside the cluster.</li>
+</ol>
+
+<h2 id="updating-and-renewing-certificates">Updating and renewing certificates</h2>
+
+<p>After installing Event Processing, you can manage your certificates with the Cert Manager operator. Follow the instructions to update and renew your certificates.</p>
+
+<h3 id="renew-an-existing-certificate">Renew an existing certificate</h3>
+
+<p>You can use the Cert Manager to renew and regenerate a certificate if the secret for the certificate is deleted. You can also use the Cert Manager to renew your expired certificates.</p>
+
+<h4 id="by-using-the-cli">By using the CLI</h4>
+
+<p>You can also renew a certificate by deleting the existing secret. You can do this by using the <code class="language-plaintext highlighter-rouge">kubectl</code> command as follows:</p>
+
+<ol>
+  <li>Log in to your Kubernetes cluster as a cluster administrator by setting your <code class="language-plaintext highlighter-rouge">kubectl</code> <a href="https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/" target="_blank">context</a>.</li>
+  <li>
+    <p>Ensure you are in the namespace where your Event Processing instance is installed:</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kubectl config set-context <span class="nt">--current</span> <span class="nt">--namespace</span><span class="o">=</span>&lt;namespace&gt;
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Run the following command to display the Event Processing instances:</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kubectl get eventprocessing
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Run the following command to display the name of the secret representing the certificate for Event Processing:</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kubectl get eventprocessing &lt;instance_name&gt; <span class="nt">--template</span> <span class="s1">'{ {.spec.authoring.tls.caSecretName} }'</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Run the following command to delete and regenerate the value of the certificate:</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kubectl delete secret &lt;secret_name&gt;
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h4 id="by-using-cmctl">By using <code class="language-plaintext highlighter-rouge">cmctl</code></h4>
+
+<p>Cert Manager provides the cert-manager Command Line Tool (<code class="language-plaintext highlighter-rouge">cmctl</code>) for managing and renewing certificates.</p>
+
+<ol>
+  <li>Install the <a href="https://cert-manager.io/docs/reference/cmctl/#installation" target="_blank">cert-manager Command Line Tool (<code class="language-plaintext highlighter-rouge">cmctl</code>)</a>.</li>
+  <li>Log in to your Kubernetes cluster as a cluster administrator by setting your <code class="language-plaintext highlighter-rouge">kubectl</code> <a href="https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/" target="_blank">context</a>.</li>
+  <li>
+    <p>Ensure you are in the namespace where your Event Processing instance is installed:</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kubectl config set-context <span class="nt">--current</span> <span class="nt">--namespace</span><span class="o">=</span>&lt;namespace&gt;
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>View the certificates of your Event Processing instance by running the following command:</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kubectl get certificate
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>View the status of an existing certificate by running the following command:</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cmctl status certificate &lt;certificate_name&gt;
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Renew a certificate by running the following command:</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cmctl renew &lt;certificate_name&gt;
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h4 id="by-using-the-openshift-web-console">By using the OpenShift web console</h4>
+
+<p>If running on the OpenShift Container Platform, you can also renew a certificate by deleting the existing secret. You can do this in the OpenShift web console as follows:</p>
+
+<ol>
+  <li>Log in to the OpenShift Container Platform <a href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/web_console/web-console" target="_blank">web console</a> using your login credentials.</li>
+  <li>Expand the <strong>Operators</strong> dropdown and select <strong>Installed Operators</strong> to open the <strong>Installed Operators</strong> page.</li>
+  <li>Expand the <strong>Project</strong> dropdown and select the project the instance is installed in. Click the operator called <strong>IBM Event Processing</strong> managing the project.</li>
+  <li>Select the <strong>Event Processing</strong> tab and search the <strong>Name</strong> column for the installed instance and click it.</li>
+  <li>In the <strong>EventProcessing details</strong> dashboard, scroll down and locate the <strong>Ca Secret Name</strong> field, and then click the linked secret.</li>
+  <li>Click the <strong>Actions</strong> menu, and select <strong>Delete secret</strong>.</li>
+</ol>
+
+<p><strong>Note:</strong> Following deleting the secret, you will be navigated back to the <strong>Secrets</strong> page. Your deleted secret will have been regenerated with a new value, which will be used for your certificate in your chosen certificate manager.</p>
+
+<h4 id="by-using-the-openshift-cli-oc">By using the OpenShift CLI (<code class="language-plaintext highlighter-rouge">oc</code>)</h4>
+
+<p>You can also renew a certificate by deleting the existing secret. You can do this by using the <code class="language-plaintext highlighter-rouge">oc</code> CLI as follows:</p>
+
+<ol>
+  <li>Log in to your Red Hat OpenShift Container Platform as a cluster administrator by using the <code class="language-plaintext highlighter-rouge">oc</code> <a href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/cli_tools/openshift-cli-oc#cli-getting-started" target="_blank">CLI</a> (<code class="language-plaintext highlighter-rouge">oc login</code>).</li>
+  <li>
+    <p>Ensure you are in the project where your Event Processing instance is installed:</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>oc project &lt;project_name&gt;
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Run the following command to display the Event Processing instances:</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>oc get eventprocessing
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Run the following command to display the name of the secret representing the certificate for Event Processing:</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>oc get eventprocessing &lt;instance_name&gt; <span class="nt">--template</span> <span class="s1">'{ {.spec.authoring.tls.caSecretName} }'</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Run the following command to delete and regenerate the value of the certificate:</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>oc delete secret &lt;secret_name&gt;
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="update-a-certificate-to-use-an-external-secret">Update a certificate to use an external secret</h3>
+
+<p>You can provide an externally generated certificate to the Cert Manager. To use an externally generated certificate, update the Event Processing instance to use the external certificate as follows.</p>
+
+<h4 id="generate-a-certificate-externally">Generate a certificate externally</h4>
+
+<p>You can generate a certificate externally to register with Event Processing. There are several ways to generate a certificate externally. For example, you can create a certificate by using <code class="language-plaintext highlighter-rouge">openssl</code> as follows.</p>
+
+<ol>
+  <li>
+    <p>Generate a certificate key file by using <code class="language-plaintext highlighter-rouge">openssl</code>:</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>openssl genrsa <span class="nt">--out</span> ca.key 4096
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Generate a CA certificate by using the key file:</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>openssl req <span class="nt">-new</span> <span class="nt">-x509</span> <span class="nt">-sha256</span> <span class="nt">-days</span> 10950 <span class="nt">-key</span> ca.key <span class="nt">-out</span> ca.crt
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h4 id="register-an-externally-generated-certificate">Register an externally generated certificate</h4>
+
+<p>Register an externally generated certificate with Event Processing as follows.</p>
+
+<ol>
+  <li>Log in to your Kubernetes cluster as a cluster administrator by setting your <code class="language-plaintext highlighter-rouge">kubectl</code> <a href="https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/" target="_blank">context</a>.</li>
+  <li>
+    <p>Ensure you are in the namespace where your Event Processing instance is installed:</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kubectl config set-context <span class="nt">--current</span> <span class="nt">--namespace</span><span class="o">=</span>&lt;namespace&gt;
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Encode your externally generated certificates to Base64 format, and make a note of the values:</p>
+
+    <p><code class="language-plaintext highlighter-rouge">base64 -i ca.crt</code></p>
+
+    <p><code class="language-plaintext highlighter-rouge">base64 -i ca.key</code></p>
+  </li>
+  <li>
+    <p>Create a YAML file called <code class="language-plaintext highlighter-rouge">secret.yaml</code> with the following content:</p>
+
+    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="na">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+ <span class="na">kind</span><span class="pi">:</span> <span class="s">Secret</span>
+ <span class="na">metadata</span><span class="pi">:</span>
+   <span class="na">name</span><span class="pi">:</span> <span class="s">ibm-ca-secret</span>
+   <span class="na">namespace</span><span class="pi">:</span> <span class="s">&lt;ep namespace&gt;</span>
+ <span class="na">type</span><span class="pi">:</span> <span class="s">Opaque</span>
+ <span class="na">data</span><span class="pi">:</span>
+   <span class="s">ca.crt</span><span class="pi">:</span> <span class="s">&lt;Base64 value for ca.crt&gt;</span>
+   <span class="s">tls.crt</span><span class="pi">:</span> <span class="s">&lt;Base64 value for ca.crt&gt;</span>
+   <span class="s">tls.key</span><span class="pi">:</span> <span class="s">&lt;Base64 value for ca.key&gt;</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Apply the secret by running the following command:</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kubectl apply <span class="nt">-f</span> secret.yaml
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Edit the custom resource of the Event Processing instance by running the following command:</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kubectl edit eventprocessing &lt;instance-name&gt;
+</code></pre></div>    </div>
+  </li>
+  <li>Locate and update the <code class="language-plaintext highlighter-rouge">spec.tls.caSecretName</code> field to <code class="language-plaintext highlighter-rouge">ibm-ca-secret</code>, then save and exit.</li>
+</ol>
+
+<p>This will update the certificate used in your Event Processing instance. Your pods will reload with the latest certificates in use.</p>
+
+
+          </div>
+
+
+          
+        </section>
+
+        <aside class="sidebar__right ">
+          
+          <div class="fixedSidebar">
+            <nav class="toc">
+              <ul class="toc__menu">
+  <li><a href="#verifying-an-installation">Verifying an installation</a>
+    <ul>
+      <li><a href="#using-the-openshift-container-platform-ui">Using the OpenShift Container Platform UI</a></li>
+      <li><a href="#using-the-cli">Using the CLI</a></li>
+    </ul>
+  </li>
+  <li><a href="#setting-up-access">Setting up access</a></li>
+  <li><a href="#backup-the-data-encryption-key">Backup the data encryption key</a></li>
+  <li><a href="#updating-and-renewing-certificates">Updating and renewing certificates</a>
+    <ul>
+      <li><a href="#renew-an-existing-certificate">Renew an existing certificate</a></li>
+      <li><a href="#update-a-certificate-to-use-an-external-secret">Update a certificate to use an external secret</a></li>
+    </ul>
+  </li>
+</ul>
+            </nav>
+          </div>
+          
+        </aside>
+
+
+      </div>
+      <div class="pageEnd">
+        
+          
+  <nav class="pagination">
+    
+      <div class="previous" onclick="window.open('/event-automation/ep/ep_1.3/installing/configuring/','_self')">
+        <div class="container">
+          <a href="/event-automation/ep/ep_1.3/installing/configuring/" class="pagination--pager" title="Previous Item: Configuring
+">Previous</a>
+          <h2 class="titlePreview">Configuring
+</h2>
+        </div>
+      </div>
+    
+    
+      <div class="next" onclick="window.open('/event-automation/ep/ep_1.3/installing/backup-restore/','_self')">
+        <div class="container">
+          <a href="/event-automation/ep/ep_1.3/installing/backup-restore/" class="pagination--pager" title="Next Item: Backing up and restoring
+">Next</a>
+          <h2 class="titlePreview">Backing up and restoring
+</h2>
+        </div>
+      </div>
+      
+  </nav>
+
+        
+      </div>
+    </div>
+
+
+  </div> <!-- Main content -->
+
+</main></div>
+
+
+    
+      <div class="page__footer">
+          <footer>
+            <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+
+            
+<div class="page__footer-copyright"><a href="https://www.ibm.com/privacy/us/en/" rel="nofollow" target="_blank">Privacy Policy</a>  &nbsp;© Copyright IBM Corporation 2025</br>
+<a href="https://www.ibm.com/legal/terms" rel="nofollow" target="_blank">Terms of use</a> </br> <a href="https://ibm.github.io/event-automation/accessibility/" rel="nofollow" target="_blank">Accessibility</a> </br> <a href="https://ibm.github.io/event-automation/notices/" rel="nofollow" target="_blank">Notices</a></br>
+          </footer>
+      </div>      
+    
+
+
+    
+  <script src="/event-automation/assets/js/main.min.js"></script>
+  <!-- <script src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script> -->
+
+
+
+
+
+
+<script src="/event-automation/assets/js/design.js"></script>
+
+
+
+
+
+<script src="/event-automation/assets/js/lunr/lunr.min.js"></script>
+<script src="/event-automation/assets/js/lunr/lunr-store.js"></script>
+<script src="/event-automation/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+    
+
+    
+  </body>
+</html>
