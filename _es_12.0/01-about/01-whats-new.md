@@ -1,0 +1,110 @@
+---
+title: "What's new"
+excerpt: "Find out what is new in Event Streams."
+categories: about
+slug: whats-new
+toc: true
+---
+
+Find out what is new in {{site.data.reuse.es_name}} version 12.0.x.
+
+## Release {{site.data.reuse.es_current_version}}
+{: #release-1202}
+
+### UI support for enabling tiered storage
+{: #ui-support-for-enabling-tiered-storage}
+
+{{site.data.reuse.es_name}} 12.0.2 includes support for enabling tiered storage when creating a topic by using the {{site.data.reuse.es_name}} UI.
+
+For more information, see the instructions for enabling tiered storage in [creating topics](../../getting-started/creating-topics/#by-using-the-ui).
+
+### Support for Kubernetes 1.33
+{: #support-for-kubernetes-133}
+
+{{site.data.reuse.es_name}} version 12.0.2 introduces [support]({{ 'support/matrix/#event-streams' | relative_url }}) for Kubernetes platforms version 1.33 that support the Red Hat Universal Base Images (UBI) containers.
+
+### Deprecation of support for Confluent-compatible Schema Registry API version 6
+{: #deprecation-of-confluent-compatible-schema-registry-api-version-6}
+
+Support for version 6 of the Confluent-compatible Schema Registry API is deprecated and has been replaced by version 7. Version 6 support will be removed in a future release of {{site.data.reuse.es_name}}.
+
+You can continue to use version 6 of the API with {{site.data.reuse.es_name}} 12.0.2 and earlier, but to maintain compatibility with future releases of {{site.data.reuse.es_name}}, it is recommended that you update your Kafka producer and consumer applications to use version 7 of the Confluent-compatible Schema Registry API.
+
+
+### Documentation: Highlighting differences between versions
+{: #documentation-highlighting-differences-between-versions-1202}
+
+Any difference in features or behavior introduced by {{site.data.reuse.es_name}} 12.0.2 compared to 12.0.1 or earlier is highlighted in this documentation by using the following graphic: ![Event Streams 12.0.2 icon]({{ 'images' | relative_url }}/12.0.2.svg "In Event Streams 12.0.2 and later.")
+
+### Security and bug fixes
+{: #security-and-bug-fixes-1202}
+
+{{site.data.reuse.es_name}} release 12.0.2 contain security and bug fixes.
+
+## Release 12.0.1
+{: #release-1201}
+
+### Tiered storage support for Kafka topics
+{: #tiered-storage-support-for-kafka-topics}
+
+{{site.data.reuse.es_name}} version 12.0.1 introduces support for [tiered storage](../../installing/configuring/#tiered-storage) for Kafka topics. This feature offloads historical topic data to remote storage, reducing storage requirements of local disks and improving cost efficiency.
+
+### Apicurio version updated to 2.6.13.Final
+{: #apicurio-version-updated-to-2613final}
+
+{{site.data.reuse.es_name}} 12.0.1 includes Apicurio Registry version 2.6.13.Final for [managing schemas](../../schemas/overview/#schema-registry). Ensure all applications connecting to your instance of {{site.data.reuse.es_name}} that use the schema registry are using Apicurio client libraries version 2.5.0 or later before [upgrading](../../installing/upgrading/#prerequisites) to {{site.data.reuse.es_name}} 12.0.1. For more information, see [prerequisites](../../installing/prerequisites#schema-requirements).
+
+### Deprecation of support for Apicurio Registry Core REST API version 1
+{: #deprecation-of-support-for-apicurio-registry-core-rest-api-version-1}
+
+Support for version 1 of the Apicurio Registry Core REST API is deprecated and has been replaced by version 2. Version 1 support will be removed in Apicurio Registry v3.x, which will be adopted in a future release of {{site.data.reuse.es_name}}.
+
+You can continue to use version 1 of the API with {{site.data.reuse.es_name}} 12.0.1 and earlier, but it is recommended that you:
+
+- Migrate to version 2 of the API to ensure continued compatibility with future releases of {{site.data.reuse.es_name}}.
+
+- Upgrade all client dependencies to the latest available 2.x versions.
+
+For guidance about API usage and migration, see the [Apicurio Registry documentation](https://www.apicur.io/registry/docs/apicurio-registry/2.6.x/getting-started/assembly-managing-registry-artifacts-api.html){:target="_blank"}.
+
+### Documentation: Highlighting differences between versions
+{: #documentation-highlighting-differences-between-versions-1201}
+
+Any difference in features or behavior introduced by {{site.data.reuse.es_name}} 12.0.1 compared to 12.0.0 or earlier is highlighted in this documentation by using the following graphic: ![Event Streams 12.0.1 icon]({{ 'images' | relative_url }}/12.0.1.svg "In Event Streams 12.0.1 and later.")
+
+### Security and bug fixes
+{: #security-and-bug-fixes-1201}
+
+{{site.data.reuse.es_name}} release 12.0.1 contains security and bug fixes.
+
+## Release 12.0.0
+{: #release-1200}
+
+### Kafka version upgraded to 4.0.0
+{: #kafka-version-upgraded-to-400}
+
+{{site.data.reuse.es_name}} version 12.0.0 includes Kafka release 4.0.0, and supports the use of all Kafka interfaces.
+
+Kafka 4.0.0 introduces several significant improvements and includes updates to the Kafka APIs that might require changes to existing Kafka client, streaming, and Connect applications. Review the [notable changes in Kafka 4.0.0](https://kafka.apache.org/40/documentation/#upgrade_servers_400_notable){:target="_blank"} carefully, and [plan your upgrade](../../installing/upgrading/#planning-your-upgrade) of existing deployments to avoid any impact on your Kafka applications.
+
+### Java version and Kafka client updates
+{: #Java-version-and-kafka-client-updates}
+
+{{site.data.reuse.es_name}} version 12.0.0 introduces changes to Java version requirements and client compatibility. Ensure that your applications are using [supported Java versions and client libraries](../../installing/prerequisites/#kafka-clients).
+
+### Collection of usage metrics
+{: #collection-of-usage-metrics}
+
+To improve product features, performance, and technical support, {{site.data.reuse.es_name}} 12.0.0 and later collects data about the usage of deployments by default. Data is collected about all {{site.data.reuse.es_name}} instances.
+
+You can [disable data collection]({{ '/support/licensing/#usage-metrics' | relative_url }}) at any time.
+
+### Support for {{site.data.reuse.openshift}} 4.19
+{: #support-for-openshift-419}
+
+{{site.data.reuse.es_name}} version 12.0.0 introduces [support]({{ 'support/matrix/#event-streams' | relative_url }}) for {{site.data.reuse.openshift}} 4.19.
+
+### Security and bug fixes
+{: #security-and-bug-fixes-1200}
+
+{{site.data.reuse.es_name}} release 12.0.0 contains security and bug fixes.

@@ -6,14 +6,30 @@ html {
   /* sticky footer fix */
   position: relative;
   min-height: 100%;
+  background-color: $background;
 }
 
 body {
   margin: 0;
   padding: 0;
   color: $text-color;
+  color: #152935;
   font-family: $global-font-family;
   line-height: 1.5;
+  background: $background;
+  font-size: 0.875rem;
+  background: $background;
+  &.layout {
+    &--splash {
+      
+    }
+    &--connectorsAll {
+      
+    }
+    &--single {
+      background-color: white;
+    }
+  }
 
   &.overflow--hidden {
     /* when primary navigation is visible, the content in the background won't scroll */
@@ -31,40 +47,28 @@ h6 {
   line-height: 1.2;
   font-family: $header-font-family;
   font-weight: bold;
+  padding-top: 1rem;
 }
 
 h1 {
   margin-top: 0;
   font-size: $type-size-3;
+  &.hero {
+    margin-bottom: 0;
+    padding-top: 0;
+    line-height: 117%;
+    font-size: 2.75rem;
+    &.small {
+      font-size: 1.2rem;
+    }
+  }
 }
 
-h2 {
-  font-size: $type-size-4;
-}
-
-h3 {
-  font-size: $type-size-5;
-}
-
-h4 {
-  font-size: $type-size-6;
-}
-
-h5 {
-  font-size: $type-size-6;
-}
-
-h6 {
-  font-size: $type-size-6;
-}
 
 small,
 .small {
   font-size: $type-size-6;
-}
-
-p {
-  margin-bottom: 1.3em;
+  line-height: 1rem;
 }
 
 u,
@@ -126,18 +130,19 @@ blockquote {
 /* links */
 
 a {
+  color: $brand-01;
   &:focus {
     @extend %tab-focus;
   }
 
   &:hover,
   &:active {
-    color: $link-color-hover;
+    color: $hover-primary-text;
     outline: 0;
   }
 
   &:visited {
-    color: $link-color-visited;
+    color: $brand-01;
   }
 }
 
@@ -158,7 +163,14 @@ pre {
 }
 
 pre {
+  display: flex;
   overflow-x: auto; /* add scrollbars to wide code blocks*/
+  code {
+    flex-basis: 100%;
+    flex-shrink: 1;
+    flex-grow: 0;
+    width: 100%;
+  }
 }
 
 p > code,
@@ -355,4 +367,61 @@ input[type="submit"],
 .archive__item-teaser {
   -webkit-transition: $global-transition;
   transition: $global-transition;
+}
+
+
+button.bx--btn {
+  display: inline-block;
+}
+
+.bx--btn--secondary {
+  background-color: transparent;
+  border: 2px solid #0f62fe;
+  color: #0f62fe;
+}
+.bx--btn {
+  letter-spacing: 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: .875rem;
+  font-weight: 600;
+  height: 2.5rem;
+  padding: 0 1rem;
+  border-radius: 0;
+  text-align: center;
+  text-decoration: none;
+  transition-duration: .1s;
+  transition-timing-function: ease-in;
+  white-space: nowrap;
+  line-height: 16px;
+  margin-right: auto;
+  svg {
+    height: 1.25rem;
+    width: 1.25rem;
+    vertical-align: -5px;
+    margin-left: 0.25rem !important;
+    rect,path {
+      fill: #0f62fe;
+      transition-duration: .1s;
+    }
+  }
+}
+
+.bx--btn--secondary:focus, .bx--btn--secondary:hover {
+  background-color: #0f62fe;
+  color: white;
+  svg {
+    rect,path {
+      fill: white;
+    }
+  }
+}
+
+button.bx--btn .bx--btn__icon {
+  position: relative;
+  vertical-align: middle;
+  top: -1px;
 }
